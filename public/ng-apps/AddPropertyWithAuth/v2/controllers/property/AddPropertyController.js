@@ -60,6 +60,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     $scope.featureSections = [];
     $scope.errors = [];
     $scope.temp = {
+        city:{id:0},
         society: {id:0},
         block: {id:0}
     };

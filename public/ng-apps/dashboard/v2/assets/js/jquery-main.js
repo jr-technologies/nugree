@@ -1,4 +1,3 @@
-alert();
 jQuery(window).load(function(){
     $('.page-loader').fadeOut();
     $('#wrapper').removeClass('hidden');
@@ -58,6 +57,7 @@ $(window).scroll(function() {
 });
 // page init
 jQuery(function(){
+
     if(screen.width >= 768){
         initFixedScrollBlock();
     }

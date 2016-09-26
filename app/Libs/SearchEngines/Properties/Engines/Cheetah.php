@@ -10,6 +10,7 @@ namespace App\Libs\SearchEngines\Properties\Engines;
 
 
 use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
+use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyFeatureValue\PropertyFeatureValueFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
@@ -48,6 +49,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
         $propertyTypes = (new PropertyTypeFactory())->getTable();
         $propertySubTypes = (new PropertySubTypeFactory())->getTable();
         $societies = (new SocietyFactory())->getTable();
+        $cities = (new CityFactory())->getTable();
         $blocks = (new BlockFactory())->getTable();
         $propertyJsonTable = (new PropertyJsonFactory())->getTable();
         $propertyFeatureValues = (new PropertyFeatureValueFactory())->getTable();
@@ -57,6 +59,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             ->leftjoin($propertySubTypes,$properties.'.property_sub_type_id','=',$propertySubTypes.'.id')
             ->leftjoin($blocks,$properties.'.block_id','=',$blocks.'.id')
             ->leftjoin($societies,$blocks.'.society_id','=',$societies.'.id')
+            ->leftjoin($cities,$societies.'.city_id','=',$cities.'.id')
             ->leftjoin($propertyFeatureValues,$properties.'.id','=',$propertyFeatureValues.'.property_id')
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$propertyJsonTable.'.json'));
 
@@ -68,6 +71,8 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             $query = $query->where($propertySubTypes.'.property_type_id',$this->instructions['propertyTypeId']);
         if(isset($this->instructions['subTypeId']) && $this->instructions['subTypeId'] != null && $this->instructions['subTypeId'] != '')
             $query = $query->where($properties.'.property_sub_type_id',$this->instructions['subTypeId']);
+        if(isset($this->instructions['cityId']) && $this->instructions['cityId'] != null && $this->instructions['cityId'] != '')
+            $query = $query->where($cities.'.id',$this->instructions['cityId']);
         if(isset($this->instructions['societyId']) && $this->instructions['societyId'] != null && $this->instructions['societyId'] != '')
             $query = $query->where($societies.'.id',$this->instructions['societyId']);
         if(isset($this->instructions['blockId']) && $this->instructions['blockId'] != null && $this->instructions['blockId'] != '')

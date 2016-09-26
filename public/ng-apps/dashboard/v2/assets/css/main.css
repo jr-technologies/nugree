@@ -5814,7 +5814,6 @@ h1 span {
 
 #wrapper {
   position: relative;
-  min-height: 100vh;
 }
 
 #wrapper.fancy-overlay {

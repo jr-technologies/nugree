@@ -22,6 +22,7 @@ class SearchPropertiesTransformer extends RequestTransformer
             'purposeId' => $this->request->get('purpose_id'),
             'propertyTypeId' => $this->request->get('property_type_id'),
             'subTypeId' => $this->request->get('sub_type_id'),
+            'cityId' => $this->request->get('city_id'),
             'societyId' => $this->request->get('society_id'),
             'blockId' => $this->request->get('block_id'),
             'bedrooms' => $this->request->get('bedrooms'),

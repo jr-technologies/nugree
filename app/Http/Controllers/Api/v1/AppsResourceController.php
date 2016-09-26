@@ -13,6 +13,7 @@ use App\Http\Requests\Requests\AppsResources\GetDashboardResourcesRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
@@ -49,6 +50,7 @@ class AppsResourceController extends ApiController
         $this->purposes = (new PropertyPurposesRepoProvider())->repo();
         $this->statuses = (new PropertyStatusesRepoProvider())->repo();
         $this->societies = (new SocietiesRepoProvider())->repo();
+        $this->cities = (new CitiesRepoProvider())->repo();
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
         $this->propertySubTypes = (new PropertySubTypesRepoProvider())->repo();
         $this->landUnits = (new LandUnitsRepoProvider())->repo();
@@ -69,6 +71,7 @@ class AppsResourceController extends ApiController
         $user = $this->releaseAllUserFiles($user);
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
+        $cities = $this->cities->all();
         $societies = $this->societies->all();
         $propertyStatusesIds = (object)$this->mapStatusesToArray($this->propertyStatuses->all());
         $propertyTypes = $this->propertyTypes->all();
@@ -86,6 +89,7 @@ class AppsResourceController extends ApiController
                     'purposes'=>$purposes,
                     'propertyStatuses'=>$statuses,
                     'propertyTypes'=>$propertyTypes,
+                    'cities'=>$cities,
                     'societies'=>$societies,
                     'propertySubTypes'=>$propertySubTypes,
                     'landUnits'=>$landUnits,
