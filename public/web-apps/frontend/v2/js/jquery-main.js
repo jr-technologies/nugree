@@ -1,10 +1,11 @@
 jQuery(window).load(function(){
 	$('.page-loader').fadeOut();
+	$('#wrapper').removeClass('hidden');
 });
 
 $(document).ready(function() {
 	$(".js-example-basic-single").select2();
-	if ($(window).width() < 768){
+	if (screen.width < 768){
 		$('.call-agent-btn').each(function(){
 			var mobileNumber = $(this).attr('data-tel');
 			$(this).attr('href', 'tel:'+mobileNumber)
@@ -12,49 +13,77 @@ $(document).ready(function() {
 	}
 	if($('.publicProperty-post, .publicAgent-post').length == 0){
 		$('.propertyNotFound').removeClass('hidden');
+		$('.pager').remove();
 	}
 	$('.addPro-type:first').trigger('change');
 	$('.registration-form').find('.role-listing').hide();
+
 	if($('.Ads li').length == 0){
 		$('.page-holder').addClass('no-ads');
 	}
 
+	if($('.index-page').length){
+		if (screen.width < 1024){ $('#wrapper').addClass('fancy-overlay'); }
+	}
 	$('.news-slideshow .slide').each(function(){
 		if($(this).find('.news-slide').length == 1){
 			$(this).find('.news-pagination').remove();
 		}
 	});
 	$(window).trigger('scroll');
+	imageAdjustment();
 });
-
+function imageAdjustment(){
+	$('.propertyImage-slider .slide').find('img').each(function(){
+		var imgWdht = $(this).width();
+		var imghght = $(this).height();
+		if (imgWdht > imghght){
+			$(this).addClass('landscape');
+		}
+		else {
+			$(this).addClass('portrait');
+		}
+	});
+}
 $( window ).resize(function() {
-	if ($(window).width() > 1024){
+	if (screen.width > 1024){
 		searchBtnFix();
 	}
 });
-$(window).scroll(function(evt) {
+$(window).scroll(function() {
 	activateBackToTop();
-	if ($(window).width() > 1024){ handleSearchBtnPosition(); }
+	if (screen.width > 1024){ handleSearchBtnPosition(); }
 });
-
 // page init
 jQuery(function(){
-
-	if($(window).width() >= 768){
+	initLightbox();
+	initCarousel();
+	initAnchors();
+	initSlideShow();
+	if(screen.width >= 768){
 		initFixedScrollBlock();
 	}
-
-	initCarousel();
-	initSlideShow();
-	initAccordion();
-	initLightbox();
-	initAnchors();
 });
 
 // slideshow init
 function initSlideShow() {
 
 	jQuery('.news-slideshow').fadeGallery({
+		useSwipe: true,
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		switchSimultaneously: true,
+		disableWhileAnimating: false,
+		generatePagination: '.pagination',
+		autoRotation: true,
+		autoHeight: true,
+		pauseOnHover: true,
+		circularRotation: false,
+		switchTime: 5000,
+		animSpeed: 600
+	});
+	jQuery('.projects-slideshow').fadeGallery({
 		useSwipe: true,
 		slides: '.slide',
 		currentNumber: 'span.cur-num',
@@ -102,6 +131,24 @@ function initCarousel() {
 		stretchSlideToMask: true,
 		btnPrev: '.news-btn-prev',
 		btnNext: '.news-btn-next',
+		switchTime: 4000,
+		animSpeed: 600
+	});
+	jQuery('.projects-carousel').scrollGallery({
+		mask: '.projects-mask',
+		slider: '.projects-slideset',
+		slides: '.projects-slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		generatePagination: '.projects-pagination',
+		circularRotation: true,
+		pauseOnHover: true,
+		autoRotation: true,
+		maskAutoSize: true,
+		stretchSlideToMask: true,
+		btnPrev: '.projects-btn-prev',
+		btnNext: '.projects-btn-next',
 		switchTime: 4000,
 		animSpeed: 600
 	});
@@ -226,7 +273,7 @@ function searchBtnFix()
 {
 	var asideFromLeft = $('#aside').position().left;
 	$('.filter-btn').css({
-		'left':asideFromLeft+13,
+		'left':asideFromLeft+15,
 		'width':$('#aside').width()
 	});
 }
@@ -238,9 +285,10 @@ function searchBtnUnFix()
 		'width':'auto'
 	});
 }
-function handleSearchBtnPosition(evt){
-	if(!$('.listing-page').length)
+function handleSearchBtnPosition(){
+	if(!$('.listing-page').length){
 		return;
+	}
 
 	if($(window).scrollTop()+$(window).height()-50 >= $('#aside').height()+$('#aside').offset().top){
 		$('.filter-btn').removeClass('srchBtnFxd');
@@ -360,7 +408,7 @@ $(document).on('click', '.call-agent-btn', function(){
 	var phoneNumber = $(this).attr('data-tel');
 	var placeToGo = $('.call-agent').find('p').text(phoneNumber);
 
-	if ($(window).width() < 768){
+	if (screen.width < 768){
 		$('#wrapper').removeClass('fancy-overlay');
 	}
 });

@@ -1,4 +1,4 @@
-@extends('frontend.frontend')
+@extends('frontend.frontend_old')
 @section('content')
     <div id="content">
 

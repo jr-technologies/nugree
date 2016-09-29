@@ -116,9 +116,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
             auth: true,
             resolve: {
                 data : function (resources, $stateParams, $ResourceLoader, $rootScope, $AuthService, $http, $CustomHttpService, $location, $state) {
-                    page = (isNaN($stateParams.page))?1:$stateParams.page;
-                    limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
-                    limit = (limit > 500)?500:limit;
+                        page = (isNaN($stateParams.page))?1:$stateParams.page;
+                        limit = (isNaN($stateParams.limit))?20:$stateParams.limit;
+                        limit = (limit > 500)?500:limit;
                     status = (isNaN($stateParams.status))?5:$stateParams.status;
                     var start = (limit * parseInt(page)) - limit;
                     params = {

@@ -18,6 +18,7 @@ use App\DB\Providers\SQL\Models\Block;
 use App\DB\Providers\SQL\Models\City;
 use App\DB\Providers\SQL\Models\Country;
 use App\DB\Providers\SQL\Models\FavouriteProperty;
+use App\DB\Providers\SQL\Models\Location;
 use App\DB\Providers\SQL\Models\Property;
 use App\DB\Providers\SQL\Models\Property\PropertyCompleteLocation;
 use App\DB\Providers\SQL\Models\PropertyPurpose;
@@ -111,20 +112,22 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $city->name = $rawLocation->cityName;
         $city->countryId = $rawLocation->countryId;
 
-        $society = new Society();
-        $society->id = $rawLocation->societyId;
-        $society->name = $rawLocation->societyName;
-        $society->cityId = $rawLocation->cityId;
+//        $society = new Society();
+//        $society->id = $rawLocation->societyId;
+//        $society->name = $rawLocation->societyName;
+//        $society->cityId = $rawLocation->cityId;
 
-        $block = new Block();
-        $block->id = $rawLocation->blockId;
-        $block->name = $rawLocation->blockName;
-        $block->societyId = $rawLocation->societyId;
+        $location = new Location();
+        $location->id = $rawLocation->locationId;
+        $location->location = $rawLocation->locationName;
+        $location->cityId = $rawLocation->cityId;
+        $location->lat = $rawLocation->lat;
+        $location->long = $rawLocation->long;
 
         $propertyCompleteLocation->country = $country;
         $propertyCompleteLocation->city = $city;
-        $propertyCompleteLocation->society = $society;
-        $propertyCompleteLocation->block = $block;
+        //$propertyCompleteLocation->society = $society;
+        $propertyCompleteLocation->location = $location;
 
         return $propertyCompleteLocation;
     }
@@ -135,7 +138,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             'Id'=>$property->id,
             'purpose_id'=>$property->purposeId,
             'property_sub_type_id' => $property->subTypeId,
-            'block_id' => $property->blockId,
+            'location_id' => $property->locationId,
             'title' => $property->title,
             'description' => $property->description,
             'price' => $property->price,
@@ -168,7 +171,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
 
         $property->purposeId = $result->purpose_id;
         $property->subTypeId =  $result->property_sub_type_id;
-        $property->blockId =  $result->block_id;
+        $property->locationId =  $result->location_id;
         $property->title =  $result->title;
         $property->description =  $result->description;
         $property->price =  $result->price;

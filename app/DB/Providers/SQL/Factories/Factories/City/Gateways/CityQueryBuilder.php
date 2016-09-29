@@ -27,4 +27,12 @@ class CityQueryBuilder extends QueryBuilder
                 ->where($societyTable.'.id','=',$societyId)
                 ->first();
     }
+    public function getImportantCities()
+    {
+        return  DB::table($this->table)
+            ->select($this->table.'.*')
+            ->where($this->table.'.priority','>',0)
+            ->orderBy($this->table.'.priority', 'DESC')
+            ->get();
+    }
 }

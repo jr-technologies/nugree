@@ -14,6 +14,7 @@ class PropertyLocationJsonPrototype extends JsonPrototype implements JsonPrototy
 {
     public $city = null;
     public $country = null;
-    public $society = null;
-    public $block = null;
+    public $location = null;
+    //public $society = null;
+    //public $block = null;
 }

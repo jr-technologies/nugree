@@ -1,0 +1,896 @@
+$breakpoints: (
+  'xs-phone': 320px,
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'widescreen': 1200px,
+  'tvscreen':1540px,
+);
+
+// keywords
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+// ligatured operators ≥ ≤
+
+@import 'vendors/include-media';
+
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/helpers';
+
+.agent-listing-page,
+.listing-page {
+  @extend %layout;
+  position: relative;
+  padding: 5px;
+
+  @include media('<phone'){
+    padding:0; 
+  }
+
+  .premiumProperty{
+    @include media('<phone'){
+      @include font(12,15);
+      top: 21px;
+      left: -41px;
+    }
+  }
+
+  .container {
+    @extend %layout;
+    @include media('<phone'){
+       padding: 0;
+    }
+  }
+
+  #aside {
+    width: 25%;
+    padding: 10px 10px 40px;
+    position: relative;
+    @extend .pull-left;
+    overflow: hidden;
+    box-shadow: 0 0 20px -9px rgba($black, 0.5);
+
+    @include media('<desktop'){
+      overflow: auto;
+      width: 100%;
+      display: block;
+      margin: 0 0 20px;
+      border: 0;
+      background: $white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      padding: 0;
+      border: 10px solid $p42-color;
+      border-bottom: 0;
+      border-top: 0;
+      margin: 0;
+      transform: translateY(-105%);
+      -webkit-transform: translateY(-105%);
+      -moz-transform: translateY(-105%);
+      transition: transform 0.5s linear;
+      -webkit-transition: transform 0.5s linear;
+      -moz-transition: transform 0.5s linear;
+
+      .filters-active & {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+      }
+    }
+
+    .top-head {
+      background: $p42-color;
+      @extend %layout;
+      position: relative;
+      color: $white;
+      @include font(18,24);
+      padding: 10px 40px 10px 10px;
+
+      @include media('>=desktop'){
+        margin: -10px -10px 0;
+        text-align: center;
+      }
+
+      p { margin: 0;}
+
+      .close  {
+        color: $white;
+        text-decoration: none;
+        border: 2px solid $white;
+        border-radius: 100%;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        cursor: pointer;
+        margin: -12px 0 0;
+
+        @include media('>=desktop'){ display: none;}
+
+        span {
+          display: block;
+          font-size: 20px;
+          line-height: 1;
+        }
+      }
+    }
+
+    .fake-select {
+      border: 1px solid $p42-color;
+    }
+  }
+  #content {
+    width: 75%;
+    @extend .pull-left;
+    padding: 0 0 0 20px;
+
+    @include media('<widescreen'){
+      padding: 0 0 0 10px;
+    }
+
+    @include media('<desktop'){
+      width: 100%;
+      overflow: hidden;
+      display: block;
+      margin: 0 0 20px;
+      padding: 0;
+    }
+  }
+  .filter-btn{
+    @extend %listreset;
+    width: 100%;
+    @include align-reset(top, 16,20);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 11px;
+    
+    @include media('<desktop'){
+        width: 94% !important;
+        position: absolute !important;
+        bottom: 0;
+        left: 10px !important;
+        right: 10px !important;
+        z-index: 1000 !important;
+        margin: 0 auto !important;
+      }
+
+    &.srchBtnFxd {
+      position: fixed;
+      bottom: 0;
+      z-index: 57;
+      width: 260px;
+      padding: 0;
+      background:$white;
+
+      @include media('<desktop'){
+        width: 94% !important;
+        position: absolute;
+        bottom: 0;
+        left: 10px !important;
+        right: 10px !important;
+        z-index: 1000 !important;
+        margin: 0 auto !important;
+      }
+    }
+
+    li {
+      width: 50%;
+      padding: 0 2px;
+
+      &:last-child{ button{
+        background: $p42-default-grey;
+        &:hover { background: darken($p42-default-grey, 10);}
+       }
+      }
+    }
+  }
+  .filter-form {
+    @extend %layout;
+
+    button {
+      width: 100%;
+      display: block;
+      border: 0;
+      color: $white;
+      background: $green;
+      padding: 10px;
+      transition: background 0.5s ease;
+      -webkit-transition: background 0.5s ease;
+      -moz-transition: background 0.5s ease;
+
+      &:hover {
+        background: darken($green, 5%);
+      }
+    }
+  }
+  .filters-links {
+    @extend %listreset;
+    @include font(14,17);
+
+    @include media('<widescreen'){
+      @include font(13,16);
+    }
+
+    @include media('<desktop'){
+      position: absolute;
+      top: 44px;
+      left: 0;
+      right: 0;
+      bottom: 50px;
+      overflow: auto;
+    }
+
+    li {
+      display: block;
+
+      &.active {
+        a{
+          &:after {content: "\e91a";}
+        }
+      }
+
+      a {
+        font-weight: 700;
+        text-decoration: none;
+        display: block;
+        color: $dark-grey;
+        cursor: pointer;
+        position: relative;
+        padding: 10px;
+        transition: color 0.5s ease, background 0.5s ease;
+        -webkit-transition: color 0.5s ease, background 0.5s ease;
+        -moz-transition: color 0.5s ease, background 0.5s ease;
+        -ms-transition: color 0.5s ease, background 0.5s ease;
+
+        @include media('<widescreen'){
+          padding: 8px 33px 8px 5px;
+        }
+
+        &:after {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          content: "\e91b";
+          font-family: 'icomoon';
+          @include font(20,20);
+          margin: -14px 0 0;
+          color: $p42-default-grey;
+          transition: color 0.5s ease;
+          -webkit-transition: color 0.5s ease;
+          -moz-transition: color 0.5s ease;
+          -ms-transition: color 0.5s ease;
+        }
+      }
+      .slide {
+        @extend %layout;
+        background: $white;
+        padding: 20px;
+      }
+    }
+  }
+  .filterChecks {
+    @extend %listreset;
+
+    li {
+      display: block;
+      padding: 0 0 10px;
+
+      .select2-container {
+        width: 100% !important;
+        border: 1px solid $p42-color;
+      }
+    }
+  }
+  .fake-select {
+    margin: 0 0 10px;
+    color: rgba($dark-grey, 0.9);
+  }
+  .fromTo {
+    @extend %layout;
+    @include align-reset(top, 14, 17);
+    position: relative;
+
+    &.full-width {
+      width: 100%;
+      display: block;
+
+      .field-holder {
+        width: 100%;
+        display: block;
+      }
+
+      button {
+        position: static;
+        width: 100%;
+        display: block;
+      }
+    }
+
+    .field-holder {
+      width: 50%;
+      padding: 3px;
+    }
+    input[type="number"]{
+      @include squar(100%, 26px);
+      @include font(12,15);
+      padding: 4px;
+      font-family: $open-sans;
+      display: block;
+      border: 2px solid $p42-background;
+      color: $dark-grey;
+
+      @include placeholder{ color: $dark-grey;}
+    }
+    button{
+      @include align(top);
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      bottom: 3px;
+      @include font(12,15);
+      color: $white;
+      background: $orange;
+      border: 0;
+      padding: 5px;
+      transition: background 0.5s ease;
+      -webkit-transition: background 0.5s ease;
+      -moz-transition: background 0.5s ease;
+      -ms-transition: background 0.5s ease;
+
+      &:hover { background: $green;}
+    }
+  }
+  .publicAgent-post,
+  .publicProperty-post {
+    @extend %layout;
+    background: $white;
+    padding: 5px 5px 0;
+    margin: 0 0 20px;
+    position: relative;
+
+    @include media('<tablet'){
+      padding: 5px 5px 0;
+      margin: 0 0 10px;
+    }
+    @include media('<phone'){
+      padding: 0;
+    }
+
+    .image-holder {
+      @extend .pull-left;
+      position: relative;
+      @extend %clearfix;
+
+     @include media('<phone'){
+       min-height: 106px;
+       max-height: 106px;
+      } 
+
+      a{ display: block;}
+
+      img {
+        max-height: 180px;
+        min-height: 180px;
+        min-width: 175px;
+        max-width: 175px;
+        @extend img-res;
+
+        @include media('<widescreen'){
+          max-height: 150px;
+          max-width: 150px;
+          min-height: 150px;
+          min-width: 150px;
+        }
+
+        @include media('<tablet'){
+          max-height: 170px;
+          max-width: 170px;
+          min-height: 170px;
+          min-width: 170px;
+        }
+        @include media('<phone'){
+          max-height: 106px;
+          max-width: 106px;
+          min-height: 106px;
+          min-width: 106px;
+        }
+      }
+    }
+    .caption {
+      @extend %layout;
+      font-family: $open-sans;
+      @include font(13,16);
+      color: $p42-default-grey;
+      padding: 0 0 58px 10px;
+
+      @include media('<widescreen'){
+        padding: 0 0 55px 10px;
+      }
+
+      @include media('<tablet'){
+        padding: 0 0 0 20px;
+      }
+      @include media('<phone'){
+        padding: 0 5px;
+      }
+
+      h1 {
+        margin: 0 0 15px;
+        font-weight: 700;
+        color: $p42-color;
+        @include font(18,21);
+        @extend %text-left;
+
+        @include media('<widescreen'){
+          margin: 0 0 6px;
+        }
+
+        @include media('<tablet'){
+          @include font(16,19);
+          margin: 0 0 2px;
+        }
+
+        @include media('<phone'){
+          @include font(13,16);
+        }
+
+        a {
+          @include align(top);
+          color: $p42-color;
+          text-decoration: none;
+
+          &:hover { color: $green;}
+        }
+      }
+      .price {
+        @include media('<widescreen'){
+          @include font(14,17);
+        }
+
+        @include media('<phone'){
+          padding: 0 0 5px;
+          @include font(15,18);
+        }
+      }
+      .public-ui-features {
+        li {
+          strong,
+          span {
+            @include media('<phone'){
+              padding: 0 3px;
+              @include font(11,14);
+            }
+          }
+        }
+      }
+      .left-area {
+        @extend %pull-left;
+        width: 70%;
+        padding: 0 10px 0 0;
+
+        @include media('<widescreen'){
+          min-height: 145px;
+        }
+        @include media('<tablet'){
+         min-height: inherit; 
+        }
+          
+        @include media('<tablet'){
+          padding: 0;
+          float: none !important;
+          width: 100%;
+        }
+        p {
+          @include media('<tablet'){ display: none;}
+        }
+      }
+      .right-area {
+        @extend %pull-right;
+        width: 30%;
+
+        @include media('<tablet'){
+          float: none !important;
+          width: 100%;
+          overflow: hidden;
+        }
+        .price {
+          text-align: right;
+          @include media('<tablet'){
+            text-align: left;
+          }
+        }
+      }
+      .links-holder {
+        position: absolute;
+        bottom: 0;
+        left: 190px;
+        right: 0;
+
+        @include media('<tvscreen'){ left: 185px;}
+
+        @include media('<widescreen'){ left: 5px;}
+
+        @include media('<desktop'){
+          left: 0;
+          padding: 0 0 0 15px; 
+        }
+
+        @include media('<tablet'){
+          background: transparent;
+          overflow: visible;
+          clear: both;
+          right: 10px;
+          display: block;
+          left: 180px;
+        }
+        @include  media('<phone'){
+          position: static;
+          padding: 0;
+        }
+      }
+      .links-left {
+        @extend %pull-left;
+        width: 68%;
+        padding: 35px 0 0;
+
+        .btn-default {
+          padding: 10px 31px 10px 5px;
+
+          @include media('<phone'){
+            font-weight: 400;
+            @include font(10,13);
+            padding: 7px 25px 7px 5px;
+          }
+
+          span[class^="icon-"],span[class*="icon-"]{
+            right: 5px;
+            @include font(14,14);
+            margin: -7px 0 0;
+          }
+        }
+        .trusted-agent {
+          margin: 15px 0 0 5px;
+        }
+
+        @include media('<tvscreen'){
+          width: 55%;
+        }
+        @include media('<widescreen'){
+          width: 55%;
+        }
+
+        @include media('<tablet'){
+          padding: 10px 0 0;
+        }
+        @include media('<phone'){
+          padding: 5px 0 0;
+        }
+
+      }
+      .links-right {
+        @extend %pull-right;
+        width: 32%;
+
+        @include media('<tvscreen'){
+          width: 45%;
+        }
+        @include media('<widescreen'){
+          width: 45%;
+        }
+      }
+      .btn-default {
+        @include font(12,15);
+        border-radius: 4px;
+        position: relative;
+        padding: 10px 37px 10px 15px;
+        
+        span[class^="icon-"],span[class*="icon-"]{
+          @include font(20,20);
+          top: 50%;
+          right: 10px;
+          margin: -10px 0 0;
+          position: absolute;
+        }
+      }
+      .trusted-agent {
+
+        @include media('<tablet'){
+          position: absolute;
+          top: -40px;
+          right: 5px;
+          @include font(11,12);
+          padding: 0 5px 0 17px;
+          margin: 3px 0 0 10px;
+        }
+      }
+      .company-logo {
+        @extend img-res;
+        @extend .pull-right;
+        max-width: 70px;
+        max-height: 70px;
+        min-width: 70px;
+        min-height: 70px;
+        margin: 3px 10px 0 0;
+
+        @include media('<widescreen'){
+          max-width: 60px;
+          max-height: 60px;
+          min-width: 60px;
+          min-height: 60px;
+          margin: 16px 10px 0;
+        }
+
+        @include media('<tablet'){ display: none;}
+      }
+      .quick-links {
+        @extend .pull-left;
+        max-width: 115px;
+        padding: 32px 0 0;
+        
+        @include media('<tablet'){
+          padding: 10px 0 0;
+          float: right !important;
+        }
+        @include media('<phone'){
+          float: none !important;
+          @include align-reset(top, 12,15);
+           padding: 5px 0 0;
+           margin: 0;
+        }
+
+        li {
+          @include media('<phone'){
+            padding: 0 3px 3px;
+          }
+        }
+      }
+    }
+  }
+}
+.agent-listing-page {
+
+  .artical-holder {
+    @extend %layout;
+    margin: 0 -3px;
+    @include align-reset(top, 12,15);
+  }
+  
+  #content {
+    @extend .layout;
+    padding: 0 0 0 10px;
+
+    @include media('<desktop'){ padding: 0;}
+  }
+  .publicAgent-post {
+    width: 100%;
+    float: none !important;
+    background: transparent;
+    padding: 0 3px 6px;
+    margin: 0 0 5px;
+
+    @include media('<widescreen'){
+      width: 100%;
+    }
+    .caption {
+      .links-left {
+        .btn-default {
+          padding: 7px 31px 7px 5px;
+        }
+      }
+    }
+
+    .post-holder {
+      @extend %clearfix;
+      background: $white;
+      padding: 5px 3px;
+    }
+    .image-holder {
+      img{
+        @extend %img-res;
+        max-width: 150px;
+        min-width: 150px;
+        max-height: 159px;
+        min-height: 159px;
+
+        @include media('<widescreen'){
+          max-width: 190px;
+          min-width: 190px;
+          max-height: 145px;
+          min-height: 145px;
+        }
+        @include media('<phone'){
+          max-width: 100px;
+          min-width: 100px;
+          max-height: 100px;
+          min-height: 100px;
+        }
+      }
+    }
+    .caption {
+      padding: 0 0 0 5px;
+
+      .layout { position: relative;}
+
+      p {
+        min-height: 32px;
+
+        @include media('<widescreen'){
+          min-height: 27px;
+        }
+
+        @include media('<tablet'){
+          min-height: 42px;
+        }
+
+        @include media('<phone'){
+          min-height: inherit;
+        }
+      }
+
+      .btn-default {
+        padding: 7px 21px 7px 5px;
+        @include font(10,14);
+
+        @include media('<widescreen'){
+          padding: 7px 30px 7px 5px;
+        }
+
+        span[class^="icon-"],span[class*="icon-"]{
+          font-size: 16px;
+          right: 5px;
+        }
+      }
+      .links-right,
+      .links-left {
+        width: 50%;
+        padding: 0 5px; 
+
+        @include media('<widescreen'){
+          width: auto;
+        }
+      }
+      .quick-links {
+        padding: 0;
+        margin: 0;
+        float: right !important;
+        @include align-reset(top, 16,16);
+
+        span[class^="icon-empty-envelop"],span[class*="icon-empty-envelop"]{
+          margin: 0 0 0 -2px;
+        }
+
+        li {
+          width: 50%;
+          padding: 0 3px;
+          @extend %text-center;
+        }
+      }
+    }
+    .trusted-agent {
+      @include font(10,14);
+      @extend .pull-left;
+      margin: 15px 0 10px 0;
+      position: relative !important;
+      top:  0 !important;
+
+      @include media('<tablet'){
+        margin: 14px 0 0 10px !important;
+      }
+    }
+    .star-rating {
+      @extend .pull-right;
+      margin: 10px 0 10px;
+    }
+  }
+  .links-holder {
+    position: static !important;
+
+    .links-left {
+      padding: 0 !important;
+    }
+  }
+}
+.aside-opener-filters {
+  display: block;
+  color: $white;
+  @include font(14,19);
+  background: $green;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  margin: 0 0 10px;
+  font-weight: 600;
+
+  b{
+    font-weight: normal;
+    font-weight: 400;
+    @include font(13,17);
+    padding: 0 3px;
+    @include align(middle);
+  }
+
+  @include media('>=desktop'){ display: none;}
+
+  .button {
+    @include squar(30px, 20px);
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    z-index: 1;
+    margin: -10px 0 0;
+
+    &:after, &:before, b{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: $white;
+      height: 2px;
+      content: '';
+    }
+    &:before {
+      top: auto;
+      bottom: 0;
+    }
+    b{
+      top: 50%;
+      margin: -1px 0 0;
+    }
+  }
+}
+.propertyNotFound {
+  @extend %layout;
+  @extend %text-center;
+  position: relative;
+  background: $p42-background;
+  @include font(16, 21);
+  font-weight: 600;
+  padding: 80px 20px;
+
+  @include media('<tablet'){
+      @include font(13,16);
+      padding: 65px 5px;
+    }
+
+  &:after {
+    background: url('../images/caution-sign.png') no-repeat;
+    @include squar(200px, 200px);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    content: '';
+    margin: 0 0 0 -100px;
+    opacity: 0.25;
+  }
+
+  .no-heading {
+    @extend %text-capital;
+    display: block;
+    opacity: 0.5;
+    font-weight: 700;
+    @include font(30,33);
+    padding: 0 0 10px;
+
+    @include media('<tablet'){
+      @include font(20,23);
+    }
+  }
+  p { opacity: 0.5;}
+}

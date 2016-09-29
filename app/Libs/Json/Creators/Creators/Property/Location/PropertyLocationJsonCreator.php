@@ -25,18 +25,23 @@ class PropertyLocationJsonCreator extends JsonCreator implements JsonCreatorInte
     {
         $this->prototype->country = $this->getCountry();
         $this->prototype->city = $this->getCity();
-        $this->prototype->society = $this->getSociety();
-        $this->prototype->block = $this->getBlock();
+        $this->prototype->location = $this->getLocation();
+        //$this->prototype->society = $this->getSociety();
+        //$this->prototype->block = $this->getBlock();
         return $this->prototype;
     }
 
-    private function getBlock()
+//    private function getBlock()
+//    {
+//        return (new PropertyBlockJsonCreator($this->model->block))->create();
+//    }
+//    private function getSociety()
+//    {
+//        return (new PropertySocietyJsonCreator($this->model->society))->create();
+//    }
+    private function getLocation()
     {
-        return (new PropertyBlockJsonCreator($this->model->block))->create();
-    }
-    private function getSociety()
-    {
-        return (new PropertySocietyJsonCreator($this->model->society))->create();
+        return (new PropertySubLocationJsonCreator($this->model->location))->create();
     }
     private function getCity()
     {

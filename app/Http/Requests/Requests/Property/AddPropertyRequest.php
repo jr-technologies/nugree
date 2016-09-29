@@ -40,7 +40,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property = new Property();
         $property->purposeId = $this->get('purposeId');
         $property->subTypeId =  $this->get('subTypeId');
-        $property->blockId =  $this->get('blockId');
+        $property->locationId =  $this->get('locationId');
         $property->title =  $this->get('title');
         $property->description =  $this->get('description');
         $property->price =  $this->get('price');

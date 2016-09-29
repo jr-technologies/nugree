@@ -9,6 +9,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\Property\Gateways;
 use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Factories\Factories\Country\CountryFactory;
+use App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyPurpose\PropertyPurposeFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertySubType\PropertySubTypeFactory;
@@ -23,7 +24,7 @@ class PropertyQueryBuilder extends QueryBuilder
         $this->table = 'properties';
     }
 
-    public function getCompleteLocation($propertyId)
+    public function getCompleteLocation_deprecated ($propertyId)
     {
         $blocks = (new BlockFactory())->getTable();
         $societies = (new SocietyFactory())->getTable();
@@ -39,6 +40,28 @@ class PropertyQueryBuilder extends QueryBuilder
                 $cities.'.id as cityId',$cities.'.city as cityName',
                 $societies.'.id as societyId',$societies.'.society as societyName',
                 $blocks.'.id as blockId',$blocks.'.block as blockName'
+            )
+            ->where($this->table.'.id','=',$propertyId)
+            ->first();
+    }
+
+    public function getCompleteLocation($propertyId)
+    {
+        //$blocks = (new BlockFactory())->getTable();
+        //$societies = (new SocietyFactory())->getTable();
+        $location = (new LocationFactory())->getTable();
+        $cities = (new CityFactory())->getTable();
+        $countries = (new CountryFactory())->getTable();
+        return  DB::table($this->table)
+            ->leftjoin($location,$this->table.'.location_id','=',$location.'.id')
+            ->leftjoin($cities,$location.'.city_id','=',$cities.'.id')
+            ->leftjoin($countries,$cities.'.country_id','=',$countries.'.id')
+            ->select(
+                $countries.'.id as countryId',$countries.'.country as countryName',
+                $cities.'.id as cityId',$cities.'.city as cityName',
+                $location.'.id as locationId',$location.'.location as locationName'
+                ,$location.'.city_id as cityId',$location.'.lat as lat',
+                $location.'.long as long'
             )
             ->where($this->table.'.id','=',$propertyId)
             ->first();

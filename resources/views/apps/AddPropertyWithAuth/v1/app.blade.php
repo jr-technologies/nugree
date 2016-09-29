@@ -1,4 +1,4 @@
-@extends('frontend.frontend')
+@extends('frontend.frontend_old')
 @section('content')
     <script type='text/javascript' >
         var appName = 'addPropertyWithAuth';

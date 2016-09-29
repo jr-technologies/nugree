@@ -1,6 +1,6 @@
 @extends('frontend.v2.frontend')
 @section('content')
-
+    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/property-agent-detail.css">
     @foreach($response['data']['banners']['topBanners'] as $banner)
         <a href=""><img src="{{url('/').'/'.$banner->image}}" width="100px" height="100px"> </a>
     @endforeach

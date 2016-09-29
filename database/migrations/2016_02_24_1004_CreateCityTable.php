@@ -16,6 +16,8 @@ class CreateCityTable extends Migration
             $table->increments('id');
             $table->string('city');
             $table->integer('country_id')->unsigned();
+            $table->integer('priority')->default(0);
+            $table->string('path');
             $table->timestamps();
 
             $table->foreign('country_id')

@@ -769,6 +769,16 @@ Route::post('feedback',
     ]
 );
 
+Route::post('user/requirement',
+    [
+        'middleware'=>
+            [
+                'webValidate:addUserRequirementRequest'
+            ],
+        'uses'=>'UserRequirementsController@store',
+    ]
+);
+
 Route::get('search',
     [
         'middleware'=>
