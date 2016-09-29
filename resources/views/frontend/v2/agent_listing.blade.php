@@ -1,5 +1,6 @@
 @extends('frontend.v2.frontend')
 @section('content')
+    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/property-agent-listing.css">
     <div class="page-holder">
         <div class="agent-listing-page">
             <div class="add-holder-page">

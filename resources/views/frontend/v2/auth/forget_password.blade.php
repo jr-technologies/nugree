@@ -1,5 +1,6 @@
 @extends('auth.auth')
 @section('content')
+    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/login-page.css">
 <main id="main" role="main">
     <div class="container">
         <div class="forgot-passwordHolder">

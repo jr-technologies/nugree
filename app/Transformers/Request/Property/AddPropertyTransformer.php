@@ -33,7 +33,7 @@ class AddPropertyTransformer extends RequestTransformer
             'ownerId' => $this->request->input('owner'),
             'purposeId' => $this->request->input('propertyPurpose'),
             'subTypeId' => $this->request->input('propertySubType'),
-            'blockId' => $this->request->input('block'),
+            'locationId' => $this->request->input('location'),
             'title' => $this->request->input('propertyTitle'),
             'description' => $this->request->input('propertyDescription'),
             'price' => $this->request->input('price'),
@@ -46,7 +46,6 @@ class AddPropertyTransformer extends RequestTransformer
             'mobile' => $this->request->input('cell'),
             'email' => $this->request->input('email'),
             'fax' => $this->request->input('fax'),
-            'wanted' => $this->request->input('wanted'),
 
             'features' => $this->request->input('features'),
             'files' => $files,

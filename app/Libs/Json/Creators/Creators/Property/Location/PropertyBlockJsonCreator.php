@@ -12,19 +12,24 @@ use App\DB\Providers\SQL\Models\Block;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\Location\PropertyBlockJsonPrototype;
+use App\Libs\Json\Prototypes\Prototypes\Property\Location\PropertySubLocationJsonPrototype;
 
 class PropertyBlockJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
     public function __construct(Block $block = null)
     {
         $this->model = $block;
-        $this->prototype = new PropertyBlockJsonPrototype();
+        $this->prototype = new PropertySubLocationJsonPrototype();
     }
 
     public function create()
     {
         $this->prototype->id = $this->model->id;
-        $this->prototype->name = $this->model->name;
+        $this->prototype->location = $this->model->name;
+        $this->prototype->cityId = $this->model->name;
+        $this->prototype->lat= $this->model->name;
+        $this->prototype->long = $this->model->name;
+
         return $this->prototype;
     }
 }

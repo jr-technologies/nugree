@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Events\Events\Agency\AgencyCreated;
 use App\Events\Events\Agency\AgencyDeleted;
-use App\Events\Events\Agency\AgencySocietiesUpdated;
 use App\Events\Events\Agency\AgencyUpdated;
 use App\Events\Events\Feature\FeatureJsonCreated;
 use App\Events\Events\Property\PropertiesStatusChanged;
@@ -21,6 +20,7 @@ use App\Events\Events\User\UserBasicInfoUpdated;
 use App\Events\Events\User\UserCreated;
 use App\Events\Events\User\UserRolesChanged;
 use App\Events\Events\User\UserUpdated;
+use App\Events\Events\UserRequirement\UserRequirements;
 use App\Listeners\Listeners\Agency\AddNewAgencyInUserJson;
 use App\Listeners\Listeners\Agency\AddOwnerAsStaffMember;
 use App\Listeners\Listeners\Agency\DeleteAgencyInUserJson;
@@ -36,6 +36,7 @@ use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\UpdatePropertyViewsInPropertyJson;
 use App\Listeners\Listeners\Property\UpdateStatusInPropertyJson;
 use App\Listeners\Listeners\Section\RegenerateSectionFeaturesJson;
+use App\Listeners\Listeners\UserRequirement\MailUserRequirement;
 use App\Listeners\Listeners\User\UpdateAgentStatusInUserJson;
 use App\Listeners\Listeners\User\UpdateUserBasicInfoJsonDocument;
 use App\Listeners\Listeners\User\CreateUserJsonDocument;
@@ -75,7 +76,9 @@ class EventServiceProvider extends ServiceProvider
         AgencyDeleted::class => [
             DeleteAgencyInUserJson::class,
         ],
-        
+        UserRequirements::class => [
+            MailUserRequirement::class,
+        ],
         /* property events */
         PropertyCreated::class => [
             CreatePropertyJsonDocument::class,

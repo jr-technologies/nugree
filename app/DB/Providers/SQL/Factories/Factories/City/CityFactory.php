@@ -29,6 +29,10 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
     {
        return $this->mapCollection($this->tableGateway->all());
     }
+    public function getImportantCities()
+    {
+        return $this->tableGateway->getImportantCities();
+    }
     public function update(City $city)
     {
         $city->updatedAt = date('Y-m-d h:i:s');

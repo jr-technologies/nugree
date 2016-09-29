@@ -1,5 +1,6 @@
 @extends('frontend.v2.frontend')
 @section('content')
+    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/login-page.css">
     <?php
     if(\Session::has('validationErrors')){
         $validationErrors = \Session::get('validationErrors');

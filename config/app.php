@@ -238,6 +238,9 @@ return [
         'GetProjectImagesRequest' => \App\Http\Requests\Requests\Project\GetProjectImagesRequest::class,
         'UpdateProjectRequest' => \App\Http\Requests\Requests\Project\UpdateProjectRequest::class,
 
+        /*User Requirement*/
+        'AddUserRequirementRequest' => \App\Http\Requests\Requests\UserRequirement\AddUserRequirementRequest::class,
+
 
         /* News */
         'AddNewsRequest' => \App\Http\Requests\Requests\News\AddNewsRequest::class,

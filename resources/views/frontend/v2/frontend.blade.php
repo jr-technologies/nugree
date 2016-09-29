@@ -35,7 +35,7 @@
         <img src="{{url('/')}}/assets/imgs/loader.gif" alt="Property42 loading">
     </div>
 </div>
-<div id="wrapper">
+<div id="wrapper" class="hidden">
     <div class="w1-holder">
         <div class="w1">
     <div class="main-bg-holder {{(Route::getCurrentRoute()->getPath() !='/')?'byDefault-fixed':''}}">
@@ -57,6 +57,7 @@
                         @if(session()->get('authUser') ==null)
                         <li><a href="{{ URL::to('/login') }}"><span class="icon-avatar hidden"></span><span class="hidden-xs">Login / Register</span></a></li>
                         @else
+
                             <li>
                             <a><span class="icon-avatar"></span><span class="hidden-xs">{{str_limit(session()->get('authUser')->fName.' '.session()->get('authUser')->lName,13)}}</span></a>
                             <ul class="dropDown">
@@ -68,6 +69,7 @@
                         @endif
                         <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List your property</span><span class="icon-plus-square"></span></a></li>
                     </ul>
+                    <a href="#requirement" class="lightbox">Submit your Requirement</a>
                 </div>
             </div>
             <div class="logo"><a href="{{URL::to('/')}}"><img src="{{url('/')}}/web-apps/frontend/v2/images/logo.png" width="477" height="150" alt="Property42"></a></div>
@@ -75,16 +77,16 @@
         @if(Route::getCurrentRoute()->getPath() =='/')
             <div class="main-visualSection">
                 <div class="container">
-                    <strong class="main-heading text-upparcase"><span class="blue">Lahore's</span> <span class="black">Best</span> Property Website</strong>
-                    <p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>
-                    <ul class="number-of-properties text-upparcase">
-                        @foreach($response['data']['saleAndRentCount'] as $saleRent)
-                            <li>
-                                <strong class="numberOfProperty">{{$saleRent->totalProperties}}</strong>
-                                <span class="tag">{{$saleRent->displayName}}</span>
-                            </li>
-                        @endforeach
-                    </ul>
+                    {{--<strong class="main-heading text-upparcase"><span class="blue">Lahore's</span> <span class="black">Best</span> Property Website</strong>--}}
+                    {{--<p>Are you thinking of buying your first property, downsizing, or looking to upgrade to bigger and better? Where do you want to live? Let us help you find that ideal home!</p>--}}
+                    {{--<ul class="number-of-properties text-upparcase">--}}
+                        {{--@foreach($response['data']['saleAndRentCount'] as $saleRent)--}}
+                            {{--<li>--}}
+                                {{--<strong class="numberOfProperty">{{$saleRent->totalProperties}}</strong>--}}
+                                {{--<span class="tag">{{$saleRent->displayName}}</span>--}}
+                            {{--</li>--}}
+                        {{--@endforeach--}}
+                    {{--</ul>--}}
                     {{ Form::open(array('url' => 'search','method' => 'GET','class'=>'mainSearch-form' )) }}
 
                     <ul class="typeOfBuying text-upparcase">
@@ -124,13 +126,21 @@
                         <div class="layout">
                             <ul class="inputsHolder">
                                 <li>
-                                    <span class="label">Location / Society</span>
+                                    <span class="label">Location / City</span>
                                     <div class="input-holder">
-                                        <select name="society_id" id="society" class="js-example-basic-single">
-                                            <option value="">All Societies</option>
-                                            @foreach($response['data']['societies'] as $society)
-                                                <option value="{{$society->id}}">{{$society->name}}</option>
+                                        <select name="city_id" id="cityId" class="js-example-basic-single">
+                                            <option value="">All Cities</option>
+                                            @foreach($response['data']['cities'] as $city)
+                                                <option value="{{$city->id}}">{{$city->name}}</option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="label">Location / Societies</span>
+                                    <div class="input-holder">
+                                        <select name="society_id" id="societies" class="js-example-basic-single">
+                                            <option value="">All Societies</option>
                                         </select>
                                     </div>
                                 </li>
@@ -184,6 +194,9 @@
     <main id="main" role="main">
         @yield('content')
     </main>
+            <div class="fb-page" data-href="https://www.facebook.com/property42/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/property42/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/property42/">Facebook</a></blockquote></div>
+
+            <a class="twitter-timeline" href="https://twitter.com/nomantufail100 ">Tweets by TwitterDev</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <footer id="footer">
         <span class="copyright">Copyright,<a href="{{url('/')}}">Property42.pk</a></span>
     </footer>
@@ -257,6 +270,40 @@
             <p>(f) Where you have submitted/posted your Content, your submissions and posts;</p>
             <p>(g) Where you have registered with us, your user name and password.</p>
         </div>
+        <div id="requirement" class="lightbox generic-lightbox">
+            <span class="lighbox-heading">Feed<span>back</span></span>
+            {{Form::open(array('url'=>'user/requirement','method'=>'POST','class'=>'inquiry-email-form'))}}
+            <div class="field-holder">
+                <label for="name">Name</label>
+
+                <div class="input-holder"><input type="text" id="name" name="name"></div>
+            </div>
+            <div class="field-holder">
+                <label for="email">Email</label>
+
+                <div class="input-holder"><input type="email" id="email" name="email" required></div>
+            </div>
+            <div class="field-holder">
+                <label for="phone">phone</label>
+
+                <div class="input-holder"><input type="tel" id="phone" name="phone" required></div>
+            </div>
+            <div class="field-holder">
+                <label for="subject">subject</label>
+
+                <div class="input-holder"><input type="text" id="subject" name="subject">
+                </div>
+            </div>
+            <div class="field-holder">
+                <label for="message">Requirement</label>
+
+                <div class="input-holder"><textarea id="message" name="requirement" required></textarea>
+                    <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                </div>
+            </div>
+            <button type="submit">SEND</button>
+            {{Form::close()}}
+        </div>
     </div>
 
     </div>
@@ -274,29 +321,29 @@
         <button type="submit"><span class="icon-search"></span></button>
     </form>
     <ul class="main-navigation text-upparcase">
-        <li class="active">
-            <a href="#">HOME</a>
+        <li class="">
+            <a href="{{URL::to('/')}}">HOME</a>
         </li>
         <li>
-            <a href="#">Properties</a>
+            <a href="{{URL::to('/')}}/search">Properties</a>
         </li>
         <li>
-            <a href="#">AGENTS</a>
+            <a href="{{URL::to('agents')}}">AGENTS</a>
         </li>
         <li>
-            <a href="#about-us" class="scroll">ABOUT</a>
+            <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#about-us':'#about-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}">ABOUT</a>
         </li>
         <li>
-            <a href="#contact-us" class="scroll">CONTACT</a>
+            <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#contact-us':'#contact-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}">CONTACT</a>
         </li>
     </ul>
     <div class="mobile-content text-center">
         <ul class="social-icons">
-            <li><a href="#"><span class="icon-facebook"></span></a></li>
-            <li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>
-            <li><a href="#"><span class="icon-linkedin"></span></a></li>
-            <li><a href="#"><span class="icon-twitter"></span></a></li>
-            <li><a href="#"><span class="icon-instagram"></span></a></li>
+            <li><a target="_blank" href="https://www.facebook.com/property42pk-1562646287317094/"><span class="icon-facebook"></span></a></li>
+            <li><a target="_blank" href="https://plus.google.com/115605703040474791286"><span class="icon-google-plus-symbol"></span></a></li>
+            <li><a target="_blank" href="https://www.linkedin.com/in/propertyfortytwo-pk-275899124"><span class="icon-linkedin"></span></a></li>
+            <li><a target="_blank" href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
+            <li><a target="_blank" href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
         </ul>
         <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
     </div>
@@ -312,7 +359,7 @@
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/fixed-block.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/smooth-scroll.js" type="text/javascript" defer></script>
-    <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery.accordion.js" type="text/javascript" defer></script>
+
     <script src="{{url('/')}}/web-apps/frontend/v2/js/property-filter.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/select2-min.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery.carousel.js" type="text/javascript" defer></script>
@@ -321,6 +368,17 @@
     <script src="{{url('/')}}/web-apps/frontend/v2/js/lightBox.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/jquery-main.js" type="text/javascript" defer></script>
     <script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script><script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
+    <script src="{{url('/')}}/web-apps/frontend/v2/js/star-rating.js" type="text/javascript" defer></script>
+    <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
 </body>
 </html>

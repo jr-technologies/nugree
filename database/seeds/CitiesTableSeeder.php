@@ -12,7 +12,8 @@ class CitiesTableSeeder extends Seeder
     public function run()
     {
         DB::table('cities')->insert([
-            ['city' => 'lahore', 'country_id'=>1]
+            ['city' => 'lahore', 'country_id'=>1,'priority'=>0,'path'=>'assets/imgs/42_ads/7971f921fcb9833b8632dea27ed23426.jpg'],
+            ['city' => 'Karachi', 'country_id'=>1,'priority'=>10,'path'=>'assets/imgs/42_ads/7971f921fcb9833b8632dea27ed23426.jpg']
         ]);
     }
 }

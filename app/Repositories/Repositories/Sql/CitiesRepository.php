@@ -30,7 +30,10 @@ class CitiesRepository extends SqlRepository implements UsersRepoInterface
     {
         return $this->factory->all();
     }
-
+    public function getImportantCities()
+    {
+        return $this->factory->getImportantCities();
+    }
     public function update(City $city)
     {
         $this->factory->update($city);

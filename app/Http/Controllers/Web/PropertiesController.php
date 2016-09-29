@@ -14,7 +14,9 @@ use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\NewsRepoProvider;
 use App\Repositories\Providers\Providers\ProjectsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
@@ -48,7 +50,9 @@ class PropertiesController extends Controller
     public $userRepo = null;
     public $status = null;
     public $banners = null;
+    public $news =null;
     public $projectRepo;
+    public $cities;
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
@@ -68,6 +72,8 @@ class PropertiesController extends Controller
         $this->status = new \PropertyStatusTableSeeder();
         $this->banners = (new BannersRepoProvider())->repo();
         $this->projectRepo = (new ProjectsRepoProvider())->repo();
+        $this->cities = (new CitiesRepoProvider())->repo();
+        $this->news = (new NewsRepoProvider())->repo();
     }
     public function addProperty(RouteToAddPropertyRequest $request)
     {
@@ -161,26 +167,24 @@ class PropertiesController extends Controller
     }
     public function index(IndexRequest $request)
     {
-        $agents = $this->users->getTrustedAgentsWithPriority(['limit'=>36]);
-        $importantSocieties = $this->societies->getImportantSocieties();
-        $banners = $this->getIndexPageBanners();
-        $saleAndRentCount = $this->propertiesRepo->countSaleAndRendProperties();
-        return $this->response->setView('frontend.v2.index')->respond(['data' => [
-            'societies'=>$this->societies->all(),
+        return $this->response->setView('frontend.v1.index')->respond(['data' =>[
+            'cities'=>$this->cities->all(),
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all(),
             'landUnits'=>$this->landUnits->all(),
-            'agents'=>$this->releaseUsersAgenciesLogo($agents),
-            'importantSocieties'=>$importantSocieties,
-            'saleAndRentCount'=>$saleAndRentCount,
+            'agents'=>$this->releaseUsersAgenciesLogo($this->users->getTrustedAgentsWithPriority(['limit'=>36])),
+            'importantSocieties'=>$this->societies->getImportantSocieties(),
+            'importantCities'=>$this->cities->getImportantCities(),
+            'saleAndRentCount'=>$this->propertiesRepo->countSaleAndRendProperties(),
             'projects'=>$this->projectRepo->getAllProjects(),
-            'banners'=>$banners
+            'news'=>$this->news->getAllNews(),
+            'banners'=>$this->getIndexPageBanners()
         ]]);
     }
     public function getById(GetPropertyRequest $request)
     {
-     dd(Decrypt(request()->ip()));
-       try {
+
+        try {
            $property = $this->properties->getById($request->get('propertyId'));
            if($property->propertyStatus->id == ($this->status->getActiveStatusId()))
            {
