@@ -108,6 +108,7 @@ class AppsResourceController extends ApiController
     public function addPropertyWithAuthResources()
     {
         $purposes  = $this->purposes->all();
+        $cities = $this->cities->all();
         //$societies = $this->societies->all();
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
@@ -117,6 +118,7 @@ class AppsResourceController extends ApiController
         return $this->response->respond([
             'data'=>[
                 'resources'=>[
+                    'cities'=>$cities,
                     'purposes'=>$purposes,
                     'propertyTypes'=>$propertyTypes,
                     'societies'=>[],

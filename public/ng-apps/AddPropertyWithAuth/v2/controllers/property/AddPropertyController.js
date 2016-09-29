@@ -70,13 +70,17 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
             $rootScope.resources.societies = [];
             return;
         }
-        return $http.get(apiPath+'societies/search', {
+        return $http.get(apiPath+'locations/search', {
             params: {
                 keyword: $select.search
             }
         }).then(function(response){
             $scope.societies = response.data;
         });
+    };
+    $scope.cityChanged = function () {
+        $scope.form.data.city = $scope.temp.city.id;
+        $scope.temp.society = {};
     };
     $scope.societyChanged = function () {
         $scope.form.data.society = $scope.temp.society.id;

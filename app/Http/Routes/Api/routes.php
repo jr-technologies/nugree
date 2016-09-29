@@ -354,6 +354,29 @@ Route::get('societies/search',function(){
     }
     return response()->json($results);
 });
+Route::get('locations/search',function(){
+    $results = [
+        (object)[
+            'cityId'=>1,
+            'location' => 'dha phase 2 M block',
+            'lat' => '33.66665',
+            'long' => '21.66665'
+        ],
+        (object)[
+            'cityId'=>1,
+            'location' => 'dha phase 3 M block',
+            'lat' => '33.66665',
+            'long' => '21.66665'
+        ],
+        (object)[
+            'cityId'=>1,
+            'location' => 'dha phase 4 M block',
+            'lat' => '33.66665',
+            'long' => '21.66665'
+        ],
+    ];
+    return response()->json($results);
+});
 
 /**
  * Block Crud
