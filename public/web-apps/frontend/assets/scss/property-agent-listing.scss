@@ -36,14 +36,6 @@ $media-expressions: (
     padding:0; 
   }
 
-  .premiumProperty{
-    @include media('<phone'){
-      @include font(12,15);
-      top: 21px;
-      left: -41px;
-    }
-  }
-
   .container {
     @extend %layout;
     @include media('<phone'){
@@ -328,7 +320,6 @@ $media-expressions: (
       @include squar(100%, 26px);
       @include font(12,15);
       padding: 4px;
-      font-family: $open-sans;
       display: block;
       border: 2px solid $p42-background;
       color: $dark-grey;
@@ -358,9 +349,9 @@ $media-expressions: (
   .publicProperty-post {
     @extend %layout;
     background: $white;
-    padding: 5px 5px 0;
-    margin: 0 0 20px;
+    margin: 10px 0;
     position: relative;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.30);
 
     @include media('<tablet'){
       padding: 5px 5px 0;
@@ -369,64 +360,50 @@ $media-expressions: (
     @include media('<phone'){
       padding: 0;
     }
-
+    .quick-links {
+      @extend %pull-right;
+      margin: 0 5px;
+    }
+    .price {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      background: rgba($sharp-green, 0.8);
+      color: $white;
+      @include font(25,28);
+      padding: 10px;
+    }
     .image-holder {
-      @extend .pull-left;
-      position: relative;
-      @extend %clearfix;
+      @extend %layout;
+      @extend %pull-left;
+      max-width: 315px;
+      background: $p42-background;
 
-     @include media('<phone'){
-       min-height: 106px;
-       max-height: 106px;
-      } 
+      .listing-image-slider {
+        .slide {
+          white-space: nowrap;
+          height: 250px;
 
-      a{ display: block;}
-
-      img {
-        max-height: 180px;
-        min-height: 180px;
-        min-width: 175px;
-        max-width: 175px;
-        @extend img-res;
-
-        @include media('<widescreen'){
-          max-height: 150px;
-          max-width: 150px;
-          min-height: 150px;
-          min-width: 150px;
-        }
-
-        @include media('<tablet'){
-          max-height: 170px;
-          max-width: 170px;
-          min-height: 170px;
-          min-width: 170px;
-        }
-        @include media('<phone'){
-          max-height: 106px;
-          max-width: 106px;
-          min-height: 106px;
-          min-width: 106px;
+          &:after {
+            width: 1px;
+            margin: 0 0 0 -5px;
+            @include align(middle);
+            @extend %layout;
+            height: 250px;
+            content: '';
+          }
+          a {
+            @include align(middle);
+            white-space: normal;
+          }
         }
       }
     }
     .caption {
       @extend %layout;
-      font-family: $open-sans;
       @include font(13,16);
       color: $p42-default-grey;
-      padding: 0 0 58px 10px;
-
-      @include media('<widescreen'){
-        padding: 0 0 55px 10px;
-      }
-
-      @include media('<tablet'){
-        padding: 0 0 0 20px;
-      }
-      @include media('<phone'){
-        padding: 0 5px;
-      }
+      padding: 0 10px 0 20px;
 
       h1 {
         margin: 0 0 15px;
@@ -466,132 +443,6 @@ $media-expressions: (
           @include font(15,18);
         }
       }
-      .public-ui-features {
-        li {
-          strong,
-          span {
-            @include media('<phone'){
-              padding: 0 3px;
-              @include font(11,14);
-            }
-          }
-        }
-      }
-      .left-area {
-        @extend %pull-left;
-        width: 70%;
-        padding: 0 10px 0 0;
-
-        @include media('<widescreen'){
-          min-height: 145px;
-        }
-        @include media('<tablet'){
-         min-height: inherit; 
-        }
-          
-        @include media('<tablet'){
-          padding: 0;
-          float: none !important;
-          width: 100%;
-        }
-        p {
-          @include media('<tablet'){ display: none;}
-        }
-      }
-      .right-area {
-        @extend %pull-right;
-        width: 30%;
-
-        @include media('<tablet'){
-          float: none !important;
-          width: 100%;
-          overflow: hidden;
-        }
-        .price {
-          text-align: right;
-          @include media('<tablet'){
-            text-align: left;
-          }
-        }
-      }
-      .links-holder {
-        position: absolute;
-        bottom: 0;
-        left: 190px;
-        right: 0;
-
-        @include media('<tvscreen'){ left: 185px;}
-
-        @include media('<widescreen'){ left: 5px;}
-
-        @include media('<desktop'){
-          left: 0;
-          padding: 0 0 0 15px; 
-        }
-
-        @include media('<tablet'){
-          background: transparent;
-          overflow: visible;
-          clear: both;
-          right: 10px;
-          display: block;
-          left: 180px;
-        }
-        @include  media('<phone'){
-          position: static;
-          padding: 0;
-        }
-      }
-      .links-left {
-        @extend %pull-left;
-        width: 68%;
-        padding: 35px 0 0;
-
-        .btn-default {
-          padding: 10px 31px 10px 5px;
-
-          @include media('<phone'){
-            font-weight: 400;
-            @include font(10,13);
-            padding: 7px 25px 7px 5px;
-          }
-
-          span[class^="icon-"],span[class*="icon-"]{
-            right: 5px;
-            @include font(14,14);
-            margin: -7px 0 0;
-          }
-        }
-        .trusted-agent {
-          margin: 15px 0 0 5px;
-        }
-
-        @include media('<tvscreen'){
-          width: 55%;
-        }
-        @include media('<widescreen'){
-          width: 55%;
-        }
-
-        @include media('<tablet'){
-          padding: 10px 0 0;
-        }
-        @include media('<phone'){
-          padding: 5px 0 0;
-        }
-
-      }
-      .links-right {
-        @extend %pull-right;
-        width: 32%;
-
-        @include media('<tvscreen'){
-          width: 45%;
-        }
-        @include media('<widescreen'){
-          width: 45%;
-        }
-      }
       .btn-default {
         @include font(12,15);
         border-radius: 4px;
@@ -606,25 +457,52 @@ $media-expressions: (
           position: absolute;
         }
       }
-      .trusted-agent {
+      .layout {
+        overflow: visible;
+        @extend %clearfix;
 
-        @include media('<tablet'){
+        p { margin: 0;}
+      }
+      .links-holder {
+        position: absolute;
+        bottom: 0;
+        left: 339px;
+        right: 0;
+        @extend %layout;
+        padding: 0 60px 0 0;
+
+        .add-to-favorite {
           position: absolute;
-          top: -40px;
-          right: 5px;
-          @include font(11,12);
-          padding: 0 5px 0 17px;
-          margin: 3px 0 0 10px;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          height: auto;
+
+          span {
+            line-height: 50px;
+          }
+        }
+
+        .btn-default {
+          float: left;
+          border-radius: 0;
+          padding: 15px 50px 15px 20px;
+        }
+        .quick-links {
+          a {
+            padding: 11px 30px;
+          }
         }
       }
       .company-logo {
         @extend img-res;
         @extend .pull-right;
-        max-width: 70px;
-        max-height: 70px;
-        min-width: 70px;
-        min-height: 70px;
-        margin: 3px 10px 0 0;
+        max-width: 100px;
+        max-height: 100px;
+        margin: 0 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
 
         @include media('<widescreen'){
           max-width: 60px;
@@ -636,29 +514,13 @@ $media-expressions: (
 
         @include media('<tablet'){ display: none;}
       }
-      .quick-links {
-        @extend .pull-left;
-        max-width: 115px;
-        padding: 32px 0 0;
-        
-        @include media('<tablet'){
-          padding: 10px 0 0;
-          float: right !important;
-        }
-        @include media('<phone'){
-          float: none !important;
-          @include align-reset(top, 12,15);
-           padding: 5px 0 0;
-           margin: 0;
-        }
-
-        li {
-          @include media('<phone'){
-            padding: 0 3px 3px;
-          }
-        }
-      }
     }
+  }
+  .holder-ui {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 30px 120px 30px 0;
   }
 }
 .agent-listing-page {
@@ -685,101 +547,13 @@ $media-expressions: (
     @include media('<widescreen'){
       width: 100%;
     }
-    .caption {
-      .links-left {
-        .btn-default {
-          padding: 7px 31px 7px 5px;
-        }
-      }
-    }
 
     .post-holder {
       @extend %clearfix;
       background: $white;
       padding: 5px 3px;
     }
-    .image-holder {
-      img{
-        @extend %img-res;
-        max-width: 150px;
-        min-width: 150px;
-        max-height: 159px;
-        min-height: 159px;
-
-        @include media('<widescreen'){
-          max-width: 190px;
-          min-width: 190px;
-          max-height: 145px;
-          min-height: 145px;
-        }
-        @include media('<phone'){
-          max-width: 100px;
-          min-width: 100px;
-          max-height: 100px;
-          min-height: 100px;
-        }
-      }
-    }
-    .caption {
-      padding: 0 0 0 5px;
-
-      .layout { position: relative;}
-
-      p {
-        min-height: 32px;
-
-        @include media('<widescreen'){
-          min-height: 27px;
-        }
-
-        @include media('<tablet'){
-          min-height: 42px;
-        }
-
-        @include media('<phone'){
-          min-height: inherit;
-        }
-      }
-
-      .btn-default {
-        padding: 7px 21px 7px 5px;
-        @include font(10,14);
-
-        @include media('<widescreen'){
-          padding: 7px 30px 7px 5px;
-        }
-
-        span[class^="icon-"],span[class*="icon-"]{
-          font-size: 16px;
-          right: 5px;
-        }
-      }
-      .links-right,
-      .links-left {
-        width: 50%;
-        padding: 0 5px; 
-
-        @include media('<widescreen'){
-          width: auto;
-        }
-      }
-      .quick-links {
-        padding: 0;
-        margin: 0;
-        float: right !important;
-        @include align-reset(top, 16,16);
-
-        span[class^="icon-empty-envelop"],span[class*="icon-empty-envelop"]{
-          margin: 0 0 0 -2px;
-        }
-
-        li {
-          width: 50%;
-          padding: 0 3px;
-          @extend %text-center;
-        }
-      }
-    }
+    
     .trusted-agent {
       @include font(10,14);
       @extend .pull-left;
@@ -794,13 +568,6 @@ $media-expressions: (
     .star-rating {
       @extend .pull-right;
       margin: 10px 0 10px;
-    }
-  }
-  .links-holder {
-    position: static !important;
-
-    .links-left {
-      padding: 0 !important;
     }
   }
 }

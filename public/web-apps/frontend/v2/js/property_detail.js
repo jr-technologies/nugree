@@ -85,21 +85,20 @@ $(document).on('change', '#society', function(){
     }
 });
 
-
 $(document).on('change', '#cityId', function(){
     var city_id = $(this).val();
     if(city_id !="") {
         $.ajax({
-           url: apiPath.concat("city/society"),
+           url: apiPath.concat("city/location"),
             data:{
                 city_id: city_id
             },
             success: function (response)
             {
                 $('#societies').empty();
-                $('#societies').append($('<option>').text('select a Society').attr('value', ''));
-                $.each(response.data.societies, function (i, society) {
-                    $('#societies').append($('<option>').text(society.name).attr('value', society.id));
+                $('#societies').append($('<option>').text('select a Location').attr('value', ''));
+                $.each(response.data.location, function (i, location) {
+                    $('#societies').append($('<option>').text(location.location).attr('value', location.id));
                 });
 
             }
@@ -112,5 +111,3 @@ $(document).on('change', '#cityId', function(){
 
     }
 });
-
-

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\DB\Providers\SQL\Factories\Factories\Banners\BannersFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\IndexRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
@@ -103,7 +102,7 @@ class PropertiesController extends Controller
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
         $banners = $this->getPropertyListingPageBanners($params);
-        return $this->response->setView('frontend.v2.property_listing')->respond(['data' => [
+        return $this->response->setView('frontend.v1.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
             'societies'=>$this->societies->all(),
@@ -112,6 +111,7 @@ class PropertiesController extends Controller
             'propertySubtypes'=>$this->propertySubtypes->getByType($request->get('propertyTypeId')),
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
+            'cities'=>$this->cities->all(),
             'oldValues'=>$request->all(),
             'banners'=>$banners
         ]]);
@@ -192,7 +192,7 @@ class PropertiesController extends Controller
                $loggedInUser = $request->user();
                $property = $this->convertPropertyAreaToActualUnit($property);
                $propertyOwner = $this->users->find($property->owner->id);
-               return $this->response->setView('frontend.v2.property_detail')->respond(['data' => [
+               return $this->response->setView('frontend.v1.property_detail')->respond(['data' => [
                    'isFavourite' => ($loggedInUser == null) ? false : $this->favouriteFactory->isFavourite($request->get('propertyId'), $loggedInUser->id),
                    'property' => $this->releaseAllPropertiesFiles([$property])[0],
                    'loggedInUser' => $loggedInUser,
@@ -202,13 +202,13 @@ class PropertiesController extends Controller
                    'propertyId' => $request->get('propertyId')
                ]]);
            }else {
-               return $this->response->setView('frontend.v2.No-result')->respond(['data' => [
+               return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
                    'propertyId' => $request->get('propertyId')
                ]]);
            }
        }
        catch(\Exception $e){
-           return $this->response->setView('frontend.v2.No-result')->respond(['data' => [
+           return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
                'propertyId' => $request->get('propertyId')
            ]]);
        }

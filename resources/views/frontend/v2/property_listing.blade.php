@@ -45,7 +45,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="active">
+                                     <li class="active">
                                         <a class="filters-links-opener">LAND AREA</a>
                                         <div class="slide">
 											<span class="fake-select">
@@ -76,7 +76,7 @@
                                                     <input type="number" placeholder="From" name="price_from" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
                                                 </div>
                                                 <div class="field-holder">
-                                                    <input type="number" placeholder="To"  name="price_to"value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
+                                                    <input type="number" placeholder="To"  name="price_to" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                                 </div>
 
                                             </div>
@@ -195,10 +195,9 @@
                                     <div class="caption text-left">
                                         <div class="layout">
                                             <div class="left-area">
-                                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.
-                                                (($property->wanted)?'required ':''). $property->purpose->name.'
-                                                 in '.$property->location->block->name.' Block'.
-                                             ' '.$property->location->society->name}}</a></h1>
+                                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
+                                                 in '.$property->location->location->location/*.' Block'.
+                                             ' '.$property->location->society->name*/}}</a></h1>
                                                 <p>{{str_limit($property->description,148) }}</p>
                                             </div>
                                             <div class="right-area">

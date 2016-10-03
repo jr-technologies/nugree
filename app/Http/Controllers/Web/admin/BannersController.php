@@ -84,7 +84,6 @@ class BannersController extends Controller
     }
     public function updateBanner(UpdateBannerRequest $request)
     {
-
         $this->bannersRepo->updateBanner($request->getBannerModel());
         $bannerId = $request->get('id');
         if($request->get('societiesIds') !=null)

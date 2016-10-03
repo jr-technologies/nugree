@@ -7,15 +7,10 @@
  */
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\Requests\City\GetCitiesBySocietyRequest;
-use App\Http\Requests\Requests\Society\AddSocietyRequest;
-use App\Http\Requests\Requests\Society\DeleteSocietyRequest;
-use App\Http\Requests\Requests\Society\GetAllSocietiesRequest;
-use App\Http\Requests\Requests\Society\GetSocietiesByCityRequest;
-use App\Http\Requests\Requests\Society\UpdateSocietyRequest;
+use App\Http\Requests\Requests\Location\GetLocationByCityRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\LocationsRepoProvider;
-use App\Repositories\Providers\Providers\SocietiesRepoProvider;
+
 
 class LocationsController extends ApiController
 {
@@ -27,9 +22,10 @@ class LocationsController extends ApiController
         ApiResponse $response
     )
     {
-        $this->society  = $societiesRepository->repo();
+        $this->location  = (new LocationsRepoProvider())->repo();
         $this->response = $response;
     }
+
     public function store(AddLocationRequest $request)
     {
         $society = $request->getSocietyModel();
@@ -66,7 +62,7 @@ class LocationsController extends ApiController
     public function getByCity(GetLocationByCityRequest $request)
     {
         return $this->response->respond(['data'=>[
-         'societies'=> $this->society->getByCity($request->get('cityId'))
+         'location'=> $this->location->getByCity($request->get('cityId'))
     ]]);
     }
 }

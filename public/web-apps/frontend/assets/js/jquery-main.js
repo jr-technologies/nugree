@@ -4,6 +4,7 @@ jQuery(window).load(function(){
 
 $(document).ready(function() {
 	$(".js-example-basic-single").select2();
+
 	if (screen.width < 768){
 		$('.call-agent-btn').each(function(){
 			var mobileNumber = $(this).attr('data-tel');
@@ -16,10 +17,6 @@ $(document).ready(function() {
 	}
 	$('.addPro-type:first').trigger('change');
 	$('.registration-form').find('.role-listing').hide();
-	
-	if($('.index-page').length){
-       if (screen.width < 1024){ $('#wrapper').addClass('fancy-overlay'); } 
-	}
 	$('.news-slideshow .slide').each(function(){
 		if($(this).find('.news-slide').length == 1){
 			$(this).find('.news-pagination').remove();
@@ -88,7 +85,7 @@ function initSlideShow() {
 		disableWhileAnimating: false,
 		generatePagination: '.pagination',
 		autoRotation: true,
-		autoHeight: true,
+		autoHeight: false,
 		pauseOnHover: true,
 		circularRotation: false,
 		switchTime: 5000,
@@ -176,24 +173,7 @@ function initCarousel() {
 		swipeGap: true
 	});
 
-	jQuery('.agent-societies').scrollGallery({
-		mask: '.agent-mask',
-		slider: '.agent-slideset',
-		slides: '.agent-slide',
-		currentNumber: 'span.cur-num',
-		totalNumber: 'span.all-num',
-		disableWhileAnimating: true,
-		circularRotation: true,
-		pauseOnHover: true,
-		autoRotation: false,
-		maskAutoSize: false,
-		stretchSlideToMask: true,
-		switchTime: 2000,
-		step:1,
-		animSpeed: 600
-	});
-
-	jQuery('.agent-logos').scrollGallery({
+	jQuery('.listing-image-slider').scrollGallery({
 		mask: '.mask',
 		slider: '.slideset',
 		slides: '.slide',
@@ -202,11 +182,10 @@ function initCarousel() {
 		disableWhileAnimating: true,
 		circularRotation: true,
 		pauseOnHover: true,
-		autoRotation: true,
-		maskAutoSize: false,
+		autoRotation: false,
+		maskAutoSize: true,
 		stretchSlideToMask: true,
 		switchTime: 2000,
-		step:1,
 		animSpeed: 600
 	});
 }
@@ -249,7 +228,7 @@ function searchBtnFix()
 {
 	var asideFromLeft = $('#aside').position().left;
 	$('.filter-btn').css({
-		'left':asideFromLeft+15,
+		'left':asideFromLeft+10,
 		'width':$('#aside').width()
 	});
 }
@@ -530,4 +509,7 @@ $(document).on('click', '.btn-close-working', function(){
 
 $(document).on('click', '.main-navigation li a', function(){
 	$('html').removeClass('nav-active');
+});
+$(document).on('click', '.searchOpener', function(){
+	$('#wrapper').toggleClass('search-id-active');
 });

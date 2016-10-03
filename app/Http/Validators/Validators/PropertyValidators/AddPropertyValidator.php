@@ -52,7 +52,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'ownerId.required' => 'property owner is required',
             'purposeId.required' => 'Property purpose is required',
             'subTypeId.required' => 'Property sub type is required',
-            'locationId.required' => 'Location is required',
+            'locationId.required' => 'LocationValidators is required',
             'landUnitId.required' => 'Land unit is required',
             'title.required' => 'Property title is required',
             'description.required' => 'property description is required',

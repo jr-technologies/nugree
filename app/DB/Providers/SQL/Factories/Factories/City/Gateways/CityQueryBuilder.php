@@ -35,4 +35,37 @@ class CityQueryBuilder extends QueryBuilder
             ->orderBy($this->table.'.priority', 'DESC')
             ->get();
     }
+
+    public function getAllCities($params =[])
+    {
+        return DB::table($this->table)
+            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'))
+            ->skip($this->computePagination($params)['start'])->take(config('constants.defaultBannerLimit'))
+            ->groupBy($this->table.'.id')
+            ->orderBy($this->table.'.priority','DESC')
+            ->get();
+    }
+    public function citesCount()
+    {
+        return DB::select('select FOUND_ROWS() as total_records');
+    }
+
+    private function computePagination($params)
+    {
+        $pagination = [
+            'start' => 0,
+            'limit' => config('constants.PROPERTIES_LIMIT')
+        ];
+        if(isset($params['page']) ){
+            $page = intval($params['page']);
+            $page = ($page < 1)?1: $page;
+            $limit = intval($params['limit']);
+            $limit = ($limit < 1)?config('constants.defaultBannerLimit'):$limit;
+            $start = $limit*($page-1);
+
+            $pagination['start'] = $start;
+            $pagination['limit'] = $limit;
+        }
+        return $pagination;
+    }
 }

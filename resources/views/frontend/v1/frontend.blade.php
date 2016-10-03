@@ -34,6 +34,40 @@
 
         </div>
     </main>
+    <footer id="footer">
+        <div class="footer-holder">
+            <div class="container">
+                <div class="col">
+                    <h1><span>Get in</span> Touch</h1>
+                    <form class="submit-query">
+                        <div class="input-holder"><input type="text" placeholder="Name" ></div>
+                        <div class="input-holder"><input type="email" placeholder="Email"></div>
+                        <div class="input-holder"><input type="number" placeholder="Phone" value=""></div>
+                        <div class="input-holder"><input type="text" placeholder="Subject"></div>
+                        <textarea placeholder="Your message"></textarea>
+                        <button type="submit">Send email <span class="icon-arrow-right"></span></button>
+                    </form>
+                </div>
+                <div class="col">
+                    <ul class="social-plugins">
+                        <li><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fproperty42pk-1562646287317094%2F&tabs=timeline&width=340&height=384&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="384" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></li>
+                        <li><a class="twitter-timeline" data-height="384" href="https://twitter.com/Property42_pk">Tweets by Property42_pk</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-footer">
+                <span class="rights">&copy;2016 <a href="#">nugree.com</a> All rights reserved</span>
+                <ul class="social-icons">
+                    <li><a href="#"><span class="icon-facebook"></span></a></li>
+                    <li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>
+                    <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                    <li><a href="#"><span class="icon-twitter"></span></a></li>
+                    <li><a href="#"><span class="icon-instagram"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
 </div>
 <nav id="nav">
     <a class="navigation-toggler close"><span class="icon-cross"></span></a>

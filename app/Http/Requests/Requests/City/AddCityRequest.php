@@ -38,7 +38,7 @@ class AddCityRequest extends Request implements RequestInterface{
     {
         $city = new City();
         $city->name = $this->get('name');
-        $city->countryId = $this->get('country_id');
+        $city->countryId = $this->get('countryId');
         $city->priority = $this->get('priority');
         $city->path = $this->getCityImage();
         return $city;

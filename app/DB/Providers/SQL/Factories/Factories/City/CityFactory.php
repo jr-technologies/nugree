@@ -52,8 +52,18 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
         return [
             'city' => $city->name,
             'country_id'=>$city->countryId,
+            'priority'=>$city->priority,
+            'path'=>$city->path,
             'updated_at' => $city->updatedAt,
         ];
+    }
+    public function getAllCities($param)
+    {
+        return $this->tableGateway->getAllCities($param);
+    }
+    public function citesCount()
+    {
+        return $this->tableGateway->citesCount();
     }
     public function updateWhere(array $where, array $data)
     {
@@ -73,6 +83,8 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
         $city->id        = $result->id;
         $city->name      = $result->city;
         $city->countryId = $result->country_id;
+        $city->priority  = $result->priority;
+        $city->path      = $result->path;
         $city->createdAt = $result->created_at;
         $city->updatedAt = $result->updated_at;
         return $city;

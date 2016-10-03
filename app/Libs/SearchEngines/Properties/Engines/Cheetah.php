@@ -10,6 +10,7 @@ namespace App\Libs\SearchEngines\Properties\Engines;
 
 
 use App\DB\Providers\SQL\Factories\Factories\Block\BlockFactory;
+use App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyFeatureValue\PropertyFeatureValueFactory;
 use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
@@ -47,16 +48,17 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
         $properties = (new PropertyFactory())->getTable();
         $propertyTypes = (new PropertyTypeFactory())->getTable();
         $propertySubTypes = (new PropertySubTypeFactory())->getTable();
-        $societies = (new SocietyFactory())->getTable();
-        $blocks = (new BlockFactory())->getTable();
+        //$societies = (new SocietyFactory())->getTable();
+        //$blocks = (new BlockFactory())->getTable();
+        $location = (new LocationFactory())->getTable();
         $propertyJsonTable = (new PropertyJsonFactory())->getTable();
         $propertyFeatureValues = (new PropertyFeatureValueFactory())->getTable();
 
         $query = DB::table($properties)
             ->join($propertyJsonTable,$properties.'.id','=',$propertyJsonTable.'.property_id')
             ->leftjoin($propertySubTypes,$properties.'.property_sub_type_id','=',$propertySubTypes.'.id')
-            ->leftjoin($blocks,$properties.'.block_id','=',$blocks.'.id')
-            ->leftjoin($societies,$blocks.'.society_id','=',$societies.'.id')
+            ->leftjoin($location,$properties.'.location_id','=',$location.'.id')
+            //->leftjoin($societies,$blocks.'.society_id','=',$societies.'.id')
             ->leftjoin($propertyFeatureValues,$properties.'.id','=',$propertyFeatureValues.'.property_id')
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$propertyJsonTable.'.json'));
 
@@ -68,10 +70,15 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             $query = $query->where($propertySubTypes.'.property_type_id',$this->instructions['propertyTypeId']);
         if(isset($this->instructions['subTypeId']) && $this->instructions['subTypeId'] != null && $this->instructions['subTypeId'] != '')
             $query = $query->where($properties.'.property_sub_type_id',$this->instructions['subTypeId']);
-        if(isset($this->instructions['societyId']) && $this->instructions['societyId'] != null && $this->instructions['societyId'] != '')
-            $query = $query->where($societies.'.id',$this->instructions['societyId']);
-        if(isset($this->instructions['blockId']) && $this->instructions['blockId'] != null && $this->instructions['blockId'] != '')
-            $query = $query->where($properties.'.block_id',$this->instructions['blockId']);
+        if(isset($this->instructions['cityId']) && $this->instructions['cityId'] != null && $this->instructions['cityId'] != '')
+            $query = $query->where($location.'.city_id',$this->instructions['cityId']);
+        if(isset($this->instructions['locationId']) && $this->instructions['locationId'] != null && $this->instructions['locationId'] != '')
+            $query = $query->where($properties.'.location_id',$this->instructions['locationId']);
+
+//        if(isset($this->instructions['societyId']) && $this->instructions['societyId'] != null && $this->instructions['societyId'] != '')
+//            $query = $query->where($societies.'.id',$this->instructions['societyId']);
+//        if(isset($this->instructions['blockId']) && $this->instructions['blockId'] != null && $this->instructions['blockId'] != '')
+//            $query = $query->where($properties.'.block_id',$this->instructions['blockId']);
         if(isset($this->instructions['priceFrom']) && $this->instructions['priceFrom'] != null && $this->instructions['priceFrom'] != '')
             $query = $query->where($properties.'.price','>=',$this->instructions['priceFrom']);
         if(isset($this->instructions['priceTo']) && $this->instructions['priceTo'] != null && $this->instructions['priceTo'] != '')
@@ -105,7 +112,6 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
         $query = $query->orderBy($sorting['sortBy'],$sorting['order']);
         $query = $query->skip($this->computePagination()['start'])->take($this->computePagination()['limit']);
         $query = $query->distinct();
-
         return $query;
     }
 

@@ -296,6 +296,11 @@ return [
         'GetCitiesBySocietyRequest' => \App\Http\Requests\Requests\City\GetCitiesBySocietyRequest::class,
         'GetCitiesByCountryRequest' => \App\Http\Requests\Requests\City\GetCitiesByCountryRequest::class,
 
+        /* LocationValidators Requests */
+        'GetLocationByCityRequest' => \App\Http\Requests\Requests\Location\GetLocationByCityRequest::class,
+
+
+
         /* Society Requests */
         'AddSocietyRequest' => \App\Http\Requests\Requests\Society\AddSocietyRequest::class,
         'UpdateSocietyRequest' => \App\Http\Requests\Requests\Society\UpdateSocietyRequest::class,

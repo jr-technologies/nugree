@@ -72,7 +72,7 @@ class UsersController extends Controller
     {
         $searchedAgents = $this->usersJsonRepo->searchTrustedAgents($request->all());
         $totalAgentsFound = \Session::get('totalAgentsFound');
-        return $this->response->setView('frontend.v2.agent_listing')->respond(['data' => [
+        return $this->response->setView('frontend.v1.agent_listing')->respond(['data' => [
             'agents' => $this->releaseUsersAgenciesLogo($searchedAgents),
             'allAgents' => $this->usersJsonRepo->getAllTrustedAgents(),
             'societies'=>$this->societies->all(),
@@ -85,7 +85,7 @@ class UsersController extends Controller
     public function getTrustedAgent(GetAgentRequest $request)
     {
         $userPropertiesState = $this->properties->userPropertiesState($request->get('userId'));
-        return $this->response->setView('frontend.v2.agent-profile')->respond(['data' => [
+        return $this->response->setView('frontend.v1.agent-profile')->respond(['data' => [
             'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId'))),
             'userPropertiesState' => $userPropertiesState,
             'banners'=>$this->getAgentDetailPageBanners()

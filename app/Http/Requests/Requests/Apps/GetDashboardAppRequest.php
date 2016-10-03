@@ -14,7 +14,7 @@ use App\Http\Requests\Request;
 use App\Http\Validators\Validators\AppsValidators\GetDashboardAppValidator;
 use App\Transformers\Request\Apps\GetDashboardAppTransformer;
 
-class GetDashboardAppRequest extends AppsRequest implements RequestInterface{
+class   GetDashboardAppRequest extends AppsRequest implements RequestInterface{
 
     public $validator = null;
     public function __construct(){

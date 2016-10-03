@@ -30,3 +30,15 @@ a{ outline: none;}
     pointer-events:none;
   }
 }
+::-webkit-selection { 
+  background: $p42-color;
+  color: $white;
+}
+::-moz-selection { 
+  background: $p42-color;
+  color: $white;
+}
+::selection {
+  background: $p42-color;
+  color: $white;
+ }

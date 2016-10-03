@@ -60,7 +60,7 @@ class AuthController extends WebController
     {
         if(\Session::has('authUser'))
             return redirect()->route('dashboard');
-        return $this->response->setView('frontend.v2.auth.login')->respond(['data'=>[
+        return $this->response->setView('frontend.v1.auth.login')->respond(['data'=>[
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes->all()
         ]]);
@@ -81,7 +81,7 @@ class AuthController extends WebController
 
     public function showRegisterPage()
     {
-        return $this->response->setView('frontend.v2.auth.register')->respond([
+        return $this->response->setView('frontend.v1.auth.register')->respond([
             'roles' => $this->roles->all(),
             'societies' => $this->societies->all()
         ]);

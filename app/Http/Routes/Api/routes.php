@@ -380,14 +380,14 @@ Route::get('society/blocks',
     ]
 );
 
-Route::get('city/society',
+Route::get('city/location',
     [
         'middleware'=>
             [
                 'apiValidate:getSocietiesByCityRequest'
             ],
 
-        'uses'=>'SocietiesController@getByCity'
+        'uses'=>'LocationsController@getByCity'
     ]
 );
 

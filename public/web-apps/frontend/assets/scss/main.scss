@@ -34,6 +34,10 @@ $media-expressions: (
 @import 'select2-min';
 @import 'fancybox';
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
 html {
 
   &.filters-active,
@@ -77,7 +81,7 @@ html {
   font-weight: 700;
   text-decoration: none;
   color: $white;
-  background: $p42-color;
+  background: $sharp-green;
   padding: 10px 25px;
   border: 0;
   transition: background 0.4s ease;
@@ -121,6 +125,7 @@ html {
       .fake-checkbox,
       .fake-radio {
         background: $p42-color;
+        &:after { opacity: 1;}
       }
     }
   }
@@ -131,7 +136,6 @@ html {
     border: 3px solid $p42-color;
     position: relative;
     color: $dark-grey;
-    @include align(top);
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -139,6 +143,16 @@ html {
     z-index: 0;
 
     &:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: "\e94a";
+      margin: -15px 0 0 -13px;
+      font-family: 'icomoon';
+      color: $white;
+      font-size: 25px;
+      line-height: 1;
+      opacity: 0;
     }
   }
   .fake-label {
@@ -236,10 +250,17 @@ h1 {
     color: $p42-color;
   }
 }
+h2 {
+  display: block;
+  @include font(41,44);
+  font-weight: 300;
+  color: $p42-color;
+}
 #wrapper {
   width: 100%;
   height: 100%;
   display: table;
+  table-layout: fixed;
   @extend %layout;
   position: relative;
 
@@ -267,10 +288,12 @@ h1 {
   width: 100%;
   background: $p42-background;
   padding: 0 0 0 110px;
+  box-shadow: 0 0 15px rgba($black,0.5);
 
   .right-area {
     @extend %pull-right;
     @include align-reset(top,14,18);
+    position: relative;
 
     a {
       text-decoration: none;
@@ -307,13 +330,53 @@ h1 {
         color: $white;
         background: $p42-color;
         display: block;
-        padding: 28px 20px;
+        padding:28px 50px;
 
         &:hover {
           background: darken($p42-color, 5%);
         }
       }
     }
+  }
+}
+.searchById {
+  position: absolute;
+  top: 0;
+  left: -150px;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: z-index 0.5s ease, opacity 0.5s ease;
+  -webkit-transition: z-index 0.5s ease, opacity 0.5s ease;
+  -moz-transition: z-index 0.5s ease, opacity 0.5s ease;
+
+  .search-id-active & {
+    z-index: 4;
+    opacity: 1;
+  }
+
+  input[type="text"],input[type="number"]{
+    border: 0;
+    @include squar(218px, 100%);
+    padding: 0 70px 0 10px;
+    background: $mix-black;
+    color: $white;
+
+    @include placeholder {
+      color: $white !important;
+      opacity: 1;
+    }
+  }
+  button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border: 0;
+    background: $mix-black;
+    color: $white;
+    width: 69px;
+    @include font(20,22);
   }
 }
 .logo {
@@ -323,22 +386,6 @@ h1 {
   position: relative;
   float: left;
   @extend %layout;
-  transition: position 0.5s ease, top 0.5s ease,  max-width 0.54s ease;
-  -webkit-transition: position 0.5s ease, top 0.5s ease,  max-width 0.54s ease;
-  -moz-transition: position 0.5s ease, top 0.5s ease,  max-width 0.54s ease;
-  -ms-transition: position 0.5s ease, top 0.5s ease,  max-width 0.54s ease;
-
-  @include media('<tvscreen'){
-    max-width: 400px;
-  }
-  @include media('<widescreen'){
-    max-width: 325px;
-  }
-  @include media('<desktop'){
-    top: 0;
-    position: static;
-    margin: 30px auto 0 !important;
-  }
 
   img{ @extend %img-res;}
   a{ display: block;}
@@ -372,6 +419,10 @@ h1 {
       display: block;
       font-weight: bold;
       color: $p42-color;
+      
+      &:hover {
+        text-decoration: none !important;
+      }
     }
   }
 }
@@ -448,11 +499,6 @@ h1 {
   @extend %clearfix;
   background: rgba($black, 0.6);
   padding: 50px;
-  position: absolute;
-  top: 50%;
-  left: 147px;
-  z-index: 80;
-  margin: -260px 0 0;
 
   @include media('<tablet'){
     margin: 0 auto 15px;
@@ -829,17 +875,10 @@ h1 {
     padding: 20px 0 0;
   }
 }
-.projects-sliderHolder,
-.news-sliderHolder  {
-  @extend %layout;
-  padding: 20px 0 0;
-  position: relative;
-  z-index: 9;
-
-  @include media('<tablet'){ padding: 0;}
-}
+.projects-slideshow,
 .news-slideshow {
   @extend %layout;
+  position: relative;
 
   .mask {
     position: relative;
@@ -848,13 +887,21 @@ h1 {
   .slideset{
     @extend %layout;
     width: 100%;
-    height: 652px !important;
+    height:522px !important;
+  }
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
   }
   .btn-holder {
     position: absolute;
     top: 50%;
     right: 200px;
-    z-index: 6;
+    z-index: 5;
     width: 150px;
     @extend %layout;
     @extend %text-center;
@@ -975,13 +1022,93 @@ h1 {
     }
   }
 }
-
 .projects-slideshow {
+  h2 {
+    color: $sharp-green;
+    font-weight: 600;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    z-index: 56;
+    margin: 0;
+    @extend %text-center;
+    @include font(50,55);
+  }
+  .btn-default {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin: 0 0 0 -100px;
+    z-index: 5;
+  }
+  .slideset {
+    height: 600px !important;
+  }
+  .btn-holder {
+    top: auto;
+    bottom: 10px;
+  }
+  .heading {
+    margin: 0;
+  }
   .slide {
-    .caption {
-      float: right !important;
-      padding: 0 0 0 10px;
+    .container {
+      max-width: 1024px;
+      min-height: 600px;
+      white-space: nowrap;
+
+      &:after {
+        height: 600px;
+        @include align(middle);
+        width: 1px;
+        @extend %layout;
+        width: 1px;
+        margin: 0 0 0 -5px;
+        content: '';
+      }
     }
+    img { height: 100%;}
+    .caption {
+      @extend %text-center;
+      @include font(18,28);
+      width: 100%;
+      @include align(middle);
+      white-space: normal;
+      padding: 0;
+      left: auto;
+
+      p {
+        margin: 0;
+        a {
+          @include align(top);
+          margin: 0 5px;
+          color: $white;
+        }
+      }
+    }
+  }
+  .btn-prev , .btn-next {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 5;
+    text-decoration: none;
+    color: $white;
+    margin: -50px 0 0;
+    opacity: 0.7;
+
+    span {
+      &:before {
+        font-size: 100px;
+        line-height: 1;
+      }
+    }
+    &:hover { opacity: 1;}
+  }
+  .btn-next {
+    left: auto;
+    right: 0;
   }
 }
 .ads-slideshow {
@@ -1129,98 +1256,6 @@ h1 {
     margin: 30px 0 10px;
   }
 }
-.mobile-app {
-  background: $white;
-  box-shadow: 0 0 20px rgba($black, 0.20);
-  @extend %layout;
-  padding: 100px 0;
-
-  .container { position: relative;}
-  .appPicture {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    margin: -207px 0 0;
-
-    @include media('<tvscreen'){
-      max-width: 300px;
-      margin: -126px 0 0;
-    }
-    @include media('<desktop'){
-      position: static;
-      margin: 0;
-      margin: 0 auto;
-      display: block;
-    }
-  }
-  .details-cap {
-    padding: 0 0 0 550px;
-    @extend %text-left;
-
-    @include media('<tvscreen'){
-      padding: 0 0 0 340px;
-    }
-    @include media('<desktop'){
-      padding: 0;
-      text-align: center;
-    }
-
-    h1 {
-      @extend %text-left;
-      margin: 0 0 10px;
-
-      @include media('<desktop'){
-        text-align: center;
-      }
-    }
-    strong {
-      color: $p42-default-grey;
-      display: block;
-      @include font(37,39);
-      margin: 0 0 30px;
-    }
-    .p42 {
-      display: block;
-      position: relative;
-      @include font(26,29);
-      color: $p42-color;
-      @extend %text-capital;
-      padding: 0 0 0 80px;
-      margin: 0 0 30px;
-
-      @include media('<desktop'){
-        max-width: 230px;
-        margin: 30px auto;
-      }
-
-      &:after {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        margin: -37px 0 0;
-        content: '';
-        background: url('../images/ico01.png') no-repeat;
-        background-size: cover; 
-        width: 75px !important;
-        height: 75px !important;
-      }
-    }
-    .links {
-      @extend %listreset;
-      @include align-reset(top, 12, 12);
-      margin: 0 -5px;
-
-      li {
-        padding: 0 5px 10px;
-
-        a {
-          display: block;
-          &:hover { opacity: 0.8;}
-        }
-      }
-    }
-  }
-}
 .agent-slider {
   position: relative;
 
@@ -1232,6 +1267,7 @@ h1 {
     @extend %layout;
     position: relative;
     width: 100%;
+    @extend %text-center;
 
     &:after {
       position: absolute;
@@ -1274,14 +1310,25 @@ h1 {
         @include align(middle);
         width: 1px;
       }
+      &:hover {
+        img {
+        filter: grayscale(0);
+        -webkit-filter: grayscale(0);
+        -moz-filter: grayscale(0);
+        }
+      }
 
       img {
         white-space: normal;
         @include align(middle);
+        filter: grayscale(1);
+        -webkit-filter: grayscale(1);
+        -moz-filter: grayscale(1);
+        max-width: 113px;
       }
     }
   }
-  h1 {
+  h2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -1291,7 +1338,6 @@ h1 {
     padding: 33px 20px;
     z-index: 5;
     background: $white;
-    @include font(42,45);
     font-weight: 300;
     color: $sharp-green;
 
@@ -1371,6 +1417,7 @@ h1 {
     width: 200px;
     padding: 50px 0 0;
     @extend %text-center;
+    box-shadow: 0 0 15px rgba($black, 0.5);
 
     h1 {
       @extend %text-center;
@@ -1410,15 +1457,56 @@ h1 {
   @extend %layout;
   @extend %container;
   padding: 30px 15px;
+  overflow: visible;
+  @extend %clearfix;
 
   .layout {
     @include align-reset(top,30,33);
+    padding: 0 0 20px;
+    overflow: visible;
+    @extend %clearfix;
 
     .col {
       width: 50%;
     }
-    a { display: block;}
-    img { @extend %img-res;}
+    a {
+      display: block;
+      position: relative;
+      text-decoration: none;
+    }
+    h1 {
+      background: $mix-black;
+      margin: 0;
+      color: $white;
+      padding:92px 20px 93px;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        top: 0;
+        right: -999999px;
+        left: 100%;
+        bottom: 0;
+        background: $mix-black;
+        content: '';
+      }
+    }
+    .title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      color: $white;
+      @include font(50,54);
+      font-weight: 700;
+      z-index: 5;
+      @extend %text-center;
+      padding: 8px;
+    }
+    img {
+      @extend %img-res;
+      max-height: 436px;
+    }
     ul {
       @extend %listreset;
       @include align-reset(top,30,33);
@@ -1426,6 +1514,8 @@ h1 {
 
       li {
          width: 50%;
+
+         img { max-height: 218px;}
       }
     }
   }
@@ -1513,53 +1603,59 @@ h1 {
     }
   }
 }
-.about-us {
-  @include font(18,30);
-  padding: 150px 0;
+.mobile-app {
+  @extend %layout;
+  background: $p42-background;
 
-  @include media('<tablet'){
-    padding: 20px 0;
-    @include font(13,19);
+  .container {
+    position: relative;
+    max-width: 1024px;
+  }
+  .mobile-img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin: -202px 0 0;
+  }
+  .caption {
+    padding: 130px 490px 130px 30px;
+  }
+  .logo {
+    float: none;
+    margin: 0 auto;
   }
 }
-.questions {
-  @include font(18,30);
+.about-us {
+  background: #d3d3d3;
+  @extend %layout;
+  position: relative;
+  z-index: 1;
+  padding: 41px 0;
+  min-height: 470px;
 
-  @include media('<tablet'){
-    @include font(13,19);
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: url('../images/img08.jpg') no-repeat;
+    content: '';
+    width: 860px;
+    z-index: -1;
+  }
+  .description {
+    color: $mix-black;
+    @include font(25,28);
+    font-weight: 300;
+    padding: 0 30px;
+    @extend %text-center;
   }
 }
 .submit-query {
   @extend %layout;
-
-  @include media('<tablet'){
-    margin: 0 0 20px;
-  }
-
-  .layout{
-    @include align-reset(top, 18, 21);
-  }
-
-  .input-holder{
-    width: 33.33%;
-    padding: 2px 10px 20px;
-    
-    @include media('<desktop'){
-      padding: 2px 2px 20px;
-    }
-      
-    @include media('<tablet'){
-      width: 100%;
-      display: block;
-      padding: 0 0 5px;
-    }
-
-    &.full-width {
-      @extend %full-width;
-    }
-  }
+  
   textarea,
-  input[type="text"],input[type="email"],input[type="password"]{
+  input[type="text"],input[type="email"],input[type="number"],input[type="password"]{
     @include squar(100%, 60px);
     display: block;
     margin: 0;
@@ -1589,56 +1685,110 @@ h1 {
     }
     
   }
-  textarea{
-    height: 200px;
+  textarea {
+    height: 170px;
+    overflow: auto;
+    margin: 0 10px 10px;
     resize: none;
   }
- button[type="submit"]{
-   display: block;
-   width: 350px;
-   @extend %text-upparcase;
-   @include font(18,21);
-   font-weight: 700;
-   border: 0;
-   padding: 0;
-   margin: 0 auto;
-   background: transparent;
+  .input-holder {
+    margin: 0 0 10px;
+    width: 50%;
+    padding: 0 0 0 10px;
+    @extend %pull-left;
+  }
+  button[type="submit"]{
+    display: block;
+    width: 98.6%;
+    color: $white;
+    @extend %text-upparcase;
+    @include font(20,24);
+    font-weight: 400;
+    border: 1px solid transparent;
+    padding: 20px;
+    margin: 0 0 0 10px;
+    background: $sharp-green;
+    position: relative;
 
-   @include media('<tablet'){
-     width: 100%;
-   }
+    span {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      margin: -11px 0 0;
+      color: $sharp-green;
+    }
 
-   span {
-     display: block;
-     position: relative;
-     background: $p42-color;
-     color: $white;
-     z-index: 1;
-     padding: 18px 10px;
-     overflow: hidden;
-     transition: background 0.5s ease;
-     -webkit-transition: background 0.5s ease;
-     -moz-transition: background 0.5s ease;
-   }
-   &:hover{
-     span{
-      background: $green;
-     }
-   }
- } 
+    &:hover {
+      background: $mix-black;
+      border: 1px solid $sharp-green;
+    }
+  } 
 }
 #footer {
-  background: $p42-background;
   @extend %layout;
   display: table-footer-group;
   height: 1%;
   width: 100%;
 
-  .copyright{
-    padding: 7px 20px;
-    @extend %text-right;
+  h1 { color: $white;}
 
-    @include media('<tablet'){ text-align: center;}
+  .footer-holder {
+    background: url('../images/img09.jpg') no-repeat;
+    background-size: cover;
+    position: relative;
+    @extend %layout;
+    z-index: 5;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($black, 0.75);
+      content: '';
+      z-index: -1;
+    }
+  }
+  .social-plugins {
+    @extend %listreset;
+    @include align-reset(top, 12,15);
+    margin: 40px 0 0;
+    @extend %text-center;
+
+    li {
+      width: 50%;
+      padding: 0 5px;
+    }
+  }
+  .container {
+    @extend %layout;
+    @include align-reset(top, 16,21);
+
+    .col {
+      padding: 50px 0;
+      width: 50%;
+    }
+  }
+  .bottom-footer {
+    @extend %layout;
+    @extend %container;
+    @include align-reset(top, 21,26);
+    color: $white;
+    font-weight: 300;
+    
+    a{
+      color: $white;
+      text-decoration: none;
+      &:hover { text-decoration: underline;}
+    }
+    
+    span, ul {
+      width: 50%;
+    }
+    ul {
+      @extend %text-right;
+    }
   }
 }
 .copyright{
@@ -1653,7 +1803,6 @@ h1 {
     &:hover { color: $p42-color;}
   }
 }
-
 .price {
   display: block;
   color: $p42-default-grey;
@@ -1674,7 +1823,7 @@ h1 {
   }
 }
 .nav-opener {
-  width: 80px;
+  width: 92px;
   color: $sharp-green;
   background: $mix-black;
   @include align(top);
@@ -1805,36 +1954,34 @@ h1 {
 .add-to-favorite {
   cursor: pointer;
   position: absolute;
-  top: -4px;
-  left: 5px;
-  @include squar(27px, 30px);
-  background: url('../images/sprite-fav.png') 0 -36px;
-  background-size: cover;
-  text-decoration: none;
-  transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
+  @include squar(50px,34px);
+  background: #e8e8e8;
+  color: $black;
+  float: right;
+  @extend %text-center;
+
+  span {
+    font-size: 20px;
+    line-height: 34px;
+    opacity: 0.5;
+    @include align(middle);
+  }
 
   &.added {
-    background: url('../images/sprite-fav.png') 0 0;
+    color: $red;
+    span { opacity: 1;}
   }
 }
 .premiumProperty {
   position: absolute;
-  top: 28px;
-  left: -38px;
+  top: 30%;
+  left: 0;
   color: $white;
   @include font(17, 20);
   font-weight: 600;
   background: $green;
   @extend %text-center;
-  width: 155px;
-  transform: rotate(319deg);
-  -webkit-transform: rotate(319deg);
-  -moz-transform: rotate(319deg);
-  -ms-transform: rotate(319deg);
-  box-shadow: 0 0 7px 0 rgba($black,0.5);
+  width: 100px;
 }
 .trusted-agent {
   background: $white;
@@ -1943,21 +2090,26 @@ h1 {
 }
 .quick-links {
   @extend %listreset;
-  @include align-reset(top, 25,25);
+  @include align-reset(top, 17,21);
   margin:0 -5px;
 
   li {
-    padding: 0 5px 10px;
+    padding: 0 5px;
 
     a {
       text-decoration: none;
       border: 1px solid $p42-color;
       color: $p42-color;
       display:  block;
-      border-radius: 4px;
       padding: 5px;
       width: auto;
       transition: background 0.5s ease, color 0.5s ease;
+      -webkit-transition: background 0.5s ease, color 0.5s ease;
+      -moz-transition: background 0.5s ease, color 0.5s ease;
+
+      span {
+        margin: 0 5px;
+      }
 
       &:hover {
         color: $white;
@@ -1967,65 +2119,56 @@ h1 {
   }
 }
 .public-ui-features {
-  color: $p42-default-grey;
   @extend %listreset;
-
-  @include media('<tablet'){
-    overflow: hidden;
-  }
+  @include align-reset(top, 16,20);
+  font-weight: 300;
 
   li {
-    display: block;
-    @include align-reset(top, 13, 16);
-
-    @include media('<tablet'){
-      float: left;
-      @include align-reset(top, 11, 14);
-    }
-
-    span[class^="icon-"], span[class*="icon-"] {
-      @include align(top);
-      width: 35%;
-      padding: 0;
-
-      @include media('<desktop'){
-        display:none;
-      }
-    }
-    b {
-      @include align(top);
-      font-weight: 400;
-      display: block;
-      @extend %text-right;
-
-      @include media('<tablet'){ width: auto;}
-    }
+    padding: 0 3px 6px;
+  }
+  span {
+    background: $p42-background;
+    color: $p42-default-grey;
+    @include align(top);
+    padding: 3px;
+  }
+}
+.listing-image-slider {
+  position: relative;
+  @extend %layout;
+  
+  .mask {
+    position: relative;
+    @extend %layout;
+  }
+  .slideset {
+    width: 99999px;
+    float: left;
+  }
+  .slide {
+    width: 100%;
+    float: left;
+  }
+  a { display: block;}
+  img { @extend %img-res;}
+  .btn-prev, .btn-next {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin: -20px 0 0;
+    z-index: 4;
+    color: $white;
+    text-decoration: none;
+    background: rgba($black, 0.7);
+    
     span {
-      padding: 0 5px;
-      width: 75%;
-
-      @include media('<tablet'){
-        width: auto;
-      }
+      font-size: 40px;
+      line-height: 1;
     }
-    strong {
-      width: 25%;
-      @include font(17,20);
-      font-weight: 700;
-      @extend %text-center;
-      padding: 0 10px 10px;
-      border-left: 1px solid $p42-default-grey;
-
-      @include media('<tablet'){
-        padding: 0 5px 5px;
-      }
-
-      @include media('<tablet'){
-        width: auto;
-        padding: 0 5px;
-        @include font(14,17);
-      }
-    }
+  }
+  .btn-next {
+    left: auto;
+    right: 0;
   }
 }
 .views {

@@ -85,6 +85,72 @@ Route::get('print-societies/12345',function(){
 }
 );
 
+Route::get('maliksajidawan786@gmail.com/city',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'CitiesController@index'
+    ]
+);
+
+
+Route::post('maliksajidawan786@gmail.com/add/city',
+    [
+        'middleware'=>
+            [
+                'webValidate:addCityRequest'
+            ],
+        'uses'=>'CitiesController@store'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/city/listing',
+    [
+        'middleware'=>
+            [
+            ],
+        'uses'=>'CitiesController@getAllCities'
+    ]
+);
+
+Route::post('get/update/city/form',
+    [
+        'middleware'=>
+            [
+            ],
+        'uses'=>'CitiesController@getCityUpdateForm'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/update/city',
+    [
+        'middleware'=>
+            [
+                'webValidate:UpdateCityRequest'
+            ],
+        'uses'=>'CitiesController@update'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/delete/city',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteCityRequest'
+            ],
+        'uses'=>'CitiesController@delete'
+    ]
+);
+
+
+
+
+
+
+
+
 Route::get('maliksajidawan786@gmail.com/project',
     [
         'middleware'=>
