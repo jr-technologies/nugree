@@ -7,24 +7,24 @@
             </ul>
             <form class="property-add" ng-submit="submitProperty()">
                 <strong class="add-pro-heading"><span>property for</span></strong>
-                <ul class="radio-checks-holder text-center">
+                <ul class="radio-checks-holder fore-type">
                     <li>
-                        <label for="for-sale" class="custom-withouChecks transparent">
+                        <label for="for-sale" class="customRadio">
                             <input type="radio" name="add-for" id="for-sale" value="1" ng-model="form.data.propertyPurpose">
                             <span class="fake-label">For Sale</span>
                         </label>
                     </li>
                     <li>
-                        <label for="for-rent" class="custom-withouChecks transparent">
+                        <label for="for-rent" class="customRadio">
                             <input type="radio" name="add-for" id="for-rent" value="2" ng-model="form.data.propertyPurpose">
                             <span class="fake-label">For Rent</span>
                         </label>
                     </li>
                 </ul>
                 <strong class="add-pro-heading"><span>Property Type</span></strong>
-                <ul class="radio-checks-holder text-center">
+                <ul class="radio-checks-holder fore-type">
                     <li data-ng-repeat="type in types">
-                        <label for="{{type.name}}" class="custom-withouChecks transparent">
+                        <label for="{{type.name}}" class="customRadio">
                             <input type="radio" name="propertyType" ng-model="$parent.form.data.propertyType" value="{{type.id}}" id="{{type.name}}" class="addPro-type">
                             <span class="fake-label">{{type.name}}</span>
                         </label>

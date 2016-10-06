@@ -14,7 +14,7 @@ class CreateUserRequirementTable extends Migration
     {
         Schema::create('user_requirement', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('name');
+            $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->string('subject');

@@ -341,7 +341,6 @@ $media-expressions: (
         label {
             color: $dark-grey;
             opacity: 0.80;
-            font-family: $open-sans;
             @extend %text-capital;
             width: 25%;
             @include font(13,16);
@@ -383,9 +382,9 @@ $media-expressions: (
     input[type="text"],input[type="tel"],input[type="password"],input[type="number"],input[type="email"]{
         border: 0;
         width: 100%;
-        padding: 6px;
+        padding:10px 6px;
         @include font(13,16);
-        height: 28px;
+        height: 40px;
         width: 100%;
         
         @include media('<tablet'){
@@ -398,7 +397,7 @@ $media-expressions: (
         }
     }
     textarea {
-        height: 90px;
+        height: 100px;
         resize: none;
     }
     input[type="submit"]{
@@ -421,7 +420,6 @@ $media-expressions: (
     }
     .extra-features {
         @include font(16,18);
-        font-family: $open-sans;
         color: $white;
         font-weight: 700;
         background: $p42-color;
@@ -444,7 +442,6 @@ $media-expressions: (
         @extend %listreset;
         max-width: 520px;
         margin: 30px auto 10px;
-        font-family: $open-sans;
         @extend %text-capital;
         @include align-reset(top,16,20);
 
@@ -539,11 +536,29 @@ $media-expressions: (
             }
 
             .layout { margin: 0 -5px 10px;}
-            .layout-holder { padding: 0 5px 5px;}
+            .layout-holder {
+                padding: 0 5px 5px;
+                min-height: 45px;
+                white-space: nowrap;
+
+                &:after {
+                    height: 45px;
+                    content: '';
+                    width: 1px;
+                    margin: 0 0 0 -5px;
+                    overflow: hidden;
+                    @include align(middle);
+                }
+                .input-holder,
+                label {
+                    white-space: normal;
+                    @include align(middle);
+                }
+            }
         }
         label {
             width: 50%;
-            padding: 5px;
+            padding: 0;
 
             &:after { @extend %hidden;}
         }
@@ -554,10 +569,6 @@ $media-expressions: (
         }
         .input-holder {
             width: 50%;
-            
-            input[type="radio"],input[type="checkbox"]{
-                margin: 6px 0 0;
-            }
         }
         .feature-heading {
             display: block;

@@ -85,6 +85,7 @@ Route::get('print-societies/12345',function(){
 }
 );
 
+
 Route::get('maliksajidawan786@gmail.com/city',
     [
         'middleware'=>
@@ -95,6 +96,16 @@ Route::get('maliksajidawan786@gmail.com/city',
     ]
 );
 
+
+Route::post('join-us',
+    [
+        'middleware'=>
+            [
+                'webValidate:addJoinUsRequest'
+            ],
+        'uses'=>'JoinUsController@store'
+    ]
+);
 
 Route::post('maliksajidawan786@gmail.com/add/city',
     [

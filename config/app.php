@@ -265,6 +265,8 @@ return [
         'AppHelper' => \App\Libs\Helpers\AppHelper::class,
         'PathHelper' => \App\Libs\Helpers\PathHelper::class,
 
+
+
         /*  Mail Requests */
         'AgentMailRequest' => \App\Http\Requests\Requests\Mail\AgentMailRequest::class,
         'MailPropertyToFriendRequest' => \App\Http\Requests\Requests\Mail\MailPropertyToFriendRequest::class,
@@ -404,6 +406,10 @@ return [
         'UpdateRoleRequest' => \App\Http\Requests\Requests\Role\UpdateRoleRequest::class,
         'DeleteRoleRequest' => \App\Http\Requests\Requests\Role\DeleteRoleRequest::class,
         'GetAllRolesRequest' => \App\Http\Requests\Requests\Role\GetAllRolesRequest::class,
+
+
+        /* Join Us */
+        'AddJoinUsRequest' => \App\Http\Requests\Requests\JoinUs\AddJoinUsRequest::class,
 
 
         /*User Roles Requests */

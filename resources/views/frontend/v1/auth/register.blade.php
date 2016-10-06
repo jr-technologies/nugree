@@ -1,6 +1,6 @@
 @extends('frontend.v1.frontend')
 @section('content')
-    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/register-now.css">
+    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/register-now.css">
     <div class="registerNow container">
         <?php
         if(\Session::has('validationErrors')){

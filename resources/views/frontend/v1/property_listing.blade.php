@@ -180,15 +180,15 @@
                             <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
                             <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>
                         </div>
-                        <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
-                        <a href="#" class="add-to-favorite added"></a>
-                        <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
+
                     </div>
                     <div class="caption text-left">
                         <div class="layout">
                             <h1>{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
                                   in '.$property->location->location->location}}</h1>
                             <p>{{str_limit($property->description,148) }}</p>
+                            <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
+                            <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
                             <div class="holder-ui">
                                 <ul class="public-ui-features text-capital">
                             @foreach($property->features as $feature)
@@ -215,8 +215,8 @@
                         <div class="layout links-holder">
                             <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
                             <ul class="quick-links">
-                                <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span>View number</a></li>
-                                <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span>Send mail</a></li>
+                                <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span><span class="hidden-xs">View number</span></a></li>
+                                <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span><span class="hidden-xs">Send mail</span></a></li>
                             </ul>
                             <a class="add-to-favorite"><span class="icon-heart-o"></span></a>
                         </div>

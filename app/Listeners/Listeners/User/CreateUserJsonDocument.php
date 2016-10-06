@@ -33,12 +33,12 @@ class CreateUserJsonDocument extends Listener implements ListenerInterface
         $user = $event->user;
         $userJsonCreator = new UserJsonCreator($event->user);
         $userJson = $userJsonCreator->create();
-        $this->usersJsonRepository->store($userJson);
-        return Mail::send('frontend.mail.register_mail',['user' => $user], function($message) use($user)
-        {
-            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
-            $message->to($user->email)->subject('Property42');
-        });
+        return $this->usersJsonRepository->store($userJson);
+//        return Mail::send('frontend.mail.register_mail',['user' => $user], function($message) use($user)
+//        {
+//            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
+//            $message->to($user->email)->subject('Property42');
+//        });
 
     }
 }

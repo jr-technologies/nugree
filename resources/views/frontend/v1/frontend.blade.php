@@ -22,8 +22,20 @@
         <div class="right-area">
             <a class="searchOpener"><span class="icon-search"></span></a>
             <ul class="customLinks">
-                <li><a href="{{ URL::to('/login') }}">Login / Register</a></li>
-                <li><a href="#">List you property</a></li>
+
+                @if(session()->get('authUser') ==null)
+                <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
+                   @else
+                    <li>
+                        <a href="#"><span class="hidden-xs">Atif sultan</span><span class="icon-profile2 hidden"></span></a>
+                        <ul class="dropDown">
+                            <li><a href="{{URL::to('dashboard#/home/profile')}}">my profile</a></li>
+                            <li><a href="{{URL::to('dashboard#/home/properties/all')}}">my listing</a></li>
+                            <li><a href="{{URL::to('/logout')}}">logout</a></li>
+                        </ul>
+                    </li>
+                @endif
+                    <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List you property</span><span class="icon-plus-square hidden"></span></a></li>
             </ul>
         </div>
     </header>
@@ -104,9 +116,9 @@
     </div>
 </nav>
 <div class="nav-blur-area">
-    <div class="logo-holder"><img src="images/logo.png" alt="Property42"></div>
+    <div class="logo-holder"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="Property42"></div>
     <ul class="bottom-links">
-        <li><a href="#">www.property42.pk</a></li>
+        <li><a href="#">www.nugree.com</a></li>
         <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;</li>
     </ul>
 </div>

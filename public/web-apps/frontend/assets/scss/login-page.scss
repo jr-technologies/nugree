@@ -70,9 +70,9 @@ $media-expressions: (
     input[type="text"],input[type="tel"],input[type="password"],input[type="number"],input[type="email"]{
         border: 0;
         width: 100%;
-        padding: 6px;
+        padding:10px 6px;
         @include font(13,16);
-        height: 28px;
+        height: 40px;
         width: 100%;
         
         @include media('<tablet'){
@@ -111,7 +111,6 @@ $media-expressions: (
         label {
             color: $dark-grey;
             font-weight: 700;
-            font-family: $open-sans;
             @extend %text-capital;
             width: 140px;
             @include font(14,17);

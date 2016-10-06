@@ -49,8 +49,8 @@ return [
     'Pagination' => 10,
     'PROPERTIES_SortOn' => 'id',
     'PROPERTIES_SortBy' => 'asc',
-    'REGISTRATION_EMAIL_FROM'=>'info@property42.pk',
-    'REGISTRATION_EMAIL_TO'=>'info@property42.pk',
+    'REGISTRATION_EMAIL_FROM'=>'ashhaljrtech@gmail.com',
+    'REGISTRATION_EMAIL_TO'=>'ashhaljrtech@gmail.com',
 
     'societies' => [
         (object)[ "id"=>2 ,"name"=>'Bahria Town' ],

@@ -33,7 +33,7 @@ class PropertiesTableSeeder extends Seeder
                 $temp['contact_person'] = 'ab'.rand(1,100000);
                 $temp['phone'] = '0321450405'. rand(1,3) ;
                 $temp['mobile'] = '0321450405'. rand(1,10);
-                $temp['property_status_id'] = $statuses[rand(0,(sizeof($statuses)-1))];
+                $temp['property_status_id'] = 5  /*$statuses[rand(0,(sizeof($statuses)-1))]*/;
                 $temp['total_views'] = rand(1,100000);
                 $temp['rating'] = rand(1,10);
                 $temp['total_likes'] = rand(1,100000);

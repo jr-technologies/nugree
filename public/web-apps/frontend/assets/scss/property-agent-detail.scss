@@ -4,7 +4,7 @@ $breakpoints: (
   'tablet': 768px,
   'desktop': 1024px,
   'widescreen': 1200px,
-  'tvscreen':1540px,
+  'tvscreen':1600px,
 );
 
 // keywords
@@ -144,7 +144,6 @@ $media-expressions: (
     }
     .heading {
       color: $p42-color;
-      font-family: $open-sans;
       @include font(21,24);
       font-weight: 700;
       margin: 0 0 10px;
@@ -197,7 +196,6 @@ $media-expressions: (
     h1 {
       @extend %text-left;
       font-weight: 700;
-      font-family: $open-sans;
       @include font(27,30);
       margin: 0 0 15px;
 
@@ -220,7 +218,7 @@ $media-expressions: (
     @extend %layout;
 
     .add-to-favorite {
-      top: 1px;
+      top: 0;
     }
     .premiumProperty {
       top: 46px;
@@ -299,7 +297,7 @@ $media-expressions: (
 
       img {
         &.landscape {
-          width: auto !important;
+          width: 100% !important;
           max-width: inherit !important;
           max-height: inherit !important;
           height: 460px !important;
@@ -434,6 +432,8 @@ $media-expressions: (
   }
   .trusted-agent {
     margin: 15px 0 10px;
+    background: transparent;
+    font-weight: 400;
   }
   .feature {
     @extend %layout;
@@ -661,6 +661,18 @@ $media-expressions: (
       width: 165px;
     }
   }
+  .public-ui-features {
+    @extend %text-right;
+    margin: 10px 0 0;
+    li {
+      padding: 0;
+      display: block;
+      @include font(14,18);
+    }
+    strong {
+      color: $dark-grey;
+    }
+  }
   .agent-description {
     @extend %layout;
     padding: 0 0 0 10px;
@@ -753,7 +765,6 @@ $media-expressions: (
     .list {
       @extend %listreset;
       @include font(17,20);
-      font-family: $open-sans;
 
       @include media('<desktop'){
         @include font(14,18);
@@ -806,7 +817,6 @@ $media-expressions: (
   .agentDetail-list {
     @extend %listreset;
     color: $p42-default-grey;
-    font-family: $open-sans;
     @include font(17,21);
     margin: 0 0 30px;
 
@@ -887,5 +897,6 @@ $media-expressions: (
     @include media('<tablet'){
       padding: 5px 0 0;
     }
+    .premiumProperty { top: 2%;}
   }
 }

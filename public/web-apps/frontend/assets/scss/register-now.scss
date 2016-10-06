@@ -44,9 +44,9 @@ $media-expressions: (
         input[type="text"],input[type="tel"],input[type="password"],input[type="number"],input[type="email"]{
             border: 0;
             width: 100%;
-            padding: 6px;
+            padding:10px 6px;
             @include font(13,16);
-            height: 28px;
+            height: 40px;
             width: 100%;
             
             @include media('<tablet'){
@@ -234,7 +234,6 @@ $media-expressions: (
         label {
             color: $dark-grey;
             opacity: 0.80;
-            font-family: $open-sans;
             @extend %text-capital;
             width: 140px;
             @include font(13,16);
@@ -267,7 +266,6 @@ $media-expressions: (
         color: $dark-grey;
         opacity: 0.8;
         cursor: pointer;
-        font-family: $open-sans;
         background: $white;
         @include font(13,28);
         position: relative;
@@ -407,7 +405,6 @@ $media-expressions: (
         .name-tag {
             float: left;
             @include font(16,19);
-            font-family: $open-sans;
             color: $dark-grey;
             padding: 35px 0 0;
 
@@ -507,7 +504,6 @@ $media-expressions: (
     .societiesBlock-listing {
         @extend %listreset;
         @include align-reset(top, 13,16);
-        font-family: $open-sans;
         display: block;
         width: 100%;
 
@@ -563,7 +559,6 @@ $media-expressions: (
         display: block;
         color: $white;
         background: $p42-color;
-        font-family: $open-sans;
         font-weight: 400;
         position: relative;
         padding: 5px 25px 5px 5px;

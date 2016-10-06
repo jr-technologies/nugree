@@ -32,13 +32,13 @@ $media-expressions: (
   position: relative;
   padding: 5px;
 
-  @include media('<phone'){
+  @include media('<tablet'){
     padding:0; 
   }
 
   .container {
     @extend %layout;
-    @include media('<phone'){
+    @include media('<tablet'){
        padding: 0;
     }
   }
@@ -49,6 +49,7 @@ $media-expressions: (
     position: relative;
     @extend .pull-left;
     overflow: hidden;
+    background: $p42-background;
     box-shadow: 0 0 20px -9px rgba($black, 0.5);
 
     @include media('<desktop'){
@@ -84,7 +85,7 @@ $media-expressions: (
     }
 
     .top-head {
-      background: $p42-color;
+      background: $mix-black;
       @extend %layout;
       position: relative;
       color: $white;
@@ -184,8 +185,8 @@ $media-expressions: (
       padding: 0 2px;
 
       &:last-child{ button{
-        background: $p42-default-grey;
-        &:hover { background: darken($p42-default-grey, 10);}
+        background: $mix-black;
+        &:hover { background: darken($mix-black, 10);}
        }
       }
     }
@@ -198,14 +199,14 @@ $media-expressions: (
       display: block;
       border: 0;
       color: $white;
-      background: $green;
+      background: $sharp-green;
       padding: 10px;
       transition: background 0.5s ease;
       -webkit-transition: background 0.5s ease;
       -moz-transition: background 0.5s ease;
 
       &:hover {
-        background: darken($green, 5%);
+        background: darken($sharp-green, 5%);
       }
     }
   }
@@ -349,7 +350,7 @@ $media-expressions: (
   .publicProperty-post {
     @extend %layout;
     background: $white;
-    margin: 10px 0;
+    margin: 10px 0 30px;
     position: relative;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.30);
 
@@ -357,21 +358,27 @@ $media-expressions: (
       padding: 5px 5px 0;
       margin: 0 0 10px;
     }
-    @include media('<phone'){
-      padding: 0;
-    }
     .quick-links {
       @extend %pull-right;
       margin: 0 5px;
+
+      @include media('<tablet'){ margin: 0;}
     }
     .price {
       position: absolute;
       top: 20px;
       left: 0;
-      background: rgba($sharp-green, 0.8);
+      background: $dark-grey;
       color: $white;
       @include font(25,28);
       padding: 10px;
+
+      @include media('<tablet'){
+        position: static;
+        background: transparent;
+        color: $dark-grey;
+        padding: 10px 0; 
+      }
     }
     .image-holder {
       @extend %layout;
@@ -379,10 +386,24 @@ $media-expressions: (
       max-width: 315px;
       background: $p42-background;
 
+      @include media('<tvscreen'){
+        max-width: 300px;
+      }
+      @include media('<widescreen'){
+        max-width: 250px;
+      }
+      @include media('<tablet'){
+        max-width: 120px;
+      }
+
       .listing-image-slider {
         .slide {
           white-space: nowrap;
           height: 250px;
+
+          @include media('<tablet'){
+            height: 120px;
+          }
 
           &:after {
             width: 1px;
@@ -391,6 +412,10 @@ $media-expressions: (
             @extend %layout;
             height: 250px;
             content: '';
+
+            @include media('<tablet'){
+              height: 120px;
+            }
           }
           a {
             @include align(middle);
@@ -398,12 +423,20 @@ $media-expressions: (
           }
         }
       }
+      img {
+        max-height: inherit;
+        @extend %img-res;
+      }
     }
     .caption {
       @extend %layout;
-      @include font(13,16);
+      @include font(16,20);
       color: $p42-default-grey;
       padding: 0 10px 0 20px;
+
+      @include media('<widescreen'){
+        padding: 0 10px;
+      }
 
       h1 {
         margin: 0 0 15px;
@@ -417,12 +450,11 @@ $media-expressions: (
         }
 
         @include media('<tablet'){
-          @include font(16,19);
-          margin: 0 0 2px;
-        }
-
-        @include media('<phone'){
           @include font(13,16);
+          margin: 0 0 2px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
 
         a {
@@ -438,14 +470,13 @@ $media-expressions: (
           @include font(14,17);
         }
 
-        @include media('<phone'){
+        @include media('<tablet'){
           padding: 0 0 5px;
           @include font(15,18);
         }
       }
       .btn-default {
         @include font(12,15);
-        border-radius: 4px;
         position: relative;
         padding: 10px 37px 10px 15px;
         
@@ -461,15 +492,33 @@ $media-expressions: (
         overflow: visible;
         @extend %clearfix;
 
-        p { margin: 0;}
+        p {
+          margin: 0;
+
+          @include media('<tablet'){
+            display: none;
+          }
+        }
       }
       .links-holder {
         position: absolute;
-        bottom: 0;
+        bottom: 10px;
         left: 339px;
         right: 0;
         @extend %layout;
         padding: 0 60px 0 0;
+
+        @include media('<tvscreen'){
+          left: 323px;
+        }
+
+        @include media('<widescreen'){
+          left: 263px;
+        }
+        @include media('<tablet'){
+          position: static;
+          padding: 0;
+        }
 
         .add-to-favorite {
           position: absolute;
@@ -478,19 +527,62 @@ $media-expressions: (
           bottom: 0;
           height: auto;
 
+          @include media('<tablet'){
+            left: 0;
+            right: auto;
+            bottom: auto;
+            background: transparent;
+          }
+
           span {
             line-height: 50px;
+
+            @include media('<desktop'){
+              line-height: 42px;
+            }
           }
         }
 
         .btn-default {
           float: left;
-          border-radius: 0;
-          padding: 15px 50px 15px 20px;
+          border: 1px solid $p42-default-grey;
+          background: transparent;
+          color: $p42-default-grey;
+          padding: 14px 50px 14px 20px;
+
+          @include media('<tvscreen'){
+            padding: 12px 40px 13px 10px;
+          }
+          @include media('<desktop'){
+            padding: 13px 40px 12px 10px;
+          }
+          @include media('<tablet'){
+            @include font(10,13);
+            padding: 10px 4px 9px;
+
+            span { display: none;}
+          }
+
+          &:hover {
+            background: $p42-default-grey;
+            color: $white;
+          }
         }
         .quick-links {
+          li {
+            @include media('<tablet'){
+              padding: 0 2px;
+            }
+          }
           a {
             padding: 11px 30px;
+
+            @include media('<tvscreen'){
+              padding: 11px 7px;
+            }
+            @include media('<tablet'){
+              padding: 7px 5px;
+            }
           }
         }
       }
@@ -503,6 +595,12 @@ $media-expressions: (
         position: absolute;
         top: 0;
         right: 0;
+      
+        @include media('<tvscreen'){
+          max-width: 70px;
+          max-height: 70px;
+        }
+
 
         @include media('<widescreen'){
           max-width: 60px;
@@ -520,15 +618,56 @@ $media-expressions: (
     position: relative;
     display: block;
     width: 100%;
-    padding: 30px 120px 30px 0;
+    padding: 30px 120px 112px 0;
+
+    @include media('<widescreen'){
+      padding: 18px 70px 51px 0;
+    }
+
+    @include media('<tablet'){
+      display: none;
+    }
   }
 }
 .agent-listing-page {
+  padding: 30px 5px;
 
-  .artical-holder {
-    @extend %layout;
-    margin: 0 -3px;
-    @include align-reset(top, 12,15);
+  .image-holder {
+    min-width: 200px;
+    max-height: 200px;
+    white-space: nowrap;
+
+    @include media('<tablet'){
+      min-width: 100px;
+      max-height: 100px;
+    }
+
+    &:after {
+      overflow: hidden;
+      margin: 0 0 0 -5px;
+      width: 1px;
+      @include align(middle);
+      content: '';
+      height: 200px;
+      
+      @include media('<tablet'){ height: 100px;}
+    }
+    img {
+      display: inline-block !important;
+      vertical-align: middle !important;
+      white-space: normal;
+    }
+  }
+  .caption {
+    
+    .links-holder {
+      left: 225px !important;
+      padding: 0 !important;
+
+      @include media('<tablet'){
+        padding: 17px 0 0 !important;
+      }
+    }
   }
   
   #content {
@@ -538,14 +677,17 @@ $media-expressions: (
     @include media('<desktop'){ padding: 0;}
   }
   .publicAgent-post {
-    width: 100%;
     float: none !important;
     background: transparent;
     padding: 0 3px 6px;
-    margin: 0 0 5px;
+    margin: 10px 20px 20px;
 
     @include media('<widescreen'){
       width: 100%;
+    }
+    @include media('<tablet'){
+      padding: 0;
+      margin: 0 0 20px;
     }
 
     .post-holder {
@@ -555,7 +697,7 @@ $media-expressions: (
     }
     
     .trusted-agent {
-      @include font(10,14);
+      @include font(13,17);
       @extend .pull-left;
       margin: 15px 0 10px 0;
       position: relative !important;

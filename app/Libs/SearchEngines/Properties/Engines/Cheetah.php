@@ -58,7 +58,6 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             ->join($propertyJsonTable,$properties.'.id','=',$propertyJsonTable.'.property_id')
             ->leftjoin($propertySubTypes,$properties.'.property_sub_type_id','=',$propertySubTypes.'.id')
             ->leftjoin($location,$properties.'.location_id','=',$location.'.id')
-            //->leftjoin($societies,$blocks.'.society_id','=',$societies.'.id')
             ->leftjoin($propertyFeatureValues,$properties.'.id','=',$propertyFeatureValues.'.property_id')
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$propertyJsonTable.'.json'));
 
