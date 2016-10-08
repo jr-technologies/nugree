@@ -1,4 +1,4 @@
-alert();
+
 jQuery(window).load(function(){
     $('.page-loader').fadeOut();
     $('#wrapper').removeClass('hidden');

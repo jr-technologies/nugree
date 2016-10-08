@@ -42,25 +42,26 @@
                 <strong class="add-pro-heading"><span>Property Location</span></strong>
                 <div class="layout clearfix">
                     <div class="layout-holder">
-                        <label class="required-field">Socity</label>
+                        <label class="required-field">City</label>
                         <div class="input-holder">
-                            <ui-select ng-model="temp.society" theme="select2" ng-change="societyChanged()" ng-disabled="ctrl.disabled" title="Choose a Society" required >
-                                <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
-                                <ui-select-choices refresh="searchSocieties($select)" refresh-delay="300" repeat="society in societies">
-                                    <div ng-bind-html="society.name"></div>
-                                </ui-select-choices>
-                            </ui-select>
+                            <span class="fake-select">
+                                <select ng-model="cityId" required>
+                                    <option value="1">Lahore</option>
+                                    <option value="2">Islamabad</option>
+                                </select>
+                            </span>
                         </div>
                     </div>
+
                     <div class="layout-holder">
-                        <label class="required-field">Block</label>
+                        <label class="required-field">Location</label>
                         <div class="input-holder">
-                            <ui-select ng-model="temp.block" theme="select2" ng-change="blockChanged()" ng-disabled="ctrl.disabled" title="Choose a Block" required>
-                                <ui-select-match placeholder="select a Block...">{{$select.selected.name}}</ui-select-match>
-                                <ui-select-choices repeat="block in blocks | propsFilter: {name: $select.search} | filter : {societyId : temp.society.id}">
-                                    <div ng-bind-html="block.name | highlight: $select.search"></div>
-                                </ui-select-choices>
-                            </ui-select>
+                                <ui-select ng-model="temp.location" theme="select2" ng-change="locationChanged()" ng-disabled="ctrl.disabled" title="Choose a Location" required >
+                                    <ui-select-match placeholder="select a society...">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices refresh="searchLocations($select)" refresh-delay="300" repeat="location in locations">
+                                        <div ng-bind-html="location.name"></div>
+                                    </ui-select-choices>
+                                </ui-select>
                         </div>
                     </div>
                 </div>

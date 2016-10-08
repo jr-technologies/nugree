@@ -52,40 +52,35 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     $scope.propertySaved = false;
     $scope.types = $rootScope.resources.propertyTypes;
     $scope.subTypes = $rootScope.resources.propertySubTypes;
-    $scope.blocks = [];
-    $scope.societies = [];
+    $scope.cityId = "";
+    $scope.locations = [];
     $scope.subTypeAssignedFeatures = [];
     $scope.highPriorityFeatures = [];
     $scope.features = [];
     $scope.featureSections = [];
     $scope.errors = [];
     $scope.temp = {
-        society: {id:0},
+        location: {id:0},
         block: {id:0}
     };
-    $scope.searchSocieties = function ($select) {
-        $scope.societies = [];
+    $scope.searchLocations = function ($select) {
+        $scope.locations = [];
         if($select.search.length < 2){
-            $scope.societies = [];
+            $scope.locations = [];
             return;
         }
-        return $http.get(apiPath+'societies/search', {
+        return $http.get(apiPath+'locations/search', {
             params: {
-                keyword: $select.search
+                keyword: $select.search,
+                cityId: $scope.cityId
             }
         }).then(function(response){
-            $scope.societies = response.data;
+            console.log(response);
+            $scope.locations = response.data;
         });
     };
-    $scope.societyChanged = function () {
-        $scope.form.data.society = $scope.temp.society.id;
-        $scope.temp.block = {};
-        getBlocks().then(function (blocks) {
-            $scope.blocks = blocks;
-        });
-    };
-    $scope.blockChanged = function () {
-        $scope.form.data.block = $scope.temp.block.id;
+    $scope.locationChanged = function () {
+        $scope.form.data.location = $scope.temp.location.id;
     };
 
     $scope.form = {
@@ -96,8 +91,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           propertyPurpose: 0,
           propertyType :0,
           propertySubType : 0,
-          society:'',
-          block: '',
+          location: "",
           price: undefined,
           landArea: undefined,
           landUnit: 0,
@@ -207,21 +201,9 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
 
     var resetForm = function () {
         $scope.form.data = mapFormData();
-        $scope.temp.society = "";
-        $scope.temp.block = "";
+        $scope.temp.location = "";
         $('.image-loaded').removeClass('image-loaded');
         $('file-uploader').find('img').attr('src', '#');
-    };
-
-    var getBlocks = function () {
-        return $CustomHttpService.$http('GET', apiPath+'society/blocks', {
-            society_id: $scope.form.data.society
-        }).then(function successCallback(response) {
-            return response.data.data.blocks;
-        }, function errorCallback(response) {
-            $rootScope.$broadcast('error-response-received',{status:response.status});
-            return response;
-        });
     };
 
     $scope.showFreshForm = function () {

@@ -10,7 +10,7 @@
     <link media="all" rel="stylesheet" href="<?= \App\Libs\Helpers\AppHelper::assetsPath('AddPropertyWithAuth', $response['version']) ?>/css/select2.css">
     <link media="all" rel="stylesheet" href="<?= \App\Libs\Helpers\AppHelper::assetsPath('AddPropertyWithAuth', $response['version']) ?>/css/addPropertyNgSelect.css">
     <link media="all" rel="stylesheet" href="<?= \App\Libs\Helpers\AppHelper::assetsPath('AddPropertyWithAuth', $response['version']) ?>/css/selectize.default.css">
-    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/add-property-form.css">
+    <link media="all" rel="stylesheet" href="<?= \App\Libs\Helpers\AppHelper::assetsPath('AddPropertyWithAuth', $response['version']) ?>/css/add-property-form.css">
     <link rel="stylesheet" href="<?= url('/') ?>/javascripts/ui-select/select.min.css">
 
     <!-- Angularjs Libs -->
