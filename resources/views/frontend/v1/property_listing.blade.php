@@ -92,7 +92,7 @@
                                 <ul class="filterChecks">
                                     <li>
                                         <select class="js-example-basic-single" name="city_id" id="cityId">
-                                            <option>Select City</option>
+                                            <option value="">Select City</option>
                                             @foreach($response['data']['cities'] as $city)
                                                 <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
                                             @endforeach

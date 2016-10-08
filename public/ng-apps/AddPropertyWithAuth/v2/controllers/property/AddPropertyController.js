@@ -94,8 +94,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           propertyType :0,
           propertySubType : 0,
           location:0,
-          society:0,
-          block: 0,
           price: undefined,
           landArea: undefined,
           landUnit: 0,

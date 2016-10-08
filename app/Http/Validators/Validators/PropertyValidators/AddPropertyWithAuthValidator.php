@@ -96,7 +96,7 @@ class AddPropertyWithAuthValidator extends PropertyValidator implements Validato
             //'files'=>'addProperty_max_image_size',
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
-            'blockId' => 'required|exists:blocks,id',
+            'location' => 'required|exists:locations,id',
             'title' => 'required|min:3|max:250',
             'description' => 'max:1200',
             'price' => 'required|numeric|min:3',

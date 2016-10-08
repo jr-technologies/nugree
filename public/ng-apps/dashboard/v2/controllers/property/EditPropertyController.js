@@ -60,8 +60,8 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
         $scope.property = property;
         $scope.types = $rootScope.resources.propertyTypes;
         $scope.subTypes = $rootScope.resources.propertySubTypes;
-        $scope.blocks = [];
-        $scope.societies = $rootScope.resources.societies;
+        $scope.cityId = property.location.city.id;
+        $scope.locations =  [property.location.location];
         $scope.landUnits = $rootScope.resources.landUnits;
         $scope.subTypeAssignedFeatures = [];
         $scope.highPriorityFeatures = [];
@@ -70,20 +70,27 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
         $scope.errors = [];
         $scope.propertyDocuments = {};
         $scope.temp = {
-            society: property.location.society,
-            block: property.location.block
+            city: property.location.city,
+            location: property.location.location
         };
-        $scope.societyChanged = function () {
-            $scope.form.data.society = $scope.temp.society.id;
-            getBlocks().then(function (blocks) {
-                $scope.blocks = blocks;
+        $scope.searchLocations = function ($select) {
+            $scope.locations = [];
+            if($select.search.length < 2){
+                $scope.locations = [];
+                return;
+            }
+            return $http.get(apiPath+'locations/search', {
+                params: {
+                    keyword: $select.search,
+                    cityId: $scope.cityId
+                }
+            }).then(function(response){
+                console.log(response);
+                $scope.locations = response.data;
             });
         };
-        $scope.blockChanged = function () {
-            $scope.form.data.block = $scope.temp.block.id;
-        };
-        $scope.societySelected = function ($item) {
-            //
+        $scope.locationChanged = function () {
+            $scope.form.data.location = $scope.temp.location.id;
         };
         var getPropertyFeatures = function(){
             var sections = $scope.property.features;
@@ -102,8 +109,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
                 propertyPurpose: property.purpose.id,
                 propertyType :property.type.parentType.id,
                 propertySubType :property.type.subType.id,
-                society:property.location.society.id,
-                block: property.location.block.id,
+                location: property.location.location.id,
                 price: property.price,
                 landArea: parseInt(property.land.area),
                 landUnit: property.land.unit.id+'',
@@ -275,17 +281,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             });
         };
 
-        var getBlocks = function () {
-            return $CustomHttpService.$http('GET', apiPath+'society/blocks', {
-                society_id: $scope.form.data.society
-            }).then(function successCallback(response) {
-                return response.data.data.blocks;
-            }, function errorCallback(response) {
-                $rootScope.$broadcast('error-response-received',{status:response.status});
-                return response;
-            });
-        };
-
         var getPropertyDocsAndSetToScope = function () {
             $scope.propertyDocuments = getPropertyDocuments();
             $scope.form.data.files = {
@@ -301,8 +296,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             $(document).scroll(function() {
                 //onScroll();
             });
-            $scope.societyChanged();
-            $scope.blockChanged();
+            //$scope.locationChanged();
             $scope.propertySubTypeChanged();
             getPropertyDocsAndSetToScope();
             $(function() {

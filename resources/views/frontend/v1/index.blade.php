@@ -7,7 +7,7 @@
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
 
                     <select class="js-example-basic-single" name="city_id" id="cityId">
-                        <option >Select City</option>
+                        <option value="">Select City</option>
                         @foreach($response['data']['cities'] as $city)
                             <option value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach

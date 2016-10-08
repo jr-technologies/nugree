@@ -33,7 +33,7 @@ class UpdatePropertyTransformer extends RequestTransformer
             'ownerId' => $this->request->input('owner'),
             'purposeId' => $this->request->input('propertyPurpose'),
             'subTypeId' => $this->request->input('propertySubType'),
-            'blockId' => $this->request->input('block'),
+            'location' => $this->request->input('location'),
             'title' => $this->request->input('propertyTitle'),
             'description' => $this->request->input('propertyDescription'),
             'price' => $this->request->input('price'),
