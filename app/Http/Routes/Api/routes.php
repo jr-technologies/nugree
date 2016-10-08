@@ -354,15 +354,17 @@ Route::get('societies/search',function(){
     }
     return response()->json($results);
 });
-Route::get('locations/search',function(){
-    $results = [];
-    foreach(config('constants.societies') as $society){
-        if(preg_match("/".request()->get('keyword')."/i", $society->name)){
-            $results[] = $society;
-        }
-    }
-    return response()->json($results);
-});
+Route::get('locations/search',
+
+    [
+        'middleware'=>
+            [
+                'apiValidate:searchLocationRequest'
+            ],
+
+        'uses'=>'LocationsController@search'
+    ]
+);
 
 /**
  * Block Crud
