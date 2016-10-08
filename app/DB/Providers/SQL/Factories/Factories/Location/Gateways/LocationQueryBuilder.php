@@ -17,10 +17,10 @@ class LocationQueryBuilder extends QueryBuilder
     }
     public function search($params)
     {
-        return DB::table($this->table)
-            ->select($this->table.'.*')
-            ->where($this->table.'.city_id','=',$params['cityId'])
-            ->where($this->table.'.location','like','%'.$params['keyword'].'%')
-            ->get();
+        $query = DB::table($this->table)
+            ->select($this->table.'.*');
+        if($params['cityId'] != null && $params['cityId'] != "" && $params['cityId'] == 0)
+            $query = $query->where($this->table.'.city_id','=',$params['cityId']);
+        return $query->where($this->table.'.location','like','%'.$params['keyword'].'%')->get();
     }
 }

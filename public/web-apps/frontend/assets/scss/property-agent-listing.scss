@@ -350,7 +350,7 @@ $media-expressions: (
   .publicProperty-post {
     @extend %layout;
     background: $white;
-    margin: 10px 0 30px;
+    margin: 0 0 30px;
     position: relative;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.30);
 
@@ -439,7 +439,7 @@ $media-expressions: (
       }
 
       h1 {
-        margin: 0 0 15px;
+        margin: 5px 0 10px;
         font-weight: 700;
         color: $p42-color;
         @include font(18,21);
@@ -639,8 +639,9 @@ $media-expressions: (
     white-space: nowrap;
 
     @include media('<tablet'){
-      min-width: 100px;
-      max-height: 100px;
+      min-width: 100px !important;
+      max-width: 100px !important;
+      max-height: 100px !important;
     }
 
     &:after {
@@ -651,7 +652,7 @@ $media-expressions: (
       content: '';
       height: 200px;
       
-      @include media('<tablet'){ height: 100px;}
+      @include media('<tablet'){ height: 100px !important;}
     }
     img {
       display: inline-block !important;
@@ -707,7 +708,7 @@ $media-expressions: (
       top:  0 !important;
 
       @include media('<tablet'){
-        margin: 14px 0 0 10px !important;
+        margin: 14px 0 0 0 !important;
       }
     }
     .star-rating {

@@ -210,17 +210,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         $('file-uploader').find('img').attr('src', '#');
     };
 
-    var getBlocks = function () {
-        return $CustomHttpService.$http('GET', apiPath+'society/blocks', {
-            society_id: $scope.form.data.society
-        }).then(function successCallback(response) {
-            return response.data.data.blocks;
-        }, function errorCallback(response) {
-            $rootScope.$broadcast('error-response-received',{status:response.status});
-            return response;
-        });
-    };
-
     $scope.initialize = function () {
         $(document).scroll(function() {
             //onScroll();
