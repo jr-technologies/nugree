@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\Requests\Location\GetLocationByCityRequest;
+use App\Http\Requests\Requests\Location\SearchLocationRequest;
 use App\Http\Responses\Responses\ApiResponse;
 use App\Repositories\Providers\Providers\LocationsRepoProvider;
 
@@ -26,39 +27,10 @@ class LocationsController extends ApiController
         $this->response = $response;
     }
 
-    public function store(AddLocationRequest $request)
+    public function search(SearchLocationRequest $request)
     {
-        $society = $request->getSocietyModel();
-        $societyId = $this->society->store($society);
-        $society->id = $societyId;
-        return $this->response->respond(['data'=>[
-            'society'=>$society
-        ]]);
+        return $this->location->search($request->all());
     }
-
-    public function all(GetAllLocationsRequest $request)
-    {
-        return $this->response->respond(['data'=>[
-            'societies'=>$this->society->all()
-        ]]);
-    }
-
-    public function delete(DeleteLocationRequest $request)
-    {
-        return $this->response->respond(['data'=>[
-            'society'=>$this->society->delete($request->getSocietyModel())
-        ]]);
-    }
-
-    public function update(UpdateLocationRequest $request)
-    {
-        $society = $request->getSocietyModel();
-        $this->society->update($society);
-        return $this->response->respond(['data'=>[
-            'society'=>$society
-        ]]);
-    }
-
     public function getByCity(GetLocationByCityRequest $request)
     {
         return $this->response->respond(['data'=>[

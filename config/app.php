@@ -300,6 +300,7 @@ return [
 
         /* LocationValidators Requests */
         'GetLocationByCityRequest' => \App\Http\Requests\Requests\Location\GetLocationByCityRequest::class,
+        'SearchLocationRequest' => \App\Http\Requests\Requests\Location\SearchLocationRequest::class,
 
 
 

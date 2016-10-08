@@ -36,6 +36,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->mapCollection($this->tableGateway->getWhere(['city_id'=>$cityId]));
     }
+    public function search($params)
+    {
+        return $this->mapCollection($this->tableGateway->search($params));
+    }
     public function update(Location $location)
     {
         $location->updatedAt = date('Y-m-d h:i:s');

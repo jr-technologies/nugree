@@ -47,7 +47,10 @@ class LocationsRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->delete($location);
     }
-
+    public function search($params)
+    {
+        return $this->factory->search($params);
+    }
     public function getByCity($cityId)
     {
         return $this->factory->getByCity($cityId);
