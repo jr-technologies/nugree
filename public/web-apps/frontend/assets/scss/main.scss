@@ -386,7 +386,7 @@ h2 {
         padding:28px 50px 27px;
 
         @include media('<desktop'){
-          padding: 27px 25px;
+          padding: 27px 25px 28px;
         }
         @include media('<tablet'){
           padding: 10px 15px;
@@ -579,6 +579,8 @@ h2 {
   @extend %clearfix;
   background: rgba($black, 0.6);
   padding: 50px;
+  position: relative;
+  z-index: 99;
 
   @include media('<tvscreen'){
     width: 450px;
@@ -983,10 +985,10 @@ h2 {
   .slideset{
     @extend %layout;
     width: 100%;
-    height:593px !important;
+    height:513px !important;
 
     @include media('<tablet'){
-      height:480px !important;
+      height:350px !important;
     }
   }
   .container {
@@ -995,13 +997,16 @@ h2 {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 5;
+
+    @include media('<tablet'){
+      position: static;
+    }
   }
   .btn-holder {
     position: absolute;
     top: 50%;
-    right: 200px;
-    z-index: 5;
+    right: 0;
+    z-index: 99;
     width: 150px;
     @extend %layout;
     @extend %text-center;
@@ -1029,6 +1034,10 @@ h2 {
       &.disabled {
         opacity: 0.2;
         cursor: text !important;
+
+        &:hover {
+          opacity: 0.2;
+        }
       }
 
       &:hover {
@@ -1087,13 +1096,19 @@ h2 {
       @include media('<tvscreen'){
         min-width: 1600px;
       }
+      @include media('<tablet'){
+        min-width: 1250px;
+      }
     }
     .container {
       position: absolute;
       top: 0;
       right: 0;
       left: 0;
-      z-index: 60;
+
+      @include media('<tablet'){
+        position: static;
+      }
     }
     .caption {
       width: 50%;
@@ -1102,6 +1117,7 @@ h2 {
       margin: 0 auto;
       position: relative;
       left: 200px;
+      z-index: 99;
       @include font(20,24);
 
       @include media('<widescreen'){
@@ -1114,7 +1130,12 @@ h2 {
         @include font(14,20);
         padding: 12px 0 0 0;
       }
-      @include media('<tablet'){ display: none;}
+      @include media('<tablet'){
+        padding: 0;
+        left: 0;
+        width: 100%;
+        padding: 0 0 10px;
+      }
 
       h1 {
         margin: 0 0 15px;
@@ -1418,6 +1439,7 @@ h2 {
 .agent-slider {
   position: relative;
   background: $white;
+  @extend %layout;
 
   @include media('<desktop'){
     width: 100%;
@@ -1549,7 +1571,7 @@ h2 {
 .latest-news {
   position: relative;
   @extend %layout;
-  background:$white;
+  background:$p42-background;
 
   .mask {
     position: relative;
@@ -1611,7 +1633,7 @@ h2 {
     position: absolute;
     bottom: 0;
     right: 100px;
-    background: $black;
+    background: $p42-default-grey;
 
     @include media('<tvscreen'){
       right: 200px;
@@ -1644,8 +1666,9 @@ h2 {
       background: $p42-background;
     }
 
-    h1 {
+    h2 {
       @extend %text-center;
+      @include media('<tablet'){ margin: 0;}
     }
   }
   .btn-prev, .btn-next {
@@ -1657,7 +1680,7 @@ h2 {
     padding: 30px 0 5px;
 
     @include media('<tablet'){
-      position: static;
+      display: none;
     }
 
     &:hover { color: $p42-color;}
@@ -2419,41 +2442,6 @@ h2 {
     font-weight: 400;
   }
 }
-.back-to-top {
-  position: fixed;
-  bottom: 42px;
-  right: 103px;
-  z-index: 999999999;
-  text-decoration: none;
-  @include squar(40px,40px);
-  opacity: 0;
-  visibility: hidden;
-  transition:opacity 0.5s ease, visibility 0.5s ease;
-  -webkit-transition:opacity 0.5s ease, visibility 0.5s ease;
-  -moz-transition:opacity 0.5s ease, visibility 0.5s ease;
-
-  .filters-active &,
-  .nav-active & {
-    display: none;
-  }
-
-  &.active {
-    opacity: 1;
-    visibility: visible;
-  } 
-
-  @include media('<tvscreen'){
-    right: 75px;
-  }
-  @include media('<widescreen'){
-    right:65px;
-  }
-  @include media('<desktop'){
-    right:45px;
-  }
-
-  img { @extend %img-res;}
-}
 .quick-links {
   @extend %listreset;
   @include align-reset(top, 17,21);
@@ -2719,6 +2707,7 @@ h2 {
     span{
       color: $p42-color;
       font-weight: 400;
+      @include align(top);
     }
 
     @include media('<tablet'){
@@ -2756,10 +2745,11 @@ h2 {
     @include align-reset(top, 17,21);
   }
   label{
-    width: 25%;
+    display: block;
     color: $p42-default-grey;
     font-weight: 700;
     @extend %text-capital;
+    padding: 0 0 5px;
 
     @include media('<tablet'){
       display: block;
@@ -2777,7 +2767,7 @@ h2 {
   .input-holder {
     padding: 3px;
     @extend %layout;
-    width: 75%;
+    width: 100%;
     margin: 0 0 10px;
 
     @include media('<tablet'){
@@ -2800,13 +2790,13 @@ h2 {
     }
   }
   input[type="text"], input[type="email"], input[type="tel"], textarea{
-    @include squar(100% , 28px);
+    @include squar(100% , 40px);
     border: 0;
     @include font(13, 17);
-    padding: 5px;
+    padding: 8px;
   }
   textarea {
-    height: 80px;
+    height: 120px;
     resize: none;
     overflow: auto;
   }
@@ -3048,6 +3038,59 @@ h2 {
   @extend %text-center;
   margin: 0 0 20px;
 }
+.submit-requirement {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  @extend %text-center;
+  z-index: 9999;
+  text-decoration: none;
+  color: $white;
+  padding: 0;
+  @include font(14,17);
+  @include align(top);
+  padding: 30px 0;
+  @extend %layout;
+  background:$p42-color url('../images/ico02.png') no-repeat;
+  background-size: 100% 100%;
+
+  @include media('<tablet'){
+    @include font(11,15);
+    width: 80px;
+    height: 80px;
+    padding: 25px 0;
+  }
+}
+.search-property {
+  position: fixed;
+  bottom: 20px;
+  z-index: 999;
+  text-decoration: none;
+  color: $white;
+  @include align(top);
+  padding: 10px;
+  left: 0;
+  @extend %text-center;
+  box-shadow: 0 0 5px rgba($black, 0.5);
+  background: $p42-default-grey;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  -webkit-transition: opacity 0.5s ease, visibility 0.5s ease;
+  -moz-transition: opacity 0.5s ease, visibility 0.5s ease;
+
+  @include media('<tablet'){ display: none;}
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  span { display: block;}
+} 
 @media print {
   * {
     background: none !important;
@@ -3118,6 +3161,7 @@ h2 {
     width: 100% !important;
     clear: both !important;
   }
+  #header .right-area, .nav-opener,
   .agent-detail-page .extra-feature-section .small-heading, .propertyDetail-page .extra-feature-section .small-heading,
   #header .right-sideTop .mail, .public-ui-features li span[class^="icon-"], .public-ui-features li span[class*="icon-"],
   .feedBack, .btn-hollow, .btn-default, #footer, .views, .star-rating, .agent-detail-page .feature-list li .text-feature::after, .propertyDetail-page .feature-list li .text-feature::after,

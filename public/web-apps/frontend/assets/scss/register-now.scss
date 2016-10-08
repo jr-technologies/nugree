@@ -261,13 +261,13 @@ $media-expressions: (
 
     .role-opener {
         display: block;
-        @include squar(200px, 28px);
+        @include squar(200px, 40px);
         @extend %text-center;
         color: $dark-grey;
         opacity: 0.8;
         cursor: pointer;
         background: $white;
-        @include font(13,28);
+        @include font(13,40);
         position: relative;
         padding: 0 30px 0 0;
 

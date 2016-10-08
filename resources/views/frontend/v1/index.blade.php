@@ -7,28 +7,15 @@
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
 
                     <select class="js-example-basic-single" name="city_id" id="cityId">
-                        <option>Select City</option>
+                        <option >Select City</option>
                         @foreach($response['data']['cities'] as $city)
                             <option value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach
                     </select>
-                    {{--<select class="js-example-basic-multiple" multiple="multiple">--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--<option>Alabama</option>--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--<option>Alabama</option>--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--<option>Alabama</option>--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--<option>Alabama</option>--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--<option>Alabama</option>--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--<option>Alabama</option>--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--<option>Alabama</option>--}}
-                    {{--<option>Wyoming</option>--}}
-                    {{--</select>--}}
+
+                    <select class="js-example-basic-multiple" multiple="multiple" name="location_id" id="societies">
+                        <option>Select Location</option>
+                    </select>
                     <ul class="typeOfBuying">
                         <li>
                             <label for="buy" class="customRadio">
@@ -61,9 +48,6 @@
                             </li>
                         @endforeach
                     </ul>
-                    <select class="js-example-basic-single" name="location_id" id="societies">
-                        <option>Select Location</option>
-                    </select>
                     <button type="submit">Search<span class="icon-arrow-right"></span></button>
                     {{Form::close()}}
                     <div class="btn-holder">

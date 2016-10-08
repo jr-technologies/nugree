@@ -154,6 +154,10 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
         return [
             'id' => 'properties.id',
             'type' => 'property_types.type',
+            'price'=> 'properties.price',
+            'land'=>'properties.land_area',
+            'date'=>'properties.created_at',
+            'verified'=>'properties.is_verified',
             'updated_at' => 'properties.updated_at',
         ];
     }
@@ -162,7 +166,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
     {
         if(isset($this->getSortableColumns()[$column]))
         {
-            return $this->getSortableColumns()[$column];
+           return $this->getSortableColumns()[$column];
         }
         return $this->defaultSorting()['sortBy'];
     }

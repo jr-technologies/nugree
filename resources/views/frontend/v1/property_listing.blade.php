@@ -22,7 +22,7 @@
                     <p>Search Filters</p>
                     <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
                 </div>
-                <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
+                <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                  <ul class="filters-links text-upparcase">
                         <li class="active">
                             <a class="filters-links-opener">SEARCH FILTERS</a>
@@ -141,6 +141,29 @@
                                 <span class="calculatedPrice">Please enter the price</span>
                             </div>
                         </li>
+                     <li class="active">
+                         <a class="filters-links-opener">Sort</a>
+                         <div class="slide">
+                             <ul class="filterChecks">
+                                 <li>
+                                     <select class="js-example-basic-single" name="sort_by" id="sort">
+                                         <option value='' selected >Default Order</option>
+                                         <option value='price_asc'>Price Low to High</option>
+                                         <option value='price_desc'>Price High to Low</option>
+                                         <option value='beds_asc'>Beds Low to High</option>
+                                         <option value='beds_desc'>Beds High to Low</option>
+                                         <option value='land_asc'>Area Low to High</option>
+                                         <option value='land_desc'>Area High to Low</option>
+                                         <option value='date_desc'>Date New to Old</option>
+                                         <option value='date_asc'>Date Old to New</option>
+                                         <option value='verified_desc'>Verified Only</option>
+                                         <option value='picture_desc'>With Photos</option>
+                                     </select>
+
+                                 </li>
+                             </ul>
+                         </div>
+                     </li>
                     </ul>
                     <ul class="filter-btn">
                         <li><button type="submit">Search</button></li>

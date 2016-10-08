@@ -4,7 +4,7 @@ $breakpoints: (
   'tablet': 768px,
   'desktop': 1024px,
   'widescreen': 1200px,
-  'tvscreen':1540px,
+  'tvscreen':1600px,
 );
 
 // keywords
@@ -633,8 +633,9 @@ $media-expressions: (
   padding: 30px 5px;
 
   .image-holder {
-    min-width: 200px;
-    max-height: 200px;
+    min-width: 200px !important;
+    max-height: 200px !important;
+    max-width: 200px !important;
     white-space: nowrap;
 
     @include media('<tablet'){
@@ -673,6 +674,8 @@ $media-expressions: (
   #content {
     @extend .layout;
     padding: 0 0 0 10px;
+    overflow: visible;
+    @extend %clearfix;
 
     @include media('<desktop'){ padding: 0;}
   }
@@ -680,7 +683,7 @@ $media-expressions: (
     float: none !important;
     background: transparent;
     padding: 0 3px 6px;
-    margin: 10px 20px 20px;
+    margin: 10px 0 20px;
 
     @include media('<widescreen'){
       width: 100%;

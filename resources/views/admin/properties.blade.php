@@ -48,7 +48,7 @@
                                 <label for="id1">{{$property->id}}</label>
                             </div>
                             <div class="t-data by-type"><p>{{$property->type->parentType->name}}.</p></div>
-                            <div class="t-data by-location"><p>{{$property->location->society->name.' Block '.$property->location->block->name}}</p></div>
+                            <div class="t-data by-location"><p>{{$property->location->location->location}}</p></div>
                             <div class="t-data by-price"><p>Rs {{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</p></div>
                             <div class="t-data">
                                 <time datetime="2016-04-18">{{$property->createdAt}}</time>

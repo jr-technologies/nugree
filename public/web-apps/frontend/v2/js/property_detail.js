@@ -111,3 +111,68 @@ $(document).on('change', '#cityId', function(){
 
     }
 });
+
+$(document).on('change', '#sort', function(){
+    var sort_by = $(this).val();
+    url = window.location.href;
+    var items = sort_by.split('_');
+    var tech = getUrlParameter('order');
+    if(tech == 'order')
+    {
+        var newUrl = removeURLParameter(url ,'order');
+        var latestUrl = removeURLParameter(newUrl ,'sort_by');
+        window.location.replace(latestUrl+'&sort_by='+items[0]+"&order="+items[1]);
+    }
+    else{
+        var params = replaceUrlParam(url,'sort_by',items[0]);
+        window.location.replace(params+"&order="+items[1]);
+    }
+});
+
+function replaceUrlParam(url, paramName, paramValue){
+    if(paramValue == null)
+        paramValue = '';
+    var pattern = new RegExp('\\b('+paramName+'=).*?(&|$)')
+    if(url.search(pattern)>=0){
+        return url.replace(pattern,'$1' + paramValue + '$2');
+    }
+    return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue
+}
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[0];
+        }
+    }
+};
+
+function removeURLParameter(url, parameter) {
+    //prefer to use l.search if you have a location/link object
+    var urlparts= url.split('?');
+    if (urlparts.length>=2) {
+
+        var prefix= encodeURIComponent(parameter)+'=';
+        var pars= urlparts[1].split(/[&;]/g);
+
+        //reverse iteration as may be destructive
+        for (var i= pars.length; i-- > 0;) {
+            //idiom for string.startsWith
+            if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                pars.splice(i, 1);
+            }
+        }
+
+        url= urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
+        return url;
+    } else {
+        return url;
+    }
+}

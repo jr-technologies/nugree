@@ -1,4 +1,4 @@
-@extends('frontend.v2.frontend')
+@extends('frontend.v1.frontend')
 @section('content')
 
     <script type='text/javascript' >
