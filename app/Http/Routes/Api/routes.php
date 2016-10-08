@@ -362,7 +362,7 @@ Route::get('locations/search',
                 'apiValidate:searchLocationRequest'
             ],
 
-        'uses'=>'LocationController@getBlocksBySociety'
+        'uses'=>'LocationsController@search'
     ]
 );
 

@@ -19,8 +19,8 @@ class LocationQueryBuilder extends QueryBuilder
     {
         return DB::table($this->table)
             ->select($this->table.'.*')
-            ->where($this->table.'city_id','=',$params['cityId'])
-            ->where($this->table.'.location','=',$params['location'])
+            ->where($this->table.'.city_id','=',$params['cityId'])
+            ->where($this->table.'.location','like','%'.$params['keyword'].'%')
             ->get();
     }
 }
