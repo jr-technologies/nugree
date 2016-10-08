@@ -70,11 +70,11 @@
             <div class="bottom-footer">
                 <span class="rights">&copy;2016 <a href="#">nugree.com</a> All rights reserved</span>
                 <ul class="social-icons">
-                    <li><a href="#"><span class="icon-facebook"></span></a></li>
-                    <li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>
-                    <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                    <li><a href="#"><span class="icon-twitter"></span></a></li>
-                    <li><a href="#"><span class="icon-instagram"></span></a></li>
+                    <li><a href="https://www.facebook.com/proerty92pk-354399088098995/"><span class="icon-facebook"></span></a></li>
+                    <li><a href="https://plus.google.com/118057576547955586597?hl=en"><span class="icon-google-plus-symbol"></span></a></li>
+                    <li><a href="https://www.linkedin.com/in/nugree-pakistan-29a8a312a?trk=nav_responsive_tab_profile_pic"><span class="icon-linkedin"></span></a></li>
+                    <li><a href="https://twitter.com/92nugree"><span class="icon-twitter"></span></a></li>
+                    <li><a href="https://www.instagram.com/Nugree_Pakistan/"><span class="icon-instagram"></span></a></li>
                 </ul>
             </div>
         </div>
@@ -106,17 +106,17 @@
     </ul>
     <div class="mobile-content text-center">
         <ul class="social-icons">
-            <li><a href="#"><span class="icon-facebook"></span></a></li>
-            <li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>
-            <li><a href="#"><span class="icon-linkedin"></span></a></li>
-            <li><a href="#"><span class="icon-twitter"></span></a></li>
-            <li><a href="#"><span class="icon-instagram"></span></a></li>
+            <li><a href="https://www.facebook.com/proerty92pk-354399088098995/"><span class="icon-facebook"></span></a></li>
+            <li><a href="https://plus.google.com/118057576547955586597?hl=en"><span class="icon-google-plus-symbol"></span></a></li>
+            <li><a href="https://www.linkedin.com/in/nugree-pakistan-29a8a312a?trk=nav_responsive_tab_profile_pic"><span class="icon-linkedin"></span></a></li>
+            <li><a href="https://twitter.com/92nugree"><span class="icon-twitter"></span></a></li>
+            <li><a href="https://www.instagram.com/Nugree_Pakistan/"><span class="icon-instagram"></span></a></li>
         </ul>
-        <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
+        <span class="copyright">Copyright, <a href="#">nugree.com</a></span>
     </div>
 </nav>
 <div class="nav-blur-area">
-    <div class="logo-holder"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="Property42"></div>
+    <div class="logo-holder"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="Nugree"></div>
     <ul class="bottom-links">
         <li><a href="#">www.nugree.com</a></li>
         <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;</li>

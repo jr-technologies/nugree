@@ -13,7 +13,7 @@
                         @endforeach
                     </select>
 
-                    <select class="js-example-basic-multiple" multiple="multiple" name="location_id" id="societies">
+                    <select class="js-example-basic-single"  name="location_id" id="societies">
                         <option>Select Location</option>
                     </select>
                     <ul class="typeOfBuying">
@@ -68,7 +68,9 @@
                             <div class="caption">
                                 <h1>Gwadar <span>City</span></h1>
                                 <p>{{ str_limit("Gwadar is strategically located on the western end of Baluchistan coast on the opposite end of the Gulf of Oman which is an important route for oil tankers bound for Japan and western countries out of Gulf
-                                   China has a great strategic interest in Gwadar. In 2013, the state-owned China Overseas Port Holdings Limited acquired Gwadar Port.The port is strategically important for China as sixty percent of China's oil comes from the Persian Gulf by ships traveling over 16,000 kilometres in two to three months, confronting pirates, bad weather, political rivals, and other risks up to its only commercial port, Shanghai. Gwadar will reduce the distance to a mere 5000 kilometres and also serve round the year",400) }}</p>
+                                   China has a great strategic interest in Gwadar. In 2013, the state-owned China Overseas Port Holdings Limited acquired Gwadar Port.The port is strategically important for China as sixty percent of China's oil comes from
+                                   the Persian Gulf by ships traveling over 16,000 kilometres in two to three months, confronting pirates, bad weather, political rivals, and other risks up to its only commercial port, Shanghai. Gwadar will reduce the distance
+                                   to a mere 5000 kilometres and also serve round the year",300) }}</p>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
                         </div>
@@ -150,7 +152,7 @@
                         <div class="container">
                             <div class="caption">
                                 <strong class="heading">{{$project->title}}</strong>
-                                <p>{{$project->description}}<a href="#">Read more..</a></p>
+                                <p>{{str_limit($project->description,400)}}<a href="#">{{--Read more..--}}</a></p>
                             </div>
                         </div>
                     </div>
@@ -158,7 +160,7 @@
                 </div>
                 <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
                 <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></span></a>
-                <a href="#" class="btn-default">View all projects</a>
+                {{--<a href="#" class="btn-default">View all projects</a>--}}
             </div>
         </div>
         <div class="mobile-app">

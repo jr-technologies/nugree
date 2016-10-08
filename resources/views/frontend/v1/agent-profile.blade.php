@@ -26,14 +26,14 @@
                                 <span class="location">Lahore</span>
                             </div>
                             <div class="right-side">
-                                <span class="rate-us text-center">RATE US</span>
-                                <ul class="star-rating">
-                                    <li><a href="#" class="one-star"></a></li>
-                                    <li><a href="#" class="two-stars"></a></li>
-                                    <li><a href="#" class="three-stars"></a></li>
-                                    <li><a href="#" class="four-stars"></a></li>
-                                    <li><a href="#" class="five-stars"></a></li>
-                                </ul>
+                                {{--<span class="rate-us text-center">RATE US</span>--}}
+                                {{--<ul class="star-rating">--}}
+                                    {{--<li><a href="#" class="one-star"></a></li>--}}
+                                    {{--<li><a href="#" class="two-stars"></a></li>--}}
+                                    {{--<li><a href="#" class="three-stars"></a></li>--}}
+                                    {{--<li><a href="#" class="four-stars"></a></li>--}}
+                                    {{--<li><a href="#" class="five-stars"></a></li>--}}
+                                {{--</ul>--}}
                                 @if($response['data']['agent']->trustedAgent)
                                     <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Trusted</span>
                                 @endif

@@ -17,11 +17,11 @@
                             <div class="slide">
                                 <ul class="filterChecks">
                                     <li>
-                                        <select  name="society" class="js-example-basic-single">
+                                        <select  name="location" class="js-example-basic-single">
                                             <option selected disabled>Search by society</option>
-                                            <option value="" @if($response['data']['params']['society'] == "") selected @endif>All Societies</option>
-                                            @foreach($response['data']['societies'] as $society)
-                                                <option value="{{$society->id}}" @if($response['data']['params']['society'] == $society->id) selected @endif>{{$society->name}}</option>
+                                            <option value="" @if($response['data']['params']['location'] == "") selected @endif>Select Location</option>
+                                            @foreach($response['data']['locations'] as $location)
+                                                <option value="{{$location->id}}" @if($response['data']['params']['location'] == $location->id) selected @endif>{{$location->location}}</option>
                                             @endforeach
                                         </select>
 

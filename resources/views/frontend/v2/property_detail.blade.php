@@ -148,7 +148,7 @@
                                                 <span class="lighbox-heading">Phone Number</span>
 
                                                 <p></p>
-                                                <span class="information"><span class="icon-info"></span>When you call, don't forget to mention that you found this ad on Property42.pk</span>
+                                                <span class="information"><span class="icon-info"></span>When you call, don't forget to mention that you found this ad on nugree.com</span>
                                             </div>
                                             <div id="sendEmail-popup" class="lightbox generic-lightbox">
                                                 <span class="lighbox-heading">Send Email</span>

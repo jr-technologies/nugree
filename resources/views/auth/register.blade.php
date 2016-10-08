@@ -182,7 +182,7 @@
                         <ul class="terms-listing">
                             <li>
                                 <input type="checkbox" id="terms-Cond" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif required>
-                                <label for="terms-Cond">I have read and agree to Property42.pk <a href="#">Terms and Conditions</a> <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span></label>
+                                <label for="terms-Cond">I have read and agree to nugree.com <a href="#">Terms and Conditions</a> <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span></label>
                             </li>
                             <li>
                                 <input type="checkbox" id="newslatter" name="wantNotifications" @if(old('wantNotifications') !="")checked @endif >

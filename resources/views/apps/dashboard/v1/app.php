@@ -1,7 +1,7 @@
 <html ng-app="dashboard">
 <head>
 
-    <title ng-bind="html_title"> Property42.pk </title>
+    <title ng-bind="html_title"> nugree.com </title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,7 @@
 </head>
 <body class="sideBar-active {{please_wait_class}} {{loading_resources_class}}" ng-init="loading_resources_class='loading-resources'">
 
-<span class="lodaing-page">Property42.pk</span>
+<span class="lodaing-page">nugree.com</span>
 <!-- main container of all the page elements -->
 
 <div class="" ng-controller="ParentController">

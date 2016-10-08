@@ -11,16 +11,13 @@ class LocationsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('locations')->insert([
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-            ['city_id'=>1, 'location'=> "DHA Defence".rand(1,100),'lat'=>31314616,'long'=>rand(1,361465485)],
-        ]);
+        $final =[];
+        for($i=1;$i <200;$i++)
+        {
+            $final[] =['city_id'=>1, 'location'=> "DHA Defence".rand(1,10000),'lat'=>31314616,'long'=>rand(1,361465485)];
+        }
+
+
+        DB::table('locations')->insert($final);
     }
 }

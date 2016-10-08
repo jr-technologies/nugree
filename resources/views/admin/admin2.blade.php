@@ -13,7 +13,7 @@
     <script src="{{url('/')}}/web-apps/admin/js/jquery-1.11.2.min.js"></script>
 </head>
 <body>
-<a href="#"><span class="lodaing-page">Property42.pk</span></a>
+<a href="#"><span class="lodaing-page">nugree.com</span></a>
 <!-- main container of all the page elements -->
 <div id="wrapper">
     <header id="header">

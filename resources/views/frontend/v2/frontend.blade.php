@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta property="og:image" content="{{url('/')}}/web-apps/frontend/v2/images/logo.png">
-    <meta property="og:url" content="http://property42.pk/public">
+    <meta property="og:url" content="http://nugree.com/public">
     <meta property="og:title" content="Lahore Largest Property Website">
 
-    <title>Lahore Largest Property website | Property42.pk</title>
+    <title>Lahore Largest Property website | nugree.com</title>
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/v2/images/favicon-96x96.png" sizes="96x96">
@@ -186,7 +186,7 @@
                         <li><a target="_blank" href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
                         <li><a target="_blank" href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
                     </ul>
-                    <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
+                    <span class="copyright">Copyright, <a href="#">nugree.com</a></span>
                 </div>
             </div>
         </nav>
@@ -198,7 +198,7 @@
 
             <a class="twitter-timeline" href="https://twitter.com/nomantufail100 ">Tweets by TwitterDev</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <footer id="footer">
-        <span class="copyright">Copyright,<a href="{{url('/')}}">Property42.pk</a></span>
+        <span class="copyright">Copyright,<a href="{{url('/')}}">nugree.com</a></span>
     </footer>
         </div>
     </div>
@@ -243,14 +243,14 @@
         </div>
         <div id="terms-of-user" class="lightbox generic-lightbox text-left">
             <span class="lighbox-heading">Privacy <span>Policy</span></span>
-            <p>This Privacy policy is subject to the terms of the Site Policy (User agreement) of property42.pk. This policy is effective from the date and time a user registers with property42.pk by filling up the Registration form and accepting the terms and conditions laid out in the Site Policy.</p>
-            <p>In order to provide a personalized browsing experience, property42.pk may collect personal information from you. Additionally our website may require you to complete a registration form or seek some information from you. When you let us have your preferences, we will be able to deliver or allow you to access the most relevant information that meets your end.</p>
-            <p>To extend this personalized experience property42.pk may track the IP address of a user's computer and save certain information on your system in the form of cookies. A user has the option of accepting or declining the cookies of this website by changing the settings of your browser.</p>
-            <p>The personal information provided by the users to property42.pk will not be provided to third parties without previous consent of the user concerned. Information of a general nature may however be revealed to external parties</p>
+            <p>This Privacy policy is subject to the terms of the Site Policy (User agreement) of nugree.com. This policy is effective from the date and time a user registers with nugree.com by filling up the Registration form and accepting the terms and conditions laid out in the Site Policy.</p>
+            <p>In order to provide a personalized browsing experience, nugree.com may collect personal information from you. Additionally our website may require you to complete a registration form or seek some information from you. When you let us have your preferences, we will be able to deliver or allow you to access the most relevant information that meets your end.</p>
+            <p>To extend this personalized experience nugree.com may track the IP address of a user's computer and save certain information on your system in the form of cookies. A user has the option of accepting or declining the cookies of this website by changing the settings of your browser.</p>
+            <p>The personal information provided by the users to nugree.com will not be provided to third parties without previous consent of the user concerned. Information of a general nature may however be revealed to external parties</p>
             <p>Every effort will be made to keep the information provided by users in a safe manner, the information will be displayed on the website will be done so only after obtaining consent from the users. Any user browsing the site generally is not required to disclose his identity or provide any information about him/her, it is only at the time of registration you will be required to furnish the details in the registration form</p>
             <p>A full user always has the option of not providing the information which is not mandatory. You are solely responsible for maintaining confidentiality of the User password and user identification and all activities and transmission performed by the User through his user identification and shall be solely responsible for carrying out any online or off-line transaction involving credit cards / debit cards or such other forms of instruments or documents for making such transactions.</p>
-            <p>You agree that PROPERTY42.PK may use personal information about you to improve its marketing and promotional efforts, to analyze site usage, improve the Site's content and product offerings, and customize the Site's content, layout, and services. These uses improve the Site and better tailor it to meet your needs, so as to provide you with a smooth, efficient, safe and customized experience while using the Site.</p>
-            <p>You agree that PROPERTY42.PK may use your personal information to contact you and deliver information to you that, in some cases, are targeted to your interests, such as targeted banner advertisements, administrative notices, product offerings, and communications relevant to your use of the Site. By accepting the User Agreement and Privacy Policy, you expressly agree to receive this information. If you do not wish to receive these communications, we encourage you to opt out of the receipt of certain communications in your profile. You may make changes to your profile at any time. It is the belief of PROPERTY42.PK that privacy of a person can be best guaranteed by working in conjunction with the Law enforcement authorities.</p>
+            <p>You agree that nugree.com may use personal information about you to improve its marketing and promotional efforts, to analyze site usage, improve the Site's content and product offerings, and customize the Site's content, layout, and services. These uses improve the Site and better tailor it to meet your needs, so as to provide you with a smooth, efficient, safe and customized experience while using the Site.</p>
+            <p>You agree that nugree.com may use your personal information to contact you and deliver information to you that, in some cases, are targeted to your interests, such as targeted banner advertisements, administrative notices, product offerings, and communications relevant to your use of the Site. By accepting the User Agreement and Privacy Policy, you expressly agree to receive this information. If you do not wish to receive these communications, we encourage you to opt out of the receipt of certain communications in your profile. You may make changes to your profile at any time. It is the belief of nugree.com that privacy of a person can be best guaranteed by working in conjunction with the Law enforcement authorities.</p>
             <p>We may collect your personal data when you use this Site or our services. The term "use" includes:</p>
             <p>(a) Uploading your Content;</p>
             <p>(b) Making submissions/posts in user forums;</p>
@@ -345,13 +345,13 @@
             <li><a target="_blank" href="https://twitter.com/Property42_pk"><span class="icon-twitter"></span></a></li>
             <li><a target="_blank" href="https://www.instagram.com/property42/"><span class="icon-instagram"></span></a></li>
         </ul>
-        <span class="copyright">Copyright, <a href="#">Property42.pk</a></span>
+        <span class="copyright">Copyright, <a href="#">nugree.com</a></span>
     </div>
 </nav>
 <div class="nav-blur-area">
     <div class="logo-holder"><img src="{{url('/')}}/web-apps/frontend/v2/images/logo.png" alt="Property42"></div>
     <ul class="bottom-links">
-        <li><a href="#">www.property42.pk</a></li>
+        <li><a href="#">www.nugree.com</a></li>
         <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;</li>
     </ul>
 </div>

@@ -16,7 +16,7 @@ class SearchUsersTransformer extends RequestTransformer{
     public function transform(){
         return [
             'userRole'=>$this->request->input('user_role'),
-            'society'=>$this->request->input('society'),
+            'location'=>$this->request->input('location'),
             'agencyName'=>$this->request->input('agency_name'),
             'page' => $this->request->input('page'),
             'limit' => $this->request->input('limit'),

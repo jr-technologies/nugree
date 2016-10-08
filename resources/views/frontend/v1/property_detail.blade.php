@@ -11,7 +11,7 @@
                     <div class="property-picture-holder">
                         <h1><span> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
                                 {{$response['data']['property']->type->subType->name.'
-                                 '.$response['data']['property']->purpose->name/*.' in '.$response['data']['property']->location->block->name.' Block'.
+                                 '.$response['data']['property']->purpose->name.' in '.$response['data']['property']->location->location->location .'('.$response['data']['property']->location->city->name.')'/*.' in '.$response['data']['property']->location->block->name.' Block'.
                                 ' '.$response['data']['property']->location->society->name*/}}</span></h1>
                         <?php
                         $user = (new \App\Libs\Helpers\AuthHelper())->user();
@@ -138,7 +138,7 @@
                                 <span class="lighbox-heading">Phone Number</span>
 
                                 <p></p>
-                                <span class="information"><span class="icon-info"></span>When you call, don't forget to mention that you found this ad on Property42.pk</span>
+                                <span class="information"><span class="icon-info"></span>When you call, don't forget to mention that you found this ad on nugree.com</span>
                             </div>
                             <div id="sendEmail-popup" class="lightbox generic-lightbox">
                                 <span class="lighbox-heading">Send Email</span>

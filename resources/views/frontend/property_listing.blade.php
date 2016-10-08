@@ -9,7 +9,7 @@
                         <span class="searchResult-counter">Showing <b>1</b> to <b>{{$response['data']['propertiesCount'] }}</b> of
                             <b>{{$response['data']['totalProperties']}}</b> properties</span>
                         <ul class="sortBy">
-                            <li>Sorty By</li>
+                            <li>Sort By</li>
                             <li>
                                 <select>
                                     <option>Default Order</option>
@@ -79,7 +79,7 @@
                                         }
                                         ?>
                                         <div class="state-logo"><a href="{{ URL::to('agent?agent_id='.$property->owner->id) }}">
-                                                <img src="{{$image}}" width="300" height="300" alt="Property42.pk">
+                                                <img src="{{$image}}" width="300" height="300" alt="nugree.com">
                                             </a>
                                         </div>
                                     </div>

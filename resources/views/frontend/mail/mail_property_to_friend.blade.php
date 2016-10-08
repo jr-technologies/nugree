@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Property42.pk</title>
+    <title>nugree.com</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -50,7 +50,7 @@
 <div style="  margin:0;  padding: 0;overflow: hidden;">
     <div style="margin:0; padding:0 0;verflow: hidden;background:rgba(35, 53, 112, 0.7) none repeat scroll 0 0;">
         <div style="margin:0 auto;padding:20px 0; max-width:800px;">
-            <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">Property42.pk</div>
+            <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">nugree.com</div>
         </div>
     </div>
     <main style="   padding: 0;margin: 0; overflow: hidden;">

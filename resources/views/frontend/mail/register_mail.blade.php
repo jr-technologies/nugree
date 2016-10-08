@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Property42.pk</title>
+    <title>nugree.com</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -50,7 +50,7 @@
 <div style="  margin:0;  padding: 0;overflow: hidden;">
     <div style="margin:0; padding:0 0;verflow: hidden;background:rgba(35, 53, 112, 0.7) none repeat scroll 0 0;">
         <div style="margin:0 auto;padding:20px 0; max-width:800px;">
-            <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">Property42.pk</div>
+            <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">nugree.com</div>
         </div>
     </div>
     <main style="   padding: 0;margin: 0; overflow: hidden;">
@@ -59,12 +59,12 @@
                 <div style=" color:#000;   font-family: 'Raleway', sans-serif;">
                     <p style="    margin: 0;padding:0 ;max-width: 700px;">Dear <b style="color:#64719a;font-weight:bold;font-size:15px;"></b>,</p>
                     <p>{{$user->fName.' '.$user->lName}}.</p>
-                    <p>Welcome to Property42.pk !
-                        You can log in to your account by clicking here http://property42.pk/public/login
+                    <p>Welcome to nugree.com !
+                        You can log in to your account by clicking here http://nugree.com/public/login
                         we hope your experience was seamless and we hope to have the pleasure of serving you again in the future.
-                        For more information, you can contact our customer care by email at  info@property42.pk
+                        For more information, you can contact our customer care by email at  info@nugree.com
                         All The Best,
-                        Property42.pk Team..</p>
+                        nugree.com Team..</p>
                     <h1 style=" color: #17690a; font-family: 'Permanent Marker',cursive;font-size: 27px; margin-top: 5px;text-align: center;padding:10px 0;">Thank You!</h1>
                 </div>
             </div>

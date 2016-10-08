@@ -157,10 +157,10 @@
                     <section class="generic-section about-us" id="about-us">
                         <div class="container text-center">
                             <h1>About <span>Us</span></h1>
-                            <p>Property42.PK is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
-                            <p>Property42.PK is providing flexible search for user which will provide potential clients with a better overall online experience.
-                                With modern housing and societies services and a growing population, Property42.PK is a unique regional center and offers plenty of lifestyle and investment opportunity.
-                                Property42.PK is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
+                            <p>nugree.com is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
+                            <p>nugree.com is providing flexible search for user which will provide potential clients with a better overall online experience.
+                                With modern housing and societies services and a growing population, nugree.com is a unique regional center and offers plenty of lifestyle and investment opportunity.
+                                nugree.com is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
                         </div>
                     </section>
                     <section class="generic-section questions" id="contact-us">

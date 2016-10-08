@@ -12,6 +12,7 @@ use App\Http\Requests\Requests\User\TrustedAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Helpers\Helper;
 use App\Repositories\Providers\Providers\BannersRepoProvider;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
@@ -31,6 +32,7 @@ class UsersController extends Controller
     public $rand= "";
     public $properties = "";
     public $banners ="";
+    public $location ="";
     public function __construct(WebResponse $webResponse, UserTransformer $userTransformer)
     {
         $this->response = $webResponse;
@@ -40,6 +42,7 @@ class UsersController extends Controller
         $this->userTransformer = $userTransformer;
         $this->usersJsonRepo = (new UsersJsonRepoProvider())->repo();
         $this->banners = (new BannersRepoProvider())->repo();
+        $this->location = (new LocationsRepoProvider())->repo();
         $this->rand = new Helper();
     }
 
@@ -76,6 +79,7 @@ class UsersController extends Controller
             'agents' => $this->releaseUsersAgenciesLogo($searchedAgents),
             'allAgents' => $this->usersJsonRepo->getAllTrustedAgents(),
             'societies'=>$this->societies->all(),
+            'locations'=>$this->location->all(),
             'params'=>$request->all(),
             'banners'=>$this->getAgentListingPageBanners(),
             'totalAgentsFound' => $totalAgentsFound[0]->count,
