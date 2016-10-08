@@ -54,7 +54,7 @@ $media-expressions: (
 
   .detail-holder {
     box-shadow: 0 5px 13px rgba($black , 0.5);
-    padding: 0 305px 10px 0;
+    padding: 0 335px 10px 0;
     margin: 0 auto 50px;
     position: relative;
     background: $p42-background;
@@ -84,7 +84,7 @@ $media-expressions: (
     right: 0;
     z-index: 91;
     width: 100%;
-    max-width: 305px;
+    max-width: 335px;
     box-shadow: -7px 0 15px rgba($black , 0.15);
     padding: 8px;
     overflow: hidden;
@@ -109,7 +109,7 @@ $media-expressions: (
     }
 
     .price {
-      @include font(38,40);
+      @include font(34,40);
       @extend %text-center;
       box-shadow: 0 5px 15px -5px rgba($black, 0.5);
       padding: 10px;
@@ -178,7 +178,7 @@ $media-expressions: (
       padding: 50px 0 0;
 
       @include media('<tablet'){
-        padding: 0;
+        padding: 45px 0 0;
       }
     }
   }
@@ -195,9 +195,10 @@ $media-expressions: (
 
     h1 {
       @extend %text-left;
-      font-weight: 700;
       @include font(27,30);
       margin: 0 0 15px;
+
+      span {font-weight: 700;}
 
       @include media('<tablet'){
         @include font(18,22);
@@ -219,6 +220,11 @@ $media-expressions: (
 
     .add-to-favorite {
       top: 0;
+
+      @include media('<tablet'){
+        position: static;
+        background: lighten($dim-grey, 20%);
+      }
     }
     .premiumProperty {
       top: 46px;
@@ -301,6 +307,10 @@ $media-expressions: (
           max-width: inherit !important;
           max-height: inherit !important;
           height: 460px !important;
+
+          @include media('<tablet'){
+            height: 160px !important;
+          }
         }
       }
     }

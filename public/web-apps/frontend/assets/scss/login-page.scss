@@ -28,10 +28,10 @@ $media-expressions: (
 
 .login-page {
     @extend %layout;
-    max-width: 500px;
     background: rgba($p42-background, 0.5);
     box-shadow: 0 0 7px rgba($black , 0.22);
-    margin: 100px auto;
+    margin: 100px auto !important;
+    max-width: 500px !important;
 
     @include media('<tablet'){
         margin: 20px auto;
@@ -157,7 +157,7 @@ $media-expressions: (
                 }
 
                 &:hover {
-                    background: $orange;
+                    background: darken($p42-default-grey, 10%);
                 }
             }
         }
@@ -183,7 +183,7 @@ $media-expressions: (
         }
 
         &:hover {
-            background: $green;
+            background: $sharp-green;
         }
     }
 }

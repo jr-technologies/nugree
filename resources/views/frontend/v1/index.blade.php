@@ -5,17 +5,19 @@
             <div class="mask">
                 <div class="container">
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
-
-                    <select class="js-example-basic-single" name="city_id" id="cityId">
-                        <option >Select City</option>
-                        @foreach($response['data']['cities'] as $city)
-                            <option value="{{$city->id}}">{{$city->name}}</option>
-                        @endforeach
-                    </select>
-
-                    <select class="js-example-basic-single"  name="location_id" id="societies">
-                        <option>Select Location</option>
-                    </select>
+                    <span class="select-load">
+                        <select class="js-example-basic-single" name="city_id" id="cityId">
+                            <option >Select City</option>
+                            @foreach($response['data']['cities'] as $city)
+                                <option value="{{$city->id}}">{{$city->name}}</option>
+                            @endforeach
+                        </select>
+                    </span>
+                    <span class="select-load loading">
+                        <select class="js-example-basic-single"  name="location_id" id="societies">
+                            <option>Select Location</option>
+                        </select>
+                    </span>
                     <ul class="typeOfBuying">
                         <li>
                             <label for="buy" class="customRadio">
