@@ -1,0 +1,808 @@
+$breakpoints: (
+  'xs-phone': 320px,
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'widescreen': 1200px,
+  'tvscreen':1600px,
+);
+
+// keywords
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 2.5), (min-resolution: 240dpi)'
+);
+
+// ligatured operators ≥ ≤
+
+@import 'vendors/include-media';
+
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/helpers';
+
+.agent-listing-page,
+.listing-page {
+  @extend %layout;
+  position: relative;
+  padding: 5px;
+
+  @include media('<tablet'){
+    padding:0; 
+  }
+
+  .container {
+    @extend %layout;
+    @include media('<tablet'){
+       padding: 0;
+    }
+  }
+
+  #aside {
+    width: 25%;
+    padding: 10px 10px 40px;
+    position: relative;
+    @extend .pull-left;
+    overflow: hidden;
+    background: $p42-background;
+    box-shadow: 0 0 20px -9px rgba($black, 0.5);
+
+    @include media('<desktop'){
+      overflow: auto;
+      width: 100%;
+      display: block;
+      margin: 0 0 20px;
+      border: 0;
+      background: $white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999;
+      padding: 0;
+      border: 10px solid $p42-color;
+      border-bottom: 0;
+      border-top: 0;
+      margin: 0;
+      transform: translateY(-105%);
+      -webkit-transform: translateY(-105%);
+      -moz-transform: translateY(-105%);
+      transition: transform 0.5s linear;
+      -webkit-transition: transform 0.5s linear;
+      -moz-transition: transform 0.5s linear;
+
+      .filters-active & {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+      }
+    }
+
+    .top-head {
+      background: $mix-black;
+      @extend %layout;
+      position: relative;
+      color: $white;
+      @include font(18,24);
+      padding: 10px 40px 10px 10px;
+
+      @include media('>=desktop'){
+        margin: -10px -10px 0;
+        text-align: center;
+      }
+
+      p { margin: 0;}
+
+      .close  {
+        color: $white;
+        text-decoration: none;
+        border: 2px solid $white;
+        border-radius: 100%;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        cursor: pointer;
+        margin: -12px 0 0;
+
+        @include media('>=desktop'){ display: none;}
+
+        span {
+          display: block;
+          font-size: 20px;
+          line-height: 1;
+        }
+      }
+    }
+
+    .fake-select {
+      border: 1px solid $p42-color;
+    }
+  }
+  #content {
+    width: 75%;
+    @extend .pull-left;
+    padding: 0 0 0 20px;
+
+    @include media('<widescreen'){
+      padding: 0 0 0 10px;
+    }
+
+    @include media('<desktop'){
+      width: 100%;
+      overflow: hidden;
+      display: block;
+      margin: 0 0 20px;
+      padding: 0;
+    }
+  }
+  .filter-btn{
+    @extend %listreset;
+    width: 100%;
+    @include align-reset(top, 16,20);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 11px;
+    
+    @include media('<desktop'){
+        width: 94% !important;
+        position: absolute !important;
+        bottom: 0;
+        left: 10px !important;
+        right: 10px !important;
+        z-index: 1000 !important;
+        margin: 0 auto !important;
+      }
+
+    &.srchBtnFxd {
+      position: fixed;
+      bottom: 0;
+      z-index: 57;
+      width: 260px;
+      padding: 0;
+      background:$white;
+
+      @include media('<desktop'){
+        width: 94% !important;
+        position: absolute;
+        bottom: 0;
+        left: 10px !important;
+        right: 10px !important;
+        z-index: 1000 !important;
+        margin: 0 auto !important;
+      }
+    }
+
+    li {
+      width: 50%;
+      padding: 0 2px;
+
+      &:last-child{ button{
+        background: $mix-black;
+        &:hover { background: darken($mix-black, 10);}
+       }
+      }
+    }
+  }
+  .filter-form {
+    @extend %layout;
+
+    button {
+      width: 100%;
+      display: block;
+      border: 0;
+      color: $white;
+      background: $sharp-green;
+      padding: 10px;
+      transition: background 0.5s ease;
+      -webkit-transition: background 0.5s ease;
+      -moz-transition: background 0.5s ease;
+
+      &:hover {
+        background: darken($sharp-green, 5%);
+      }
+    }
+  }
+  .filters-links {
+    @extend %listreset;
+    @include font(14,17);
+
+    @include media('<widescreen'){
+      @include font(13,16);
+    }
+
+    @include media('<desktop'){
+      position: absolute;
+      top: 44px;
+      left: 0;
+      right: 0;
+      bottom: 50px;
+      overflow: auto;
+    }
+
+    li {
+      display: block;
+
+      &.active {
+        a{
+          &:after {content: "\e91a";}
+        }
+      }
+
+      a {
+        font-weight: 700;
+        text-decoration: none;
+        display: block;
+        color: $dark-grey;
+        cursor: pointer;
+        position: relative;
+        padding: 10px;
+        transition: color 0.5s ease, background 0.5s ease;
+        -webkit-transition: color 0.5s ease, background 0.5s ease;
+        -moz-transition: color 0.5s ease, background 0.5s ease;
+        -ms-transition: color 0.5s ease, background 0.5s ease;
+
+        @include media('<widescreen'){
+          padding: 8px 33px 8px 5px;
+        }
+
+        &:after {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          content: "\e91b";
+          font-family: 'icomoon';
+          @include font(20,20);
+          margin: -14px 0 0;
+          color: $p42-default-grey;
+          transition: color 0.5s ease;
+          -webkit-transition: color 0.5s ease;
+          -moz-transition: color 0.5s ease;
+          -ms-transition: color 0.5s ease;
+        }
+      }
+      .slide {
+        @extend %layout;
+        background: $white;
+        padding: 20px;
+      }
+    }
+  }
+  .filterChecks {
+    @extend %listreset;
+
+    li {
+      display: block;
+      padding: 0 0 10px;
+
+      .select2-container {
+        width: 100% !important;
+        border: 1px solid $p42-color;
+      }
+    }
+  }
+  .fake-select {
+    margin: 0 0 10px;
+    color: rgba($dark-grey, 0.9);
+  }
+  .fromTo {
+    @extend %layout;
+    @include align-reset(top, 14, 17);
+    position: relative;
+
+    &.full-width {
+      width: 100%;
+      display: block;
+
+      .field-holder {
+        width: 100%;
+        display: block;
+      }
+
+      button {
+        position: static;
+        width: 100%;
+        display: block;
+      }
+    }
+
+    .field-holder {
+      width: 50%;
+      padding: 3px;
+    }
+    input[type="number"]{
+      @include squar(100%, 26px);
+      @include font(12,15);
+      padding: 4px;
+      display: block;
+      border: 2px solid $p42-background;
+      color: $dark-grey;
+
+      @include placeholder{ color: $dark-grey;}
+    }
+    button{
+      @include align(top);
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      bottom: 3px;
+      @include font(12,15);
+      color: $white;
+      background: $orange;
+      border: 0;
+      padding: 5px;
+      transition: background 0.5s ease;
+      -webkit-transition: background 0.5s ease;
+      -moz-transition: background 0.5s ease;
+      -ms-transition: background 0.5s ease;
+
+      &:hover { background: $green;}
+    }
+  }
+  .publicAgent-post,
+  .publicProperty-post {
+    @extend %layout;
+    background: $white;
+    margin: 10px 0 30px;
+    position: relative;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.30);
+
+    @include media('<tablet'){
+      padding: 5px 5px 0;
+      margin: 0 0 10px;
+    }
+    .quick-links {
+      @extend %pull-right;
+      margin: 0 5px;
+
+      @include media('<tablet'){ margin: 0;}
+    }
+    .price {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      background: $dark-grey;
+      color: $white;
+      @include font(25,28);
+      padding: 10px;
+
+      @include media('<tablet'){
+        position: static;
+        background: transparent;
+        color: $dark-grey;
+        padding: 10px 0; 
+      }
+    }
+    .image-holder {
+      @extend %layout;
+      @extend %pull-left;
+      max-width: 315px;
+      background: $p42-background;
+
+      @include media('<tvscreen'){
+        max-width: 300px;
+      }
+      @include media('<widescreen'){
+        max-width: 250px;
+      }
+      @include media('<tablet'){
+        max-width: 120px;
+      }
+
+      .listing-image-slider {
+        .slide {
+          white-space: nowrap;
+          height: 250px;
+
+          @include media('<tablet'){
+            height: 120px;
+          }
+
+          &:after {
+            width: 1px;
+            margin: 0 0 0 -5px;
+            @include align(middle);
+            @extend %layout;
+            height: 250px;
+            content: '';
+
+            @include media('<tablet'){
+              height: 120px;
+            }
+          }
+          a {
+            @include align(middle);
+            white-space: normal;
+          }
+        }
+      }
+      img {
+        max-height: inherit;
+        @extend %img-res;
+      }
+    }
+    .caption {
+      @extend %layout;
+      @include font(16,20);
+      color: $p42-default-grey;
+      padding: 0 10px 0 20px;
+
+      @include media('<widescreen'){
+        padding: 0 10px;
+      }
+
+      h1 {
+        margin: 0 0 15px;
+        font-weight: 700;
+        color: $p42-color;
+        @include font(18,21);
+        @extend %text-left;
+
+        @include media('<widescreen'){
+          margin: 0 0 6px;
+        }
+
+        @include media('<tablet'){
+          @include font(13,16);
+          margin: 0 0 2px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        a {
+          @include align(top);
+          color: $p42-color;
+          text-decoration: none;
+
+          &:hover { color: $green;}
+        }
+      }
+      .price {
+        @include media('<widescreen'){
+          @include font(14,17);
+        }
+
+        @include media('<tablet'){
+          padding: 0 0 5px;
+          @include font(15,18);
+        }
+      }
+      .btn-default {
+        @include font(12,15);
+        position: relative;
+        padding: 10px 37px 10px 15px;
+        
+        span[class^="icon-"],span[class*="icon-"]{
+          @include font(20,20);
+          top: 50%;
+          right: 10px;
+          margin: -10px 0 0;
+          position: absolute;
+        }
+      }
+      .layout {
+        overflow: visible;
+        @extend %clearfix;
+
+        p {
+          margin: 0;
+
+          @include media('<tablet'){
+            display: none;
+          }
+        }
+      }
+      .links-holder {
+        position: absolute;
+        bottom: 10px;
+        left: 339px;
+        right: 0;
+        @extend %layout;
+        padding: 0 60px 0 0;
+
+        @include media('<tvscreen'){
+          left: 323px;
+        }
+
+        @include media('<widescreen'){
+          left: 263px;
+        }
+        @include media('<tablet'){
+          position: static;
+          padding: 0;
+        }
+
+        .add-to-favorite {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          height: auto;
+
+          @include media('<tablet'){
+            left: 0;
+            right: auto;
+            bottom: auto;
+            background: transparent;
+          }
+
+          span {
+            line-height: 50px;
+
+            @include media('<desktop'){
+              line-height: 42px;
+            }
+          }
+        }
+
+        .btn-default {
+          float: left;
+          border: 1px solid $p42-default-grey;
+          background: transparent;
+          color: $p42-default-grey;
+          padding: 14px 50px 14px 20px;
+
+          @include media('<tvscreen'){
+            padding: 12px 40px 13px 10px;
+          }
+          @include media('<desktop'){
+            padding: 13px 40px 12px 10px;
+          }
+          @include media('<tablet'){
+            @include font(10,13);
+            padding: 10px 4px 9px;
+
+            span { display: none;}
+          }
+
+          &:hover {
+            background: $p42-default-grey;
+            color: $white;
+          }
+        }
+        .quick-links {
+          li {
+            @include media('<tablet'){
+              padding: 0 2px;
+            }
+          }
+          a {
+            padding: 11px 30px;
+
+            @include media('<tvscreen'){
+              padding: 11px 7px;
+            }
+            @include media('<tablet'){
+              padding: 7px 5px;
+            }
+          }
+        }
+      }
+      .company-logo {
+        @extend img-res;
+        @extend .pull-right;
+        max-width: 100px;
+        max-height: 100px;
+        margin: 0 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      
+        @include media('<tvscreen'){
+          max-width: 70px;
+          max-height: 70px;
+        }
+
+
+        @include media('<widescreen'){
+          max-width: 60px;
+          max-height: 60px;
+          min-width: 60px;
+          min-height: 60px;
+          margin: 16px 10px 0;
+        }
+
+        @include media('<tablet'){ display: none;}
+      }
+    }
+  }
+  .holder-ui {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 30px 120px 112px 0;
+
+    @include media('<widescreen'){
+      padding: 18px 70px 51px 0;
+    }
+
+    @include media('<tablet'){
+      display: none;
+    }
+  }
+}
+.agent-listing-page {
+  padding: 30px 5px;
+
+  .image-holder {
+    min-width: 200px !important;
+    max-height: 200px !important;
+    max-width: 200px !important;
+    white-space: nowrap;
+
+    @include media('<tablet'){
+      min-width: 100px;
+      max-height: 100px;
+    }
+
+    &:after {
+      overflow: hidden;
+      margin: 0 0 0 -5px;
+      width: 1px;
+      @include align(middle);
+      content: '';
+      height: 200px;
+      
+      @include media('<tablet'){ height: 100px;}
+    }
+    img {
+      display: inline-block !important;
+      vertical-align: middle !important;
+      white-space: normal;
+    }
+  }
+  .caption {
+    
+    .links-holder {
+      left: 225px !important;
+      padding: 0 !important;
+
+      @include media('<tablet'){
+        padding: 17px 0 0 !important;
+      }
+    }
+  }
+  
+  #content {
+    @extend .layout;
+    padding: 0 0 0 10px;
+    overflow: visible;
+    @extend %clearfix;
+
+    @include media('<desktop'){ padding: 0;}
+  }
+  .publicAgent-post {
+    float: none !important;
+    background: transparent;
+    padding: 0 3px 6px;
+    margin: 10px 0 20px;
+
+    @include media('<widescreen'){
+      width: 100%;
+    }
+    @include media('<tablet'){
+      padding: 0;
+      margin: 0 0 20px;
+    }
+
+    .post-holder {
+      @extend %clearfix;
+      background: $white;
+      padding: 5px 3px;
+    }
+    
+    .trusted-agent {
+      @include font(13,17);
+      @extend .pull-left;
+      margin: 15px 0 10px 0;
+      position: relative !important;
+      top:  0 !important;
+
+      @include media('<tablet'){
+        margin: 14px 0 0 10px !important;
+      }
+    }
+    .star-rating {
+      @extend .pull-right;
+      margin: 10px 0 10px;
+    }
+  }
+}
+.aside-opener-filters {
+  display: block;
+  color: $white;
+  @include font(14,19);
+  background: $green;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  margin: 0 0 10px;
+  font-weight: 600;
+
+  b{
+    font-weight: normal;
+    font-weight: 400;
+    @include font(13,17);
+    padding: 0 3px;
+    @include align(middle);
+  }
+
+  @include media('>=desktop'){ display: none;}
+
+  .button {
+    @include squar(30px, 20px);
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    z-index: 1;
+    margin: -10px 0 0;
+
+    &:after, &:before, b{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: $white;
+      height: 2px;
+      content: '';
+    }
+    &:before {
+      top: auto;
+      bottom: 0;
+    }
+    b{
+      top: 50%;
+      margin: -1px 0 0;
+    }
+  }
+}
+.propertyNotFound {
+  @extend %layout;
+  @extend %text-center;
+  position: relative;
+  background: $p42-background;
+  @include font(16, 21);
+  font-weight: 600;
+  padding: 80px 20px;
+
+  @include media('<tablet'){
+      @include font(13,16);
+      padding: 65px 5px;
+    }
+
+  &:after {
+    background: url('../images/caution-sign.png') no-repeat;
+    @include squar(200px, 200px);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    content: '';
+    margin: 0 0 0 -100px;
+    opacity: 0.25;
+  }
+
+  .no-heading {
+    @extend %text-capital;
+    display: block;
+    opacity: 0.5;
+    font-weight: 700;
+    @include font(30,33);
+    padding: 0 0 10px;
+
+    @include media('<tablet'){
+      @include font(20,23);
+    }
+  }
+  p { opacity: 0.5;}
+}
