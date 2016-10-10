@@ -18,6 +18,7 @@ $(document).on('click','.add-to-favorite',function(){
     {
         var property_id = $(this).attr('property_id');
         var user_id = $(this).attr('user_id');
+        var favId= $(this).attr('id');
         var key = $(this).attr('key');
         $.ajax({
             type: "POST",
@@ -29,7 +30,7 @@ $(document).on('click','.add-to-favorite',function(){
                 Authorization: key
             },
             success: function(response) {
-         $('.add-to-favorite').closest('a').removeClass('added');
+         $('#'+favId).closest('a').removeClass('added');
       },
             error: function () {
          $('.popup-opener').closest('li').addClass('popup-holder');
@@ -40,6 +41,7 @@ $(document).on('click','.add-to-favorite',function(){
     else {
         var property_id = $(this).attr('property_id');
         var key = $(this).attr('key');
+        var favId= $(this).attr('id');
         $.ajax({
             type: "POST",
             url: apiPath.concat("favourite/property"),
@@ -50,26 +52,31 @@ $(document).on('click','.add-to-favorite',function(){
                 Authorization: key
             },
             success: function(response) {
-                $('.add-to-favorite').closest('a').addClass('added');
+
             }
         })
+        $('#'+favId).closest('a').addClass('added');
     }
 });
 
 
 $(document).on('change', '#society', function(){
     var society_id = $(this).val();
-    if(society_id !="") {
+    if(society_id !="")
+    {
         $('#blocks').closest('li').addClass('loading');
         $.ajax({
             url: apiPath.concat("society/blocks"),
-            data: {
+            data:
+            {
                 society_id: society_id
             },
-            success: function (response) {
+            success: function (response)
+            {
                 $('#blocks').empty();
                 $('#blocks').append($('<option>').text('select a block').attr('value', ''));
-                $.each(response.data.blocks, function (i, block) {
+                $.each(response.data.blocks, function (i, block)
+                {
                     $('#blocks').append($('<option>').text(block.name).attr('value', block.id));
                 });
                 $('#blocks').closest('li').removeClass('loading');
@@ -87,7 +94,9 @@ $(document).on('change', '#society', function(){
 
 $(document).on('change', '#cityId', function(){
     var city_id = $(this).val();
-    if(city_id !="") {
+    if(city_id !="")
+    {
+        $('#societies').closest('span').addClass('loading');
         $.ajax({
            url: apiPath.concat("city/location"),
             data:{
@@ -100,8 +109,9 @@ $(document).on('change', '#cityId', function(){
                 $.each(response.data.location, function (i, location) {
                     $('#societies').append($('<option>').text(location.location).attr('value', location.id));
                 });
-
+                $('#societies').closest('span').removeClass('loading');
             }
+
         })
     }
     else

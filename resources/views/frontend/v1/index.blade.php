@@ -13,7 +13,7 @@
                             @endforeach
                         </select>
                     </span>
-                    <span class="select-load loading">
+                    <span class="select-load">
                         <select class="js-example-basic-single"  name="location_id" id="societies">
                             <option>Select Location</option>
                         </select>

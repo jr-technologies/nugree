@@ -70,7 +70,7 @@
             <div class="bottom-footer">
                 <span class="rights">&copy;2016 <a href="#">nugree.com</a> All rights reserved</span>
                 <ul class="social-icons">
-                    <li><a href="https://www.facebook.com/proerty92pk-354399088098995/"><span class="icon-facebook"></span></a></li>
+                    <li><a href="https://www.facebook.com/Nugreecom-354399088098995/"><span class="icon-facebook"></span></a></li>
                     <li><a href="https://plus.google.com/118057576547955586597?hl=en"><span class="icon-google-plus-symbol"></span></a></li>
                     <li><a href="https://www.linkedin.com/in/nugree-pakistan-29a8a312a?trk=nav_responsive_tab_profile_pic"><span class="icon-linkedin"></span></a></li>
                     <li><a href="https://twitter.com/92nugree"><span class="icon-twitter"></span></a></li>
@@ -106,7 +106,7 @@
     </ul>
     <div class="mobile-content text-center">
         <ul class="social-icons">
-            <li><a href="https://www.facebook.com/proerty92pk-354399088098995/"><span class="icon-facebook"></span></a></li>
+            <li><a href="https://www.facebook.com/Nugreecom-354399088098995/"><span class="icon-facebook"></span></a></li>
             <li><a href="https://plus.google.com/118057576547955586597?hl=en"><span class="icon-google-plus-symbol"></span></a></li>
             <li><a href="https://www.linkedin.com/in/nugree-pakistan-29a8a312a?trk=nav_responsive_tab_profile_pic"><span class="icon-linkedin"></span></a></li>
             <li><a href="https://twitter.com/92nugree"><span class="icon-twitter"></span></a></li>

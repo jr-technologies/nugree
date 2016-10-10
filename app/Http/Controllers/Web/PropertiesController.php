@@ -96,8 +96,10 @@ class PropertiesController extends Controller
      */
     public function search(SearchPropertiesRequest $request)
     {
+
         $params = $request->getParams();
         $params['sortBy'] = 'updated_at';
+        $loggedInUser = $request->user();
         $properties = $this->properties->search($request->getParams());
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
@@ -105,6 +107,7 @@ class PropertiesController extends Controller
         return $this->response->setView('frontend.v1.property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
+            'isFavourite' => $this->getFavourite($loggedInUser,$properties),
             'societies'=>$this->societies->all(),
             'blocks'=>$this->blocks->getBlocksBySociety($request->get('societyId')),
             'propertyTypes'=>$this->propertyTypes->all(),
@@ -115,6 +118,20 @@ class PropertiesController extends Controller
             'oldValues'=>$request->all(),
             'banners'=>$banners
         ]]);
+    }
+    public function getFavourite($loggedInUser ,$properties)
+    {
+        $favourites =[];
+        if($loggedInUser == null) {
+            return false;
+        }
+        else{
+            foreach($properties as $property)
+            {
+                $favourites[]=$this->favouriteFactory->isFavourite($property->id, $loggedInUser->id);
+            }
+            return $favourites;
+        };
     }
     public function getPropertyListingPageBanners($params)
     {
@@ -183,7 +200,6 @@ class PropertiesController extends Controller
     }
     public function getById(GetPropertyRequest $request)
     {
-
         try {
            $property = $this->properties->getById($request->get('propertyId'));
            if($property->propertyStatus->id == ($this->status->getActiveStatusId()))

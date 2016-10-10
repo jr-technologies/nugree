@@ -35,7 +35,7 @@
                     <select name="country_id" id="country_id">
                         <option value="">Please Select</option>
                         @foreach($response['data']['countries'] as $country)
-                            <option value="{{$country->id}}" @if($response['data']['city']->id == $country->id) selected @endif >{{$country->name}}</option>
+                            <option value="{{$country->id}}" @if($response['data']['city']->countryId == $country->id) selected @endif >{{$country->name}}</option>
                         @endforeach
                     </select>
                 </td>

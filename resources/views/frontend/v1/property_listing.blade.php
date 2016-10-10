@@ -1,17 +1,15 @@
 @extends('frontend.v1.frontend')
 @section('content')
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
-    <div class="listing-page">
+     <div class="listing-page">
         <div class="ads-slideshow">
             <div class="mask">
                 <div class="slideset">
                     @if(isset($response['data']['banners']['leftBanners']))
                         @foreach($response['data']['banners']['leftBanners'] as $leftBanner)
                             <div class="slide"><a @if($leftBanner->banner_link !=="")href="{{$leftBanner->banner_link}}"@endif><img src="{{$leftBanner->image}}" alt="image description"></a></div>
-
                         @endforeach
                     @endif
-
                 </div>
             </div>
         </div>
@@ -25,8 +23,24 @@
                 <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                  <ul class="filters-links text-upparcase">
                         <li class="active">
-                            <a class="filters-links-opener">SEARCH FILTERS</a>
-                            <div class="slide"></div>
+                            <a class="filters-links-opener">Sort By</a>
+                            <div class="slide">
+                                <span class="fake-select">
+                                    <select name="sort_by" id="sort">
+                                        <option value='' selected >Default Order</option>
+                                        <option value='price_asc'>Price Low to High</option>
+                                        <option value='price_desc'>Price High to Low</option>
+                                        <option value='beds_asc'>Beds Low to High</option>
+                                        <option value='beds_desc'>Beds High to Low</option>
+                                        <option value='land_asc'>Area Low to High</option>
+                                        <option value='land_desc'>Area High to Low</option>
+                                        <option value='date_desc'>Date New to Old</option>
+                                        <option value='date_asc'>Date Old to New</option>
+                                        <option value='verified_desc'>Verified Only</option>
+                                        <option value='picture_desc'>With Photos</option>
+                                    </select>
+                                </span>
+                            </div>
                         </li>
                         <li class="active">
                             <a class="filters-links-opener">PROPERTY FOR</a>
@@ -128,7 +142,7 @@
                             </div>
                         </li>
                         <li class="active">
-                            <a class="filters-links-opener">PRICE RANGE</a>
+                          <a class="filters-links-opener">PRICE RANGE</a>
                             <div class="slide">
                                 <div class="fromTo full-width">
                                     <div class="field-holder">
@@ -138,36 +152,14 @@
                                         <input type="number" placeholder="To" class="PriceField" name="price_to">
                                     </div>
                                 </div>
-                                <span class="calculatedPrice">Please enter the price</span>
+                               <span class="calculatedPrice">Please enter the price</span>
                             </div>
                         </li>
-                     <li class="active">
-                         <a class="filters-links-opener">Sort</a>
-                         <div class="slide">
-                             <ul class="filterChecks">
-                                 <li>
-                                     <select class="js-example-basic-single" name="sort_by" id="sort">
-                                         <option value='' selected >Default Order</option>
-                                         <option value='price_asc'>Price Low to High</option>
-                                         <option value='price_desc'>Price High to Low</option>
-                                         <option value='beds_asc'>Beds Low to High</option>
-                                         <option value='beds_desc'>Beds High to Low</option>
-                                         <option value='land_asc'>Area Low to High</option>
-                                         <option value='land_desc'>Area High to Low</option>
-                                         <option value='date_desc'>Date New to Old</option>
-                                         <option value='date_asc'>Date Old to New</option>
-                                         <option value='verified_desc'>Verified Only</option>
-                                         <option value='picture_desc'>With Photos</option>
-                                     </select>
 
-                                 </li>
-                             </ul>
-                         </div>
-                     </li>
                     </ul>
                     <ul class="filter-btn">
-                        <li><button type="submit">Search</button></li>
-                        <li><button type="reset">Reset</button></li>
+                        <li><button type="submit" class="btn-search">Search</button></li>
+                        <li><button type="reset" class="btn-reset">Reset</button></li>
                     </ul>
                 </form>
             </aside>
@@ -176,13 +168,20 @@
                     <strong class="no-heading">sorry, no property found</strong>
                     <p>Maybe your search was to specific, please try searching with another term.</p>
                 </div>
+                <?php
+                $favourites =0;
+
+                ?>
             @foreach($response['data']['properties'] as $property)
+
                 <article class="publicProperty-post">
                     <div class="image-holder">
                         <div class="listing-image-slider">
                             <div class="mask">
                                 <div class="slideset">
+
                                     <?php
+
                                     $count = 0;
                                     $betweenCountIndex=0;
                                     $image = url('/')."/assets/imgs/no.png";
@@ -196,32 +195,31 @@
                                     $count++
                                     ?>
                                     <div class="slide"><a href="property?propertyId={{$property->id}}">
-                                            <img src="{{$image}}" alt="image description"></a></div>
-
+                                            <img src="{{$image}}" alt="image description"></a>
+                                    </div>
                                 </div>
                             </div>
                             <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
                             <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>
                         </div>
-
                     </div>
                     <div class="caption text-left">
                         <div class="layout">
                             <h1>{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
-                                  in '.$property->location->location->location}}</h1>
+                                  in '.$property->location->location->location.'('.$property->location->city->name.')'}}</h1>
                             <p>{{str_limit($property->description,148) }}</p>
                             <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
                             <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
                             <div class="holder-ui">
                                 <ul class="public-ui-features text-capital">
-                            @foreach($property->features as $feature)
-                                @foreach($feature as $featureSection)
-                                    @if($featureSection->priority ==1)
-                                    <li><span>{{$featureSection->value}}</span></li>
+                                    @foreach($property->features as $feature)
+                                        @foreach($feature as $featureSection)
+                                            @if($featureSection->priority ==1)
+                                                <li><span>{{$featureSection->value}}</span></li>
 
-                                    @endif
-                                @endforeach
-                            @endforeach
+                                            @endif
+                                        @endforeach
+                                    @endforeach
                                 </ul>
                                 <?php
                                 $image = url('/') . "/assets/imgs/no.png";
@@ -241,9 +239,16 @@
                                 <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span><span class="hidden-xs">View number</span></a></li>
                                 <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span><span class="hidden-xs">Send mail</span></a></li>
                             </ul>
-                            <a class="add-to-favorite"><span class="icon-heart-o"></span></a>
+                            <?php
+                            $user = (new \App\Libs\Helpers\AuthHelper())->user();
+                            ?>
+                            <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
+                               key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
+                                <span class="icon-heart-o"></span></a>
+
                         </div>
                     </div>
+                    <?php $favourites++; ?>
                 </article>
             @endforeach
                 <?php
