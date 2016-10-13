@@ -52,7 +52,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             alert('Sorry! property not found');
             return $location.path($state.href('home.properties.all').substring(1));
         }
-
         $rootScope.loading_content_class = '';
         $scope.html_title = "Property42 | Add Property";
         $scope.propertySaved = false;

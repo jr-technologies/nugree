@@ -13,11 +13,11 @@ class LandUnitTableSeeder extends Seeder
  public function run()
  {
      DB::table('land_units')->insert([
-         ['unit'=>'Marla'],
-         ['unit'=>'Kanal'],
-         ['unit'=>'square feet'],
-         ['unit'=>'square yard'],
-         ['unit'=>'square meter'],
+         ['id' => 3, 'unit'=>'Marla'],
+         ['id' => 4, 'unit'=>'Kanal'],
+         ['id' => 1, 'unit'=>'square feet'],
+         ['id' => 2, 'unit'=>'square yard'],
+         ['id' => 5, 'unit'=>'square meter'],
      ]);
  }
 }
