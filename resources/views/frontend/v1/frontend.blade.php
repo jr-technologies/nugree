@@ -51,14 +51,14 @@
             <div class="container">
                 <div class="col">
                     <h1><span>Get in</span> Touch</h1>
-                    <form class="submit-query">
-                        <div class="input-holder"><input type="text" placeholder="Name" ></div>
-                        <div class="input-holder"><input type="email" placeholder="Email"></div>
-                        <div class="input-holder"><input type="number" placeholder="Phone" value=""></div>
-                        <div class="input-holder"><input type="text" placeholder="Subject"></div>
-                        <textarea placeholder="Your message"></textarea>
+                    {{Form::open(array('url'=>'feedback','method'=>'POST','class'=>'submit-query'))}}
+                        <div class="input-holder"><input type="text" placeholder="Name" name="name" ></div>
+                        <div class="input-holder"><input type="email" placeholder="Email" name="email"></div>
+                        <div class="input-holder"><input type="text" placeholder="Phone" value="" name="phone"></div>
+                        <div class="input-holder"><input type="text" placeholder="Subject" name="subject"></div>
+                        <textarea placeholder="Your message" name="message"></textarea>
                         <button type="submit">Send email <span class="icon-arrow-right"></span></button>
-                    </form>
+                    {{Form::close()}}
                 </div>
                 <div class="col">
                     <ul class="social-plugins">
@@ -98,10 +98,10 @@
             <a href="{{URL::to('agents')}}">AGENTS</a>
         </li>
         <li>
-            <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#about-us':'#about-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}">ABOUT</a>
+            <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#about-us':'#about-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'back-to-top'}}">ABOUT</a>
         </li>
         <li>
-            <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#contact-us':'#contact-us'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'scroll'}}">CONTACT</a>
+            <a href="{{(Route::getCurrentRoute()->getPath() !='/')? url('/').'#footer':'#footer'}}" class="{{(Route::getCurrentRoute()->getPath() !='/')? '':'back-to-top'}}">CONTACT</a>
         </li>
     </ul>
     <div class="mobile-content text-center">
@@ -119,7 +119,7 @@
     <div class="logo-holder"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="Nugree"></div>
     <ul class="bottom-links">
         <li><a href="#">www.nugree.com</a></li>
-        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;">&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;</li>
+        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</li>
     </ul>
 </div>
 <script src="{{url('/')}}/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>

@@ -175,7 +175,7 @@
                 </div>
             </div>
         </div>
-        <div class="about-us">
+        <div class="about-us" id="about-us">
             <h1><span>About</span> Us</h1>
             <div class="description">
                 {{--<h2>What is Lorem Ipsum?</h2>--}}
