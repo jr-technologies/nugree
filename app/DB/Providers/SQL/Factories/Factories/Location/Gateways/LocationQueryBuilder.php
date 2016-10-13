@@ -24,7 +24,13 @@ class LocationQueryBuilder extends QueryBuilder
             $query = $query->where($this->table.'.city_id','=',$params['cityId']);
         return $query->where($this->table.'.location','like','%'.$params['keyword'].'%')->get();
     }
-
+    public function getLocationByCity($params)
+    {
+        return DB::table($this->table)
+            ->select($this->table.'.*')
+            ->where($this->table.'.city_id','=',$params['cityId'])
+            ->get();
+    }
     public function getByCity($params)
     {
         $cityTable = (new CityFactory())->getTable();

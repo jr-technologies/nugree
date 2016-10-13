@@ -52,10 +52,10 @@ $(document).on('click','.add-to-favorite',function(){
                 Authorization: key
             },
             success: function(response) {
-
+                $('#'+favId).closest('a').addClass('added');
             }
         })
-        $('#'+favId).closest('a').addClass('added');
+
     }
 });
 

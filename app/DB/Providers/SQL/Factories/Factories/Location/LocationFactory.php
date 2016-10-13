@@ -38,6 +38,11 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
        return $this->mapCollection($this->tableGateway->all());
     }
+    public function getLocationByCity($params)
+    {
+        return $this->mapCollection($this->tableGateway->getLocationByCity($params));
+
+    }
     public function getByCity($params)
     {
         $locations = $this->tableGateway->getByCity($params);

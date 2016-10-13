@@ -295,6 +295,9 @@
                     <p></p>
                     <span class="information"><span class="icon-info"></span>When you call, don't forget to mention that you found this ad on nugree.com</span>
                 </div>
+                <div id="login-to-continue" class="lightbox generic-lightbox">
+                    <p>Dear user, you are not logged in, please <a href="{{ URL::to('/login') }}">Login to continue.</a></p>
+                </div>
                 <div id="sendEmail-popup" class="lightbox generic-lightbox">
                     <span class="lighbox-heading">Send Email</span>
                     {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}

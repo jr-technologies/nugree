@@ -21,8 +21,11 @@
         <div class="logo"><a href="{{url('/')}}"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="nugree.com"></a></div>
         <div class="right-area">
             <a class="searchOpener"><span class="icon-search"></span></a>
+            <form class="searchById">
+                <input type="number" placeholder="Search by ID">
+                <button type="submit"><span class="icon-search"></span></button>
+            </form>
             <ul class="customLinks">
-
                 @if(session()->get('authUser') ==null)
                 <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
                    @else
@@ -62,8 +65,8 @@
                 </div>
                 <div class="col">
                     <ul class="social-plugins">
-                        <li><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fproperty42pk-1562646287317094%2F&tabs=timeline&width=340&height=384&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="384" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></li>
-                        <li><a class="twitter-timeline" data-height="384" href="https://twitter.com/Property42_pk">Tweets by Property42_pk</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+                        <li><div class="fb-page" data-href="https://www.facebook.com/proerty92pk-354399088098995/" data-tabs="timeline" data-height="382" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/proerty92pk-354399088098995/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/proerty92pk-354399088098995/">proerty92.pk</a></blockquote></div></li>
+                        <li><a class="twitter-timeline" href="https://twitter.com/92nugree">Tweets by 92nugree</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
                     </ul>
                 </div>
             </div>
@@ -135,4 +138,12 @@
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 </body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 </html>

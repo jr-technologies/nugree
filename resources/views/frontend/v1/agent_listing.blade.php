@@ -36,8 +36,9 @@
                                         </select>
 
                                     </li>
-                                    <input class="btn-default full-width" type="submit" value="Search Agent">
+
                                 </ul>
+                                <input class="btn-default full-width" type="submit" value="Search Agent">
                             </div>
                         </li>
                     </ul>

@@ -36,7 +36,7 @@ class LocationsController extends ApiController
     public function getByCity(GetLocationByCityRequest $request)
     {
         return $this->response->respond(['data'=>[
-         'location'=> $this->location->getByCity($request->all())
+         'location'=> $this->location->getLocationByCity($request->all())
     ]]);
     }
 }
