@@ -105,7 +105,7 @@ $(document).on('change', '#cityId', function(){
             success: function (response)
             {
                 $('#societies').empty();
-                $('#societies').append($('<option>').text('select a Location').attr('value', ''));
+                $('#societies').append($('<option>').text('select a location').attr('value', ''));
                 $.each(response.data.location, function (i, location) {
                     $('#societies').append($('<option>').text(location.location).attr('value', location.id));
                 });

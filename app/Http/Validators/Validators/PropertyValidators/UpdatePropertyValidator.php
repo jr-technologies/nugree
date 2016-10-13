@@ -39,7 +39,7 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
             'ownerId.exists' => 'Owner is invalid',
             'purposeId.exists' => 'Property purpose is invalid',
             'subTypeId.exists' => 'Property sub type is invalid',
-            'location.exists' => 'Location is invalid',
+            'location.exists' => 'location is invalid',
             'landUnitId.exists' => 'Land unit is invalid',
 
             /* required messages */

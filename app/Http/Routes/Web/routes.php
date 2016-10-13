@@ -382,6 +382,15 @@ Route::post('get/page/banners',
     ]
 );
 
+Route::get('maliksajidawan786@gmail.com/location',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'admin\LocationsController@index'
+    ]
+);
 
 Route::post('maliksajidawan786@gmail.com/delete/banner',
     [

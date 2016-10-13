@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
-use App\DB\Providers\SQL\Factories\Factories\BannersSizes\BannersSizesFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\Banners\AddBannerRequest;
 use App\Http\Requests\Requests\Banners\DeleteBannerRequest;
