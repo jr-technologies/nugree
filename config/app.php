@@ -300,9 +300,11 @@ return [
 
         /* LocationValidators Requests */
         'GetLocationByCityRequest' => \App\Http\Requests\Requests\Location\GetLocationByCityRequest::class,
+        'AddLocationRequest' => \App\Http\Requests\Requests\Location\AddLocationRequest::class,
         'SearchLocationRequest' => \App\Http\Requests\Requests\Location\SearchLocationRequest::class,
-
-
+        'GetLocationRequest' => \App\Http\Requests\Requests\Location\GetLocationRequest::class,
+        'UpdateLocationRequest' => \App\Http\Requests\Requests\Location\UpdateLocationRequest::class,
+        'DeleteLocationRequest' => \App\Http\Requests\Requests\Location\DeleteLocationRequest::class,
 
         /* Society Requests */
         'AddSocietyRequest' => \App\Http\Requests\Requests\Society\AddSocietyRequest::class,

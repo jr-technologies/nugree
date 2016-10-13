@@ -45,6 +45,7 @@
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/city')}}"><span class="icon-list"></span>City </a></li>
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/city/listing')}}"><span class="icon-list"></span>City Listing </a></li>
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/location')}}"><span class="icon-list"></span>Location </a></li>
+                <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/location/listing')}}"><span class="icon-list"></span>Location Listing</a></li>
                 {{--<li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/blocks')}}"><span class="icon-list"></span>Blocks </a></li>--}}
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/banners')}}"><span class="icon-list"></span>Banners </a></li>
                 <li class="active"><a href="{{URL::to('maliksajidawan786@gmail.com/banners/listing')}}"><span class="icon-list"></span>Banners Listing</a></li>

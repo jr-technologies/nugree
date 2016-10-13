@@ -392,6 +392,79 @@ Route::get('maliksajidawan786@gmail.com/location',
     ]
 );
 
+Route::post('maliksajidawan786@gmail.com/add/location',
+    [
+        'middleware'=>
+            [
+                'webValidate:addLocationRequest'
+            ],
+        'uses'=>'admin\LocationsController@store'
+    ]
+);
+
+Route::get('maliksajidawan786@gmail.com/location/listing',
+    [
+        'middleware'=>
+            [
+
+            ],
+        'uses'=>'admin\LocationsController@listing'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/get/location/by/City',
+    [
+        'middleware'=>
+            [
+                'webValidate:getLocationByCityRequest'
+            ],
+        'uses'=>'admin\LocationsController@getByCity'
+    ]
+);
+
+Route::post('get/update/location/form',
+    [
+        'middleware'=>
+            [
+                'webValidate:getLocationRequest'
+            ],
+        'uses'=>'admin\LocationsController@getUpdateLocationForm'
+    ]
+);
+
+Route::post('maliksajidawan786@gmail.com/update/location',
+    [
+        'middleware'=>
+            [
+                'webValidate:updateLocationRequest'
+            ],
+        'uses'=>'admin\LocationsController@update'
+    ]
+);
+
+
+Route::post('maliksajidawan786@gmail.com/delete/location',
+    [
+        'middleware'=>
+            [
+                'webValidate:deleteLocationRequest'
+            ],
+        'uses'=>'admin\LocationsController@delete'
+    ]
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::post('maliksajidawan786@gmail.com/delete/banner',
     [
         'middleware'=>

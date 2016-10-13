@@ -16,17 +16,19 @@
         <table>
             <tr>
                    
-                <th>Add Location</th>
+                <th>Update Location</th>
 
             </tr>
-            {{Form::open(array('url'=> 'maliksajidawan786@gmail.com/add/location','method'=>'POST','class'=>'rejectApprove-form','enctype'=>"multipart/form-data"))}}
+
+            {{Form::open(array('url'=> 'maliksajidawan786@gmail.com/update/location','method'=>'POST','class'=>'rejectApprove-form','enctype'=>"multipart/form-data"))}}
             <tr>
+                <input type="hidden" name="location_id" value="{{$response['data']['location']->id}}">
                 <td>
                     <label>Select City</label>
                     <select name="city_id">
                         <option value="">Please Select</option>
                         @foreach($response['data']['cities'] as $city)
-                            <option value="{{$city->id}}">{{$city->name}}</option>
+                            <option value="{{$city->id}}" @if($response['data']['location']->cityId == $city->id) selected @endif>{{$city->name}}</option>
                         @endforeach
                     </select>
                 </td>
@@ -35,19 +37,19 @@
             <tr>
                   <td>
                     <label>Location Name</label>
-                    <input type="text" name="location" placeholder="Add Location">
+                    <input type="text" name="location" placeholder="Add Location" value="{{$response['data']['location']->location}}">
                 </td>
             </tr>
             <tr>
                 <td>
                     <label>Lat</label>
-                    <input type="text" name="lat" placeholder="Add lat">
+                    <input type="text" name="lat" placeholder="Add lat" value="{{$response['data']['location']->lat}}">
                 </td>
             </tr>
             <tr>
                 <td>
                     <label>Long</label>
-                    <input type="text" name="long" placeholder="Add long">
+                    <input type="text" name="long" placeholder="Add long" value="{{$response['data']['location']->long}}">
                 </td>
             </tr>
             <tr>
@@ -59,7 +61,7 @@
             <tr>
                 <td><br/><br/>
 
-                    <button type="submit">Add Location</button>
+                    <button type="submit">Update Location</button>
                 </td>
 
             </tr>

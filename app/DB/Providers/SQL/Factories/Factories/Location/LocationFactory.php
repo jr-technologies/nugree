@@ -13,6 +13,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\Location;
 use App\DB\Providers\SQL\Factories\Factories\Location\Gateways\LocationQueryBuilder;
 use App\DB\Providers\SQL\Factories\SQLFactory;
 use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
+use App\DB\Providers\SQL\Models\DetailLocation;
 use App\DB\Providers\SQL\Models\Location;
 
 class LocationFactory extends SQLFactory implements SQLFactoriesInterface
@@ -21,9 +22,14 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     public function __construct()
     {
         $this->model = new Location();
+        $this->detailLocation = new DetailLocation();
         $this->tableGateway = new LocationQueryBuilder();
     }
 
+    /**
+     * @param $id
+     * @return Location|null
+     */
     function find($id)
     {
         return $this->map($this->tableGateway->find($id));
@@ -32,9 +38,15 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
        return $this->mapCollection($this->tableGateway->all());
     }
-    public function getByCity($cityId)
+    public function getByCity($params)
     {
-        return $this->mapCollection($this->tableGateway->getWhere(['city_id'=>$cityId]));
+        $locations = $this->tableGateway->getByCity($params);
+        $final =[];
+        foreach($locations as $location)
+        {
+            $final[] = $this->detailMap($location);
+        }
+        return $final;
     }
     public function search($params)
     {
@@ -44,6 +56,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
         $location->updatedAt = date('Y-m-d h:i:s');
         return $this->tableGateway->update($location->id ,$this->mapPropertyTypeOnTable($location));
+    }
+    public function locationCount()
+    {
+        return $this->tableGateway->locationCount();
     }
     public function store(Location $location)
     {
@@ -60,7 +76,7 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
             'city_id'=>$location->cityId,
             'location'=>$location->location,
             'lat'=>$location->lat,
-            'lang'=>$location->long,
+            'long'=>$location->long,
             'updated_at' => $location->updatedAt,
         ];
     }
@@ -69,6 +85,24 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
         return $this->tableGateway->updateWhere($where, $data);
     }
 
+    function detailMap($result)
+    {
+        $location = clone($this->detailLocation);
+        $location->id=$result->id;
+        $location->cityId = $result->city_id;
+        $location->location = $result->location;
+        $location->lat = $result->lat;
+        $location->long = $result->long;
+        $location->cityName = $result->city;
+        $location->createdAt = $result->created_at;
+        $location->updatedAt = $result->updated_at;
+        return $location;
+    }
+
+    /**
+     * @param $result
+     * @return Location
+     */
     function map($result)
     {
         $location = clone($this->model);
