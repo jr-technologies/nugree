@@ -76,8 +76,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
                 cityId: $scope.cityId
             }
         }).then(function(response){
-            console.log(response);
-            $scope.locations = response.data;
+            $scope.locations = response.data.data.locations;
         });
     };
     $scope.locationChanged = function () {
