@@ -37,7 +37,7 @@
 
                 <td>
                     <label>Location Name</label>
-                    <input type="text" name="city_name" placeholder="Add City">
+                    <input type="text" name="city_name" placeholder="Add Location">
                 </td>
             </tr>
 
