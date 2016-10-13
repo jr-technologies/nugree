@@ -63,10 +63,10 @@
                     </label>
                 </div>
                 <div class="pro-type border"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}}</p></div>
-                <div class="pro-location border"><p>{{property.location.society.name}} - {{property.location.block.name}} Block</p></div>
+                <div class="pro-location border"><p>{{property.location.location.location}}</p></div>
                 <div class="pro-price border"><p>{{property.price}}</p></div>
                 <div class="pro-size border"><p>{{property.land.area}} {{property.land.unit.name}}</p></div>
-                <div class="pro-date border"><p>18 Apr 2016</p></div>
+                <div class="pro-date border"><p>{{property.createdAt}}</p></div>
                 <div class="pro-controls border">
                     <ul class="control-link">
                         <li ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.active"><a href="{{domain}}property?propertyId={{property.id}}" target="_blank"><span class="icon-search-doc"></span></a></li>

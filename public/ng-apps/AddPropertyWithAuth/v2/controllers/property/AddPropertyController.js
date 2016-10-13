@@ -76,8 +76,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
                 cityId: $scope.cityId
             }
         }).then(function(response){
-            console.log(response);
-            $scope.locations = response.data;
+            $scope.locations = response.data.data.locations;
         });
     };
     $scope.locationChanged = function () {
@@ -94,8 +93,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           propertyType :0,
           propertySubType : 0,
           location:0,
-          society:0,
-          block: 0,
           price: undefined,
           landArea: undefined,
           landUnit: 0,
@@ -210,17 +207,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         $scope.temp.location = {};
         $('.image-loaded').removeClass('image-loaded');
         $('file-uploader').find('img').attr('src', '#');
-    };
-
-    var getBlocks = function () {
-        return $CustomHttpService.$http('GET', apiPath+'society/blocks', {
-            society_id: $scope.form.data.society
-        }).then(function successCallback(response) {
-            return response.data.data.blocks;
-        }, function errorCallback(response) {
-            $rootScope.$broadcast('error-response-received',{status:response.status});
-            return response;
-        });
     };
 
     $scope.initialize = function () {

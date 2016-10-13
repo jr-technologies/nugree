@@ -5,6 +5,7 @@
             <div class="mask">
                 <div class="container">
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
+
                     <span class="select-load">
                         <select class="js-example-basic-single" name="city_id" id="cityId">
                             <option >Select City</option>
@@ -18,6 +19,7 @@
                             <option>Select Location</option>
                         </select>
                     </span>
+
                     <ul class="typeOfBuying">
                         <li>
                             <label for="buy" class="customRadio">
@@ -161,7 +163,7 @@
                   @endforeach
                 </div>
                 <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
-                <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></span></a>
+                <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>
                 {{--<a href="#" class="btn-default">View all projects</a>--}}
             </div>
         </div>

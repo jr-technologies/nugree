@@ -39,7 +39,7 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
             'ownerId.exists' => 'Owner is invalid',
             'purposeId.exists' => 'Property purpose is invalid',
             'subTypeId.exists' => 'Property sub type is invalid',
-            'blockId.exists' => 'Block is invalid',
+            'location.exists' => 'Location is invalid',
             'landUnitId.exists' => 'Land unit is invalid',
 
             /* required messages */
@@ -65,7 +65,7 @@ class UpdatePropertyValidator extends PropertyValidator implements ValidatorsInt
             'ownerId' => 'required|exists:users,id',
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
-            'blockId' => 'required|exists:blocks,id',
+            'location' => 'required|exists:locations,id',
             'title' => 'required|min:3|max:250',
             'description' => 'max:1200',
             'price' => 'required|numeric',

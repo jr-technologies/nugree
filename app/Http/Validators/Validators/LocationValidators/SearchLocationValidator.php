@@ -20,7 +20,7 @@ class SearchLocationValidator extends LocationValidator implements ValidatorsInt
     public function rules()
     {
         return[
-            'cityId' => 'required',
+            'cityId' => '',
         ];
     }
 }

@@ -131,6 +131,7 @@
 <script src="{{url('/')}}/web-apps/frontend/assets/js/fixed-block.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/assets/js/lightBox.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-main.js" type="text/javascript" defer></script>
+<script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 </body>
