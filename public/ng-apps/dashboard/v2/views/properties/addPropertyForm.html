@@ -55,14 +55,12 @@
                     <div class="layout-holder">
                         <label class="required-field">Location</label>
                         <div class="input-holder">
-                            <span class="fake-select">
-                               <ui-select ng-model="temp.location" theme="select2" ng-change="locationChanged()" ng-disabled="ctrl.disabled" title="Choose a Location" required >
-                                   <ui-select-match placeholder="select a location...">{{$select.selected.location}}</ui-select-match>
-                                   <ui-select-choices refresh="searchLocations($select)" refresh-delay="300" repeat="location in locations">
-                                       <div ng-bind-html="location.location"></div>
-                                   </ui-select-choices>
-                               </ui-select>
-                            </span>
+                            <ui-select ng-model="temp.location" theme="select2" ng-change="locationChanged()" ng-disabled="ctrl.disabled" title="Choose a Location" required >
+                                <ui-select-match placeholder="select a location...">{{$select.selected.location}}</ui-select-match>
+                                <ui-select-choices refresh="searchLocations($select)" refresh-delay="300" repeat="location in locations">
+                                    <div ng-bind-html="location.location"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
                 </div>
