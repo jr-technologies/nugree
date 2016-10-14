@@ -3,31 +3,21 @@
 namespace App\Http\Controllers\Web\Auth;
 
 use App\DB\Providers\SQL\Models\Agency;
-use App\Events\Events\User\UserCreated;
-use App\Events\Events\User\UserUpdated;
 use App\Http\Controllers\Web\WebController;
-use App\Http\Requests\Request;
 use App\Http\Requests\Requests\Auth\LoginRequest;
 use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Auth\Web as Authenticator;
-use App\Repositories\Interfaces\Repositories\UsersRepoInterface;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Repositories\Providers\Providers\RolesRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
-use App\Repositories\Repositories\Sql\AgenciesRepository;
-use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Repositories\Transformers\Sql\UserTransformer;
 use App\User;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Redirect;
 use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 
 class AuthController extends WebController
@@ -38,6 +28,7 @@ class AuthController extends WebController
     public $response;
     private $agencies;
     private $roles;
+    private $location="";
     public $propertyTypes;
     public $propertySubtypes;
     public function __construct
@@ -52,6 +43,7 @@ class AuthController extends WebController
         $this->users = $usersRepoProvider->repo();
         $this->response = $response;
         $this->userTransformer = $userTransformer;
+        $this->location = (new LocationsRepoProvider())->repo();
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
         $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
         $this->agencies = (new AgenciesRepoProvider())->repo();
@@ -83,7 +75,7 @@ class AuthController extends WebController
     {
         return $this->response->setView('frontend.v1.auth.register')->respond([
             'roles' => $this->roles->all(),
-            'societies' => $this->societies->all()
+            'locations' => $this->location->all()
         ]);
     }
 

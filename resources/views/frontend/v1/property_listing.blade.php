@@ -184,18 +184,25 @@
                                     $count = 0;
                                     $betweenCountIndex=0;
                                     $image = url('/')."/assets/imgs/no.png";
-                                    foreach($property->documents as $document)
-                                    {
-                                        if($document->type == 'image' && $document->main == true && $document->path != "")
-                                        {
-                                            $image = url('/').'/temp/'.$document->path;
-                                        }
-                                    }
                                     $count++
                                     ?>
-                                    <div class="slide"><a href="property?propertyId={{$property->id}}">
-                                            <img src="{{$image}}" alt="image description"></a>
+                                @if(sizeof($property->documents) > 0)
+                                   @foreach($property->documents as $document)
+                                    <div class="slide">
+                                        <a href="property?propertyId={{$property->id}}">
+                                          @if($document->type == 'image'  && $document->path != "")
+                                            <img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">
+                                          @endif
+                                        </a>
                                     </div>
+                                  @endforeach
+                                @else
+                                    <div class="slide">
+                                      <a href="property?propertyId={{$property->id}}">
+                                         <img src="{{$image}}" alt="image description">
+                                      </a>
+                                    </div>
+                                @endif
                                 </div>
                             </div>
                             <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
@@ -214,8 +221,7 @@
                                     @foreach($property->features as $feature)
                                         @foreach($feature as $featureSection)
                                             @if($featureSection->priority ==1)
-                                                <li><span>{{$featureSection->value}}</span></li>
-
+                                                <li>{{$featureSection->name}}:<span>{{$featureSection->value}}</span></li>
                                             @endif
                                         @endforeach
                                     @endforeach
@@ -243,8 +249,8 @@
                             ?>
                             <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
                                key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
-                                <span class="icon-heart-o"></span></a>
-
+                               <span class="icon-heart-o"></span>
+                            </a>
                         </div>
                     </div>
                     <?php $favourites++; ?>

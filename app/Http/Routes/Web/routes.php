@@ -979,8 +979,7 @@ Route::post('/register',
             [
                 'webValidate:registrationRequest'
             ],
-        'uses'=>'Auth\AuthController@register',
-        'as' => 'register'
+        'uses'=>'Auth\AuthController@register','as' => 'register'
     ]
 );
 

@@ -153,13 +153,13 @@
                 </div>
                 <div class="input-holder full-width">
                     <ul class="societiesBlock-listing">
-                        @foreach($response['societies'] as $society)
+                        @foreach($response['locations'] as $location)
                             <li>
-                                <label for="society{{$society->id}}" class="customCheckbox">
-                                    <input type="checkbox" id="society{{$society->id}}" class="selectSociety-checkbox" name="societies[]" value="{{$society->id}}"
-                                           @if(in_array($society->id,(old('societies') !=null)?old('societies'):[])) checked @endif>
+                                <label for="society{{$location->id}}" class="customCheckbox">
+                                    <input type="checkbox" id="society{{$location->id}}" class="selectSociety-checkbox" name="societies[]" value="{{$location->id}}"
+                                           @if(in_array($location->id,(old('societies') !=null)?old('societies'):[])) checked @endif>
                                     <span class="fake-checkbox"></span>
-                                    <span class="fake-label">{{$society->name}}</span>
+                                    <span class="fake-label">{{$location->location}}</span>
                                 </label>
                             </li>
                         @endforeach
