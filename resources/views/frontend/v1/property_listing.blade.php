@@ -170,7 +170,6 @@
                 </div>
                 <?php
                 $favourites =0;
-
                 ?>
             @foreach($response['data']['properties'] as $property)
 
@@ -252,7 +251,9 @@
                 </article>
             @endforeach
                 <?php
+
                 $for_previous_link = $_GET;
+                $first_page = URL('/search').'?'.'page=1';
                 $pageValue = (isset($for_previous_link['page']))?$for_previous_link['page']:1;
                 ($pageValue ==1)?$for_previous_link['page'] = $pageValue:$for_previous_link['page'] = $pageValue-1;
                 $convertPreviousToQueryString  = http_build_query($for_previous_link);
@@ -260,6 +261,7 @@
                 ?>
                 <?php
                 $totalPaginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
+                $last_page = URL('/search').'?'.'page='.$totalPaginationValue;
                 $for_next_link = $_GET;
                 $pageValue = (isset($for_next_link['page']))?$for_next_link['page']:1;
                 ($pageValue == $totalPaginationValue)?$for_next_link['page'] = $pageValue:$for_next_link['page'] = $pageValue+1;
@@ -268,7 +270,7 @@
                 ?>
                 <ul class="pager">
 
-                    <li><a href="#" class="first"><span class="icon-arrow1-left"></span></a></li>
+                    <li><a href="{{$first_page}}" class="first"><span class="icon-arrow1-left"></span></a></li>
                     @if($totalPaginationValue !=0)
                     <li><a href="{{$previousResult}}" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
                     @endif
@@ -286,7 +288,7 @@
                     @if($totalPaginationValue !=0)
                     <li><a href="{{$nextResult}}" class="next"><span class="icon-bold-arrow-right"></span></a></li>
                     @endif
-                    <li><a href="#" class="last"><span class="icon-arrow1-right"></span></a></li>
+                    <li><a href="{{$last_page}}" class="last"><span class="icon-arrow1-right"></span></a></li>
                 </ul>
             </section>
             <div class="popup-holder">

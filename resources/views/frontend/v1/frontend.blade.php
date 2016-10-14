@@ -21,16 +21,17 @@
         <div class="logo"><a href="{{url('/')}}"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="nugree.com"></a></div>
         <div class="right-area">
             <a class="searchOpener"><span class="icon-search"></span></a>
-            <form class="searchById">
-                <input type="number" placeholder="Search by ID">
+            {{ Form::open(array('url' => 'property','method' => 'GET','class'=>'searchById')) }}
+                <input type="number" placeholder="Search by ID" name="propertyId" value="{{(isset($response['data']['propertyId']))?$response['data']['propertyId']:""}}">
                 <button type="submit"><span class="icon-search"></span></button>
-            </form>
+            {{Form::close()}}
+
             <ul class="customLinks">
                 @if(session()->get('authUser') ==null)
                 <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
                    @else
                     <li>
-                        <a href="#"><span class="hidden-xs">Atif sultan</span><span class="icon-profile2 hidden"></span></a>
+                        <a href="#"><span class="hidden-xs">{{str_limit(session()->get('authUser')->fName.' '.session()->get('authUser')->lName,13)}}</span><span class="icon-profile2 hidden"></span></a>
                         <ul class="dropDown">
                             <li><a href="{{URL::to('dashboard#/home/profile')}}">my profile</a></li>
                             <li><a href="{{URL::to('dashboard#/home/properties/all')}}">my listing</a></li>
@@ -56,10 +57,10 @@
                     <h1><span>Get in</span> Touch</h1>
                     {{Form::open(array('url'=>'feedback','method'=>'POST','class'=>'submit-query'))}}
                         <div class="input-holder"><input type="text" placeholder="Name" name="name" ></div>
-                        <div class="input-holder"><input type="email" placeholder="Email" name="email"></div>
+                        <div class="input-holder"><input type="email" placeholder="Email" name="email" required></div>
                         <div class="input-holder"><input type="text" placeholder="Phone" value="" name="phone"></div>
-                        <div class="input-holder"><input type="text" placeholder="Subject" name="subject"></div>
-                        <textarea placeholder="Your message" name="message"></textarea>
+                        <div class="input-holder"><input type="text" placeholder="Subject" name="subject" required></div>
+                        <textarea placeholder="Your message" name="message" required></textarea>
                         <button type="submit">Send email <span class="icon-arrow-right"></span></button>
                     {{Form::close()}}
                 </div>

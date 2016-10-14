@@ -19,7 +19,7 @@
                         <div class="propertyImage-slider">
                             <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$response['data']['property']->id}}" user_id="{{($user !=null)?$user->id:""}}"
                                key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite {{($user == null)?'lightbox':''}}  @if($response['data']['isFavourite'] != 0)
-                               added @endif"><span class="icon-heart-o"></span></a>
+                               added @endif" id="add-to-favorite{{$response['data']['property']->id}}"><span class="icon-heart-o"></span></a>
                             {{--<span class="premiumProperty text-upparcase">Premium</span>--}}
                              <div class="popup-holder">
                                 <div class="lightbox generic-lightbox" id="login-to-continue">
