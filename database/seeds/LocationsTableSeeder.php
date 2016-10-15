@@ -618,9 +618,7 @@ class LocationsTableSeeder extends Seeder
         ['city_id'=>1, 'location'=> " Halloki Gardens Block A ",'lat'=>0,'long'=>0],
         ['city_id'=>1, 'location'=> " Halloki Gardens Block B ",'lat'=>0,'long'=>0],
         ['city_id'=>1, 'location'=> " Halloki Gardens Block Others ",'lat'=>0,'long'=>0],
-
-            ['city_id'=>1, 'location'=> "Aabpara Coop Housing Society",'lat'=>0,'long'=>0],
-
+        ['city_id'=>1, 'location'=> "Aabpara Coop Housing Society",'lat'=>0,'long'=>0],
         ['city_id'=>1, 'location'=> "Aashiana Road",'lat'=>0,'long'=>0],
         ['city_id'=>1, 'location'=> "Abbot Road",'lat'=>0,'long'=>0],
         ['city_id'=>1, 'location'=> "Abdalians Housing Society",'lat'=>0,'long'=>0],
@@ -1225,9 +1223,7 @@ class LocationsTableSeeder extends Seeder
         ['city_id'=>1, 'location'=> " Halloki Gardens Block A ",'lat'=>0,'long'=>0],
         ['city_id'=>1, 'location'=> " Halloki Gardens Block B ",'lat'=>0,'long'=>0],
         ['city_id'=>1, 'location'=> " Halloki Gardens Block Others ",'lat'=>0,'long'=>0],
-
         ['city_id'=>2, 'location'=> "Abul Hassan Isphani Road",'lat'=>0,'long'=>0],
-
         ['city_id'=>2, 'location'=> "Ahsan Grand City",'lat'=>0,'long'=>0],
 
         ['city_id'=>2, 'location'=> "Ali Garh Society",'lat'=>0,'long'=>0],
