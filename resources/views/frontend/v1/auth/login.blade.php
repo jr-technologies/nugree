@@ -36,11 +36,12 @@
             </div>
             <ul class="buttons-holder text-upparcase">
                 <li>
-                    <a href="{{url('/register')}}">REGISTER NOW</a>
-                </li>
-                <li>
                     <button type="submit">LOGIN<span class="icon-login"></span></button>
                 </li>
+                <li>
+                    <a href="{{url('/register')}}">REGISTER NOW</a>
+                </li>
+
             </ul>
         </form>
         <div class="popup-holder">

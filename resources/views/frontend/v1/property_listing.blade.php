@@ -1,5 +1,33 @@
 @extends('frontend.v1.frontend')
 @section('content')
+    <script>
+        $(document).ready(function(){
+           $('.property_type').trigger('change');
+        });
+        var propertySubtypes = '<?php  echo $response['data']['propertySubtypes']; ?>';
+            propertySubtypes = JSON.parse(propertySubtypes);
+
+        var old_subtype = parseInt('<?php echo $response['data']['oldValues']['subTypeId']; ?>');
+
+        $(document).on('change','.property_type',function(){
+            var propertyTypeId = $(this).attr('propertyType');
+            $('#propertySubtype').empty();
+            $.each(propertySubtypes[propertyTypeId], function (i, subtype)
+            {
+                $('#propertySubtype').append(
+                '<li>'+
+                    '<label for="propertySubtype_'+subtype.id+'" class="customRadio">'+
+                    '<input type="radio" id="propertySubtype_'+subtype.id+'" '+ ((old_subtype == subtype.id)?'checked':'') +'  name="sub_type_id" class="property_sub_type filter-form-input" value="'+subtype.id+'">'+
+                    '<span class="fake-checkbox"></span>'+
+                    '<span class="fake-label">'+subtype.name+'</span>'+
+                    '</label>'+
+                '</li>'
+                );
+            });
+
+        });
+
+    </script>
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
      <div class="listing-page">
         <div class="ads-slideshow">
@@ -28,16 +56,14 @@
                                 <span class="fake-select">
                                     <select name="sort_by" id="sort">
                                         <option value='' selected >Default Order</option>
-                                        <option value='price_asc'>Price Low to High</option>
-                                        <option value='price_desc'>Price High to Low</option>
-                                        <option value='beds_asc'>Beds Low to High</option>
-                                        <option value='beds_desc'>Beds High to Low</option>
-                                        <option value='land_asc'>Area Low to High</option>
-                                        <option value='land_desc'>Area High to Low</option>
-                                        <option value='date_desc'>Date New to Old</option>
-                                        <option value='date_asc'>Date Old to New</option>
-                                        <option value='verified_desc'>Verified Only</option>
-                                        <option value='picture_desc'>With Photos</option>
+                                        <option value='price_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_asc') selected @endif>Price Low to High</option>
+                                        <option value='price_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_desc') selected @endif>Price High to Low</option>
+                                        <option value='land_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_asc') selected @endif>Area Low to High</option>
+                                        <option value='land_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_desc') selected @endif>Area High to Low</option>
+                                        {{--<option value='date_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_desc') selected @endif>Date New to Old</option>--}}
+                                        {{--<option value='date_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_asc') selected @endif>Date Old to New</option>--}}
+                                        {{--<option value='verified_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'verified_desc') selected @endif>Verified Only</option>--}}
+                                        {{--<option value='picture_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'picture_desc') selected @endif>With Photos</option>--}}
                                     </select>
                                 </span>
                             </div>
@@ -72,7 +98,7 @@
                                             <label for="{{$propertyType->name."_".$propertyType->id}}" class="customRadio">
                                                 <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
                                                        @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif
-                                                       name="property_type_id" class="property_type filter-form-input" value="{{$propertyType->id}}">
+                                                       name="property_type_id" class="property_type filter-form-input" value="{{$propertyType->id}}" propertyType="{{$propertyType->id}}">
                                                 <span class="fake-checkbox"></span>
                                                 <span class="fake-label">{{$propertyType->name}}</span>
                                             </label>
@@ -84,19 +110,7 @@
                         <li class="active">
                             <a class="filters-links-opener">Property SUB-Type</a>
                             <div class="slide">
-                                <ul class="filterChecks">
-                                    @foreach($response['data']['propertySubtypes'] as $propertySubType)
-                                        <li>
-                                            <label for="{{$propertySubType->name."_".$propertySubType->id}}" class="customRadio">
-                                                <input type="radio" id="{{$propertySubType->name."_".$propertySubType->id}}"
-                                                       @if($response['data']['oldValues']['subTypeId'] == $propertySubType->id) checked @endif
-                                                       name="sub_type_id" class="property_sub_type filter-form-input" value="{{$propertySubType->id}}">
-                                                <span class="fake-checkbox"></span>
-                                                <span class="fake-label">{{$propertySubType->name}}</span>
-                                            </label>
-                                        </li>
-                                    @endforeach
-
+                                <ul class="filterChecks" id="propertySubtype">
                                 </ul>
                             </div>
                         </li>
@@ -211,8 +225,8 @@
                     </div>
                     <div class="caption text-left">
                         <div class="layout">
-                            <h1>{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
-                                  in '.$property->location->location->location.'('.$property->location->city->name.')'}}</h1>
+                            <a href="property?propertyId={{$property->id}}"><h1>{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
+                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</h1></a>
                             <p>{{str_limit($property->description,148) }}</p>
                             <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
                             <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>

@@ -111,13 +111,18 @@ class PropertiesController extends Controller
             'societies'=>$this->societies->all(),
             'blocks'=>$this->blocks->getBlocksBySociety($request->get('societyId')),
             'propertyTypes'=>$this->propertyTypes->all(),
-            'propertySubtypes'=>$this->propertySubtypes->getByType($request->get('propertyTypeId')),
+            'propertySubtypes'=>$this->propertySubtypes(),
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
             'cities'=>$this->cities->all(),
             'oldValues'=>$request->all(),
             'banners'=>$banners
         ]]);
+    }
+    public function propertySubtypes()
+    {
+        $collection = collect($this->propertySubtypes->all());
+        return json_encode($collection->groupBy('propertyTypeId'));
     }
     public function getFavourite($loggedInUser ,$properties)
     {

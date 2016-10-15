@@ -188,7 +188,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
         <a href="#wrapper" class="search-property back-to-top"><span class="icon-search"></span> Search <br>property</a>
         <div class="popup-holder">
             <div id="submit-requirement-popup" class="lightbox generic-lightbox">
-                <span class="lighbox-heading">Submit you <span>requirement</span></span>
+                <span class="lighbox-heading">Submit your <span>requirement</span></span>
                 {{Form::open(array('url' => 'user/requirement','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
 
                     <div class="field-holder">
