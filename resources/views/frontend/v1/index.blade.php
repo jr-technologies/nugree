@@ -40,7 +40,7 @@
                     </ul>
                     <span class="select-load">
                         <select class="js-example-basic-single" name="city_id" id="cityId">
-                            <option >Select City</option>
+                            <option value="">Select City</option>
                             @foreach($response['data']['cities'] as $city)
                                 <option value="{{$city->id}}">{{$city->name}}</option>
                             @endforeach
@@ -48,7 +48,7 @@
                     </span>
                     <span class="select-load">
                         <select class="js-example-basic-single"  name="location_id" id="societies">
-                            <option>Select Location</option>
+                            <option value="">Select Location</option>
                         </select>
                     </span>
                     <button type="submit">Search<span class="icon-arrow-right"></span></button>
@@ -70,10 +70,8 @@
                         <div class="container">
                             <div class="caption">
                                 <h1>Gwadar <span>City</span></h1>
-                                <p>{{ str_limit("Gwadar is strategically located on the western end of Baluchistan coast on the opposite end of the Gulf of Oman which is an important route for oil tankers bound for Japan and western countries out of Gulf
-                                   China has a great strategic interest in Gwadar. In 2013, the state-owned China Overseas Port Holdings Limited acquired Gwadar Port.The port is strategically important for China as sixty percent of China's oil comes from
-                                   the Persian Gulf by ships traveling over 16,000 kilometres in two to three months, confronting pirates, bad weather, political rivals, and other risks up to its only commercial port, Shanghai. Gwadar will reduce the distance
-                                   to a mere 5000 kilometres and also serve round the year",300) }}</p>
+                                <p>{{ str_limit("
+Gwadar is hottest real estate market now a days and if you are a serious buyer/seller and if you are looking for investment in Gwadar or need any inquiry about latest project in Gwadar and want to do any business in Gwadar then",300) }}</p>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
                         </div>

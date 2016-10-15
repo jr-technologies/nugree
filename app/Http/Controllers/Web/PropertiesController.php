@@ -96,6 +96,7 @@ class PropertiesController extends Controller
      */
     public function search(SearchPropertiesRequest $request)
     {
+
         $params = $request->getParams();
         $params['sortBy'] = 'updated_at';
         $loggedInUser = $request->user();
