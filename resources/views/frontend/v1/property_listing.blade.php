@@ -225,8 +225,8 @@
                     </div>
                     <div class="caption text-left">
                         <div class="layout">
-                            <a href="property?propertyId={{$property->id}}"><h1>{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
-                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</h1></a>
+                            <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
+                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
                             <p>{{str_limit($property->description,148) }}</p>
                             <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
                             <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
