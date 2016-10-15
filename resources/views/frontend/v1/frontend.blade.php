@@ -138,6 +138,7 @@
 <script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
+<script src="{{url('/')}}/assets/js/helper.js" type="text/javascript"></script>
 </body>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

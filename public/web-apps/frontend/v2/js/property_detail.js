@@ -91,7 +91,14 @@ $(document).on('change', '#society', function(){
         $('#blocks').closest('li').removeClass('loading');
     }
 });
-
+$(document).on('change, keyup','#convertFrom',function(){
+    var priceFrom = $(this).val();
+    showDetailedPriceAt(digitsToWords(priceFrom),'.calculatedPrice')
+});
+$(document).on('change, keyup','#convertTo',function(){
+    var priceFrom = $(this).val();
+    showDetailedPriceAt(digitsToWords(priceFrom),'.calculatedPrice')
+});
 $(document).on('change', '#cityId', function(){
     var city_id = $(this).val();
     if(city_id !="")
