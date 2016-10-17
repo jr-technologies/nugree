@@ -20,7 +20,7 @@ class LocationQueryBuilder extends QueryBuilder
     {
         $query = DB::table($this->table)
             ->select($this->table.'.*');
-        if($params['cityId'] != null && $params['cityId'] != "" && $params['cityId'] == 0)
+        if($params['cityId'] != null && $params['cityId'] != "" && $params['cityId'] != 0)
             $query = $query->where($this->table.'.city_id','=',$params['cityId']);
         return $query->where($this->table.'.location','like','%'.$params['keyword'].'%')->get();
     }
