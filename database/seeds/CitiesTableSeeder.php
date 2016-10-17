@@ -17,7 +17,6 @@ class CitiesTableSeeder extends Seeder
             ['city' => 'Islamabad', 'country_id'=>1,'priority'=>10,'path'=>'assets/imgs/42_ads/assets/imgs/42_ads/4a72287dca6a1251f24f948b5819c647.jpg'],
             ['city' => 'Gwadar', 'country_id'=>1,'priority'=>10,'path'=>'assets/imgs/42_ads/assets/imgs/42_ads/4a72287dca6a1251f24f948b5819c647.jpg'],
             ['city' => 'Faislabad', 'country_id'=>1,'priority'=>10,'path'=>'assets/imgs/42_ads/assets/imgs/42_ads/4a72287dca6a1251f24f948b5819c647.jpg'],
-
         ]);
     }
 }
