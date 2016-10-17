@@ -50,7 +50,7 @@ class AuthController extends WebController
     }
     public function showLoginPage()
     {
-        if(\Session::has('authUser'))
+        if(isset($_SESSION['authUser']))
             return redirect()->route('dashboard');
         return $this->response->setView('frontend.v1.auth.login')->respond(['data'=>[
             'propertyTypes'=>$this->propertyTypes->all(),
@@ -65,6 +65,7 @@ class AuthController extends WebController
         }
 
         $authenticatedUser = $this->auth->login($this->users->findByEmail($request->get('email')));
+
         if($authenticatedUser == null)
             $this->response->respondInternalServerError();
 

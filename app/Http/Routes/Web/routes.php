@@ -1073,11 +1073,12 @@ Route::post('trusted-agent',
     ]);
 
 Route::get('/logout', function(){
-    if(session()->has('authUser'))
+    if(isset($_SESSION['authUser']) && $_SESSION['authUser'] != null)
     {
         $usersRepo = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo();
-        $authUser = session()->pull('authUser');
+        $authUser = $_SESSION['authUser'];
         try{
+            unset($_SESSION['authUser']);
             $authUser = $usersRepo->getById($authUser->id);
             $authUser->access_token = null;
             (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->update($authUser);

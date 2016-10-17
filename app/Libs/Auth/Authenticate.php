@@ -53,7 +53,7 @@ abstract class Authenticate
         $authenticatedUser->access_token = $this->generateToken($authenticatedUser->id);
         $this->users->update($authenticatedUser);
         Event::fire(new UserBasicInfoUpdated($authenticatedUser));
-        Session::put('authUser', $authenticatedUser);
+        $_SESSION['authUser'] =  $authenticatedUser;
         return $authenticatedUser;
     }
 

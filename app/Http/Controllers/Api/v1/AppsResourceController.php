@@ -98,7 +98,7 @@ class AppsResourceController extends ApiController
                 ],
                 'authUser' => $user
             ],
-            'access_token' => session('authUser')->access_token
+            'access_token' => $_SESSION['authUser']->access_token
         ]);
     }
     public function addPropertyWithAuthResources()

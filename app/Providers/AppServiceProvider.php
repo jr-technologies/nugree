@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        @session_start();
 //        $data = [
 //            'propertyTypes' =>$this->propertyTypes->all(),
 //            'authUser' => (new Web())->user()

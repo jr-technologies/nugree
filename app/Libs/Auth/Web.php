@@ -11,6 +11,7 @@ namespace App\Libs\Auth;
 
 use App\DB\Providers\SQL\Models\User;
 use App\Events\Events\User\UserBasicInfoUpdated;
+use Illuminate\Support\Facades\Session;
 
 class Web extends Authenticate implements AuthInterface
 {
@@ -34,11 +35,11 @@ class Web extends Authenticate implements AuthInterface
 
     public function user()
     {
-        if(session('authUser') == null){
+        if(isset($_SESSION['authUser']) && $_SESSION['authUser'] == null){
             return null;
         }else{
             try{
-                return $this->users->getById(session('authUser')->id);
+                return $this->users->getById($_SESSION['authUser']->id);
             }catch (\Exception $e){
                 return null;
             }

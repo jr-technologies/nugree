@@ -28,8 +28,8 @@ class GetDashboardResourcesRequest extends Request implements RequestInterface{
 
     public function getUserJsonModel()
     {
-        if($this->getOriginalRequest()->session()->has('authUser'))
-            return $this->users->find($this->getOriginalRequest()->session()->get('authUser')->id);
+        if(isset($_SESSION['authUser']) && $_SESSION['authUser'] != null)
+            return $this->users->find($_SESSION['authUser']->id);
         return null;
 
     }
