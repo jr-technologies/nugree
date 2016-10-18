@@ -28,11 +28,11 @@
             {{Form::close()}}
 
             <ul class="customLinks">
-                @if(session()->get('authUser') ==null)
-                <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
-                   @else
+                @if(!isset($_SESSION['authUser']))
+                    <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
+                @else
                     <li>
-                        <a href="#"><span class="hidden-xs">{{str_limit(session()->get('authUser')->fName.' '.session()->get('authUser')->lName,13)}}</span><span class="icon-profile2 hidden"></span></a>
+                        <a href="#"><span class="hidden-xs">{{str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)}}</span><span class="icon-profile2 hidden"></span></a>
                         <ul class="dropDown">
                             <li><a href="{{URL::to('dashboard#/home/profile')}}">my profile</a></li>
                             <li><a href="{{URL::to('dashboard#/home/properties/all')}}">my listing</a></li>
