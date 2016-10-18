@@ -9,6 +9,7 @@
 namespace App\Repositories\Repositories\Sql;
 
 use App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory;
+use App\DB\Providers\SQL\Factories\Factories\AgencyLocation\AgencyLocationFactory;
 use App\DB\Providers\SQL\Factories\Factories\AgencySociety\AgencySocietyFactory;
 use App\DB\Providers\SQL\Models\Agency;
 use App\DB\Providers\SQL\Models\AgencySociety;
@@ -25,9 +26,11 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
 {
     private $factory = null;
     private $agencySocietyFactory = null;
+    private $agencyLocationFactory = null;
     public function __construct(){
         $this->factory = new AgencyFactory();
       $this->agencySocietyFactory =  new AgencySocietyFactory();
+        $this->agencyLocationFactory = new AgencyLocationFactory();
     }
 
     public function getById($id)
@@ -66,6 +69,16 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
         {
             $result = $this->agencySocietyFactory->addSocieties($agencySocieties);
             Event::fire(new AgencyUpdated($this->getById($agencySocieties[0]->agencyId)));
+            return $result;
+        }
+        return true;
+    }
+    public function addLocations(array $agencyLocations)
+    {
+        if(sizeof($agencyLocations) !=0)
+        {
+            $result = $this->agencyLocationFactory->addLocation($agencyLocations);
+            Event::fire(new AgencyUpdated($this->getById($agencyLocations[0]->agencyId)));
             return $result;
         }
         return true;

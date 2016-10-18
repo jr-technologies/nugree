@@ -10,13 +10,13 @@ namespace App\Http\Requests\Requests\Auth;
 
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\AgencyLocation;
 use App\DB\Providers\SQL\Models\AgencySociety;
 use App\DB\Providers\SQL\Models\User;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\UserValidators\AddUserValidator;
 use App\Transformers\Request\Auth\RegisterUserTransformer;
-use Illuminate\Support\Facades\Validator;
 
 class RegistrationRequest extends Request implements RequestInterface{
 
@@ -95,6 +95,19 @@ class RegistrationRequest extends Request implements RequestInterface{
             $agencySocieties[] =$agencySociety;
         }
         return $agencySocieties;
+    }
+    public function getAgencyLocations($agencyId)
+    {
+        $societiesIds = $this->get('societies');
+        $agencyLocations = [];
+        foreach ($societiesIds as $societyId)
+        {
+            $agencyLocation = new AgencyLocation();
+            $agencyLocation->agencyId = $agencyId;
+            $agencyLocation->locationId = $societyId;
+            $agencyLocations[] =$agencyLocation;
+        }
+        return $agencyLocations;
     }
     public function getUserRoles()
     {

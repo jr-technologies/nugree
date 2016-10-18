@@ -34,12 +34,12 @@ class AgencyLocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->map($this->tableGateway->find($id));
     }
-    public function addSocieties(array $agencySocieties)
+    public function addLocation(array $agencySocieties)
     {
         $agencySocietiesRecord =[];
         foreach($agencySocieties as $agencySociety)
         {
-            $agencySocietiesRecord[] =  $this->mapAgencySocietyOnTable($agencySociety);
+            $agencySocietiesRecord[] =  $this->mapAgencyLocationOnTable($agencySociety);
         }
         return $this->tableGateway->insertMultiple($agencySocietiesRecord);
     }
@@ -68,7 +68,7 @@ class AgencyLocationFactory extends SQLFactory implements SQLFactoriesInterface
         $agencySociety->updatedAt = $result->updated_at;
         return $agencySociety;
     }
-    private function mapAgencySocietyOnTable(AgencySociety $agencySociety)
+    private function mapAgencyLocationOnTable(AgencySociety $agencySociety)
     {
         return [
             'agency_id' => $agencySociety->agencyId,
