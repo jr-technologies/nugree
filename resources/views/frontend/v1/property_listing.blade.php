@@ -2,10 +2,10 @@
 @section('content')
     <script>
         $(document).ready(function(){
-           $('.property_type').trigger('change');
+            $('.property_type').trigger('change');
         });
         var propertySubtypes = '<?php  echo $response['data']['propertySubtypes']; ?>';
-            propertySubtypes = JSON.parse(propertySubtypes);
+        propertySubtypes = JSON.parse(propertySubtypes);
 
         var old_subtype = parseInt('<?php echo $response['data']['oldValues']['subTypeId']; ?>');
 
@@ -15,13 +15,13 @@
             $.each(propertySubtypes[propertyTypeId], function (i, subtype)
             {
                 $('#propertySubtype').append(
-                '<li>'+
-                    '<label for="propertySubtype_'+subtype.id+'" class="customRadio">'+
-                    '<input type="radio" id="propertySubtype_'+subtype.id+'" '+ ((old_subtype == subtype.id)?'checked':'') +'  name="sub_type_id" class="property_sub_type filter-form-input" value="'+subtype.id+'">'+
-                    '<span class="fake-checkbox"></span>'+
-                    '<span class="fake-label">'+subtype.name+'</span>'+
-                    '</label>'+
-                '</li>'
+                        '<li>'+
+                        '<label for="propertySubtype_'+subtype.id+'" class="customRadio">'+
+                        '<input type="radio" id="propertySubtype_'+subtype.id+'" '+ ((old_subtype == subtype.id)?'checked':'') +'  name="sub_type_id" class="property_sub_type filter-form-input" value="'+subtype.id+'">'+
+                        '<span class="fake-checkbox"></span>'+
+                        '<span class="fake-label">'+subtype.name+'</span>'+
+                        '</label>'+
+                        '</li>'
                 );
             });
 
@@ -29,7 +29,7 @@
 
     </script>
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
-     <div class="listing-page">
+    <div class="listing-page">
         <div class="ads-slideshow">
             <div class="mask">
                 <div class="slideset">
@@ -49,25 +49,7 @@
                     <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
                 </div>
                 <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
-                 <ul class="filters-links text-upparcase">
-                        <li class="active">
-                            <a class="filters-links-opener">Sort By</a>
-                            <div class="slide">
-                                <span class="fake-select">
-                                    <select name="sort_by" id="sort">
-                                        <option value='' selected >Default Order</option>
-                                        <option value='price_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_asc') selected @endif>Price Low to High</option>
-                                        <option value='price_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_desc') selected @endif>Price High to Low</option>
-                                        <option value='land_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_asc') selected @endif>Area Low to High</option>
-                                        <option value='land_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_desc') selected @endif>Area High to Low</option>
-                                        {{--<option value='date_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_desc') selected @endif>Date New to Old</option>--}}
-                                        {{--<option value='date_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_asc') selected @endif>Date Old to New</option>--}}
-                                        {{--<option value='verified_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'verified_desc') selected @endif>Verified Only</option>--}}
-                                        {{--<option value='picture_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'picture_desc') selected @endif>With Photos</option>--}}
-                                    </select>
-                                </span>
-                            </div>
-                        </li>
+                    <ul class="filters-links text-upparcase">
                         <li class="active">
                             <a class="filters-links-opener">PROPERTY FOR</a>
                             <div class="slide">
@@ -103,7 +85,7 @@
                                                 <span class="fake-label">{{$propertyType->name}}</span>
                                             </label>
                                         </li>
-                                   @endforeach
+                                    @endforeach
                                 </ul>
                             </div>
                         </li>
@@ -141,8 +123,8 @@
                             <span class="fake-select">
                                 <select name="land_unit_id">
                                     @foreach($response['data']['landUnits'] as $landUnit)
-                                    <option value="{{$landUnit->id}}">{{$landUnit->name}}</option>
-                                   @endforeach
+                                        <option value="{{$landUnit->id}}">{{$landUnit->name}}</option>
+                                    @endforeach
                                 </select>
                             </span>
                                 <div class="fromTo">
@@ -156,7 +138,7 @@
                             </div>
                         </li>
                         <li class="active">
-                          <a class="filters-links-opener">PRICE RANGE</a>
+                            <a class="filters-links-opener">PRICE RANGE</a>
                             <div class="slide">
                                 <div class="fromTo full-width">
                                     <div class="field-holder">
@@ -166,7 +148,7 @@
                                         <input type="number" placeholder="To"   name="price_to" id="convertTo" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                     </div>
                                 </div>
-                               <span class="calculatedPrice">Please enter the price</span>
+                                <span class="calculatedPrice">Please enter the price</span>
                             </div>
                         </li>
 
@@ -185,91 +167,107 @@
                 <?php
                 $favourites =0;
                 ?>
-            @foreach($response['data']['properties'] as $property)
+                <div class="sort-by">
+                    <span class="label">Sort by:</span>
+                <span class="fake-select">
+                                    <select name="sort_by" id="sort">
+                                        <option value='' selected >Default Order</option>
+                                        <option value='price_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_asc') selected @endif>Price Low to High</option>
+                                        <option value='price_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_desc') selected @endif>Price High to Low</option>
+                                        <option value='land_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_asc') selected @endif>Area Low to High</option>
+                                        <option value='land_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_desc') selected @endif>Area High to Low</option>
+                                        {{--<option value='date_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_desc') selected @endif>Date New to Old</option>--}}
+                                        {{--<option value='date_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_asc') selected @endif>Date Old to New</option>--}}
+                                        {{--<option value='verified_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'verified_desc') selected @endif>Verified Only</option>--}}
+                                        {{--<option value='picture_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'picture_desc') selected @endif>With Photos</option>--}}
+                                    </select>
+                                </span>
+                </div>
+                @foreach($response['data']['properties'] as $property)
 
-                <article class="publicProperty-post">
-                    <div class="image-holder">
-                        <div class="listing-image-slider">
-                            <div class="mask">
-                                <div class="slideset">
+                    <article class="publicProperty-post">
+                        <div class="image-holder">
+                            <div class="listing-image-slider">
+                                <div class="mask">
+                                    <div class="slideset">
 
+                                        <?php
+
+                                        $count = 0;
+                                        $betweenCountIndex=0;
+                                        $image = url('/')."/assets/imgs/no.png";
+                                        $count++
+                                        ?>
+                                        @if(sizeof($property->documents) > 0)
+                                            @foreach($property->documents as $document)
+                                                <div class="slide">
+                                                    <a href="property?propertyId={{$property->id}}">
+                                                        @if($document->type == 'image'  && $document->path != "")
+                                                            <img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">
+                                                        @endif
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <div class="slide">
+                                                <a href="property?propertyId={{$property->id}}">
+                                                    <img src="{{$image}}" alt="image description">
+                                                </a>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
+                                <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>
+                            </div>
+                        </div>
+                        <div class="caption text-left">
+                            <div class="layout">
+                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
+                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
+                                <p>{{str_limit($property->description,148) }}</p>
+                                <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
+                                <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
+                                <div class="holder-ui">
+                                    <ul class="public-ui-features text-capital">
+                                        @foreach($property->features as $feature)
+                                            @foreach($feature as $featureSection)
+                                                @if($featureSection->priority ==1)
+                                                    <li>{{$featureSection->name}}:<span>{{$featureSection->value}}</span></li>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    </ul>
                                     <?php
-
-                                    $count = 0;
-                                    $betweenCountIndex=0;
-                                    $image = url('/')."/assets/imgs/no.png";
-                                    $count++
+                                    $image = url('/') . "/assets/imgs/no.png";
+                                    if ($property->owner->agency != null) {
+                                        if ($property->owner->agency->logo != null) {
+                                            $image = url('/') . '/temp/' . $property->owner->agency->logo;
+                                        }
+                                    }
                                     ?>
-                                @if(sizeof($property->documents) > 0)
-                                   @foreach($property->documents as $document)
-                                    <div class="slide">
-                                        <a href="property?propertyId={{$property->id}}">
-                                          @if($document->type == 'image'  && $document->path != "")
-                                            <img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">
-                                          @endif
-                                        </a>
-                                    </div>
-                                  @endforeach
-                                @else
-                                    <div class="slide">
-                                      <a href="property?propertyId={{$property->id}}">
-                                         <img src="{{$image}}" alt="image description">
-                                      </a>
-                                    </div>
-                                @endif
+                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent?agent_id='.$property->owner->id) }}" @endif>
+                                        <img src="{{$image}}" alt="image description" class="company-logo"></a>
                                 </div>
                             </div>
-                            <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
-                            <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>
-                        </div>
-                    </div>
-                    <div class="caption text-left">
-                        <div class="layout">
-                            <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
-                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
-                            <p>{{str_limit($property->description,148) }}</p>
-                            <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
-                            <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
-                            <div class="holder-ui">
-                                <ul class="public-ui-features text-capital">
-                                    @foreach($property->features as $feature)
-                                        @foreach($feature as $featureSection)
-                                            @if($featureSection->priority ==1)
-                                                <li>{{$featureSection->name}}:<span>{{$featureSection->value}}</span></li>
-                                            @endif
-                                        @endforeach
-                                    @endforeach
+                            <div class="layout links-holder">
+                                <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
+                                <ul class="quick-links">
+                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span><span class="hidden-xs">View number</span></a></li>
+                                    <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span><span class="hidden-xs">Send mail</span></a></li>
                                 </ul>
                                 <?php
-                                $image = url('/') . "/assets/imgs/no.png";
-                                if ($property->owner->agency != null) {
-                                    if ($property->owner->agency->logo != null) {
-                                        $image = url('/') . '/temp/' . $property->owner->agency->logo;
-                                    }
-                                }
+                                $user = (new \App\Libs\Helpers\AuthHelper())->user();
                                 ?>
-                                <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent?agent_id='.$property->owner->id) }}" @endif>
-                                    <img src="{{$image}}" alt="image description" class="company-logo"></a>
+                                <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
+                                   key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
+                                    <span class="icon-heart-o"></span>
+                                </a>
                             </div>
                         </div>
-                        <div class="layout links-holder">
-                            <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
-                            <ul class="quick-links">
-                                <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span><span class="hidden-xs">View number</span></a></li>
-                                <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span><span class="hidden-xs">Send mail</span></a></li>
-                            </ul>
-                            <?php
-                            $user = (new \App\Libs\Helpers\AuthHelper())->user();
-                            ?>
-                            <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
-                               key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
-                               <span class="icon-heart-o"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <?php $favourites++; ?>
-                </article>
-            @endforeach
+                        <?php $favourites++; ?>
+                    </article>
+                @endforeach
                 <?php
 
                 $for_previous_link = $_GET;
@@ -292,21 +290,21 @@
 
                     <li><a href="{{$first_page}}" class="first"><span class="icon-arrow1-left"></span></a></li>
                     @if($totalPaginationValue !=0)
-                    <li><a href="{{$previousResult}}" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
+                        <li><a href="{{$previousResult}}" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
                     @endif
                     <?php
                     $paginationValue = intval(ceil($response['data']['totalProperties'] / config('constants.Pagination')));
                     $query_str_to_array = $_GET;
                     $current_page = (isset($query_str_to_array['page']))?$query_str_to_array['page']:1;
                     for($i = (($current_page-3 > 0)?$current_page-3:1); $i <= (($current_page + 3 <= $paginationValue)?$current_page+3:$paginationValue);$i++){
-                        $query_str_to_array['page'] = $i;
-                        $queryString  = http_build_query($query_str_to_array);
-                        $result = URL('/search').'?'.$queryString;
-                        ?>
+                    $query_str_to_array['page'] = $i;
+                    $queryString  = http_build_query($query_str_to_array);
+                    $result = URL('/search').'?'.$queryString;
+                    ?>
                     <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                     <?php }?>
                     @if($totalPaginationValue !=0)
-                    <li><a href="{{$nextResult}}" class="next"><span class="icon-bold-arrow-right"></span></a></li>
+                        <li><a href="{{$nextResult}}" class="next"><span class="icon-bold-arrow-right"></span></a></li>
                     @endif
                     <li><a href="{{$last_page}}" class="last"><span class="icon-arrow1-right"></span></a></li>
                 </ul>

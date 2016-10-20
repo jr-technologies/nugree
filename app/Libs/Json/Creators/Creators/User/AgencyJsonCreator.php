@@ -14,6 +14,7 @@ use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\Location\PropertySocietyJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\User\AgencyJsonPrototype;
 use App\DB\Providers\SQL\Models\Agency;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 
 class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
@@ -35,9 +36,10 @@ class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->name = $this->model->name;
         $this->prototype->phone = $this->model->phone;
         $this->prototype->logo = $this->model->logo;
-        $this->prototype->societies = $this->getSocieties();
+        $this->prototype->locations = $this->getLocation();
         return $this->prototype;
     }
+
     public function getSocieties()
     {
         $societies = (new SocietiesRepoProvider())->repo()->getSocietiesByAgency($this->model->id);
@@ -45,6 +47,18 @@ class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
         foreach($societies as $society)
         {
            $finalResult[] =  (new PropertySocietyJsonCreator($society))->create();
+        }
+        return $finalResult;
+    }
+
+
+    public function getLocation()
+    {
+        $locations = (new LocationsRepoProvider())->repo()->getLocationsByAgency($this->model->id);
+        $finalResult= [];
+        foreach($locations as $location)
+        {
+            $finalResult[] =  (new PropertySocietyJsonCreator($location))->create();
         }
         return $finalResult;
     }

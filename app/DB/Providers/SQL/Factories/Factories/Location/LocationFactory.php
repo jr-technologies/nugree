@@ -75,6 +75,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->delete($location->id);
     }
+    public function getLocationsByAgency($agencyId)
+    {
+        return $this->mapCollection($this->tableGateway->getLocationsByAgency($agencyId));
+    }
     private function mapPropertyTypeOnTable(Location $location)
     {
         return [

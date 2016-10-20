@@ -116,7 +116,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                 </div>
             </div>
             <div class="heading-btns">
-                <h1>NEWS</h1>
+                <h2>NEWS</h2>
                 <a href="#" class="btn-prev"><span class="icon-arrow-left"></span></a>
                 <a href="#" class="btn-next"><span class="icon-arrow-right"></span></a>
             </div>

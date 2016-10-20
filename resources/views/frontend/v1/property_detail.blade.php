@@ -110,11 +110,7 @@
                         <div class="layout">
                             <div class="pull-left">
                                 @if(isset($response['data']['propertyOwner']->trustedAgent) && $response['data']['propertyOwner']->trustedAgent == 1)
-                                    <span class="trusted-agent"><span class="icon-trusted"><span
-                                                    class="path1"></span><span class="path2"></span><span
-                                                    class="path3"></span><span class="path4"></span><span
-                                                    class="path5"></span><span class="path6"></span><span
-                                                    class="path7"></span><span class="path8"></span></span>Trusted</span>
+                                    <span class="trusted-agent"><span class="icon-premium-badge"></span>Trusted</span>
                                     <ul class="star-rating">
                                         <li><a href="#" class="one-star">star</a></li>
                                         <li><a href="#" class="two-stars">star</a></li>
@@ -187,8 +183,8 @@
                             </li>
 
                             <li>
-                                <span class="tag">Society</span>
-                                {{--<span class="quantity">{{$response['data']['property']->location->society->name}}</span>--}}
+                                <span class="tag">Location</span>
+                                <span class="quantity">{{$response['data']['property']->location->location->location}}</span>
                             </li>
                             {{--@if($response['data']['property']->location->block != null && $response['data']['property']->location->block->name != 'other')--}}
                                 {{--<li>--}}

@@ -116,7 +116,6 @@ function initCarousel() {
 		currentNumber: 'span.cur-num',
 		totalNumber: 'span.all-num',
 		disableWhileAnimating: true,
-		circularRotation: true,
 		pauseOnHover: true,
 		autoRotation: true,
 		maskAutoSize: false,

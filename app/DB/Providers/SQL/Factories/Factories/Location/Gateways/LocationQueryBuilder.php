@@ -6,6 +6,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\Location\Gateways;
  * Date: 4/6/2016
  * Time: 10:07 AM
  */
+use App\DB\Providers\SQL\Factories\Factories\AgencyLocation\AgencyLocationFactory;
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,17 @@ class LocationQueryBuilder extends QueryBuilder
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'.','.$cityTable.'.city'))
             ->where($this->table.'.city_id','=',$params['cityId'])
             ->skip($this->computePagination($params)['start'])->take(config('constants.defaultBannerLimit'))
+            ->get();
+    }
+
+    public function getLocationsByAgency($agencyId)
+    {
+        $agencyLocation = (new AgencyLocationFactory())->getTable();
+
+        return DB::table($agencyLocation)
+            ->leftjoin($this->table,$agencyLocation.'.location_id','=',$this->table.'.id')
+            ->select($this->table.'.*')
+            ->where($agencyLocation.'.agency_id','=',$agencyId)
             ->get();
     }
     public function locationCount()

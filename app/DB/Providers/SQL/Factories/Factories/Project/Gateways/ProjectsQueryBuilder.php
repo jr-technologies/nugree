@@ -30,7 +30,7 @@ class ProjectsQueryBuilder extends QueryBuilder
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'.','.$projectImageTable.'.image'))
             ->skip($this->computePagination($params)['start'])->take(config('constants.defaultBannerLimit'))
             ->groupBy($this->table.'.id')
-           ->orderBy($this->table.'.id','DESC')
+            ->orderBy($this->table.'.id','DESC')
             ->get();
     }
     public function projectCount()
