@@ -133,18 +133,18 @@
                 <div class="layout-holder">
                     <ul class="packetData-list">
                         <li ng-repeat="location in getSelectedLocations()">
-                            <strong class="packetData">{{location.location}}<a class="delete" ng-click="deleteSelectedLocation(location.id)" data-target="location{{location.id}}"><span class="icon-cross"></span></a></strong>
+                            <strong class="packetData">{{location.location.location}}<a class="delete" ng-click="deleteSelectedLocation(location.id)" data-target="location{{location.id}}"><span class="icon-cross"></span></a></strong>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="input-holder full-width">
                 <ul class="societiesBlock-listing">
-                    <li data-ng-repeat="location in resources.locations | filter:searchSocieties">
+                    <li data-ng-repeat="location in resources.locations | filter:searchLocations">
                         <label for="location{{location.id}}" class="customCheckbox">
                             <input checklist-model="form.data.locations" checklist-value="location.id"  type="checkbox" id="location{{location.id}}" class="selectSociety-checkbox">
                             <span class="fake-checkbox"></span>
-                            <span class="fake-label">{{location.location}}</span>
+                            <span class="fake-label">{{location.name}}</span>
                         </label>
                     </li>
                 </ul>

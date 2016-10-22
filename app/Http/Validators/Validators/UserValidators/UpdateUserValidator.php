@@ -63,7 +63,7 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
         $rules = [
             'agencyName' => 'required|unique:agencies,agency'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'companyAddress' => 'required|max:225',
-            'societies' => 'required|societies_limit',
+            'locations' => 'required|societies_limit',
             'companyEmail' => 'required|email|unique:agencies,email'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
             'agencyDescription'=>'max:1200',
             'companyLogo'=>'image_validation|max_image_size:1000,1000'
@@ -124,9 +124,9 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
         Validator::extend('societies_limit', function($attribute, $value, $parameters)
         {
             try {
-                $societies = $this->request->get('societies');
+                $locations = $this->request->get('locations');
                 $societiesLimit = false;
-                if (sizeof($societies) < 4 && sizeof($societies) > 0) {
+                if (sizeof($locations) < 4 && sizeof($locations) > 0) {
                     $societiesLimit = true;
                 }
                 if(!$societiesLimit){

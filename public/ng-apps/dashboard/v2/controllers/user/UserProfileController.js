@@ -4,8 +4,9 @@
 var app = angular.module('dashboard');
 
 app.controller("UserProfileController",["user", "$scope", "$rootScope", "$CustomHttpService", "$http", "$state", "$AuthService", "Upload", "$window", function (user, $scope, $rootScope, $CustomHttpService, $http, $state, $AuthService, Upload, $window) {
+    console.log(user);
     $scope.idForAgentBroker = 3;
-    $scope.html_title = "Property42 | My Profile";
+    $scope.html_title = "Nugree | My Profile";
     $scope.user = user;
     $scope.companyLogo = '';
     $scope.userIsAgent = false;
@@ -16,14 +17,14 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
 
     $scope.getSelectedLocations = function () {
         if($scope.user.agencies[0] != undefined)
-            return $scope.user.agencies[0].societies;
+            return $scope.user.agencies[0].locations;
         return [];
     };
 
-    $scope.deleteSelectedSociety = function (societyId) {
-        delSocietyIndex = $scope.form.data.societies.indexOf(societyId);
-        if (delSocietyIndex > -1) {
-            $scope.form.data.societies.splice(delSocietyIndex, 1);
+    $scope.deleteSelectedLocation = function (locationId) {
+        delLocationIndex = $scope.form.data.locations.indexOf(LocationId);
+        if (delLocationIndex > -1) {
+            $scope.form.data.locations.splice(delLocationIndex, 1);
         }
     };
     var getUserRolesIds = function () {
@@ -33,10 +34,10 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
         });
         return ids;
     };
-    var getSocietyIds = function () {
+    var getLocationIds = function () {
         var ids = [];
-        angular.forEach($scope.user.agencies[0].societies, function (society, key) {
-            ids.push(society.id);
+        angular.forEach($scope.user.agencies[0].locations, function (location, key) {
+            ids.push(location.id);
         });
         return ids;
     };
@@ -141,7 +142,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
             else
                 data1.companyLogo = '';
             data1.agencyDescription = agency.description;
-            data1.societies = getSocietyIds();
+            data1.locations = getLocationIds();
             data1.companyPhone = agency.phone;
             data1.companyMobile = agency.mobile;
             data1.companyAddress = agency.address;

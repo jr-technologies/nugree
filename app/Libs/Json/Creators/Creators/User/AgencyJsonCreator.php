@@ -9,6 +9,7 @@
 namespace App\Libs\Json\Creators\Creators\User;
 
 use App\Libs\Json\Creators\Creators\JsonCreator;
+use App\Libs\Json\Creators\Creators\Property\Location\PropertyLocationJsonCreator;
 use App\Libs\Json\Creators\Creators\Property\Location\PropertySocietyJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\Location\PropertySocietyJsonPrototype;
@@ -23,7 +24,6 @@ class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
     {
         $this->model = $agency;
         $this->prototype = new AgencyJsonPrototype();
-
     }
 
     public function create()
@@ -58,7 +58,7 @@ class AgencyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $finalResult= [];
         foreach($locations as $location)
         {
-            $finalResult[] =  (new PropertySocietyJsonCreator($location))->create();
+            $finalResult[] =  (new PropertyLocationJsonCreator($location))->create();
         }
         return $finalResult;
     }

@@ -17,11 +17,11 @@ class AgencyLocationQueryBuilder extends QueryBuilder
         $this->table = 'agency_locations';
     }
 
-    public function deleteAgencySocieties($agencyId, $societyIds)
+    public function deleteAgencyLocations($agencyId, $locationIds)
     {
         return DB::table($this->table)
             ->where('agency_id',$agencyId)
-            ->whereIn('location_id', $societyIds)
+            ->whereIn('location_id', $locationIds)
             ->delete();
     }
 

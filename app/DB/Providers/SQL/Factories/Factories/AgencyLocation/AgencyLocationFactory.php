@@ -36,17 +36,17 @@ class AgencyLocationFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function addLocation(array $agencyLocations)
     {
-        $agencySocietiesRecord =[];
+        $agencyLocationsRecord =[];
         foreach($agencyLocations as $agencyLocation)
         {
-            $agencySocietiesRecord[] =  $this->mapAgencyLocationOnTable($agencyLocation);
+            $agencyLocationsRecord[] =  $this->mapAgencyLocationOnTable($agencyLocation);
         }
-        return $this->tableGateway->insertMultiple($agencySocietiesRecord);
+        return $this->tableGateway->insertMultiple($agencyLocationsRecord);
     }
 
-    public function deleteAgencySocieties($agencyId, array $societyIds)
+    public function deleteAgencyLocations($agencyId, array $locationIds)
     {
-        return $this->tableGateway->deleteAgencySocieties($agencyId, $societyIds);
+        return $this->tableGateway->deleteAgencyLocations($agencyId, $locationIds);
     }
 
     public function getTable()

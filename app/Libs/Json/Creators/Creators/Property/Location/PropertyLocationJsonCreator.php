@@ -8,17 +8,31 @@
 
 namespace App\Libs\Json\Creators\Creators\Property\Location;
 
+use App\DB\Providers\SQL\Models\Location;
 use App\DB\Providers\SQL\Models\Property\PropertyCompleteLocation;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\Location\PropertyLocationJsonPrototype;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
+use App\Repositories\Providers\Providers\CountriesRepoProvider;
 
 class PropertyLocationJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
-    public function __construct(PropertyCompleteLocation $location = null)
+    protected $citiesRepository = null;
+    protected $countriesRepository = null;
+
+    protected $location = null;
+    protected $city = null;
+    protected $country = null;
+
+    public function __construct(Location $location = null)
     {
-        $this->model = $location;
         $this->prototype = new PropertyLocationJsonPrototype();
+        $this->citiesRepository = (new CitiesRepoProvider())->repo();
+        $this->countriesRepository = (new CountriesRepoProvider())->repo();
+        $this->location = $location;
+        $this->city = $this->citiesRepository->getById($this->location->cityId);
+        $this->country = $this->countriesRepository->getById($this->city->countryId);
     }
 
     public function create()
@@ -26,29 +40,19 @@ class PropertyLocationJsonCreator extends JsonCreator implements JsonCreatorInte
         $this->prototype->country = $this->getCountry();
         $this->prototype->city = $this->getCity();
         $this->prototype->location = $this->getLocation();
-        //$this->prototype->society = $this->getSociety();
-        //$this->prototype->block = $this->getBlock();
         return $this->prototype;
     }
 
-//    private function getBlock()
-//    {
-//        return (new PropertyBlockJsonCreator($this->model->block))->create();
-//    }
-//    private function getSociety()
-//    {
-//        return (new PropertySocietyJsonCreator($this->model->society))->create();
-//    }
     private function getLocation()
     {
-        return (new PropertySubLocationJsonCreator($this->model->location))->create();
+        return (new PropertySubLocationJsonCreator($this->location))->create();
     }
     private function getCity()
     {
-        return (new PropertyCityJsonCreator($this->model->city))->create();
+        return (new PropertyCityJsonCreator($this->city))->create();
     }
     private function getCountry()
     {
-        return (new PropertyCountryJsonCreator($this->model->country))->create();
+        return (new PropertyCountryJsonCreator($this->country))->create();
     }
 }

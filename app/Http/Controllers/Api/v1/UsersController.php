@@ -11,11 +11,13 @@ use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
 use App\Libs\Helpers\Helper;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\AgencyLocationsRepoProvider;
 use App\Repositories\Providers\Providers\AgencySocietiesRepoProvider;
 use App\Repositories\Providers\Providers\RolesRepoProvider;
 use App\Repositories\Providers\Providers\UserRolesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
+use App\Repositories\Repositories\Sql\AgencyLocationsRepository;
 use App\Repositories\Repositories\Sql\UsersRepository;
 use App\Http\Requests\Requests\User\AddUserRequest;
 use App\Http\Responses\Responses\ApiResponse;
@@ -41,12 +43,14 @@ class UsersController extends ApiController
     private $idForAgentBroker = 3;
     private $agencyStaff =null;
     private $agencySocieties = null;
+    private $agencyLocations = null;
     public function __construct
     (
         ApiResponse $apiResponse, UserTransformer $userTransformer,
         UsersRepoProvider $usersRepository, AgenciesRepoProvider $agenciesRepoProvider,
         UsersJsonRepoProvider $usersJsonRepoProvider, RolesRepoProvider $rolesRepoProvider,
-        UserRolesRepoProvider $userRolesRepoProvider, AgencySocietiesRepoProvider $agencySocietiesRepoProvider
+        UserRolesRepoProvider $userRolesRepoProvider, AgencySocietiesRepoProvider $agencySocietiesRepoProvider,
+        AgencyLocationsRepoProvider $agencyLocationsRepoProvider
     )
     {
         $this->response = $apiResponse;
@@ -57,6 +61,7 @@ class UsersController extends ApiController
         $this->roles = $rolesRepoProvider->repo();
         $this->userRoles = $userRolesRepoProvider->repo();
         $this->agencySocieties = $agencySocietiesRepoProvider->repo();
+        $this->agencyLocations = $agencyLocationsRepoProvider->repo();
     }
 
     /**
@@ -178,7 +183,7 @@ class UsersController extends ApiController
         $this->agencies->updateAgency($existingAgency);
 
 
-        $this->agencySocieties->update($existingAgency->id, $request->get('societies'));
+        $this->agencyLocations->update($existingAgency->id, $request->get('locations'));
 
     }
     private function saveUserAgency(UpdateUserRequest $request, $userId)
