@@ -54,12 +54,12 @@
                 <div class="right-sideTop text-right">
                     <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#112;&#114;&#111;&#112;&#101;&#114;&#116;&#121;&#052;&#050;&#046;&#112;&#107;"></a>
                     <ul class="loginRegister text-upparcase text-left">
-                        @if(session()->get('authUser') ==null)
+                        @if($_SESSION['authUser'] ==null)
                         <li><a href="{{ URL::to('/login') }}"><span class="icon-avatar hidden"></span><span class="hidden-xs">Login / Register</span></a></li>
                         @else
 
                             <li>
-                            <a><span class="icon-avatar"></span><span class="hidden-xs">{{str_limit(session()->get('authUser')->fName.' '.session()->get('authUser')->lName,13)}}</span></a>
+                            <a><span class="icon-avatar"></span><span class="hidden-xs">{{str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)}}</span></a>
                             <ul class="dropDown">
                                 <li><a href="{{URL::to('dashboard#/home/profile')}}">MY PROFILE</a></li>
                                 <li><a href="{{URL::to('dashboard#/home/properties/all')}}">My Listing</a></li>

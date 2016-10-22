@@ -21,17 +21,7 @@
                 </span>
             </div>
         </li>
-        <!--<li>-->
-            <!--<label for="staff">Staff</label>-->
-            <!--<div class="input-holder">-->
-                <!--<span class="fake-select">-->
-                    <!--<select ng-model="searchPropertiesParams.owner_id" ng-change="filtersChanged()" id="staff">-->
-                        <!--<option value="">All Members</option>-->
-                        <!--<option data-ng-repeat="member in resources.agencyStaff" value="{{member.id}}">{{member.fName}} {{member.lName}}</option>-->
-                    <!--</select>-->
-                <!--</span>-->
-            <!--</div>-->
-        <!--</li>-->
+
     </ul>
     <strong class="property-for">{{propertiesPurpose}}</strong>
     <ul class="multipal-actions">
@@ -66,7 +56,7 @@
                 <div class="pro-location border"><p>{{property.location.location.location}}</p></div>
                 <div class="pro-price border"><p>{{property.price}}</p></div>
                 <div class="pro-size border"><p>{{property.land.area}} {{property.land.unit.name}}</p></div>
-                <div class="pro-date border"><p>{{property.createdAt}}</p></div>
+                <div class="pro-date border"><p>{{property.createdAt.split(" ")[0]}}</p></div>
                 <div class="pro-controls border">
                     <ul class="control-link">
                         <li ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.active"><a href="{{domain}}property?propertyId={{property.id}}" target="_blank"><span class="icon-search-doc"></span></a></li>

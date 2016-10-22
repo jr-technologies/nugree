@@ -17,7 +17,7 @@ jQuery(function(){
     initCarousel();
 });
 function initCarousel() {
-    
+
 }
 
 $(document).on('change keyup', 'input, textarea, select', function(){

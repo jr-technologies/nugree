@@ -50,12 +50,12 @@
 
             <a class="nav-opener"><span></span></a>
             <a href="{{ URL::to('add-property') }}" class="btn-header hidden-xs"><span class="icon-plus"></span>Add a property</a>
-            @if(session()->get('authUser') ==null)
+            @if($_SESSION['authUser'] ==null)
                 <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>
             @else
 
             <div class="btn-header loggedIn">
-                <p><span class="icon-user"></span>{{session()->get('authUser')->fName.' '.session()->get('authUser')->lName}}</p>
+                <p><span class="icon-user"></span>{{$_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName}}</p>
                 <ul class="LoggedIn-links">
                     <li><a href="{{URL::to('dashboard#/home/profile')}}"><span class="icon-user2"></span>My profile</a></li>
                     <li><a href="{{URL::to('dashboard#/home/properties/all')}}"><span class="icon-pencil"></span>My Listing</a></li>

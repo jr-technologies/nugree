@@ -61,7 +61,8 @@ abstract class Authenticate
     {
         $authenticatedUser->access_token = null;
         $this->users->update($authenticatedUser);
-        if(\Session::has('authUser')){
+        if($_SESSION['authUser']){
+            unset($_SESSION['authUser']);
             session()->pull('authUser');
             session()->flush();
             session()->save();
