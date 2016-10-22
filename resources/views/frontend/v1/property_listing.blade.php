@@ -183,6 +183,10 @@
                                     </select>
                                 </span>
                 </div>
+                <?php
+                $countForBanner =0;
+                $betweenCountIndex=0;
+                ?>
                 @foreach($response['data']['properties'] as $property)
 
                     <article class="publicProperty-post">
@@ -193,10 +197,8 @@
 
                                         <?php
 
-                                        $count = 0;
-                                        $betweenCountIndex=0;
                                         $image = url('/')."/assets/imgs/no.png";
-                                        $count++
+                                        $countForBanner++;
                                         ?>
                                         @if(sizeof($property->documents) > 0)
                                             @foreach($property->documents as $document)
@@ -267,6 +269,17 @@
                         </div>
                         <?php $favourites++; ?>
                     </article>
+                    <?php
+                    if(($countForBanner %3) == 0)
+                    if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
+
+                    { ?>
+                    <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" ></a>
+                    <?php
+                    $betweenCountIndex++;
+
+                    }
+                    ?>
                 @endforeach
                 <?php
 
@@ -363,6 +376,5 @@
             $( "#cityId" ).trigger( "change" );
         });
 
-
-    </script>
+</script>
 @endsection

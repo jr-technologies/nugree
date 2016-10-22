@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="bottom-footer">
-                <span class="rights">&copy;2016 <a href="#">nugree.com</a> All rights reserved</span>
+                <span class="rights">&copy;2016 <a href="{{URL::to('/')}}">nugree.com</a> All rights reserved</span>
                 <ul class="social-icons">
                     <li><a href="https://www.facebook.com/Nugreecom-354399088098995/"><span class="icon-facebook"></span></a></li>
                     <li><a href="https://plus.google.com/118057576547955586597?hl=en"><span class="icon-google-plus-symbol"></span></a></li>
@@ -117,13 +117,13 @@
             <li><a href="https://twitter.com/92nugree"><span class="icon-twitter"></span></a></li>
             <li><a href="https://www.instagram.com/Nugree_Pakistan/"><span class="icon-instagram"></span></a></li>
         </ul>
-        <span class="copyright">Copyright, <a href="#">nugree.com</a></span>
+        <span class="copyright">Copyright, <a href="{{URL::to('/')}}">nugree.com</a></span>
     </div>
 </nav>
 <div class="nav-blur-area">
     <div class="logo-holder"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="Nugree"></div>
     <ul class="bottom-links">
-        <li><a href="#">www.nugree.com</a></li>
+        <li><a href="{{URL::to('/')}}">www.nugree.com</a></li>
         <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</li>
     </ul>
 </div>

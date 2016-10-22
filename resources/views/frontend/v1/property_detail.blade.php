@@ -143,13 +143,12 @@
                                 <div class="field-holder">
                                     <label for="name">Name</label>
 
-                                    <div class="input-holder"><input type="text" id="name" name="name"></div>
+                                    <div class="input-holder"><input type="text" id="name" name="name" required></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="email">Email</label>
 
-                                    <div class="input-holder"><input type="email" id="email" name="email"
-                                                                     required></div>
+                                    <div class="input-holder"><input type="email" id="email" name="email" required></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="phone">phone</label>
@@ -166,8 +165,7 @@
                                 <div class="field-holder">
                                     <label for="message">message</label>
 
-                                    <div class="input-holder"><textarea id="message" name="message"
-                                                                        required></textarea>
+                                    <div class="input-holder"><textarea id="message" name="message" required></textarea>
                                         <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
                                     </div>
                                 </div>
