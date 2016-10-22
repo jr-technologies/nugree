@@ -123,28 +123,28 @@
             </div>
             <div class="layout two first-small">
                 <div class="layout-holder">
-                    <label for="search-society">Filter Socities You Deal In</label>
-                    <div class="input-holder" ng-class="{'error' : errors.societies.length > 0}">
-                        <input type="text" placeholder="Select Societies You Deal In" id="search-society" name="SelectDealSociety" ng-model="searchSocieties">
-                        <span class="error-text">{{errors.societies[0]}}</span>
-                        <span ng-show="form.data.societies.length > 0">({{form.data.societies.length}} Selected)</span>
+                    <label for="search-location">Filter Locations You Deal In</label>
+                    <div class="input-holder" ng-class="{'error' : errors.locations.length > 0}">
+                        <input type="text" placeholder="Select Locations You Deal In" id="search-location" name="SelectDealLocation" ng-model="searchLocations">
+                        <span class="error-text">{{errors.locations[0]}}</span>
+                        <span ng-show="form.data.societies.length > 0">({{form.data.locations.length}} Selected)</span>
                     </div>
                 </div>
                 <div class="layout-holder">
                     <ul class="packetData-list">
-                        <li ng-repeat="society in getSelectedSocieties()">
-                            <strong class="packetData">{{society.name}}<a class="delete" ng-click="deleteSelectedSociety(society.id)" data-target="society{{society.id}}"><span class="icon-cross"></span></a></strong>
+                        <li ng-repeat="location in getSelectedLocations()">
+                            <strong class="packetData">{{location.location}}<a class="delete" ng-click="deleteSelectedLocation(location.id)" data-target="location{{location.id}}"><span class="icon-cross"></span></a></strong>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="input-holder full-width">
                 <ul class="societiesBlock-listing">
-                    <li data-ng-repeat="society in resources.societies | filter:searchSocieties">
-                        <label for="society{{society.id}}" class="customCheckbox">
-                            <input checklist-model="form.data.societies" checklist-value="society.id"  type="checkbox" id="society{{society.id}}" class="selectSociety-checkbox">
+                    <li data-ng-repeat="location in resources.locations | filter:searchSocieties">
+                        <label for="location{{location.id}}" class="customCheckbox">
+                            <input checklist-model="form.data.locations" checklist-value="location.id"  type="checkbox" id="location{{location.id}}" class="selectSociety-checkbox">
                             <span class="fake-checkbox"></span>
-                            <span class="fake-label">{{society.name}}</span>
+                            <span class="fake-label">{{location.location}}</span>
                         </label>
                     </li>
                 </ul>

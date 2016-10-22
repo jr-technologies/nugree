@@ -12,9 +12,9 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.userWasAgent = false;
     $scope.profileUpdated = false;
     $scope.userUpdating = false;
-    $scope.searchSocieties = '';
+    $scope.searchLocations = '';
 
-    $scope.getSelectedSocieties = function () {
+    $scope.getSelectedLocations = function () {
         if($scope.user.agencies[0] != undefined)
             return $scope.user.agencies[0].societies;
         return [];
