@@ -12,9 +12,10 @@
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/assets/images/favicon-16x16.png" sizes="16x16">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>
 
 </head>
-<body>
+<body class="loading-page">
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>
@@ -27,11 +28,11 @@
             {{Form::close()}}
 
             <ul class="customLinks">
-                @if(session()->get('authUser') ==null)
-                <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
-                   @else
+                @if(!isset($_SESSION['authUser']))
+                    <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
+                @else
                     <li>
-                        <a href="#"><span class="hidden-xs">{{str_limit(session()->get('authUser')->fName.' '.session()->get('authUser')->lName,13)}}</span><span class="icon-profile2 hidden"></span></a>
+                        <a href="#"><span class="hidden-xs">{{str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)}}</span><span class="icon-profile2 hidden"></span></a>
                         <ul class="dropDown">
                             <li><a href="{{URL::to('dashboard#/home/profile')}}">my profile</a></li>
                             <li><a href="{{URL::to('dashboard#/home/properties/all')}}">my listing</a></li>
@@ -138,6 +139,7 @@
 <script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
 <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
+<script src="{{url('/')}}/assets/js/helper.js" type="text/javascript"></script>
 </body>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

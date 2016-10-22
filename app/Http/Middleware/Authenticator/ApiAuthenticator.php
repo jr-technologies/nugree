@@ -30,8 +30,8 @@ class ApiAuthenticator
         $customRequest = ucfirst($customRequest);
         $customRequest = new $customRequest();
         if($customRequest->isNotAuthentic()){
-            if(\Session::has('authUser'))
-                $this->authenticator->logout(session('authUser'));
+            if(isset($_SESSION['authUser']))
+                $this->authenticator->logout($_SESSION['authUser']);
             return $this->response->respondAuthenticationFailed();
         }
 

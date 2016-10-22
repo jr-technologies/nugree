@@ -72,7 +72,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'ownerId' => 'required|exists:users,id',
             'purposeId' => 'required|exists:property_purposes,id',
             'subTypeId' => 'required|exists:property_sub_types,id',
-            'locationId' => 'required|exists:blocks,id',
+            'locationId' => 'required|exists:locations,id',
             'title' => 'required|min:3|max:250',
             'description' => 'max:1200',
             'price' => 'required|numeric|min:3',

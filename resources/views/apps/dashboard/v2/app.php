@@ -7,7 +7,7 @@
     <link media="all" rel="stylesheet" href="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/css/select2.css">
     <link media="all" rel="stylesheet" href="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/css/addPropertyNgSelect.css">
     <link media="all" rel="stylesheet" href="<?= \App\Libs\Helpers\AppHelper::assetsPath('dashboard', $response['version']) ?>/css/selectize.default.css">
-    <title>Property42 - Dashboard</title>
+    <title>nugree.com - Dashboard</title>
     <link rel="icon" type="image/png" href="images/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="images/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
@@ -61,7 +61,7 @@
 <body class="sideBar-active  {{loading_resources_class}}">
 <div class="page-loader">
     <div class="page-loader-holder">
-        <img src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/assets/images/loader.gif" alt="Property42 loading">
+        <img src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/assets/images/loader.gif" alt="nugree.com loading">
     </div>
 </div>
 

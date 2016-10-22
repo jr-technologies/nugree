@@ -46,8 +46,7 @@
                         <div class="input-holder">
                             <span class="fake-select">
                                 <select ng-model="cityId" required>
-                                    <option value="1">Lahore</option>
-                                    <option value="2">Islamabad</option>
+                                    <option ng-repeat="city in resources.cities" value="{{city.id}}">{{city.name}}</option>
                                 </select>
                             </span>
                         </div>
@@ -242,9 +241,6 @@
                 </div>
                 <input type="submit" value="SUBMIT PROPERTY">
             </form>
-        </div>
-        <div class="tips">
-            <strong class="add-pro-heading"><span>tips</span></strong>
         </div>
     </div>
     <div class="thankYou-message" ng-show="propertySaved == true">

@@ -147,10 +147,10 @@
                             </span>
                                 <div class="fromTo">
                                     <div class="field-holder">
-                                        <input type="number" placeholder="From" name="land_area_from">
+                                        <input type="number" placeholder="From" name="land_area_from" >
                                     </div>
                                     <div class="field-holder">
-                                        <input type="number" placeholder="To" name="land_area_to">
+                                        <input type="number" placeholder="To" name="land_area_to" >
                                     </div>
                                 </div>
                             </div>
@@ -160,10 +160,10 @@
                             <div class="slide">
                                 <div class="fromTo full-width">
                                     <div class="field-holder">
-                                        <input type="number" placeholder="From" class="PriceField" name="price_from">
+                                        <input type="number" placeholder="From"  name="price_from" id="convertFrom" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
                                     </div>
                                     <div class="field-holder">
-                                        <input type="number" placeholder="To" class="PriceField" name="price_to">
+                                        <input type="number" placeholder="To"   name="price_to" id="convertTo" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
                                     </div>
                                 </div>
                                <span class="calculatedPrice">Please enter the price</span>
@@ -225,8 +225,8 @@
                     </div>
                     <div class="caption text-left">
                         <div class="layout">
-                            <a href="property?propertyId={{$property->id}}"><h1>{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
-                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</h1></a>
+                            <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
+                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
                             <p>{{str_limit($property->description,148) }}</p>
                             <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
                             <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
@@ -364,5 +364,7 @@
         $(document).ready(function(){
             $( "#cityId" ).trigger( "change" );
         });
+
+
     </script>
 @endsection

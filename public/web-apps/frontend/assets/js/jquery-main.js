@@ -1,5 +1,5 @@
 jQuery(window).load(function(){
-	$('.page-loader').fadeOut();
+	jQuery('body').removeClass('loading-page');
 });
 
 $(document).ready(function() {
@@ -75,6 +75,7 @@ function initSlideShow() {
 		switchTime: 5000,
 		animSpeed: 600
 	});
+
 	jQuery('.projects-slideshow').fadeGallery({
 		useSwipe: true,
 		slides: '.slide',
@@ -118,6 +119,23 @@ function initCarousel() {
 		circularRotation: true,
 		pauseOnHover: true,
 		autoRotation: true,
+		maskAutoSize: false,
+		stretchSlideToMask: true,
+		generatePagination: '.pagination',
+		switchTime: 2000,
+		animSpeed: 600,
+		step: 1
+	});
+	jQuery('.agent-societies').scrollGallery({
+		mask: '.agent-mask',
+		slider: '.agent-slideset',
+		slides: '.agent-slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		circularRotation: false,
+		pauseOnHover: true,
+		autoRotation: false,
 		maskAutoSize: false,
 		stretchSlideToMask: true,
 		generatePagination: '.pagination',
@@ -490,4 +508,5 @@ $(document).on('click', '.main-navigation li a', function(){
 });
 $(document).on('click', '.searchOpener', function(){
 	$('#wrapper').toggleClass('search-id-active');
+	$('.searchById').find('input').focus();
 });
