@@ -295,7 +295,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             $(document).scroll(function() {
                 //onScroll();
             });
-            //$scope.locationChanged();
             $scope.propertySubTypeChanged();
             getPropertyDocsAndSetToScope();
             $(function() {
