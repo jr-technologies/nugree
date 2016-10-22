@@ -80,13 +80,13 @@
                                             @if($agent->trustedAgent ==1)
                                                 <span class="trusted-agent"><span class="icon-premium-badge"></span>Trusted</span>
                                             @endif
-                                            <ul class="star-rating">
-                                                <li><a href="#" class="one-star"></a></li>
-                                                <li><a href="#" class="two-stars"></a></li>
-                                                <li><a href="#" class="three-stars"></a></li>
-                                                <li><a href="#" class="four-stars"></a></li>
-                                                <li><a href="#" class="five-stars"></a></li>
-                                            </ul>
+                                            {{--<ul class="star-rating">--}}
+                                                {{--<li><a href="#" class="one-star"></a></li>--}}
+                                                {{--<li><a href="#" class="two-stars"></a></li>--}}
+                                                {{--<li><a href="#" class="three-stars"></a></li>--}}
+                                                {{--<li><a href="#" class="four-stars"></a></li>--}}
+                                                {{--<li><a href="#" class="five-stars"></a></li>--}}
+                                            {{--</ul>--}}
                                         </div>
                                         <div class="layout links-holder">
                                             <div class="links-left">

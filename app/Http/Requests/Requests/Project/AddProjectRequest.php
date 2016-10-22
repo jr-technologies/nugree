@@ -10,6 +10,7 @@ namespace App\Http\Requests\Requests\Project;
 
 
 use App\DB\Providers\SQL\Models\Project;
+use App\Http\Controllers\Web\ResizeImage;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\ProjectValidators\AddProjectValidator;
@@ -46,13 +47,16 @@ class AddProjectRequest extends Request implements RequestInterface{
         $projectImages = $this->get('images');
         foreach($projectImages as $image)
         {
+//            $resize = new ResizeImage($image);
+//            $resize->resizeTo(100, 100,'exact');
+//            $resize->saveImage(public_path() . '/assets/imgs/projects');
+
+
             $extension = $image->getClientOriginalExtension();
             $imageName = md5($image->getClientOriginalName()) . '.' . $extension;
-            $image->move(public_path() . '/assets/imgs/projects', $imageName);
+            $image->move(public_path() . '/assets/imgs/projects', $imageName)->resize(100,100);
             $final[] = 'assets/imgs/projects/' . $imageName;
         }
         return $final;
     }
-
-
-} 
+}

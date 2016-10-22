@@ -9,6 +9,7 @@
 namespace App\Libs\Json\Creators\Creators\Property\Location;
 
 use App\DB\Providers\SQL\Models\Block;
+use App\DB\Providers\SQL\Models\Location;
 use App\DB\Providers\SQL\Models\Society;
 use App\Libs\Json\Creators\Creators\JsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
@@ -16,17 +17,16 @@ use App\Libs\Json\Prototypes\Prototypes\Property\Location\PropertySocietyJsonPro
 
 class PropertySocietyJsonCreator extends JsonCreator implements JsonCreatorInterface
 {
-    public function __construct(Society $society = null)
+    public function __construct(Location $location = null)
     {
-        $this->model = $society;
+        $this->model = $location;
         $this->prototype = new PropertySocietyJsonPrototype();
     }
 
     public function create()
     {
         $this->prototype->id = $this->model->id;
-        $this->prototype->name = $this->model->name;
-        $this->prototype->path = $this->model->path;
+        $this->prototype->name = $this->model->location;
         return $this->prototype;
     }
 }

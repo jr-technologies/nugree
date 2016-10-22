@@ -1,6 +1,6 @@
 @extends('frontend.v1.frontend')
 @section('content')
-    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/v2/css/property-agent-detail.css">
+    <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-detail.css">
     @foreach($response['data']['banners']['topBanners'] as $banner)
         <a><img src="{{url('/').'/'.$banner->image}}" width="100px" height="100px"></a>
     @endforeach
@@ -35,7 +35,7 @@
                                     {{--<li><a href="#" class="five-stars"></a></li>--}}
                                 {{--</ul>--}}
                                 @if($response['data']['agent']->trustedAgent)
-                                    <span class="trusted-agent"><span class="icon-trusted"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span></span>Trusted</span>
+                                    <span class="trusted-agent"><span class="icon-premium-badge"></span>Trusted</span>
                                 @endif
                             </div>
                         </div>

@@ -116,7 +116,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                 </div>
             </div>
             <div class="heading-btns">
-                <h1>NEWS</h1>
+                <h2>NEWS</h2>
                 <a href="#" class="btn-prev"><span class="icon-arrow-left"></span></a>
                 <a href="#" class="btn-next"><span class="icon-arrow-right"></span></a>
             </div>
@@ -223,26 +223,26 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
 
                     <div class="field-holder">
                         <label for="join-name">Name</label>
-                        <div class="input-holder"><input type="text" id="join-name" name="name"></div>
+                        <div class="input-holder"><input type="text" id="join-name" name="name" required></div>
                     </div>
                     <div class="field-holder">
                         <label for="join-email">Email</label>
-                        <div class="input-holder"><input type="email" id="join-email" name="email"></div>
+                        <div class="input-holder"><input type="email" id="join-email" name="email" required></div>
                     </div>
                     <div class="field-holder">
                         <label for="join-phone">Mobile</label>
-                        <div class="input-holder"><input type="tel" id="join-phone" name="phone"></div>
+                        <div class="input-holder"><input type="tel" id="join-phone" name="phone" required></div>
                     </div>
                     <div class="field-holder">
                         <label for="purpose-id">Purpose</label>
                         <div class="input-holder">
-										<span class="fake-select">
-											<select id="purpose-id" name="purpose_id">
-                                                <option value = 1 >Buy</option>
-                                                <option value = 2 >Rent</option>
+                            <span class="fake-select">
+                                <select id="purpose-id" name="purpose_id">
+                                    <option value = 1 >Buy</option>
+                                    <option value = 2 >Rent</option>
 
-                                            </select>
-										</span>
+                                </select>
+                            </span>
                         </div>
                     </div>
                     <div class="field-holder">

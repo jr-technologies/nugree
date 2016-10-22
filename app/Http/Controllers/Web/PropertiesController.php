@@ -140,6 +140,15 @@ class PropertiesController extends Controller
     }
     public function getPropertyListingPageBanners($params)
     {
+        $betweenBanners  = $this->banners->getBanners([
+            'bannerType'=>'relevant',
+            'position'=>'between',
+            'page'=>'property_listing',
+            'societyId'=>$params['societyId'],
+            'landAreaFrom'=>$params['landAreaFrom'],
+            'landAreaTo'=>$params['landAreaTo']
+        ]);
+
         $leftBanners = $this->banners->getBanners([
             'bannerType'=>'relevant',
             'position'=>'left',
@@ -163,14 +172,7 @@ class PropertiesController extends Controller
             'page'=>'property_listing',
 
         ]);
-        $betweenBanners  = $this->banners->getBanners([
-            'bannerType'=>'relevant',
-            'position'=>'between',
-            'page'=>'property_listing',
-            'societyId'=>$params['societyId'],
-            'landAreaFrom'=>$params['landAreaFrom'],
-            'landAreaTo'=>$params['landAreaTo']
-        ]);
+
         return $banners = [
             'leftBanners'=>$leftBanners,
             'topBanners'=>$topBanners,

@@ -71,8 +71,8 @@
             <div style="margin:0 auto;padding:20px 0; max-width:800px;">
                 <div style=" color: #000; float: left;font-size: 16px;font-weight: bold;padding: 15px 0 0 30px;">follow us at: </div>
                 <ul style="  list-style: none; margin:0;padding: 0 30px;float: left;">
-                    <li style="display: inline;"><a style="padding: 0 4px;text-decoration: none;" href="https://www.facebook.com/property42pk-1562646287317094/"><span style="background: #3b5998 none repeat scroll 0 0;border-radius: 15px;color: #fff;display: inline-block;font-size: 19px;padding: 12px;text-align: center;font-weight:bold">facebook</a></span></li>
-                    <li style="display: inline;"><a style="padding: 0 4px;text-decoration: none;" href="https://twitter.com/Property42_pk"><span style="background: #1da1f2 none repeat scroll 0 0;border-radius: 15px;color: #fff;display: inline-block;font-size: 19px;padding: 12px;text-align: center;font-weight:bold">twitter</span></a></li>
+                    <li style="display: inline;"><a style="padding: 0 4px;text-decoration: none;" href="https://www.facebook.com/Nugreecom-354399088098995/"><span style="background: #3b5998 none repeat scroll 0 0;border-radius: 15px;color: #fff;display: inline-block;font-size: 19px;padding: 12px;text-align: center;font-weight:bold">facebook</a></span></li>
+                    <li style="display: inline;"><a style="padding: 0 4px;text-decoration: none;" href="https://twitter.com/92nugree"><span style="background: #1da1f2 none repeat scroll 0 0;border-radius: 15px;color: #fff;display: inline-block;font-size: 19px;padding: 12px;text-align: center;font-weight:bold">twitter</span></a></li>
                 </ul>
             </div>
 

@@ -20,6 +20,7 @@ class MailToAgentValidator extends MailValidator implements ValidatorsInterface
     public function rules()
     {
         return[
+            'name' => 'required',
             'email' => 'required|email|min:5|max:255',
             'message'=>'required|min:5|max:300'
         ];

@@ -51,6 +51,10 @@ class LocationsRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->search($params);
     }
+    public function getLocationsByAgency($agencyId)
+    {
+        return $this->factory->getLocationsByAgency($agencyId);
+    }
     public function getLocationByCity($params)
     {
         return $this->factory->getLocationByCity($params);

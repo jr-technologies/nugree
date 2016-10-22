@@ -110,11 +110,7 @@
                         <div class="layout">
                             <div class="pull-left">
                                 @if(isset($response['data']['propertyOwner']->trustedAgent) && $response['data']['propertyOwner']->trustedAgent == 1)
-                                    <span class="trusted-agent"><span class="icon-trusted"><span
-                                                    class="path1"></span><span class="path2"></span><span
-                                                    class="path3"></span><span class="path4"></span><span
-                                                    class="path5"></span><span class="path6"></span><span
-                                                    class="path7"></span><span class="path8"></span></span>Trusted</span>
+                                    <span class="trusted-agent"><span class="icon-premium-badge"></span>Trusted</span>
                                     <ul class="star-rating">
                                         <li><a href="#" class="one-star">star</a></li>
                                         <li><a href="#" class="two-stars">star</a></li>
@@ -147,13 +143,12 @@
                                 <div class="field-holder">
                                     <label for="name">Name</label>
 
-                                    <div class="input-holder"><input type="text" id="name" name="name"></div>
+                                    <div class="input-holder"><input type="text" id="name" name="name" required></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="email">Email</label>
 
-                                    <div class="input-holder"><input type="email" id="email" name="email"
-                                                                     required></div>
+                                    <div class="input-holder"><input type="email" id="email" name="email" required></div>
                                 </div>
                                 <div class="field-holder">
                                     <label for="phone">phone</label>
@@ -170,8 +165,7 @@
                                 <div class="field-holder">
                                     <label for="message">message</label>
 
-                                    <div class="input-holder"><textarea id="message" name="message"
-                                                                        required></textarea>
+                                    <div class="input-holder"><textarea id="message" name="message" required></textarea>
                                         <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
                                     </div>
                                 </div>
@@ -187,8 +181,8 @@
                             </li>
 
                             <li>
-                                <span class="tag">Society</span>
-                                {{--<span class="quantity">{{$response['data']['property']->location->society->name}}</span>--}}
+                                <span class="tag">Location</span>
+                                <span class="quantity">{{$response['data']['property']->location->location->location}}</span>
                             </li>
                             {{--@if($response['data']['property']->location->block != null && $response['data']['property']->location->block->name != 'other')--}}
                                 {{--<li>--}}
