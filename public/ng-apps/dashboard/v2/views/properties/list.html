@@ -1,4 +1,6 @@
 <div class="property-listing-page" ng-init="initialize()">
+
+    <strong class="property-for">{{propertiesPurpose}}</strong>
     <a class="property-status-links-opener"><span class="text-container">Property Listings</span><span class="lines"></span></a>
     <ul class="property-status-links">
         <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active':searchPropertiesParams.status_id == propertyStatus.id}">
@@ -23,7 +25,6 @@
         </li>
 
     </ul>
-    <strong class="property-for">{{propertiesPurpose}}</strong>
     <ul class="multipal-actions">
         <li ng-show="deletingProperties.ids.length > 0" ng-click="deleteProperties()"><a class="multipal-delete"><span class="icon-bin-delete"></span></a></li>
     </ul>
