@@ -42,6 +42,7 @@ use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Transformers\Response\PropertyJson\PropertyJsonTransformer;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 class PropertiesController extends ApiController
 {
@@ -329,9 +330,23 @@ class PropertiesController extends ApiController
 
     public function storeFileInDirectory($file, $path)
     {
-        $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
-        $file->move(storage_path('app/').$path, $secureName);
-        return $path.'/'.$secureName;
+        $secureName = $this->getSecureFileName($file);
+        $directoryToSave = storage_path('app/').$path;
+        if (!file_exists($directoryToSave)) {  mkdir($directoryToSave, 0777, true); }
+        $this->compressImage(Image::make($file))->save($directoryToSave.'/'.$secureName.'.jpg');
+        //$file->move(storage_path('app/').$path, $secureName);
+        return $path.'/'.$secureName.'.jpg';
+    }
+
+    public function compressImage($img)
+    {
+        $img = $img->heighten(env('PROPERTY_IMG_MAX_WIDTH'), function ($constraint) {
+            $constraint->upsize();
+        });
+        $img = $img->widen(env('PROPERTY_IMG_MAX_WIDTH'), function ($constraint) {
+            $constraint->upsize();
+        });
+        return $img;
     }
 
     /**
