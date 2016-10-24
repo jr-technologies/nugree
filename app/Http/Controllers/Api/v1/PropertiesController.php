@@ -340,7 +340,7 @@ class PropertiesController extends ApiController
 
     public function compressImage($img)
     {
-        $img = $img->heighten(env('PROPERTY_IMG_MAX_WIDTH'), function ($constraint) {
+        $img = $img->heighten(env('PROPERTY_IMG_MAX_HEIGHT'), function ($constraint) {
             $constraint->upsize();
         });
         $img = $img->widen(env('PROPERTY_IMG_MAX_WIDTH'), function ($constraint) {
