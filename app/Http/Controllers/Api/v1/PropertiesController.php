@@ -334,7 +334,8 @@ class PropertiesController extends ApiController
         $secureName = $this->getSecureFileName($file);
         $directoryToSave = storage_path('app/').$path;
         if (!file_exists($directoryToSave)) {  mkdir($directoryToSave, 0777, true); }
-        $this->compressImage(Image::make($file))->save($directoryToSave.'/'.$secureName.'.jpg');
+        //$this->compressImage(Image::make($file))->save($directoryToSave.'/'.$secureName.'.jpg');
+        $file->move(storage_path('app/').$path, $secureName);
         return $path.'/'.$secureName.'.jpg';
     }
 

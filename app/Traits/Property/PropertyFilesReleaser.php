@@ -17,7 +17,7 @@ use App\Traits\FileCompresser;
 
 trait PropertyFilesReleaser
 {
-    use AppTrait, FileCompresser;
+    use AppTrait;
 
     /**
      * @param array $properties
