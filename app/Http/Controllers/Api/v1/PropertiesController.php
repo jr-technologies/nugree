@@ -331,12 +331,9 @@ class PropertiesController extends ApiController
 
     public function storeFileInDirectory($file, $path)
     {
-        $secureName = $this->getSecureFileName($file);
-        $directoryToSave = storage_path('app/').$path;
-        if (!file_exists($directoryToSave)) {  mkdir($directoryToSave, 0777, true); }
-        //$this->compressImage(Image::make($file))->save($directoryToSave.'/'.$secureName.'.jpg');
+        $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
         $file->move(storage_path('app/').$path, $secureName);
-        return $path.'/'.$secureName.'.jpg';
+        return $path.'/'.$secureName;
     }
 
     /**
