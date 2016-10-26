@@ -319,7 +319,7 @@ class PropertiesController extends ApiController
         foreach($files as $key => $file)
         {
             $document = new PropertyDocument();
-            $document->path = $this->storeFileInDirectory($file['file'], $path);
+            $document->path = $this->storeFileInDirectory(Image::make($file['file']), $path);
             $document->propertyId = $propertyId;
             $document->type = 'image';
             $document->title = isset($file['title'])?$file['title']:'';
@@ -331,9 +331,14 @@ class PropertiesController extends ApiController
 
     public function storeFileInDirectory($file, $path)
     {
-        $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
-        $file->move(storage_path('app/').$path, $secureName);
-        return $path.'/'.$secureName;
+//        $secureName = $this->getSecureFileName($file).'.'.$file->getClientOriginalExtension();
+//        $file->move(storage_path('app/').$path, $secureName);
+//        return $path.'/'.$secureName;
+        $secureName = uniqid('img_');
+        $directoryToSave = storage_path('app/'.$path);
+        if (!file_exists($directoryToSave)) {  mkdir($directoryToSave, 0777, true); }
+        $this->compressImage($file)->save($directoryToSave.'/'.$secureName.'.jpg');
+        return $path.'/'.$secureName.'.jpg';
     }
 
     /**
