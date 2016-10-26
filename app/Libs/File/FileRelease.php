@@ -114,6 +114,7 @@ class FileRelease
     public function copyTo($newLocation)
     {
         if(!file_exists(public_path('/temp'))){mkdir(public_path('/temp'));}
+        dd($this->getCompleteFilePath());
         return copy($this->getCompleteFilePath(), $newLocation);
     }
 
