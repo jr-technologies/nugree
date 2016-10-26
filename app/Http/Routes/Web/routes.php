@@ -1,22 +1,117 @@
 <?php
 
 Route::get('test',function(){
+
+    $propertiesLocation = [];
     $propertyRepo = (new \App\Repositories\Providers\Providers\PropertiesRepoProvider())->repo();
+    $locationRepo = (new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo();
     $propertyTable = 'properties';
     $locationTable = 'locations';
-    $propertyRepo = DB::table($propertyTable)
-        ->leftjoin($locationTable,$propertyTable.'location_id','=',$locationTable.'id')
-        ->select($locationTable.'.id',$locationTable.'location')
+
+    $propertiesLocations[] = DB::table($propertyTable)
+        ->leftjoin($locationTable,$propertyTable.'.location_id','=',$locationTable.'.id')
+        ->select($locationTable.'.id',$locationTable.'.location')
+        ->distinct()
         ->get();
-    dd($propertyRepo);
+
+    $collectedPropertyLocationIds = [];
+
+    foreach($propertiesLocations[0] as $propertyLocation)
+    {
+        $collectedPropertyLocationIds[]= $propertyLocation->id;
+    }
+
+    $locations =[];
+               $locations[]= DB::table($locationTable)
+                   ->select(DB::raw("count($locationTable.location) as locationCount,$locationTable.location"))
+                    ->groupBy($locationTable.'.location')
+                    ->having('locationCount', '>', 1)
+                    ->get();
+    $rawLocation= [];
+
+    foreach($locations[0] as $location){
+
+        $rawLocation[] = $location->location;
+    }
+
+    $locationIds = DB::table($locationTable)
+         ->select($locationTable.'.id')
+         ->whereIn($locationTable.'.location', $rawLocation)
+         ->get();
+
+    $finalLocationIds = [];
+    foreach($collectedPropertyLocationIds as $collectedPropertyLocationId)
+    {
+        foreach($locationIds as $locationId)
+        {
+            if($locationId->id != $collectedPropertyLocationId)
+            {
+                    $finalLocationIds[] = $locationId->id;
+            }
+        }
+    }
+
+    dd(sizeof($finalLocationIds));
+    $locations =[];
+    $locations[]= DB::table($locationTable)
+        ->select(DB::raw("count($locationTable.location) as locationCount,$locationTable.id as location_id"))
+        ->groupBy($locationTable.'.location')
+        ->having('locationCount', '>', 1)
+        ->whereIn('locations.id', $finalLocationIds)
+        ->get();
+
+$deleteLocationIds =[];
+    foreach($locations[0] as $location)
+    {
+        $deleteLocationIds[]= $location->location_id;
+    }
+
+    DB::table($locationTable)
+        ->whereIn($locationTable.'.id',$deleteLocationIds)
+        ->where($locationTable.'.city_id','=',1)
+        ->delete();
+
+    dd('Records Are Deleted');
 });
 
 
 
+Route::get('/imageResize', function()
+{
 
+    $mainFolder = storage_path('app\users');
+    $subFolder = scandir($mainFolder);
+    $sizeofSubFolder = sizeof($subFolder);
+    for($limit =2; $limit<$sizeofSubFolder; $limit++)
+    {
+        $rawPath = storage_path('app\users'.'/'.$subFolder[$limit]);
+        $pathToProperties = scandir($rawPath);
+        if(isset($pathToProperties[3]) && ($pathToProperties[3]) == 'properties')
+        {
+            $propertiesPath = $rawPath . '/' . $pathToProperties[3];
+            $propertiesSubFolderPath = scandir($propertiesPath);
+            $sizeOfSubPropertiesFolder = sizeof($propertiesSubFolderPath);
+            for ($i = 2; $i < $sizeOfSubPropertiesFolder; $i++) {
+                $fullPath = $propertiesPath . '/' . $propertiesSubFolderPath[$i];
+                $files = [];
+                $dh = opendir($fullPath);
+                while (false !== ($filename = readdir($dh))) {
+                    $files[] = $filename;
+                }
+                $fileSize = sizeof($files);
+                //dd($fileSize,$files);
+                for ($a = 2; $a < $fileSize; $a++) {
+                    $img = \Intervention\Image\Facades\Image::make($fullPath . '/' . $files[$a]);
+                    $img->resize(300, 300);
+                    $img->save($fullPath . '/' . $files[$a]);
+                }
+            }
+        }
 
+     }
+    dd('pictures are resized and saved');
 
-
+});
 
 
 

@@ -4,6 +4,7 @@
 var app = angular.module('dashboard');
 
 app.controller("UserProfileController",["user", "$scope", "$rootScope", "$CustomHttpService", "$http", "$state", "$AuthService", "Upload", "$window", function (user, $scope, $rootScope, $CustomHttpService, $http, $state, $AuthService, Upload, $window) {
+    console.log($rootScope.resources);
     $scope.idForAgentBroker = 3;
     $scope.html_title = "Property42 | My Profile";
     $scope.user = user;

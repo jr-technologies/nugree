@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:description" content="[content description]" />
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/main.css">
     <title>Largest website for property | nugree.com</title>
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/assets/images/favicon-192x192.png" sizes="192x192">
