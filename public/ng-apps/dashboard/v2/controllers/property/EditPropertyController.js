@@ -85,7 +85,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
                 }
             }).then(function(response){
                 console.log(response);
-                $scope.locations = response.data;
+                $scope.locations = response.data.data.locations;
             });
         };
         $scope.locationChanged = function () {
@@ -295,7 +295,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             $(document).scroll(function() {
                 //onScroll();
             });
-            //$scope.locationChanged();
             $scope.propertySubTypeChanged();
             getPropertyDocsAndSetToScope();
             $(function() {

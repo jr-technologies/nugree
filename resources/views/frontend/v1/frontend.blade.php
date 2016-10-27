@@ -41,7 +41,7 @@
                         </ul>
                     </li>
                 @endif
-                    <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List you property</span><span class="icon-plus-square hidden"></span></a></li>
+                    <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List your property</span><span class="icon-plus-square hidden"></span></a></li>
             </ul>
         </div>
     </header>

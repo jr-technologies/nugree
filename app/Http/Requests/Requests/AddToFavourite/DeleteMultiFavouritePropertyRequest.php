@@ -41,7 +41,7 @@ class DeleteMultiFavouritePropertyRequest extends Request implements RequestInte
     public function DeleteFavouriteProperty()
     {
         $addToFavourite = new FavouriteProperty();
-        $user = session()->get('authUser');
+        $user = $_SESSION['authUser'];
         $addToFavourite->userId =$user->id;
         $addToFavourite->propertyId = $this->get('propertyId');
         return $addToFavourite;

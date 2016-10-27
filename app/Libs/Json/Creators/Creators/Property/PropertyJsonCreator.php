@@ -18,6 +18,7 @@ use App\Libs\Json\Creators\Creators\Property\Type\PropertyTypeJsonCreator;
 use App\Libs\Json\Creators\Interfaces\JsonCreatorInterface;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyStatusJsonPrototype;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertiesRepository;
@@ -33,6 +34,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
     private $propertyStatusesRepository = null;
     private $propertiesRepository = null;
     private $propertyPurposes = null;
+    private $locationsRepository = null;
 
     public function __construct(Property $property = null)
     {
@@ -44,6 +46,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->propertyStatusesRepository = new PropertyStatusesRepository();
         $this->propertiesRepository = new PropertiesRepository();
         $this->propertyPurposes = (new PropertyPurposesRepoProvider())->repo();
+        $this->locationsRepository = (new LocationsRepoProvider())->repo();
     }
 
     public function create()
@@ -119,8 +122,8 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
 
     private function getPropertyLocation()
     {
-        $completeLocation = $this->propertiesRepository->getCompleteLocation($this->model->id);
-        return (new PropertyLocationJsonCreator($completeLocation))->create();
+        $location = $this->locationsRepository->getById($this->model->locationId);
+        return (new PropertyLocationJsonCreator($location))->create();
     }
 
     /**

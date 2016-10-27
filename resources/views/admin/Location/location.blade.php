@@ -66,4 +66,6 @@
             {{Form::close()}}
         </table>
     </div>
+
+    
 @endsection

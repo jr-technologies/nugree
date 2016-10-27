@@ -13,6 +13,7 @@ use App\Libs\Json\Prototypes\Prototypes\Property\Owner\PropertyAgencyJsonPrototy
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyDocumentJsonPrototype;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Traits\AppTrait;
+use App\Traits\FileCompresser;
 
 trait PropertyFilesReleaser
 {

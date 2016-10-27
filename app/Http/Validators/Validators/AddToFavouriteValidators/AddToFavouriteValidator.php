@@ -24,7 +24,7 @@ class AddToFavouriteValidator extends FavouriteValidator implements ValidatorsIn
     public function rules()
     {
         return[
-            'propertyId'=>'required|unique:favourite_properties,property_id,NULL,id,user_id,' .session()->get('authUser')->id,
+            'propertyId'=>'required|unique:favourite_properties,property_id,NULL,id,user_id,' .$_SESSION['authUser']->id,
         ];
     }
 }

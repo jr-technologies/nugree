@@ -41,7 +41,7 @@ class UpdateUserTransformer extends RequestTransformer{
             'agencyId' => $this->request->input('agencyId'),
             'agencyName' => $this->request->input('agencyName'),
             'agencyDescription' => $this->request->input('agencyDescription'),
-            'societies' => $this->request->input('societies'),
+            'locations' => $this->request->input('locations'),
             'companyPhone' => $this->request->input('companyPhone'),
             'companyMobile' => $this->request->input('companyMobile'),
             'companyAddress' => $this->request->input('companyAddress'),

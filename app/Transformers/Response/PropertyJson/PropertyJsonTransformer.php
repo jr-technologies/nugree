@@ -39,6 +39,7 @@ class PropertyJsonTransformer extends ResponseTransformer{
         $transformedProperty->fax = $property->fax;
         $transformedProperty->email = $property->email;
         $transformedProperty->createdBy = $property->createdBy;
+        $transformedProperty->createdAt = $property->createdAt;
 
         return $transformedProperty;
     }

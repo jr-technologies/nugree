@@ -45,7 +45,7 @@
             <a class="nav-opener"><span></span></a>
             <a href="{{ URL::to('add-property') }}" class="btn-header hidden-xs"><span
                         class="icon-plus"></span>Add a property</a>
-            @if(session()->get('authUser') ==null)
+            @if($_SESSION['authUser'] ==null)
                 <a href="{{ URL::to('/login') }}" class="btn-header loginRegister">login / register</a>
             @endif
         </div>

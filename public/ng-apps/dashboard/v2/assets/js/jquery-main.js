@@ -17,35 +17,7 @@ jQuery(function(){
     initCarousel();
 });
 function initCarousel() {
-    jQuery('.propertyImage-slider').scrollGallery({
-        mask: '.mask',
-        slider: '.slideset',
-        slides: '.slide',
-        btnPrev: '.propertyImage-slider-btn-prev',
-        btnNext: '.propertyImage-slider-btn-next',
-        pagerLinks: '.propertyImage-pagination .propertyImage-slide',
-        autoRotation: false,
-        circularRotation: true,
-        switchTime: 3000,
-        animSpeed: 500,
-        swipeGap: true
-    });
 
-    jQuery('.propertyImage-pagination').scrollGallery({
-        mask: '.propertyImage-mask',
-        slider: '.propertyImage-slideset',
-        slides: '.propertyImage-slide',
-        btnPrev: '.propertyImage-pagination-btn-prev-1',
-        btnNext: '.propertyImage-pagination-btn-next-1',
-        pagerLinks: '.pagination li',
-        autoRotation: false,
-        circularRotation: true,
-        switchTime: 3000,
-        animSpeed: 500,
-        currentNumber: '.paginationCurrent-num-1',
-        totalNumber: '.total-num-1',
-        swipeGap: true
-    });
 }
 
 $(document).on('change keyup', 'input, textarea, select', function(){
@@ -208,10 +180,6 @@ $('.hidden-checkfield').change(function(){
     }
 });
 
-$(document).on('click', '.role-opener', function(){
-    $('.registration-form').find('.role-listing').slideToggle();
-    $(this).toggleClass('active');
-});
 
 function countCheckedRoles(){
     var totalCheckedRoles = 0;

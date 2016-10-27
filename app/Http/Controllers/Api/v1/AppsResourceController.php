@@ -33,6 +33,7 @@ class AppsResourceController extends ApiController
     public $purposes  = "";
     public $statuses  = "";
     public $societies = "";
+    public $locations = "";
     public $propertyTypes = "";
     public $propertySubTypes = "";
     public $landUnits   = "";
@@ -50,6 +51,7 @@ class AppsResourceController extends ApiController
         $this->purposes = (new PropertyPurposesRepoProvider())->repo();
         $this->statuses = (new PropertyStatusesRepoProvider())->repo();
         $this->societies = (new SocietiesRepoProvider())->repo();
+        $this->locations = (new SocietiesRepoProvider())->repo();
         $this->cities = (new CitiesRepoProvider())->repo();
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
         $this->propertySubTypes = (new PropertySubTypesRepoProvider())->repo();
@@ -72,7 +74,7 @@ class AppsResourceController extends ApiController
         $purposes  = $this->purposes->all();
         $statuses  = $this->statuses->all();
         $cities = $this->cities->all();
-        //$societies = $this->societies->all();
+        $locations = $this->locations->all();
         $propertyStatusesIds = (object)$this->mapStatusesToArray($this->propertyStatuses->all());
         $propertyTypes = $this->propertyTypes->all();
         $propertySubTypes = $this->propertySubTypes->all();
@@ -90,7 +92,7 @@ class AppsResourceController extends ApiController
                     'propertyStatuses'=>$statuses,
                     'propertyTypes'=>$propertyTypes,
                     'cities'=>$cities,
-                    //'societies'=>$societies,
+                    'locations'=>$locations,
                     'propertySubTypes'=>$propertySubTypes,
                     'landUnits'=>$landUnits,
                     'agencyStaff'=>$agencyStaff,

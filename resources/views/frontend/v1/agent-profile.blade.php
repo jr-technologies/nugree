@@ -26,33 +26,26 @@
                                 <span class="location">Lahore</span>
                             </div>
                             <div class="right-side">
-                                {{--<span class="rate-us text-center">RATE US</span>--}}
-                                {{--<ul class="star-rating">--}}
-                                    {{--<li><a href="#" class="one-star"></a></li>--}}
-                                    {{--<li><a href="#" class="two-stars"></a></li>--}}
-                                    {{--<li><a href="#" class="three-stars"></a></li>--}}
-                                    {{--<li><a href="#" class="four-stars"></a></li>--}}
-                                    {{--<li><a href="#" class="five-stars"></a></li>--}}
-                                {{--</ul>--}}
+
                                 @if($response['data']['agent']->trustedAgent)
                                     <span class="trusted-agent"><span class="icon-premium-badge"></span>Trusted</span>
                                 @endif
                             </div>
                         </div>
                         @if(sizeof($response['data']['agent']->agencies) > 0 )
-                            @if(sizeof($response['data']['agent']->agencies[0]->societies) > 0)
+                            @if(sizeof($response['data']['agent']->agencies[0]->locations) > 0)
                                 <div class="agent-societies">
-                                    <span class="small-heading">Society we deal in</span>
+                                    <span class="small-heading">Locations we deal in</span>
                                     <div class="agent-mask ">
                                         <div class="agent-slideset">
-                                            @foreach($response['data']['agent']->agencies[0]->societies as $society )
-                                                @if($society != null)
+                                            @foreach($response['data']['agent']->agencies[0]->locations as $location )
+                                                @if($location != null)
                                                     <div class="agent-slide">
                                                         <a>
-                                                            @if( isset($society->path) && $society->path !=null)
-                                                                <img src="{{url('/').'/' .$society->path}}" alt="image description">
+                                                            @if( isset($location->location->path) && $location->location->path !=null)
+                                                                <img src="{{url('/').'/' .$location->location->path}}" alt="image description">
                                                             @else
-                                                                <span class="image-description">{{$society->name}}</span>
+                                                                <span class="image-description">{{$location->location->location}}</span>
                                                             @endif
                                                         </a>
                                                     </div>

@@ -39,7 +39,7 @@ class DeleteToFavouritePropertyRequest extends Request implements RequestInterfa
     public function DeleteFavouriteProperty()
     {
         $addToFavourite = new FavouriteProperty();
-        $user = session()->get('authUser');
+        $user = $_SESSION['authUser'];
         $addToFavourite->userId =$user->id;
         $addToFavourite->propertyId = $this->get('propertyId');
         return $addToFavourite;
