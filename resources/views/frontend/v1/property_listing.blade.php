@@ -198,25 +198,32 @@
                                         <?php
 
                                         $image = url('/')."/assets/imgs/no.png";
+                                        foreach($property->documents as $document)
+                                        {
+                                            if($document->type == 'image' && $document->main == true && $document->path != "")
+                                            {
+                                                $image = url('/').'/temp/'.$document->path;
+                                            }
+                                        }
                                         $countForBanner++;
                                         ?>
-                                        @if(sizeof($property->documents) > 0)
-                                            @foreach($property->documents as $document)
-                                                <div class="slide">
-                                                    <a href="property?propertyId={{$property->id}}">
-                                                        @if($document->type == 'image'  && $document->path != "")
-                                                            <img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">
-                                                        @endif
-                                                    </a>
-                                                </div>
-                                            @endforeach
-                                        @else
+                                        {{--@if(sizeof($property->documents) > 0)--}}
+                                            {{--@foreach($property->documents as $document)--}}
+                                                {{--<div class="slide">--}}
+                                                    {{--<a href="property?propertyId={{$property->id}}">--}}
+                                                        {{--@if($document->type == 'image'  && $document->path != "")--}}
+                                                            {{--<img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">--}}
+                                                        {{--@endif--}}
+                                                    {{--</a>--}}
+                                                {{--</div>--}}
+                                            {{--@endforeach--}}
+                                        {{--@else--}}
                                             <div class="slide">
                                                 <a href="property?propertyId={{$property->id}}">
                                                     <img src="{{$image}}" alt="image description">
                                                 </a>
                                             </div>
-                                        @endif
+                                       {{-- @endif--}}
                                     </div>
                                 </div>
                                 <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>

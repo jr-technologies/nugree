@@ -50,6 +50,7 @@
 <div style="  margin:0;  padding: 0;overflow: hidden;">
     <div style="margin:0; padding:0 0;verflow: hidden;background:rgba(35, 53, 112, 0.7) none repeat scroll 0 0;">
         <div style="margin:0 auto;padding:20px 0; max-width:800px;">
+            <img src="http://nugree.com/web-apps/frontend/assets/images/logo.png">
             <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">nugree.com</div>
         </div>
     </div>

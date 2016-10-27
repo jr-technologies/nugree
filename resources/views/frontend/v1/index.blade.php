@@ -261,4 +261,9 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $( "#cityId" ).trigger( "change" );
+        });
+    </script>
 @endsection

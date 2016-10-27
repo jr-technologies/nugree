@@ -16,7 +16,7 @@
     <script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>
 
 </head>
-<body class="loading-page">
+<body {{--class="loading-page"--}}>
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>

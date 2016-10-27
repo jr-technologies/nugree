@@ -50,8 +50,8 @@
 <body style="margin:0;color:#f4f5f7;ont: 12px/15px Arial, Helvetica, sans-serif;height:100%;	min-width:230px;font-family: 'Raleway', sans-serif;">
 <div style="  margin:0;  padding: 0;overflow: hidden;">
     <div style="margin:0; padding:0 0;verflow: hidden;background:rgba(35, 53, 112, 0.7) none repeat scroll 0 0;">
-        <div style="margin:0 auto;padding:20px 0; max-width:800px;">
-            <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">nugree.com</div>
+        <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">nugree.com
+            <img src="http://nugree.com/web-apps/frontend/assets/images/logo.png">
         </div>
     </div>
     <main style="   padding: 0;margin: 0; overflow: hidden;">
