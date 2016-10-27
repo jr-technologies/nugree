@@ -1,27 +1,28 @@
 <?php
 
-Route::get('test',function(){
-    $propertyRepo = (new \App\Repositories\Providers\Providers\PropertiesRepoProvider())->repo();
-    $propertyTable = 'properties';
-    $locationTable = 'locations';
-    $propertyRepo = DB::table($propertyTable)
-        ->leftjoin($locationTable,$propertyTable.'location_id','=',$locationTable.'id')
-        ->select($locationTable.'.id',$locationTable.'location')
-        ->get();
-    dd($propertyRepo);
-});
-
-
-
-
-
-
-
-
-
-
-
-
+//Route::get('/imageResize/{chunk_number}', function()
+//{
+//    $images = getDirContents(storage_path('app/users/'));
+//    $image_chunks = array_chunk($images, 50);
+//    $count = 0;
+//    foreach($image_chunks[request()->route()->parameter('chunk_number')] as $imagePath){
+//        try{
+//            $img = \Intervention\Image\Facades\Image::make($imagePath);
+//            $img = $img->heighten(env('PROPERTY_IMG_MAX_HEIGHT'), function ($constraint) {
+//                $constraint->upsize();
+//            });
+//            $img = $img->widen(env('PROPERTY_IMG_MAX_WIDTH'), function ($constraint) {
+//                $constraint->upsize();
+//            });
+//            $img->save($imagePath);
+//            echo "pass<br>";
+//        }catch (Exception $e){
+//            echo "fail<br>";
+//        }
+//        $count++;
+//    }
+//    dd('pictures are resized and saved');
+//});
 
 
 Route::get('foo',function()
