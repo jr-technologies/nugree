@@ -34,7 +34,7 @@ class AuthHelper extends Helper
                 return null;
             }
         }else{
-            if($_SESSION['authUser'] != null)
+            if(isset($_SESSION['authUser']) && $_SESSION['authUser'] != null)
                 return $this->users->getById($_SESSION['authUser']->id);
             else
                 return null;

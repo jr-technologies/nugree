@@ -39,7 +39,7 @@
                         @endforeach
                     </ul>
                     <span class="select-load">
-                        <select class="js-example-basic-single" id="cities-select" name="city_id" id="cityId">
+                        <select class="js-example-basic-single" id="cities-select" name="city_id">
                             <option value="">Select City</option>
                             @foreach($response['data']['cities'] as $city)
                                 <option value="{{$city->id}}">{{$city->name}}</option>
@@ -47,7 +47,7 @@
                         </select>
                     </span>
                     <span class="select-load">
-                        <input id="selectbox" class="ajax-locations-select" name="locations">
+                        <input id="selectbox" class="ajax-locations-select" name="location_id">
                     </span>
                     <button type="submit">Search<span class="icon-arrow-right"></span></button>
                     {{Form::close()}}

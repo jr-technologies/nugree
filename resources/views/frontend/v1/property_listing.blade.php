@@ -101,7 +101,7 @@
                             <div class="slide">
                                 <ul class="filterChecks">
                                     <li>
-                                        <select class="js-example-basic-single" name="city_id" id="cityId">
+                                        <select class="js-example-basic-single" name="city_id" id="cities-select">
                                             <option value="">Select City</option>
                                             @foreach($response['data']['cities'] as $city)
                                                 <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
@@ -109,10 +109,7 @@
                                         </select>
                                     </li>
                                     <li>
-                                        <select class="js-example-basic-single" name="location_id" id="societies">
-                                            <option>Select society</option>
-                                        </select>
-
+                                        <input id="selectbox" class="ajax-locations-select" name="location_id">
                                     </li>
                                 </ul>
                             </div>
