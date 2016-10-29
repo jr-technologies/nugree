@@ -82,18 +82,12 @@ class PropertiesController extends Controller
             return Redirect::to(url('/').'/dashboard#/home/properties/add');
         }
     }
-
     public function update(UpdatePropertyRequest $request)
     {
         return $this->response
             ->setView('userRegistered')
             ->respond($this->PropertyTransformer->transform($request->all()));
     }
-
-    /**
-     * @param SearchPropertiesRequest $request
-     * @return $this
-     */
     public function search(SearchPropertiesRequest $request)
     {
 
@@ -136,7 +130,7 @@ class PropertiesController extends Controller
                 $favourites[]=$this->favouriteFactory->isFavourite($property->id, $loggedInUser->id);
             }
             return $favourites;
-        };
+        }
     }
     public function getPropertyListingPageBanners($params)
     {
@@ -224,8 +218,9 @@ class PropertiesController extends Controller
                    'banners'=>$this->getPropertyDetailPageBanners(),
                    'propertyId' => $request->get('propertyId')
                ]]);
-           }else {
-               return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
+           }
+           else {
+               return $this->response->setView('frontend.v1.No-result')->respond(['data' =>[
                    'propertyId' => $request->get('propertyId')
                ]]);
            }
@@ -236,8 +231,7 @@ class PropertiesController extends Controller
            ]]);
        }
     }
-
-        public function getPropertyDetailPageBanners()
+    public function getPropertyDetailPageBanners()
         {
             $leftBanners = $this->banners->getBanners([
                 'bannerType'=>'fix',

@@ -1,21 +1,21 @@
 <?php
 
 
-Route::get('userjson',function(){
-
-    $users = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->all();
-    $finalRecord =[];
-    foreach($users as $user)
-    {
-        $finalRecord[] = [
-            'user_id'=>$user->id,
-            'json'=>(new \App\Libs\Json\Creators\Creators\User\UserJsonCreator($user))->create()->encode()
-        ];
-    }
-    dd($finalRecord);
-    \Illuminate\Support\Facades\DB::table('user_json')->insert($finalRecord);
-    dd('done');
-});
+//Route::get('userjson',function(){
+//
+//    $users = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->all();
+//    $finalRecord =[];
+//    foreach($users as $user)
+//    {
+//        $finalRecord[] = [
+//            'user_id'=>$user->id,
+//            'json'=>(new \App\Libs\Json\Creators\Creators\User\UserJsonCreator($user))->create()->encode()
+//        ];
+//    }
+//    dd($finalRecord);
+//    \Illuminate\Support\Facades\DB::table('user_json')->insert($finalRecord);
+//    dd('done');
+//});
 
 Route::get('test',function(){
 
