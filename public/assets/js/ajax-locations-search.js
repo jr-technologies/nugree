@@ -38,6 +38,7 @@ $(".ajax-locations-select").select2({
         },
         cache: true
     },
+    multiple:true,
     escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
     minimumInputLength: 1,
     formatResult: function(location) {
@@ -47,6 +48,11 @@ $(".ajax-locations-select").select2({
         return location.location;
     }
 });
+
+//below two lines for default selection (multiple select)
+//var defaultData = [{id:1, location:'Item1'},{id:2,location:'Item2'},{id:3,location:'Item3'}];
+//$('.ajax-locations-select').data().select2.updateSelection(defaultData);
+
 $(".ajax-locations-multi-select").select2({
     placeholder: 'search for locations',
     ajax: {

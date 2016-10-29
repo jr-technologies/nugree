@@ -196,7 +196,7 @@ class UsersController extends ApiController
         }
         $agency->logo = $logoPath;
         $agencyId = $this->agencies->storeAgency($agency);
-        $this->agencies->addSocieties($request->getAgencySocieties($agencyId));
+        $this->agencies->addLocations($request->getAgencyLocations($agencyId));
         return $agencyId;
     }
 

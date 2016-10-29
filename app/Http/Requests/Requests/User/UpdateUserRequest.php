@@ -10,6 +10,7 @@ namespace App\Http\Requests\Requests\User;
 
 
 use App\DB\Providers\SQL\Models\Agency;
+use App\DB\Providers\SQL\Models\AgencyLocation;
 use App\DB\Providers\SQL\Models\AgencySociety;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
@@ -85,17 +86,18 @@ class UpdateUserRequest extends Request implements RequestInterface
         return $this->has('companyLogo');
     }
 
-    public function getAgencySocieties($agencyId)
+    public function getAgencyLocations($agencyId)
     {
-        $societiesIds = $this->get('societies');
-        $agencySocieties = [];
-        foreach ($societiesIds as $societyId) {
-            $agencySociety = new AgencySociety();
-            $agencySociety->agencyId = $agencyId;
-            $agencySociety->societyId = $societyId;
-            $agencySocieties[] =$agencySociety;
+        $locationIds = $this->get('locations');
+        $agencyLocations = [];
+        foreach ($locationIds as $locationId)
+        {
+            $agencyLocation = new AgencyLocation();
+            $agencyLocation->agencyId = $agencyId;
+            $agencyLocation->locationId = $locationId;
+            $agencyLocations[] =$agencyLocation;
         }
-        return $agencySocieties;
+        return $agencyLocations;
     }
 
     public function getAgencyCities()

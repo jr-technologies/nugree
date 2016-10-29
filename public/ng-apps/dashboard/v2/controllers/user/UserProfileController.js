@@ -4,11 +4,7 @@
 var app = angular.module('dashboard');
 
 app.controller("UserProfileController",["user", "$scope", "$rootScope", "$CustomHttpService", "$http", "$state", "$AuthService", "Upload", "$window", function (user, $scope, $rootScope, $CustomHttpService, $http, $state, $AuthService, Upload, $window) {
-<<<<<<< HEAD
-    console.log($rootScope.resources);
-=======
-    
->>>>>>> 3bbe005e6135aa3f933319373a772e3e4ae4114c
+
     $scope.idForAgentBroker = 3;
     $scope.html_title = "Nugree | My Profile";
     $scope.user = user;
@@ -17,12 +13,35 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.userWasAgent = false;
     $scope.profileUpdated = false;
     $scope.userUpdating = false;
-    $scope.searchLocations = '';
+    $scope.selectedLocations = [];
+    $scope.cityId = "";
+    $scope.locations = {
+        selectedLocations: [],
+        searchedLocations: []
+    };
 
-    $scope.getSelectedLocations = function () {
-        if($scope.user.agencies[0] != undefined)
-            return $scope.user.agencies[0].locations;
-        return [];
+    $scope.searchLocations = function ($select) {
+        $scope.locations.searchedLocations = [];
+        if($select.search.length < 2){
+            $scope.locations.searchedLocations = [];
+            return;
+        }
+        return $http.get(apiPath+'locations/search', {
+            params: {
+                keyword: $select.search,
+                cityId: $scope.cityId
+            }
+        }).then(function(response){
+            $scope.locations.searchedLocations = response.data.data.locations;
+        });
+    };
+
+    var getSelectedLocations = function () {
+        var locations = [];
+        angular.forEach($scope.user.agencies[0].locations, function (location, key) {
+            locations.push(location.location);
+        });
+        return locations;
     };
 
     $scope.deleteSelectedLocation = function (locationId) {
@@ -38,9 +57,9 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
         });
         return ids;
     };
-    var getLocationIds = function () {
+    var getSelectedLocationIds = function () {
         var ids = [];
-        angular.forEach($scope.user.agencies[0].locations, function (location, key) {
+        angular.forEach($scope.locations.selectedLocations, function (location, key) {
             ids.push(location.id);
         });
         return ids;
@@ -49,7 +68,8 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.form = {
         data : {
             userId: $scope.user.id,
-            userRoles: []
+            userRoles: [],
+            locations: []
         }
     };
 
@@ -62,6 +82,8 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
         $scope.profileUpdated = false;
         $scope.errors = {};
         $scope.userUpdating = true;
+        $scope.form.data.locations = getSelectedLocationIds();
+        console.log($scope.form.data);
         var upload = Upload.upload({
             url: apiPath+'user/update',
             data: $scope.form.data,
@@ -146,7 +168,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
             else
                 data1.companyLogo = '';
             data1.agencyDescription = agency.description;
-            data1.locations = getLocationIds();
+            data1.locations = getSelectedLocationIds();
             data1.companyPhone = agency.phone;
             data1.companyMobile = agency.mobile;
             data1.companyAddress = agency.address;
@@ -164,6 +186,7 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
         $scope.form.data = mapUsrOnScope($scope.user);
         $scope.userWasAgent = computeUserWasAgent();
         $scope.userIsAgent = $scope.userWasAgent;
+        $scope.locations.selectedLocations = getSelectedLocations();
         if($scope.userIsAgent){
             setCompanyLogo();
         }

@@ -17,6 +17,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="{{url('/')}}/assets/js/select2.full.js" type="text/javascript"></script>
 </head>
 <body class="">
 <div id="wrapper">
@@ -67,10 +68,7 @@
                     {{Form::close()}}
                 </div>
                 <div class="col">
-                    <ul class="social-plugins">
-                        <li><div class="fb-page" data-href="https://www.facebook.com/proerty92pk-354399088098995/" data-tabs="timeline" data-height="382" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/proerty92pk-354399088098995/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/proerty92pk-354399088098995/">proerty92.pk</a></blockquote></div></li>
-                        <li><a class="twitter-timeline" href="https://twitter.com/92nugree">Tweets by 92nugree</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
-                    </ul>
+
                 </div>
             </div>
             <div class="bottom-footer">
@@ -140,7 +138,6 @@
 <script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 <script src="{{url('/')}}/assets/js/helper.js" type="text/javascript"></script>
-<script src="{{url('/')}}/assets/js/select2.full.js" type="text/javascript"></script>
 <script src="{{url('/')}}/assets/js/ajax-locations-search.js" type="text/javascript"></script>
 </body>
 <div id="fb-root"></div>
