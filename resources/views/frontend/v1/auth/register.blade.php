@@ -152,8 +152,9 @@
                     </div>
                     <div class="layout-holder">
                         <label>Select Locations You Deal In.</label>
-                        <div class="input-holder">
-                            <input id="selectbox" class="ajax-locations-select" name="repo">
+                        <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyPhone')) error @endif">
+                            <input id="selectbox" class="ajax-locations-select" name="locations">
+                            <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('locations')) {{$validationErrors->first('locations')}} @endif</span>
                         </div>
                     </div>
                 </div>
