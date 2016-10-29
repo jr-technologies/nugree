@@ -132,7 +132,8 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
                 if(!$conformPassword){
                     return false;
                 }
-            }catch(\Exception $e)
+            }
+            catch(\Exception $e)
             {
                 return false;
             }

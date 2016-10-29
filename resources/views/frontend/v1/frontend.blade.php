@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/assets/images/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/assets/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="{{url('/')}}/web-apps/frontend/assets/images/favicon-16x16.png" sizes="16x16">
-    <link rel="stylesheet" href="{{url('/')}}/assets/css/select2.min.css" sizes="16x16">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
     <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

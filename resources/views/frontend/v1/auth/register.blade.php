@@ -139,16 +139,22 @@
                 </div>
                 <div class="layout two first-small">
                     <div class="layout-holder">
-                        <select id="cities-select" name="city_id">
-                            <option value="">Select City</option>
-                            <option value="1">Lahore</option>
-                            <option value="2">Karachi</option>
-                        </select>
+                        <label>Select City</label>
+                        <div class="input-holder">
+                            <span class="fake-select">
+                                <select id="cities-select" name="city_id">
+                                    <option value="">Select City</option>
+                                    <option value="1">Lahore</option>
+                                    <option value="2">Karachi</option>
+                                </select>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="layout two first-small">
                     <div class="layout-holder">
-                        <input id="selectbox" class="ajax-locations-select" name="locations" style="width:500px;">
+                        <label>Select Locations You Deal In.</label>
+                        <div class="input-holder">
+                            <input id="selectbox" class="ajax-locations-select" name="repo">
+                        </div>
                     </div>
                 </div>
                 <strong class="registerNow-heading">Agency Contact Details</strong>

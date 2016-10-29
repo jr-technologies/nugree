@@ -42,11 +42,7 @@ $(".ajax-locations-select").select2({
     escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
     minimumInputLength: 1,
     formatResult: function(location) {
-        return "<div class='select2-user-result'>" +
-            location.location +
-            '<br />' +
-            '<small class="text-muted">' + location.city_id + '</small>' +
-            "</div>";
+        return "<p class='select2-user-result'>" + location.location + "</p>";
     },
     formatSelection: function(location) {
         return location.location;

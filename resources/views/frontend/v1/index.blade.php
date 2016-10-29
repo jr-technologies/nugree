@@ -47,7 +47,7 @@
                         </select>
                     </span>
                     <span class="select-load">
-                        <input id="selectbox" class="ajax-locations-select" name="repo" style="width:500px;">
+                        <input id="selectbox" class="ajax-locations-select" name="locations">
                     </span>
                     <button type="submit">Search<span class="icon-arrow-right"></span></button>
                     {{Form::close()}}
