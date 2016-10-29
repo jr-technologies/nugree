@@ -1,12 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-Route::get('/compress', function()
-{
-    dd(collect(\Illuminate\Support\Facades\DB::table('locations')->get())->toJson());
-});
-=======
-
 //Route::get('userjson',function(){
 //
 //    $users = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->all();
@@ -36,7 +29,6 @@ Route::get('test',function(){
         ->select($locationTable.'.id',$locationTable.'.location')
         ->distinct()
         ->get();
->>>>>>> 59355ef6bf982e00307e4f440f4d260911d170df
 
     $collectedPropertyLocationIds = [];
 
@@ -94,9 +86,6 @@ $deleteLocationIds =[];
         ->whereIn($locationTable.'.id',$deleteLocationIds)
         ->where($locationTable.'.city_id','=',1)
         ->delete();
-
-<<<<<<< HEAD
-=======
     dd('Records Are Deleted');
 });
 
@@ -165,9 +154,6 @@ Route::get('/imageResize', function()
 //    dd('pictures are resized and saved');
 //});
 
-
-
->>>>>>> 59355ef6bf982e00307e4f440f4d260911d170df
 Route::get('foo',function()
 {
     // DB::table('properties')->delete();
