@@ -138,7 +138,7 @@ $(document).on('change', '#sort', function(){
     {
         var newUrl = removeURLParameter(url ,'order');
         var latestUrl = removeURLParameter(newUrl ,'sort_by');
-        window.location.replace(latestUrl+'&sort_by='+items[0]+"&order="+items[1]);
+        window.location.replace(latestUrl+'?sort_by='+items[0]+"&order="+items[1]);
     }
     else{
         var params = replaceUrlParam(url,'sort_by',items[0]);

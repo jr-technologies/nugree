@@ -47,9 +47,7 @@
     </header>
     <main id="main" role="main">
         <div class="page-holder">
-
-            @yield('content')
-
+             @yield('content')
         </div>
     </main>
     <footer id="footer">

@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         @if(sizeof($response['data']['agent']->agencies) > 0 )
-                            @if(sizeof($response['data']['agent']->agencies[0]->locations) > 0)
+                            @if((sizeof($response['data']['agent']->agencies[0]->locations)) > 0)
                                 <div class="agent-societies">
                                     <span class="small-heading">Locations we deal in</span>
                                     <div class="agent-mask ">
