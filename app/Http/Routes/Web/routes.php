@@ -1,26 +1,9 @@
 <?php
 
-Route::get('test',function(){
-    $propertyRepo = (new \App\Repositories\Providers\Providers\PropertiesRepoProvider())->repo();
-    $propertyTable = 'properties';
-    $locationTable = 'locations';
-    $propertyRepo = DB::table($propertyTable)
-        ->leftjoin($locationTable,$propertyTable.'location_id','=',$locationTable.'id')
-        ->select($locationTable.'.id',$locationTable.'location')
-        ->get();
-    dd($propertyRepo);
+Route::get('/compress', function()
+{
+    dd(collect(\Illuminate\Support\Facades\DB::table('locations')->get())->toJson());
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -39,7 +39,7 @@
                         @endforeach
                     </ul>
                     <span class="select-load">
-                        <select class="js-example-basic-single" name="city_id" id="cityId">
+                        <select class="js-example-basic-single" id="cities-select" name="city_id" id="cityId">
                             <option value="">Select City</option>
                             @foreach($response['data']['cities'] as $city)
                                 <option value="{{$city->id}}">{{$city->name}}</option>
@@ -47,9 +47,7 @@
                         </select>
                     </span>
                     <span class="select-load">
-                        <select class="js-example-basic-single"  name="location_id" id="societies">
-                            <option value="">Select Location</option>
-                        </select>
+                        <input id="selectbox" class="ajax-locations-select" name="repo" style="width:500px;">
                     </span>
                     <button type="submit">Search<span class="icon-arrow-right"></span></button>
                     {{Form::close()}}
@@ -261,4 +259,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
             </div>
         </div>
     </div>
+    <script>
+
+    </script>
 @endsection

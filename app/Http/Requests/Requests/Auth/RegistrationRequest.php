@@ -98,13 +98,14 @@ class RegistrationRequest extends Request implements RequestInterface{
     }
     public function getAgencyLocations($agencyId)
     {
-        $societiesIds = $this->get('societies');
+        $locationIds = explode(',',$this->get('societies'));
+        dd($locationIds);
         $agencyLocations = [];
-        foreach ($societiesIds as $societyId)
+        foreach ($locationIds as $locationId)
         {
             $agencyLocation = new AgencyLocation();
             $agencyLocation->agencyId = $agencyId;
-            $agencyLocation->locationId = $societyId;
+            $agencyLocation->locationId = $locationId;
             $agencyLocations[] =$agencyLocation;
         }
         return $agencyLocations;

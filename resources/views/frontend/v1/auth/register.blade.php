@@ -139,31 +139,17 @@
                 </div>
                 <div class="layout two first-small">
                     <div class="layout-holder">
-                        <label for="selectSociety">Filter Societies You Deal In</label>
-                        <div class="input-holder  @if(isset($validationErrors) && $validationErrors->has('societies')) error @endif">
-                            <input type="text" placeholder="Filter Societies You Deal In:" id="search-society" name="SelectDealSociety">
-                            <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('societies')) {{$validationErrors->first('societies')}} @endif</span>
-                        </div>
-                    </div>
-                    <div class="layout-holder">
-                        <ul class="packetData-list">
-
-                        </ul>
+                        <select id="cities-select" name="city_id">
+                            <option value="">Select City</option>
+                            <option value="1">Lahore</option>
+                            <option value="2">Karachi</option>
+                        </select>
                     </div>
                 </div>
-                <div class="input-holder full-width">
-                    <ul class="societiesBlock-listing">
-                        @foreach($response['locations'] as $location)
-                            <li>
-                                <label for="society{{$location->id}}" class="customCheckbox">
-                                    <input type="checkbox" id="society{{$location->id}}" class="selectSociety-checkbox" name="societies[]" value="{{$location->id}}"
-                                           @if(in_array($location->id,(old('societies') !=null)?old('societies'):[])) checked @endif>
-                                    <span class="fake-checkbox"></span>
-                                    <span class="fake-label">{{$location->location}}</span>
-                                </label>
-                            </li>
-                        @endforeach
-                    </ul>
+                <div class="layout two first-small">
+                    <div class="layout-holder">
+                        <input id="selectbox" class="ajax-locations-select" name="locations" style="width:500px;">
+                    </div>
                 </div>
                 <strong class="registerNow-heading">Agency Contact Details</strong>
                 <div class="layout">
