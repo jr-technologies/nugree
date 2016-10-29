@@ -17,7 +17,7 @@
                 <th>Action</th>
                   </tr>
 
-                {{Form::open(array('url'=> 'maliksajidawan786@gmail.com/get/location/by/City','method'=>'POST','class'=>'rejectApprove-form'))}}
+                {{Form::open(array('url'=> 'maliksajidawan786@gmail.com/get/location/by/City','method'=>'GET','class'=>'rejectApprove-form'))}}
                 <select name="city_id">
                     <option value="">Please Select City</option>
                    @foreach($response['data']['cities'] as $city)
@@ -55,7 +55,7 @@
     $pageValue = (isset($for_previous_link['page']))?$for_previous_link['page']:1;
     ($pageValue ==1)?$for_previous_link['page'] = $pageValue:$for_previous_link['page'] = $pageValue-1;
     $convertPreviousToQueryString  = http_build_query($for_previous_link);
-    $previousResult = URL('/maliksajidawan786@gmail.com/location/listing').'?'.$convertPreviousToQueryString;
+    $previousResult = URL('/maliksajidawan786@gmail.com/get/location/by/City').'?'.$convertPreviousToQueryString;
     ?>
     <?php
     $totalPaginationValue = intval(ceil($response['data']['locationCount'] / config('constants.Pagination')));
@@ -63,7 +63,7 @@
     $pageValue = (isset($for_next_link['page']))?$for_next_link['page']:1;
     ($pageValue == $totalPaginationValue)?$for_next_link['page'] = $pageValue:$for_next_link['page'] = $pageValue+1;
     $convertToQueryString  = http_build_query($for_next_link);
-    $nextResult = URL('/maliksajidawan786@gmail.com/location/listing').'?'.$convertToQueryString;
+    $nextResult = URL('/maliksajidawan786@gmail.com/get/location/by/City').'?'.$convertToQueryString;
     ?>
     <ul class="pager">
         @if($totalPaginationValue !=0)
@@ -76,7 +76,7 @@
         for($i = (($current_page-3 > 0)?$current_page-3:1); $i <= (($current_page + 3 <= $paginationValue)?$current_page+3:$paginationValue);$i++){
         $query_str_to_array['page'] = $i;
         $queryString  = http_build_query($query_str_to_array);
-        $result = URL('/maliksajidawan786@gmail.com/location/listing').'?'.$queryString;
+        $result = URL('/maliksajidawan786@gmail.com/get/location/by/City').'?'.$queryString;
         ?>
         <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
         <?php }?>

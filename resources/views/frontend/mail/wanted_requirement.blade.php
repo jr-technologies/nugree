@@ -3,82 +3,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>nugree.com</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
-    <script src="https://use.fontawesome.com/7d53b5f016.js"></script>
-    <style>html { box-sizing: border-box;}
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-        body {
-
-        }
-        img {border-style:none;}
-        a {
-            text-decoration:none;
-            color:#000;
-            outline:none;
-        }
-        html { height:100%;}
-        a:hover {text-decoration:underline;}
-        a:active {background-color: transparent;}
-        input,
-        textarea,
-        select {
-            font:100% Arial, Helvetica, sans-serif;
-            vertical-align:middle;
-            color:#000;
-            outline:none;
-        }
-        form, fieldset {
-            margin:0;
-            padding:0;
-            border-style:none;
-        }
-        button::-moz-focus-inner {
-            padding:0;
-            margin:0;
-        }
-        header, footer, article, section, nav, figure, aside, main { display: block; }
-        figure {margin:0; padding:0;}
-    </style>
-
+    <title>nugree.com</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
 </head>
-<body style="margin:0;color:#f4f5f7;ont: 12px/15px Arial, Helvetica, sans-serif;height:100%;	min-width:230px;font-family: 'Raleway', sans-serif;">
-<div style="  margin:0;  padding: 0;overflow: hidden;">
-    <div style="margin:0; padding:0 0;verflow: hidden;background:rgba(35, 53, 112, 0.7) none repeat scroll 0 0;">
-        <div style="margin:0 auto;padding:20px 0; max-width:800px;">
-            <div style="  color: #fff; font-family: Lobster,cursive;  font-size: 50px; text-align: center;width: 100%;">nugree.com</div>
-        </div>
+<style>
+    *, *:after, *:before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    a {
+        outline: none;
+        border: 0;
+        color: #3156b6;
+        display: inline-block;
+        vertical-align: top;
+    }
+    body {
+        background: #fff;
+        min-width: 320px;
+        font-family:'Open Sans', 'Arial', sans-serif;
+        font-size: 16px;
+        line-height: 25px;
+    }
+    strong {
+        display: block;
+        color: #524f4f;
+        margin: 0 0 10px;
+    }
+    p { margin: 0 0 15px;}
+    #wrapper:after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background:  url('C:\xampp\htdocs\nugree\public/web-aaps/frontend/assets/images/bg.png') no-repeat 100% 100%;
+        content: '';
+        width: 124px;
+        height: 150px;
+        z-index: -1;
+        opacity: 0.14;
+    }
+</style>
+<body>
+<div id="wrapper" style="max-width: 600px; margin: 30px auto; overflow: hidden; background: #fff; position: relative; z-index: 99;">
+    <div class="logo" style=" width: 209px; margin: 0 auto;"><a href="#" style=" display: block;"><img src="{{url('/').'/web-aaps/frontend/assets/images/logo.png'}}" alt="nugree.com" width="209" height="54" style=" display: block; width: 100%; height: auto;"></a></div>
+    <div class="layout" style="padding: 50px 0;">
+        <p>Dear <b>{{$user['name'] }},</b></p>
+        <p>Thank you for registering in nugree.com,</p>
+        <p>your account has been activated and is ready to be used. Please folllw the link to your Account www.nugree.com to login and your login detail is below:</p>
+        <p><a target="_blank" href="http://nugree.com/login">http://nugree.com/login</a></p>
+        <strong>{{$user['phone']}}</strong>
+            <strong>{{$user['email']}}</strong>
+                <strong>{{$user['requirements']}}</strong>
+        <strong>Password: xsa25hdbd</strong>
+        <p style="color: #b22241; margin: 0; font-weight: 600px;">Membership Plan:</p>
+        <p style="margin: 0; font-weight: 600px;">Package: Free</p>
+        <p style="margin: 0; font-weight: 600px;">Listing Quota: 25</p>
+        <p style="margin: 0; font-weight: 600px;">Price: free</p>
+        <p style="color: #b22241; margin: 0; font-weight: 600px;">Active till: 21-11-2016</p>
+        <strong style="display: block; text-align: center; padding: 50px 0 0;">Administrator <a href="{{URL::to('/')}}">www.nugree.com</a></strong>
     </div>
-    <main style="   padding: 0;margin: 0; overflow: hidden;">
-        <div style="  margin: 0;padding: 0;">
-            <div style="margin:0 auto;padding:20px 0; max-width:800px;">
-                <div style=" color:#000;   font-family: 'Raleway', sans-serif;">
-                    <p style="    margin: 0;padding:0 ;max-width: 700px;">Dear <b style="color:#64719a;font-weight:bold;font-size:15px;">{{$user['name'] }}</b>,</p>
-                    <p>{{$user['phone']}}.</p>
-                    <p>{{$user['email']}}.</p>
-                    <p>{{$user['requirements']}}.</p>
-                    <p>Please keep visiting our website, we will update you soon..</p>
-                    <h1 style=" color: #17690a; font-family: 'Permanent Marker',cursive;font-size: 27px; margin-top: 5px;text-align: center;padding:10px 0;">Thank You!</h1>
-                </div>
-            </div>
-        </div>
-
-        <div style="  margin: 0;padding: 0;  ">
-            <div style="margin:0 auto;padding:20px 0; max-width:800px;">
-                <div style=" color: #000; float: left;font-size: 16px;font-weight: bold;padding: 15px 0 0 30px;">follow us at: </div>
-                <ul style="  list-style: none; margin:0;padding: 0 30px;float: left;">
-                    <li style="display: inline;"><a style="padding: 0 4px;text-decoration: none;" href="https://www.facebook.com/Nugreecom-354399088098995/"><span style="background: #3b5998 none repeat scroll 0 0;border-radius: 15px;color: #fff;display: inline-block;font-size: 19px;padding: 12px;text-align: center;font-weight:bold">facebook</a></span></li>
-                    <li style="display: inline;"><a style="padding: 0 4px;text-decoration: none;" href="https://twitter.com/92nugree"><span style="background: #1da1f2 none repeat scroll 0 0;border-radius: 15px;color: #fff;display: inline-block;font-size: 19px;padding: 12px;text-align: center;font-weight:bold">twitter</span></a></li>
-                </ul>
-            </div>
-
-        </div>
-    </main>
 </div>
 </body>
 </html>

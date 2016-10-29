@@ -4,7 +4,11 @@
 var app = angular.module('dashboard');
 
 app.controller("UserProfileController",["user", "$scope", "$rootScope", "$CustomHttpService", "$http", "$state", "$AuthService", "Upload", "$window", function (user, $scope, $rootScope, $CustomHttpService, $http, $state, $AuthService, Upload, $window) {
+<<<<<<< HEAD
+    console.log($rootScope.resources);
+=======
     
+>>>>>>> 3bbe005e6135aa3f933319373a772e3e4ae4114c
     $scope.idForAgentBroker = 3;
     $scope.html_title = "Nugree | My Profile";
     $scope.user = user;

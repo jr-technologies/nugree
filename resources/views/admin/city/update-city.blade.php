@@ -49,11 +49,10 @@
 
             </tr>
             <tr>
-
                 <td><br/><br/>
                     <img src="{{url('/').'/'.$response['data']['city']->path}}" width="100px" height="100px">
                     <label>select City Image</label>
-                    <input type="file" name="fileToUpload" id="fileToUpload" ><br/><br/>
+                    <input type="file" name="fileToUpload" id="fileToUpload"><br/><br/>
                     City image should be 1MB No More then this
                 </td>
             </tr>

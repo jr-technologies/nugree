@@ -45,16 +45,12 @@ class AddProjectRequest extends Request implements RequestInterface{
     {
         $final = [];
         $projectImages = $this->get('images');
+
         foreach($projectImages as $image)
         {
-//            $resize = new ResizeImage($image);
-//            $resize->resizeTo(100, 100,'exact');
-//            $resize->saveImage(public_path() . '/assets/imgs/projects');
-
-
             $extension = $image->getClientOriginalExtension();
             $imageName = md5($image->getClientOriginalName()) . '.' . $extension;
-            $image->move(public_path() . '/assets/imgs/projects', $imageName)->resize(100,100);
+            $image->move(public_path() . '/assets/imgs/projects', $imageName);
             $final[] = 'assets/imgs/projects/' . $imageName;
         }
         return $final;
