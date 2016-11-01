@@ -1,6 +1,5 @@
 <?php
 
-
 //Route::get('userjson',function(){
 //
 //    $users = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->all();
@@ -87,7 +86,6 @@ $deleteLocationIds =[];
         ->whereIn($locationTable.'.id',$deleteLocationIds)
         ->where($locationTable.'.city_id','=',1)
         ->delete();
-
     dd('Records Are Deleted');
 });
 
@@ -155,8 +153,6 @@ Route::get('/imageResize', function()
 //    }
 //    dd('pictures are resized and saved');
 //});
-
-
 
 Route::get('foo',function()
 {

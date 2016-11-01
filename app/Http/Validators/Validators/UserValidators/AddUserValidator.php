@@ -71,7 +71,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
         return [
             'agencyName' => 'required|max:255',
             'companyAddress' => 'required|max:225',
-            'societies' => 'required|societies_limit',
+            'locations' => 'required|locations_limit',
             'companyEmail' => 'required|email|unique:agencies,email|max:255',
             'agencyDescription'=>'max:1200',
             'companyLogo'=>'image_validation|max_image_size:1000,1000'
@@ -100,10 +100,10 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
 
     public function registerSocietiesLimitRule()
     {
-        Validator::extend('societies_limit', function($attribute, $value, $parameters)
+        Validator::extend('locations_limit', function($attribute, $value, $parameters)
         {
             try {
-                $societies = $this->request->get('societies');
+                $societies = explode(',', $this->request->get('locations'));
                 $societiesLimit = false;
                 if (sizeof($societies) < 4 && sizeof($societies) > 0) {
                     $societiesLimit = true;
@@ -132,7 +132,8 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
                 if(!$conformPassword){
                     return false;
                 }
-            }catch(\Exception $e)
+            }
+            catch(\Exception $e)
             {
                 return false;
             }

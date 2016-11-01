@@ -121,33 +121,28 @@
                     </div>
                 </div>
             </div>
-            <div class="layout two first-small">
+            <div class="layout clearfix">
                 <div class="layout-holder">
-                    <label for="search-location">Filter Locations You Deal In</label>
-                    <div class="input-holder" ng-class="{'error' : errors.locations.length > 0}">
-                        <input type="text" placeholder="Select Locations You Deal In" id="search-location" name="SelectDealLocation" ng-model="searchLocations">
-                        <span class="error-text">{{errors.locations[0]}}</span>
-                        <span ng-show="form.data.societies.length > 0">({{form.data.locations.length}} Selected)</span>
+                    <label class="required-field">City</label>
+                    <div class="input-holder">
+                            <span class="fake-select">
+                                <select ng-model="cityId" required>
+                                    <option ng-repeat="city in resources.cities" value="{{city.id}}">{{city.name}}</option>
+                                </select>
+                            </span>
                     </div>
                 </div>
                 <div class="layout-holder">
-                    <ul class="packetData-list">
-                        <li ng-repeat="location in getSelectedLocations()">
-                            <strong class="packetData">{{location.location.location}}<a class="delete" ng-click="deleteSelectedLocation(location.id)" data-target="location{{location.id}}"><span class="icon-cross"></span></a></strong>
-                        </li>
-                    </ul>
+                    <label class="required-field">Location</label>
+                    <div class="input-holder">
+                        <ui-select multiple ng-model="locations.selectedLocations" theme="select2" ng-disabled="ctrl.disabled" title="Choose a Location" required >
+                            <ui-select-match placeholder="select a location...">{{$item.location}}</ui-select-match>
+                            <ui-select-choices refresh="searchLocations($select)" refresh-delay="300" repeat="location in locations.searchedLocations">
+                                <div ng-bind-html="location.location"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
                 </div>
-            </div>
-            <div class="input-holder full-width">
-                <ul class="societiesBlock-listing">
-                    <li data-ng-repeat="location in resources.locations | filter:searchLocations">
-                        <label for="location{{location.id}}" class="customCheckbox">
-                            <input checklist-model="form.data.locations" checklist-value="location.id"  type="checkbox" id="location{{location.id}}" class="selectSociety-checkbox">
-                            <span class="fake-checkbox"></span>
-                            <span class="fake-label">{{location.name}}</span>
-                        </label>
-                    </li>
-                </ul>
             </div>
             <strong class="registerNow-heading">Agency Contact Details</strong>
             <div class="layout">
