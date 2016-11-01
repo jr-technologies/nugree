@@ -38,6 +38,7 @@ class AddLocationRequest extends Request implements RequestInterface{
         $location = new Location();
         $location->cityId = $this->get('cityId');
         $location->location = $this->get('location');
+        $location->path = $this->get('path');
         $location->lat = $this->get('lat');
         $location->long = $this->get('long');
         return $location;

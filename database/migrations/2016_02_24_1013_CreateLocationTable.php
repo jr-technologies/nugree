@@ -16,6 +16,7 @@ class CreateLocationTable extends Migration
             $table->increments('id');
             $table->integer('city_id')->unsigned();
             $table->string('location');
+            $table->string('path');
             $table->integer('lat');
             $table->integer('long');
 
