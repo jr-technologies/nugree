@@ -28,7 +28,8 @@ class AddPropertyRequest extends Request implements RequestInterface{
     public $validator = null;
     private $features = null;
     private $statusSeeder = null;
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct(new AddPropertyTransformer($this->getOriginalRequest()));
         $this->validator = new AddPropertyValidator($this);
         $this->features = (new FeaturesRepoProvider())->repo();

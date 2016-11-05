@@ -72,7 +72,7 @@ class JoinUsFactory extends SQLFactory implements SQLFactoriesInterface{
         $userRequirement->phone = $result->phone;
         $userRequirement->address = $result->address;
         $userRequirement->message = $result->message;
-        $userRequirement->purposeId = $result->purpose_id;
+        $userRequirement->purpose = $result->purpose_id;
         $userRequirement->createdAt = $result->created_at;
         $userRequirement->updatedAt = $result->updated_at;
         return $userRequirement;
@@ -86,7 +86,7 @@ class JoinUsFactory extends SQLFactory implements SQLFactoriesInterface{
             'phone' => $joinUs->phone,
             'email' => $joinUs->email,
             'address'=>$joinUs->address,
-            'purpose_id' => $joinUs->purposeId,
+            'purpose' => $joinUs->purpose,
             'updated_at' => $joinUs->updatedAt,
             'created_at' => $joinUs->createdAt,
         ];

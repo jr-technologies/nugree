@@ -24,7 +24,7 @@
                     <td>{{$project->id}}</td>
                     <td>{{$project->title}}</td>
                     <td>{{str_limit($project->description,20)}}</td>
-                    <td><img src="{{ url('/').'/'.$project->images[0]->image}}" width="100px" height="100px">
+                    <td><img src="@if(isset($project->images[0]->image)){{ url('/').'/'.$project->images[0]->image}} @endif" width="100px" height="100px">
                         <br />
                       <a href="{{URL::To('maliksajidawan786@gmail.com/get/project/images').'?project_id='.$project->id}}">Edit Images</a>
                     </td>

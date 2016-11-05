@@ -37,7 +37,7 @@ class AddJoinUsRequest extends Request implements RequestInterface{
         $userJoinUsRequirement->phone= $this->get('phone');
         $userJoinUsRequirement->address= $this->get('address');
         $userJoinUsRequirement->message= $this->get('message');
-        $userJoinUsRequirement->purposeId= $this->get('purposeId');
+        $userJoinUsRequirement->purpose= $this->get('purpose');
         return $userJoinUsRequirement;
     }
 

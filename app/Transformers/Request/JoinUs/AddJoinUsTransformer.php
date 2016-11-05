@@ -21,7 +21,7 @@ class AddJoinUsTransformer extends RequestTransformer
             'name'=> $this->request->input('name'),
             'phone'=> $this->request->input('phone'),
             'message'=> $this->request->input('message'),
-            'purposeId'=> $this->request->input('purpose_id'),
+            'purpose'=> $this->request->input('purpose'),
             'address'=> $this->request->input('address'),
          ];
     }

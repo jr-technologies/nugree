@@ -3,7 +3,7 @@
     width: 100% !important;
 }
 .select2-container .select2-choice {
-    height: 28px;
+    height: 40px;
     border-radius: 0;
     background: #fff;
     border:0;
@@ -21,7 +21,7 @@
     right: 0;
     bottom: 0;
     width: 28px;
-    background: #2092d0;
+    background: #cc3b5b;
     content: '';
     cursor: pointer;
 }

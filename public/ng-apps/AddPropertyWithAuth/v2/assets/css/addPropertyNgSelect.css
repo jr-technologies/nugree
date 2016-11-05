@@ -3,13 +3,15 @@
     width: 100% !important;
 }
 .select2-container .select2-choice {
-    height: 28px;
+    height: 40px;
     border-radius: 0;
     background: #fff;
     border:0;
     cursor: pointer;
     width: 100% !important;
 }
+.select2-container, .select2-drop, .select2-search, .select2-search input {
+    border-top: 0 ;}
 .select2-container .select2-choice .select2-arrow{
     background: transparent;
     width: 30px;
@@ -21,7 +23,7 @@
     right: 0;
     bottom: 0;
     width: 28px;
-    background: #2092d0;
+    background: #cc3b5b;
     content: '';
     cursor: pointer;
 }

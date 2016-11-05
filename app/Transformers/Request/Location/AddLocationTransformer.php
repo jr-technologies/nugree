@@ -19,6 +19,7 @@ class AddLocationTransformer extends RequestTransformer
         return [
             'cityId'=>$this->request->input('city_id'),
             'location'=>$this->request->input('location'),
+            'path'=>$this->request->input('path'),
             'lat'=>$this->request->input('lat'),
             'long'=>$this->request->input('long'),
         ];

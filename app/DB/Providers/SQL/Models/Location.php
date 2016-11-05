@@ -13,6 +13,7 @@ class Location {
     public $id = 0;
     public $cityId = "";
     public $location = 1;
+    public $path="";
     public $lat ="";
     public $long ="";
     public $priority =0;
