@@ -47,6 +47,7 @@ app.filter('filterBySubType', [function () {
 }]);
 
 app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpService", "$window","$http", "Upload","$sce", "$AuthService", function ($scope, $rootScope, $CustomHttpService, $window, $http, Upload, $sce, $AuthService) {
+
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
     $scope.propertySaved = false;
@@ -217,6 +218,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         $scope.form.data = mapFormData();
 
         $(function() {
+            $('.please-wait').removeClass('please-wait');
             //handleAddPropertyFormScrolling();
             $('.list-extraFeatures').slideUp();
             $('.feature-block').find('.form-heading').hide();

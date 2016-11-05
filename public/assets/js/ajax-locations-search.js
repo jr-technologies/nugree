@@ -15,7 +15,6 @@ $(".ajax-locations-select").select2({
             if(city_id != ""){
                 params.data.filters = 'city_id='+city_id
             }
-            console.log(q+"___"+city_id);
             index.search(q, params.data).then(function (content) {
                 params.success(content);
             });

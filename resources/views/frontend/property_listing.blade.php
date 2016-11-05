@@ -251,6 +251,8 @@
             }
         });
 
+
+
         $(document).ready(function(){
             $('.property_type').trigger('change');
             $('#society').trigger('change');
