@@ -20,3 +20,16 @@ app.directive('myDirective', function ($compile) {
         }
     }
 });
+app.directive('toString', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, ngModel) {
+            ngModel.$parsers.push(function(val) {
+                return val != null ? val+"" : null;
+            });
+            ngModel.$formatters.push(function(val) {
+                return val != null ? '' + val : null;
+            });
+        }
+    };
+});
