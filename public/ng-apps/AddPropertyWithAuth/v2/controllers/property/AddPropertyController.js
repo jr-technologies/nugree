@@ -47,6 +47,7 @@ app.filter('filterBySubType', [function () {
 }]);
 
 app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpService", "$window","$http", "Upload","$sce", "$AuthService", function ($scope, $rootScope, $CustomHttpService, $window, $http, Upload, $sce, $AuthService) {
+
     $scope.html_title = "Property42 | Add Property";
     $scope.formSubmitStatus = '';
     $scope.propertySaved = false;

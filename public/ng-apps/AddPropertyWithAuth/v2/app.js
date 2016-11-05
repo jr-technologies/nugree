@@ -1,7 +1,6 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
-
 var app = angular.module(appName,[
     'ngRoute', 'ui.router','ui.select',
     'ngFileUpload', 'ngSanitize',
@@ -12,7 +11,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
     $rootScope.domain = domain;
     $rootScope.APP_STATUS = 'ok';
     $rootScope.html_title = "Add Property";
-    $rootScope.resources = null;
+    $rootScope.resources = appResources;
     $rootScope.resourceLoading = false;
     $rootScope.please_wait_class = '';
     $rootScope.loading_resources_class = '';
