@@ -218,6 +218,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         $scope.form.data = mapFormData();
 
         $(function() {
+            $('.please-wait').removeClass('please-wait');
             //handleAddPropertyFormScrolling();
             $('.list-extraFeatures').slideUp();
             $('.feature-block').find('.form-heading').hide();
