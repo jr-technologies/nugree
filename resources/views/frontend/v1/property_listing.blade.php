@@ -378,6 +378,7 @@
         </div>
     </div>
     <script>
+        $("#selectbox").select2('data', {id: 100, location: 'Lorem Ipsum'});
         $(document).ready(function(){
             $( "#cityId" ).trigger( "change" );
         });
