@@ -22,6 +22,7 @@ class RegistrationRequest extends Request implements RequestInterface{
 
     public $validator = null;
     public function __construct(){
+
         parent::__construct(new RegisterUserTransformer($this->getOriginalRequest()));
         $this->validator = new AddUserValidator($this);
     }
@@ -84,18 +85,18 @@ class RegistrationRequest extends Request implements RequestInterface{
     {
         return [1]; //we just deal in lahore
     }
-    public function getAgencySocieties($agencyId)
-    {
-        $societiesIds = $this->get('societies');
-        $agencySocieties = [];
-        foreach ($societiesIds as $societyId) {
-            $agencySociety = new AgencySociety();
-            $agencySociety->agencyId = $agencyId;
-            $agencySociety->societyId = $societyId;
-            $agencySocieties[] =$agencySociety;
-        }
-        return $agencySocieties;
-    }
+//    public function getAgencySocieties($agencyId)
+//    {
+//        $societiesIds = $this->get('societies');
+//        $agencySocieties = [];
+//        foreach ($societiesIds as $societyId) {
+//            $agencySociety = new AgencySociety();
+//            $agencySociety->agencyId = $agencyId;
+//            $agencySociety->societyId = $societyId;
+//            $agencySocieties[] =$agencySociety;
+//        }
+//        return $agencySocieties;
+//    }
     public function getAgencyLocations($agencyId)
     {
         $locationIds = explode(',',$this->get('locations'));

@@ -147,7 +147,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                 <div class="slideset">
                   @foreach($response['data']['projects'] as $project)
                     <div class="slide">
-                        <img src="{{url('/').'/'.$project->images[0]->image}}" alt="image description">
+                        <img src="@if(isset($project->images[0]->image)){{url('/').'/'.$project->images[0]->image}}@endif" alt="image description">
                         <div class="container">
                             <div class="caption">
                                 <strong class="heading">{{$project->title}}</strong>
@@ -182,39 +182,8 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                     nugree.com is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
             </div>
         </div>
-        <a href="#submit-requirement-popup" class="submit-requirement lightbox">Share your requirement</a>
         <a href="#wrapper" class="search-property back-to-top"><span class="icon-search"></span> Search <br>property</a>
         <div class="popup-holder">
-            <div id="submit-requirement-popup" class="lightbox generic-lightbox">
-                <span class="lighbox-heading">Submit your <span>requirement</span></span>
-                {{Form::open(array('url' => 'user/requirement','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
-
-                    <div class="field-holder">
-                        <label for="requirement-name">Name</label>
-                        <div class="input-holder"><input type="text" id="requirement-name" name="name"></div>
-                    </div>
-                    <div class="field-holder">
-                        <label for="requirement-email">Email</label>
-                        <div class="input-holder"><input type="email" id="requirement-email" name="email"></div>
-                    </div>
-                    <div class="field-holder">
-                        <label for="requirement-phone">Mobile</label>
-                        <div class="input-holder"><input type="tel" id="requirement-phone" name="phone"></div>
-                    </div>
-                    <div class="field-holder">
-                        <label for="requirement-subject">Purpose</label>
-                        <div class="input-holder"><input type="text" id="requirement-subject" name="subject"></div>
-                    </div>
-                    <div class="field-holder">
-                        <label for="requirement-message">Message</label>
-                        <div class="input-holder">
-                            <textarea id="requirement-message" name="requirement"></textarea>
-                            <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
-                        </div>
-                    </div>
-                    <button type="submit">SEND</button>
-               {{Form::close()}}
-            </div>
             <div id="join-us-pro" class="lightbox generic-lightbox">
                 <span class="lighbox-heading">Join us for <span>Project</span></span>
                {{Form::open(array('url' => 'join-us','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
@@ -234,13 +203,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                     <div class="field-holder">
                         <label for="purpose-id">Purpose</label>
                         <div class="input-holder">
-                            <span class="fake-select">
-                                <select id="purpose-id" name="purpose_id">
-                                    <option value = 1 >Buy</option>
-                                    <option value = 2 >Rent</option>
-
-                                </select>
-                            </span>
+                            <input type="text" id="purpose-id" name="purpose">
                         </div>
                     </div>
                     <div class="field-holder">

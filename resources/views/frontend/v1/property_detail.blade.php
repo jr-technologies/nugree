@@ -19,7 +19,7 @@
                         <div class="propertyImage-slider">
                             <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$response['data']['property']->id}}" user_id="{{($user !=null)?$user->id:""}}"
                                key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite {{($user == null)?'lightbox':''}}  @if($response['data']['isFavourite'] != 0)
-                               added @endif" id="add-to-favorite{{$response['data']['property']->id}}"><span class="icon-heart-o"></span></a>
+                               added @endif" id="add-to-favorite{{$response['data']['property']->id}}"><span class="icon-heart"></span></a>
                             {{--<span class="premiumProperty text-upparcase">Premium</span>--}}
                              <div class="popup-holder">
                                 <div class="lightbox generic-lightbox" id="login-to-continue">
@@ -30,7 +30,7 @@
                                 <?php
                                 $images = [];
                                 foreach ($response['data']['property']->documents as $document) {
-                                    if ($document->type == 'image') {
+                                    if($document->type == 'image') {
                                         $images[] = url('/') . '/temp/' . $document->path;
                                     }
                                 }
@@ -41,8 +41,7 @@
                                 <div class="slideset">
                                     @foreach($images as $image)
                                         <div class="slide">
-                                            <a href="{{$image}}" rel="lighbox" class="lightbox"><img
-                                                        src="{{$image}}" alt="image description"></a>
+                                            <a href="{{$image}}" rel="lighbox" class="lightbox"><img src="{{$image}}" alt="image description"></a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -57,8 +56,8 @@
                                 <div class="propertyImage-mask">
                                     <div class="propertyImage-slideset">
                                         @foreach($images as $image)
-                                            <div class="propertyImage-slide "><a href="#"><img src="{{$image}}"
-                                                                                               alt="image description"></a>
+                                            <div class="propertyImage-slide ">
+                                                <a href="#"><img src="{{$image}}" alt="image description"></a>
                                             </div>
                                         @endforeach
                                     </div>

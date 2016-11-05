@@ -16,7 +16,7 @@ class JoinUs {
     public $phone = "";
     public $address = "";
     public $message = "";
-    public $purposeId = 0;
+    public $purpose = "";
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

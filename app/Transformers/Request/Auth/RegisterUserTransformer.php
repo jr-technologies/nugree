@@ -19,7 +19,7 @@ class RegisterUserTransformer extends RequestTransformer{
 
     public function transformUserInfo()
     {
-        return [
+         return [
             'fName'=>$this->request->input('fName'),
             'lName'=>$this->request->input('lName'),
             'email'=>$this->request->input('email'),

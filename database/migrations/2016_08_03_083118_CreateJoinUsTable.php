@@ -19,12 +19,9 @@ class CreateJoinUsTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('message');
-            $table->integer('purpose_id')->unsigned();
+            $table->string('purpose');
             $table->timestamps();
 
-            $table->foreign('purpose_id')
-                ->references('id')->on('property_purposes')
-                ->onDelete('cascade');
         });
     }
 

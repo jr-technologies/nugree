@@ -76,6 +76,7 @@ class AdminController extends Controller
     public function getActiveProperties(GetAdminActivePropertyRequest $request)
     {
         $properties = $this->properties->getActiveProperties();
+
         return $this->response->setView('admin.properties')->respond(['data' => [
             'properties' => $properties,
             'propertiesCount' => count($properties)

@@ -25,6 +25,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
         $this->request = $request;
     }
     public function CustomValidationMessages(){
+
         $termsConditionsMessage ='Dear user you must agree our terms and conditions';
         return [
             'required.required' => ':attribute is required',
@@ -44,7 +45,7 @@ class AddUserValidator extends UserValidator implements ValidatorsInterface
             'agencyName.required' => 'Agency name is required',
             'agencyName.unique_agent_in_societies' => ':conflictedSocieties',
             'companyAddress.required' => 'Company address is required',
-            'societies.required' => 'Please Select atleast 1 society',
+            //'societies.required' => 'Please Select atleast 1 society',
             'societies.societies_limit' => 'You can select only 3 Societies.',
             'companyEmail.required' => 'Company email is required',
             'companyLogo.max_image_size' => 'Company Logo should be less then or equal to 1000 X 1000 px',

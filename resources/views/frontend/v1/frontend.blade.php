@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="{{url('/')}}/assets/js/select2.full.js" type="text/javascript"></script>
 </head>
-<body class="">
+<body>
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>
@@ -33,7 +33,7 @@
 
             <ul class="customLinks">
                 @if(!isset($_SESSION['authUser']))
-                    <li><a href="{{ URL::to('/login') }}"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
+                    <li><a href="{{ URL::to('/login') }}">Login / Register</a></li>
                 @else
                     <li>
                         <a href="#"><span class="hidden-xs">{{str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)}}</span><span class="icon-profile2 hidden"></span></a>
@@ -44,7 +44,7 @@
                         </ul>
                     </li>
                 @endif
-                    <li><a href="{{ URL::to('add-property') }}"><span class="hidden-xs">List your property</span><span class="icon-plus-square hidden"></span></a></li>
+                    <li><a class="fixed-ui-mob" href="{{ URL::to('add-property') }}">List property</a></li>
             </ul>
         </div>
     </header>
@@ -83,7 +83,39 @@
             </div>
         </div>
     </footer>
+    <a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>
+    <div class="popup-holder">
+        <div id="submit-requirement-popup" class="lightbox generic-lightbox">
+            <span class="lighbox-heading">Submit your <span>requirement</span></span>
+            {{Form::open(array('url' => 'user/requirement','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
 
+            <div class="field-holder">
+                <label for="requirement-name">Name</label>
+                <div class="input-holder"><input type="text" id="requirement-name" name="name"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-email">Email</label>
+                <div class="input-holder"><input type="email" id="requirement-email" name="email"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-phone">Mobile</label>
+                <div class="input-holder"><input type="tel" id="requirement-phone" name="phone"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-subject">Purpose</label>
+                <div class="input-holder"><input type="text" id="requirement-subject" name="subject"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-message">Message</label>
+                <div class="input-holder">
+                    <textarea id="requirement-message" name="requirement"></textarea>
+                    <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                </div>
+            </div>
+            <button type="submit">SEND</button>
+            {{Form::close()}}
+        </div>
+    </div>
 </div>
 <nav id="nav">
     <a class="navigation-toggler close"><span class="icon-cross"></span></a>
@@ -123,7 +155,7 @@
     <div class="logo-holder"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="Nugree"></div>
     <ul class="bottom-links">
         <li><a href="{{URL::to('/')}}">www.nugree.com</a></li>
-        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</li>
+        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</a></li>
     </ul>
 </div>
 <script src="{{url('/')}}/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>

@@ -2,7 +2,7 @@
  * Created by nomantufail on 29/10/2016.
  */
 var client = algoliasearch(ALGOLIA_APPLICATION_ID, ALGOLIA_API_KEY);
-var index = client.initIndex('nugree_locations');
+var index = client.initIndex(ALGOLIA_INDEX);
 $(".ajax-locations-select").select2({
     placeholder: 'search for locations',
     ajax: {

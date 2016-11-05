@@ -18,6 +18,7 @@ class LandUnitTableSeeder extends Seeder
          ['id' => 1, 'unit'=>'square feet'],
          ['id' => 2, 'unit'=>'square yard'],
          ['id' => 5, 'unit'=>'square meter'],
+         ['id' => 6, 'unit'=>'Acre'],
      ]);
  }
 }

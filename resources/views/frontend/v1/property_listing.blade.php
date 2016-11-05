@@ -6,11 +6,14 @@
         });
         var propertySubtypes = '<?php  echo $response['data']['propertySubtypes']; ?>';
         propertySubtypes = JSON.parse(propertySubtypes);
-
         var old_subtype = parseInt('<?php echo $response['data']['oldValues']['subTypeId']; ?>');
 
         $(document).on('change','.property_type',function(){
-            var propertyTypeId = $(this).attr('propertyType');
+            var list = [];
+            $('li.type').find("input:radio:checked").each(function () {
+                list.push($(this).val());
+            });
+            var propertyTypeId = ($(this).attr('propertyType'))? list: $(this).attr('propertyType');
             $('#propertySubtype').empty();
             $.each(propertySubtypes[propertyTypeId], function (i, subtype)
             {
@@ -76,7 +79,7 @@
                             <div class="slide">
                                 <ul class="filterChecks">
                                     @foreach($response['data']['propertyTypes'] as $propertyType)
-                                        <li>
+                                        <li class="type">
                                             <label for="{{$propertyType->name."_".$propertyType->id}}" class="customRadio">
                                                 <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
                                                        @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif
@@ -101,12 +104,14 @@
                             <div class="slide">
                                 <ul class="filterChecks">
                                     <li>
+                                      <span class="fake-select">
                                         <select class="js-example-basic-single" name="city_id" id="cities-select">
                                             <option value="">Select City</option>
                                             @foreach($response['data']['cities'] as $city)
                                                 <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
                                             @endforeach
                                         </select>
+                                     </span>
                                     </li>
                                     <li>
                                         <input id="selectbox" class="ajax-locations-select" name="location_id">
@@ -120,16 +125,16 @@
                             <span class="fake-select">
                                 <select name="land_unit_id">
                                     @foreach($response['data']['landUnits'] as $landUnit)
-                                        <option value="{{$landUnit->id}}">{{$landUnit->name}}</option>
+                                        <option value="{{$landUnit->id}}" @if($landUnit->id == $response['data']['oldValues']['landUnitId'] || $landUnit->id == 3) selected @endif>{{$landUnit->name}}</option>
                                     @endforeach
                                 </select>
                             </span>
                                 <div class="fromTo">
                                     <div class="field-holder">
-                                        <input type="number" placeholder="From" name="land_area_from" >
+                                        <input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}" >
                                     </div>
                                     <div class="field-holder">
-                                        <input type="number" placeholder="To" name="land_area_to" >
+                                        <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
                                     </div>
                                 </div>
                             </div>
@@ -205,22 +210,22 @@
                                         $countForBanner++;
                                         ?>
                                         {{--@if(sizeof($property->documents) > 0)--}}
-                                            {{--@foreach($property->documents as $document)--}}
-                                                {{--<div class="slide">--}}
-                                                    {{--<a href="property?propertyId={{$property->id}}">--}}
-                                                        {{--@if($document->type == 'image'  && $document->path != "")--}}
-                                                            {{--<img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">--}}
-                                                        {{--@endif--}}
-                                                    {{--</a>--}}
-                                                {{--</div>--}}
-                                            {{--@endforeach--}}
+                                        {{--@foreach($property->documents as $document)--}}
+                                        {{--<div class="slide">--}}
+                                        {{--<a href="property?propertyId={{$property->id}}">--}}
+                                        {{--@if($document->type == 'image'  && $document->path != "")--}}
+                                        {{--<img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">--}}
+                                        {{--@endif--}}
+                                        {{--</a>--}}
+                                        {{--</div>--}}
+                                        {{--@endforeach--}}
                                         {{--@else--}}
-                                            <div class="slide">
-                                                <a href="property?propertyId={{$property->id}}">
-                                                    <img src="{{$image}}" alt="image description">
-                                                </a>
-                                            </div>
-                                       {{-- @endif--}}
+                                        <div class="slide">
+                                            <a href="property?propertyId={{$property->id}}">
+                                                <img src="{{$image}}" alt="image description">
+                                            </a>
+                                        </div>
+                                        {{-- @endif--}}
                                     </div>
                                 </div>
                                 <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
@@ -269,7 +274,7 @@
                                 ?>
                                 <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
                                    key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
-                                    <span class="icon-heart-o"></span>
+                                    <span class="icon-heart"></span>
                                 </a>
                             </div>
                         </div>
@@ -381,5 +386,6 @@
         $(document).ready(function(){
             $( "#cityId" ).trigger( "change" );
         });
+
     </script>
 @endsection
