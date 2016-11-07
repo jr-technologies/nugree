@@ -25,7 +25,7 @@ abstract class Request
         if($this->isApi())
             return $this->user->getByToken($this->authenticator->getAccessToken());
         else
-            return $_SESSION['authUser'];
+            return (isset($_SESSION['authUser']))?$_SESSION['authUser']:null;
     }
     public function get($key){
         return (isset($this->transformedValues[$key]))?$this->transformedValues[$key]:null;
