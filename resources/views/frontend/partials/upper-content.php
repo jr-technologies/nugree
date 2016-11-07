@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="<?=url('/')?>/assets/js/select2.full.js" type="text/javascript"></script>
 </head>
-<body class="">
+<body class="fixed-ui-mob-full">
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>
@@ -33,7 +33,8 @@
 
             <ul class="customLinks">
                 <?php if(!isset($_SESSION['authUser'])){ ?>
-                <li><a href="<?= URL::to('/login') ?>"><span class="hidden-xs">Login / Register</span><span class="icon-profile2 hidden"></span></a></li>
+                <li>
+                    <a href="<?= URL::to('/login') ?>">Login / Register</a>
                 <?php }else{ ?>
                 <li>
                     <a href="#"><span class="hidden-xs"><?=str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)?></span><span class="icon-profile2 hidden"></span></a>
@@ -44,7 +45,7 @@
                     </ul>
                 </li>
                 <?php } ?>
-                <li><a href="<?= URL::to('add-property') ?>"><span class="hidden-xs">List your property</span><span class="icon-plus-square hidden"></span></a></li>
+                <li><a href="<?= URL::to('add-property') ?>" class="fixed-ui-mob">List property</span></a></li>
             </ul>
         </div>
     </header>

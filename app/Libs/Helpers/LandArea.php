@@ -103,6 +103,26 @@ class LandArea extends Helper
                         break;
                 }
                 break;
+            case 'acre':
+                switch($to)
+                {
+                    case 'square yards':
+                        $computedArea = self::acreToSquareYards($area);
+                        break;
+                    case 'square feet':
+                        $computedArea = self::acreToSquareFeets($area);
+                        break;
+                    case 'square meters':
+                        $computedArea = self::acreToSquareMeters($area);
+                        break;
+                    case 'marla':
+                        $computedArea = self::acreToMarla($area);
+                        break;
+                    case 'kanal':
+                        $computedArea = self::acreToKanal($area);
+                        break;
+                }
+                break;
 
         }
         return $computedArea;
