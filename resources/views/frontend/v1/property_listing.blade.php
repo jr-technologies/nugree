@@ -15,18 +15,20 @@
             });
             var propertyTypeId = ($(this).attr('propertyType'))? list: $(this).attr('propertyType');
             $('#propertySubtype').empty();
-            $.each(propertySubtypes[propertyTypeId], function (i, subtype)
-            {
-                $('#propertySubtype').append(
-                        '<li>'+
-                        '<label for="propertySubtype_'+subtype.id+'" class="customRadio">'+
-                        '<input type="radio" id="propertySubtype_'+subtype.id+'" '+ ((old_subtype == subtype.id)?'checked':'') +'  name="sub_type_id" class="property_sub_type filter-form-input" value="'+subtype.id+'">'+
-                        '<span class="fake-checkbox"></span>'+
-                        '<span class="fake-label">'+subtype.name+'</span>'+
-                        '</label>'+
-                        '</li>'
-                );
-            });
+            if(propertyTypeId.length > 0){
+                $.each(propertySubtypes[propertyTypeId], function (i, subtype)
+                {
+                    $('#propertySubtype').append(
+                            '<li>'+
+                            '<label for="propertySubtype_'+subtype.id+'" class="customRadio">'+
+                            '<input type="radio" id="propertySubtype_'+subtype.id+'" '+ ((old_subtype == subtype.id)?'checked':'') +'  name="sub_type_id" class="property_sub_type filter-form-input" value="'+subtype.id+'">'+
+                            '<span class="fake-checkbox"></span>'+
+                            '<span class="fake-label">'+subtype.name+'</span>'+
+                            '</label>'+
+                            '</li>'
+                    );
+                });
+            }
 
         });
 
