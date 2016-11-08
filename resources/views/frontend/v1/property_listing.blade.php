@@ -10,25 +10,26 @@
 
         $(document).on('change','.property_type',function(){
 
-
-                    var list = [];
-                $('li.type').find("input:radio:checked").each(function () {
-                    list.push($(this).val());
-                });
-                var propertyTypeId = ($(this).attr('propertyType')) ? list : $(this).attr('propertyType');
-                $('#propertySubtype').empty();
-                $.each(propertySubtypes[propertyTypeId], function (i, subtype) {
+            var list = [];
+            $('li.type').find("input:radio:checked").each(function () {
+                list.push($(this).val());
+            });
+            var propertyTypeId = ($(this).attr('propertyType'))? list: $(this).attr('propertyType');
+            $('#propertySubtype').empty();
+            if(propertyTypeId.length > 0){
+                $.each(propertySubtypes[propertyTypeId], function (i, subtype)
+                {
                     $('#propertySubtype').append(
-                            '<li>' +
-                            '<label for="propertySubtype_' + subtype.id + '" class="customRadio">' +
-                            '<input type="radio" id="propertySubtype_' + subtype.id + '" ' + ((old_subtype == subtype.id) ? 'checked' : '') + '  name="sub_type_id" class="property_sub_type filter-form-input" value="' + subtype.id + '">' +
-                            '<span class="fake-checkbox"></span>' +
-                            '<span class="fake-label">' + subtype.name + '</span>' +
-                            '</label>' +
+                            '<li>'+
+                            '<label for="propertySubtype_'+subtype.id+'" class="customRadio">'+
+                            '<input type="radio" id="propertySubtype_'+subtype.id+'" '+ ((old_subtype == subtype.id)?'checked':'') +'  name="sub_type_id" class="property_sub_type filter-form-input" value="'+subtype.id+'">'+
+                            '<span class="fake-checkbox"></span>'+
+                            '<span class="fake-label">'+subtype.name+'</span>'+
+                            '</label>'+
                             '</li>'
                     );
                 });
-
+            }
 
         });
 
@@ -386,6 +387,7 @@
         </div>
     </div>
     <script>
+        $("#selectbox").select2('data', {id: 100, location: 'Lorem Ipsum'});
         $(document).ready(function(){
             $( "#cityId" ).trigger( "change" );
         });

@@ -33,6 +33,9 @@ class LandArea extends Helper
                     case 'kanal':
                         $computedArea = self::squareFeetsToKanal($area);
                         break;
+                    case 'acre':
+                        $computedArea = self::squareFeetsToAcre($area);
+                        break;
                 }
                 break;
             case 'square yards':
@@ -49,6 +52,9 @@ class LandArea extends Helper
                         break;
                     case 'kanal':
                         $computedArea = self::squareYardsToKanal($area);
+                        break;
+                    case 'acre':
+                        $computedArea = self::squareYardsToAcre($area);
                         break;
                 }
                 break;
@@ -67,6 +73,9 @@ class LandArea extends Helper
                     case 'kanal':
                         $computedArea = self::squareMetersToKanal($area);
                         break;
+                    case 'acre':
+                        $computedArea = self::squareMetersToAcre($area);
+                        break;
                 }
                 break;
             case 'marla':
@@ -84,6 +93,9 @@ class LandArea extends Helper
                     case 'kanal':
                         $computedArea = self::marlaToKanal($area);
                         break;
+                    case 'acre':
+                        $computedArea = self::marlaToAcre($area);
+                        break;
                 }
                 break;
             case 'kanal':
@@ -100,6 +112,29 @@ class LandArea extends Helper
                         break;
                     case 'marla':
                         $computedArea = self::kanalToMarla($area);
+                        break;
+                    case 'acre':
+                        $computedArea = self::kanalToAcre($area);
+                        break;
+                }
+                break;
+            case 'acre':
+                switch($to)
+                {
+                    case 'square yards':
+                        $computedArea = self::acreToSquareYards($area);
+                        break;
+                    case 'square feet':
+                        $computedArea = self::acreToSquareFeets($area);
+                        break;
+                    case 'square meters':
+                        $computedArea = self::acreToSquareMeters($area);
+                        break;
+                    case 'marla':
+                        $computedArea = self::acreToMarla($area);
+                        break;
+                    case 'kanal':
+                        $computedArea = self::acreToKanal($area);
                         break;
                 }
                 break;
@@ -124,6 +159,10 @@ class LandArea extends Helper
     {
         return round(($area / 20), 3);
     }
+    public static function marlaToAcre($area)
+    {
+        return round(($area / 160), 3);
+    }
 
     public static function squareFeetsToSquareYards($area)
     {
@@ -143,6 +182,11 @@ class LandArea extends Helper
     {
         $marlas = self::squareFeetsToMarla($area);
         return self::marlaToKanal($marlas);
+    }
+    public static function squareFeetsToAcre($area)
+    {
+        $marlas = self::squareFeetsToMarla($area);
+        return self::marlaToAcre($marlas);
     }
 
 
@@ -165,6 +209,11 @@ class LandArea extends Helper
         $marlas = self::squareYardsToMarla($area);
         return self::marlaToKanal($marlas);
     }
+    public static function squareYardsToAcre($area)
+    {
+        $marlas = self::squareYardsToMarla($area);
+        return self::marlaToAcre($marlas);
+    }
 
 
     public static function squareMetersToSquareYards($area)
@@ -186,6 +235,11 @@ class LandArea extends Helper
         $marlas = self::squareMetersToMarla($area);
         return self::marlaToKanal($marlas);
     }
+    public static function squareMetersToAcre($area)
+    {
+        $marlas = self::squareMetersToMarla($area);
+        return self::marlaToAcre($marlas);
+    }
 
 
     public static function kanalToSquareYards($area)
@@ -206,5 +260,36 @@ class LandArea extends Helper
     {
         $marlas = self::kanalToMarla($area);
         return self::marlaToSquareMeters($marlas);
+    }
+    public static function kanalToAcre($area)
+    {
+        $marlas = self::kanalToMarla($area);
+        return self::marlaToAcre($marlas);
+    }
+
+
+    public static function AcreToSquareYards($area)
+    {
+        $marlas = self::AcreToMarla($area);
+        return self::marlaToSquareYards($marlas);
+    }
+    public static function AcreToSquareFeets($area)
+    {
+        $marlas = self::AcreToMarla($area);
+        return self::marlaToSquareFeets($marlas);
+    }
+    public static function AcreToMarla($area)
+    {
+        return round(($area * 160), 3);
+    }
+    public static function AcreToSquareMeters($area)
+    {
+        $marlas = self::AcreToMarla($area);
+        return self::marlaToSquareMeters($marlas);
+    }
+    public static function AcreToKanal($area)
+    {
+        $marlas = self::AcreToMarla($area);
+        return self::marlaToKanal($marlas);
     }
 }

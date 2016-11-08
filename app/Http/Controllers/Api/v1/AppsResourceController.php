@@ -15,6 +15,7 @@ use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyStatusesRepoProvider;
@@ -51,7 +52,7 @@ class AppsResourceController extends ApiController
         $this->purposes = (new PropertyPurposesRepoProvider())->repo();
         $this->statuses = (new PropertyStatusesRepoProvider())->repo();
         $this->societies = (new SocietiesRepoProvider())->repo();
-        $this->locations = (new SocietiesRepoProvider())->repo();
+        $this->locations = (new LocationsRepoProvider())->repo();
         $this->cities = (new CitiesRepoProvider())->repo();
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
         $this->propertySubTypes = (new PropertySubTypesRepoProvider())->repo();
