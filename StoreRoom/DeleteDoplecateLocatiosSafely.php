@@ -69,3 +69,5 @@ DB::table($locationTable)
 dd('Records Are Deleted');
 });
 
+
+

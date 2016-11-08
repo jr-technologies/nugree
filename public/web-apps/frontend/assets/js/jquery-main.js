@@ -11,8 +11,7 @@ $(document).ready(function() {
 		$('.pager, .sort-by').remove();
 	}
 	$('.addPro-type:first').trigger('change');
-	$('.registration-form').find('.role-listing').hide();
-	
+
 	if($('.news-slideshow .slide').length == 1){
 		$('.news-slideshow').find('.btn-holder').remove();
 	}
@@ -23,6 +22,13 @@ $(document).ready(function() {
 	}
 	$(window).trigger('scroll');
 	imageAdjustment();
+
+	setTimeout(function() {
+		$('.btn-alerts-nugree').trigger('click');
+	}, 4e3);
+	setTimeout(function() {
+		$('#alerts-nugree').find('.close').trigger('click');
+	}, 9e3);
 });
 function imageAdjustment(){
 	$('.propertyImage-slider .slide').find('img').each(function(){

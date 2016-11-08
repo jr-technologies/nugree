@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
     <script type="text/javascript" src="{{url('/')}}/assets/js/env.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>
+    {{--<script type="text/javascript">window.jQuery || document.write('<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>--}}
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="{{url('/')}}/assets/js/select2.full.js" type="text/javascript"></script>
 </head>
@@ -84,38 +84,7 @@
         </div>
     </footer>
     <a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>
-    <div class="popup-holder">
-        <div id="submit-requirement-popup" class="lightbox generic-lightbox">
-            <span class="lighbox-heading">Submit your <span>requirement</span></span>
-            {{Form::open(array('url' => 'user/requirement','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
 
-            <div class="field-holder">
-                <label for="requirement-name">Name</label>
-                <div class="input-holder"><input type="text" id="requirement-name" name="name"></div>
-            </div>
-            <div class="field-holder">
-                <label for="requirement-email">Email</label>
-                <div class="input-holder"><input type="email" id="requirement-email" name="email"></div>
-            </div>
-            <div class="field-holder">
-                <label for="requirement-phone">Mobile</label>
-                <div class="input-holder"><input type="tel" id="requirement-phone" name="phone"></div>
-            </div>
-            <div class="field-holder">
-                <label for="requirement-subject">Purpose</label>
-                <div class="input-holder"><input type="text" id="requirement-subject" name="subject"></div>
-            </div>
-            <div class="field-holder">
-                <label for="requirement-message">Message</label>
-                <div class="input-holder">
-                    <textarea id="requirement-message" name="requirement"></textarea>
-                    <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
-                </div>
-            </div>
-            <button type="submit">SEND</button>
-            {{Form::close()}}
-        </div>
-    </div>
 </div>
 <nav id="nav">
     <a class="navigation-toggler close"><span class="icon-cross"></span></a>
@@ -158,16 +127,48 @@
         <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</a></li>
     </ul>
 </div>
-<script src="{{url('/')}}/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/assets/js/star-rating.js" type="text/javascript" defer></script>
+<div class="popup-holder">
+    <div id="submit-requirement-popup" class="lightbox generic-lightbox">
+        <span class="lighbox-heading">Submit your <span>requirement</span></span>
+        {{Form::open(array('url' => 'user/requirement','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
+
+        <div class="field-holder">
+            <label for="requirement-name">Name</label>
+            <div class="input-holder"><input type="text" id="requirement-name" name="name"></div>
+        </div>
+        <div class="field-holder">
+            <label for="requirement-email">Email</label>
+            <div class="input-holder"><input type="email" id="requirement-email" name="email"></div>
+        </div>
+        <div class="field-holder">
+            <label for="requirement-phone">Mobile</label>
+            <div class="input-holder"><input type="tel" id="requirement-phone" name="phone"></div>
+        </div>
+        <div class="field-holder">
+            <label for="requirement-subject">Purpose</label>
+            <div class="input-holder"><input type="text" id="requirement-subject" name="subject"></div>
+        </div>
+        <div class="field-holder">
+            <label for="requirement-message">Message</label>
+            <div class="input-holder">
+                <textarea id="requirement-message" name="requirement"></textarea>
+                <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+            </div>
+        </div>
+        <button type="submit">SEND</button>
+        {{Form::close()}}
+    </div>
+</div>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" ></script>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/star-rating.js" type="text/javascript" ></script>
 {{--<script src="{{url('/')}}/web-apps/frontend/assets/js/select2-min.js" type="text/javascript" defer></script>--}}
-<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery.carousel.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery.slideshow.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/assets/js/placeholder.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/assets/js/fixed-block.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/assets/js/lightBox.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-main.js" type="text/javascript" defer></script>
-<script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery.carousel.js" type="text/javascript" ></script>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery.slideshow.js" type="text/javascript" ></script>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/placeholder.js" type="text/javascript" ></script>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/fixed-block.js" type="text/javascript" ></script>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/lightBox.js" type="text/javascript" ></script>
+<script src="{{url('/')}}/web-apps/frontend/assets/js/jquery-main.js" type="text/javascript" ></script>
+<script src="{{url('/')}}/web-apps/frontend/v2/js/registration.js" type="text/javascript" ></script>
 <script src="{{url('/')}}/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 <script src="{{url('/')}}/assets/js/helper.js" type="text/javascript"></script>
 <script src="{{url('/')}}/assets/js/ajax-locations-search.js" type="text/javascript"></script>
