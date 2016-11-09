@@ -176,10 +176,10 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
             <h1><span>About</span> Us</h1>
             <div class="description">
                 {{--<h2>What is Lorem Ipsum?</h2>--}}
-                <p>nugree.com is a pakistan's largest website of buying/selling/rent we are providing maximum feaures with minimum excercise, here you can find your desired property on a click.</p>
-                <p>Nugree.com is providing flexible search for user which will provide potential clients with a better overall online experience.
-                    With modern housing and societies services and a growing population, Nugree.com is a unique regional center and offers plenty of lifestyle and investment opportunity.
-                    nugree.com is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
+                <p>Nugree.com is a friendly property portal.We are providing maximum features with minimum exercise, here you can find your desired property on few clicks.</p>
+                <p>Nugree.com is providing flexible search for users which will provide potential clients and investors.
+                    we are still working on it, to make it a best property portal.
+                    Your Suggestions are welcome here: </p>
             </div>
         </div>
         <a href="#wrapper" class="search-property back-to-top"><span class="icon-search"></span> Search <br>property</a>
