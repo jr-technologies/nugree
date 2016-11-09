@@ -84,7 +84,7 @@
             </div>
         </div>
     </footer>
-    <a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>
+    <a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirements</a>
 
 </div>
 <nav id="nav">
@@ -186,11 +186,11 @@
 </script>
 </html>
 
-<?php
-    require_once(resource_path('/views/frontend/partials/upper-content.php'));
-?>
-             @yield('content')
-<?php
-    require_once(resource_path('/views/frontend/partials/bottom-content.php'));
-?>
+{{--<?php--}}
+    {{--require_once(resource_path('/views/frontend/partials/upper-content.php'));--}}
+{{--?>--}}
+             {{--@yield('content')--}}
+{{--<?php--}}
+    {{--require_once(resource_path('/views/frontend/partials/bottom-content.php'));--}}
+{{--?>--}}
 
