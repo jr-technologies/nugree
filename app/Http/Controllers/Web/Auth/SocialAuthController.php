@@ -34,7 +34,7 @@ class SocialAuthController extends Controller
             $existingUser = $this->users->findByEmail($providerUser->email);
             return $this->login($existingUser);
         }catch (\Exception $e){
-            $this->register($providerUser);
+            return $this->register($providerUser);
         }
     }
 
