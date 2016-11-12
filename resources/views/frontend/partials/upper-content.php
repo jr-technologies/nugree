@@ -29,7 +29,7 @@
     <meta property="og:image"         content="<?= (isset($response['data']['news']->images[0]->image))?url('/').'/'.$response['data']['news']->images[0]->image:"" ?>" />
     <?php  }?>
 </head>
-<body class="fixed-ui-mob-full">
+<body>
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>
