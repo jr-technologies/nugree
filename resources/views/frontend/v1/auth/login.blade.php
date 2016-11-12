@@ -38,12 +38,12 @@
                 <li>
                     <button type="submit">LOGIN<span class="icon-login"></span></button>
                 </li>
-                <a href="redirect">FB Login</a>
                 <li>
                     <a href="{{url('/register')}}">REGISTER NOW</a>
                 </li>
-
             </ul>
+            <strong class="text-or"><span>Or</span></strong>
+            <div class="text-center"><a href="{{url('/')}}/redirect" class="fb-login"><span class="icon-facebook"></span>Signup with facebook</a></div>
         </form>
         <div class="popup-holder">
             <div class="popup lightbox generic-lightbox" id="forgot-pass">
