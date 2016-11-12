@@ -122,7 +122,7 @@
             <div class="layout">
                 <div class="col">
                     <a href="{{url('/')}}/search?city_id={{$response['data']['importantCities'][0]->id}}">
-                        <img src="{{ url('/').'/'.$response['data']['importantCities'][0]->path}}" alt="image description">
+                        <img src="{{ \App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['importantCities'][0]->path}}" alt="image description">
                         <span class="title">{{$response['data']['importantCities'][0]->city}}</span>
                     </a>
                 </div>
@@ -130,7 +130,7 @@
                     <ul>
                         @for($i=1;$i<sizeof($response['data']['importantCities']);$i++)
                          <li><a href="{{url('/')}}/search?city_id={{$response['data']['importantCities'][$i]->id}}">
-                                <img src="{{url('/').'/'.$response['data']['importantCities'][$i]->path}}" alt="image description">
+                                <img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['importantCities'][$i]->path}}" alt="image description">
                                  <span class="title">{{$response['data']['importantCities'][$i]->city}}</span>
                              </a>
                          </li>
@@ -145,7 +145,7 @@
                 <div class="slideset">
                   @foreach($response['data']['projects'] as $project)
                     <div class="slide">
-                        <img src="@if(isset($project->images[0]->image)){{url('/').'/'.$project->images[0]->image}}@endif" alt="image description">
+                        <img src="@if(isset($project->images[0]->image)){{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$project->images[0]->image}}@endif" alt="image description">
                         <div class="container">
                             <div class="caption">
                                 <strong class="heading">{{$project->title}}</strong>

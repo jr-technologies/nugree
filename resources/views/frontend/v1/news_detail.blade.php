@@ -10,7 +10,7 @@
                 <div class="mask">
                     <div class="slideset">
 
-                        <div class="slide"><img src="{{url('/').'/'.$response['data']['news']->images[0]->image}}" alt="image description"></div>
+                        <div class="slide"><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['news']->images[0]->image}}" alt="image description"></div>
 
                     </div>
                 </div>
