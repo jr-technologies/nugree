@@ -65,8 +65,8 @@ class UsersController extends Controller
         $this->users->update($user);
         Mail::send('frontend.mail.forget_password',['user' => $user,'password'=>$password], function($message) use($user)
         {
-            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Property42.pk');
-            $message->to($user->email)->subject('Property42');
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Nugree.com');
+            $message->to($user->email)->subject('Nugree.com');
         });
         Session::flash('message', 'New password has been sent to your email address');
         return redirect()->back();

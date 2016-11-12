@@ -1,7 +1,5 @@
 $(document).ready(function() {
-	if($(".js-example-basic-single").length){
-		$(".js-example-basic-single").select2();
-	}
+	$(".js-example-basic-single").select2();
 	if (screen.width < 768){
 		$('.call-agent-btn').each(function(){
 			var mobileNumber = $(this).attr('data-tel');
@@ -13,8 +11,7 @@ $(document).ready(function() {
 		$('.pager, .sort-by').remove();
 	}
 	$('.addPro-type:first').trigger('change');
-	$('.registration-form').find('.role-listing').hide();
-	
+
 	if($('.news-slideshow .slide').length == 1){
 		$('.news-slideshow').find('.btn-holder').remove();
 	}
@@ -25,6 +22,13 @@ $(document).ready(function() {
 	}
 	$(window).trigger('scroll');
 	imageAdjustment();
+
+	setTimeout(function() {
+		$('.btn-alerts-nugree').trigger('click');
+	}, 4000);
+	setTimeout(function() {
+		$('#alerts-nugree').find('.close').trigger('click');
+	}, 12000);
 });
 function imageAdjustment(){
 	$('.propertyImage-slider .slide').find('img').each(function(){
@@ -123,6 +127,7 @@ function initCarousel() {
 		animSpeed: 600,
 		step: 1
 	});
+
 	jQuery('.agent-societies').scrollGallery({
 		mask: '.agent-mask',
 		slider: '.agent-slideset',
@@ -197,6 +202,21 @@ function initCarousel() {
 		circularRotation: true,
 		pauseOnHover: true,
 		autoRotation: false,
+		maskAutoSize: true,
+		stretchSlideToMask: true,
+		switchTime: 2000,
+		animSpeed: 600
+	});
+	jQuery('.detail-news-slider').scrollGallery({
+		mask: '.mask',
+		slider: '.slideset',
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		circularRotation: true,
+		pauseOnHover: true,
+		autoRotation: true,
 		maskAutoSize: true,
 		stretchSlideToMask: true,
 		switchTime: 2000,

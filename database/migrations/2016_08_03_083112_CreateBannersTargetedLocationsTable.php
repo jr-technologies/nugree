@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBannersTargetedSocietiesTable extends Migration
+class CreateBannersTargetedLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateBannersTargetedSocietiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('banners_targeted_societies', function (Blueprint $table) {
+        Schema::create('banners_targeted_Locations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('banner_id')->unsigned();
-            $table->integer('society_id')->unsigned();
+            $table->integer('location_id')->unsigned();
             $table->timestamps();
 
 
@@ -23,8 +23,8 @@ class CreateBannersTargetedSocietiesTable extends Migration
                 ->references('id')->on('banners')
                 ->onDelete('cascade');
 
-            $table->foreign('society_id')
-                ->references('id')->on('societies')
+            $table->foreign('location_id')
+                ->references('id')->on('locations')
                 ->onDelete('cascade');
 
         });

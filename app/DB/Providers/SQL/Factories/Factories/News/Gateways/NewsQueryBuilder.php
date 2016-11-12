@@ -17,6 +17,13 @@ class NewsQueryBuilder extends QueryBuilder
     {
         $this->table = 'news';
     }
+    public function getRecentNews()
+    {
+        return DB::table($this->table)
+            ->select($this->table.'.*')
+            ->orderBy($this->table.'.id','DESC')
+            ->get();
+    }
     public function getAllNews($params =[])
     {
         $newsImageTable= (new NewsImagesFactory())->getTable();

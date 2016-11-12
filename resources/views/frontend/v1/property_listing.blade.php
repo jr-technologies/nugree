@@ -9,6 +9,7 @@
         var old_subtype = parseInt('<?php echo $response['data']['oldValues']['subTypeId']; ?>');
 
         $(document).on('change','.property_type',function(){
+
             var list = [];
             $('li.type').find("input:radio:checked").each(function () {
                 list.push($(this).val());
@@ -31,6 +32,7 @@
             }
 
         });
+
 
     </script>
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
@@ -253,6 +255,25 @@
 
                                         @endforeach
                                     </ul>
+                                    <span class="added-time">Property Added
+                                        <?php
+                                        $startTimeStamp = strtotime(date("Y/m/d"));
+                                        $myDate = substr($property->createdAt, 0, 10);
+                                        $endTimeStamp = strtotime($myDate);
+                                        $timeDiff = abs($endTimeStamp - $startTimeStamp);
+                                        $numberDays = $timeDiff / 86400;  // 86400 seconds in one day
+                                        // and you might want to convert to integer
+                                        $numberDays = intval($numberDays);
+                                        $days = "";
+                                        if ($numberDays == 0) {
+                                            $days = 'today';
+                                        } elseif ($numberDays == 1) {
+                                            $days = 'day ago';
+                                        } else {
+                                            $days = 'days ago';
+                                        };
+                                        ?>
+                                        <b>@if($numberDays !=0){{$numberDays}} @endif {{$days}}</b></span>
                                     <?php
                                     $image = url('/') . "/assets/imgs/no.png";
                                     if ($property->owner->agency != null) {

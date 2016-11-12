@@ -1,3 +1,4 @@
+
 <?php
     require_once(resource_path('/views/frontend/partials/upper-content.php'));
 ?>
@@ -5,3 +6,4 @@
 <?php
     require_once(resource_path('/views/frontend/partials/bottom-content.php'));
 ?>
+

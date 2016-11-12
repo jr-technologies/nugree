@@ -61,10 +61,10 @@ class UpdateUserValidator extends UserValidator implements ValidatorsInterface
     public function agencyRules()
     {
         $rules = [
-            'agencyName' => 'required|unique:agencies,agency'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
+            'agencyName' => 'required|max:255',
             'companyAddress' => 'required|max:225',
             'locations' => 'required|locations_limit',
-            'companyEmail' => 'required|email|unique:agencies,email'.(($this->request->get('agencyId') != null)?','.$this->request->get('agencyId'):'').'|max:255',
+            'companyEmail' => 'required|email|max:255',
             'agencyDescription'=>'max:1200',
             'companyLogo'=>'image_validation|max_image_size:1000,1000'
         ];

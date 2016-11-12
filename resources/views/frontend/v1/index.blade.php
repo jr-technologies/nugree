@@ -5,7 +5,6 @@
             <div class="mask">
                 <div class="container">
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
-
                     <ul class="typeOfBuying">
                         <li>
                             <label for="buy" class="customRadio">
@@ -68,8 +67,7 @@
                         <div class="container">
                             <div class="caption">
                                 <h1>Gwadar <span>City</span></h1>
-                                <p>{{ str_limit("
-Gwadar is hottest real estate market now a days and if you are a serious buyer/seller and if you are looking for investment in Gwadar or need any inquiry about latest project in Gwadar and want to do any business in Gwadar then",300) }}</p>
+                                <strong>Land Of Opportunity</strong>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
                         </div>
@@ -107,7 +105,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                         <div class="container">
                             <h1>{{str_limit($news->title,30)}}</h1>
                             <p>{{ str_limit($news->description,150)}}</p>
-                            <a href="#" class="btn-default">READ MORE</a>
+                            <a href="get/news?news_id={{$news->id}}" class="btn-default">READ MORE</a>
                         </div>
                     </div>
                     @endforeach
@@ -176,10 +174,10 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
             <h1><span>About</span> Us</h1>
             <div class="description">
                 {{--<h2>What is Lorem Ipsum?</h2>--}}
-                <p>Nugree.com is friendly portal website. We are providing a maximum feature with minimum exercise, here you can find your desired property on single click.</p>
-                <p>Nugree.com is providing flexible search for user which will provide potential clients with a better overall online experience.
-                    With modern housing and societies services and a growing population, Nugree.com is a unique regional center and offers plenty of lifestyle and investment opportunity.
-                    nugree.com is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
+                <p>Nugree.com is a friendly property portal.We are providing maximum features with minimum exercise, here you can find your desired property on few clicks.</p>
+                <p>Nugree.com is providing flexible search for users which will provide potential clients and investors.
+                    we are still working on it, to make it a best property portal.
+                    Your Suggestions are welcome here: </p>
             </div>
         </div>
         <a href="#wrapper" class="search-property back-to-top"><span class="icon-search"></span> Search <br>property</a>

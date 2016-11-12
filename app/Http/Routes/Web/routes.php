@@ -422,6 +422,15 @@ Route::post('get/update/news/form',
     ]
 );
 
+Route::get('get/news',
+    [
+        'middleware'=>
+            [
+                'webValidate:getNewsRequest'
+            ],
+        'uses'=>'NewsController@getNewsDetail'
+    ]
+);
 
 
 
@@ -1158,6 +1167,14 @@ Route::post('trusted-agent',
             ],
         'uses'=>'UsersController@makeTrustedAgent'
     ]);
+
+
+
+Route::get('/redirect', 'Auth\SocialAuthController@redirect');
+Route::get('/callback', 'Auth\SocialAuthController@callback');
+
+
+
 
 Route::get('/logout', function(){
     if(isset($_SESSION['authUser']) && $_SESSION['authUser'] != null)
