@@ -831,7 +831,7 @@ Route::post('maliksajidawan786@gmail.com/property/deActive',
     [
         'middleware'=>
             [
-                'webValidate:deActivePropertyRequest'
+                'webValidate:DeActivePropertyRequest'
             ],
         'uses'=>'admin\AdminController@deActiveProperty'
     ]

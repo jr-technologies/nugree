@@ -67,7 +67,7 @@
                         <div class="container">
                             <div class="caption">
                                 <h1>Gwadar <span>City</span></h1>
-                                <strong>Land Of Opportunity</strong>
+                                <strong>Land Of Opportunites</strong>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
                         </div>
