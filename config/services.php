@@ -34,5 +34,9 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'facebook' => [
+        'client_id' => '614268912113889',
+        'client_secret' => '1b1283eb377e0a484cd0ba94c45bda22',
+        'redirect' => 'http://localhost/nugree/public/callback',
+    ],
 ];
