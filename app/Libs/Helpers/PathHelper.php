@@ -20,4 +20,8 @@ class PathHelper extends Helper
     {
         return public_path('temp');
     }
+    public static function nugreeAdminPublicPath()
+    {
+        return 'http://localhost/42admin/public';
+    }
 }
