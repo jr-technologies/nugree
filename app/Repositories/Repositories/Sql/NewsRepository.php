@@ -48,6 +48,14 @@ class NewsRepository extends SqlRepository implements NewsRepoInterface
     {
         return $this->factory->getNews($projectId);
     }
+    public function getNewsDetail($newsId)
+    {
+        return $this->factory->getNewsDetail($newsId);
+    }
+    public function getRecentNews()
+    {
+        return $this->factory->getRecentNews();
+    }
     public function getNewsImages($projectId)
     {
         return $this->newsImagesFactory->getNewsImages($projectId);

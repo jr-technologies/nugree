@@ -5,7 +5,6 @@
             <div class="mask">
                 <div class="container">
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
-
                     <ul class="typeOfBuying">
                         <li>
                             <label for="buy" class="customRadio">
@@ -68,8 +67,7 @@
                         <div class="container">
                             <div class="caption">
                                 <h1>Gwadar <span>City</span></h1>
-                                <p>{{ str_limit("
-Gwadar is hottest real estate market now a days and if you are a serious buyer/seller and if you are looking for investment in Gwadar or need any inquiry about latest project in Gwadar and want to do any business in Gwadar then",300) }}</p>
+                                <strong>Land Of Opportunity</strong>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
                         </div>
@@ -107,7 +105,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                         <div class="container">
                             <h1>{{str_limit($news->title,30)}}</h1>
                             <p>{{ str_limit($news->description,150)}}</p>
-                            <a href="#" class="btn-default">READ MORE</a>
+                            <a href="get/news?news_id={{$news->id}}" class="btn-default">READ MORE</a>
                         </div>
                     </div>
                     @endforeach

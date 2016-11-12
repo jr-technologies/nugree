@@ -42,7 +42,6 @@ class BannersQueryBuilder extends QueryBuilder
         $landUnit = $this->getLandUnit($params);
         $bannerLimit = $this->getBannersLimit($params);
 
-
         $query =  DB::table($this->table)
             ->leftjoin($bannerSocietiesTable,$this->table.'.id','=',$bannerSocietiesTable.'.banner_id')
             ->leftjoin($bannerSizeTable,$this->table.'.id','=',$bannerSizeTable.'.banner_id')
@@ -52,7 +51,7 @@ class BannersQueryBuilder extends QueryBuilder
 
         $query = $query->orWhere(function ($query)  use ($bannerSocietiesTable, $bannerSizeTable, $landUnit, $params) {
             if(isset($params['societyId']) && $params['societyId'] !=null && $params['societyId'] !="")
-                $query = $query->orWhere($bannerSocietiesTable.'.society_id','=',$params['societyId']);
+                $query = $query->orWhere($bannerSocietiesTable.'.location_id','=',$params['societyId']);
             $query = $query->orWhere(function ($query) use ($bannerSizeTable, $landUnit, $params) {
                 if(isset($params['landAreaFrom']) && $params['landAreaFrom'] !=null && $params['landAreaFrom'] != "")
                     $query = $query->where($bannerSizeTable.'.area','>=',LandArea::convert($landUnit,'square feet',$params['landAreaFrom']));

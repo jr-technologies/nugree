@@ -31,6 +31,9 @@
     </div>
 </footer>
 <!--<a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>-->
+<?php if(Route::getCurrentRoute()->getPath() =='/'){ ?>
+<a href="#alerts-nugree" class="lightbox btn-alerts-nugree"></a>
+<?php } ?>
 </div>
 <nav id="nav">
     <a class="navigation-toggler close"><span class="icon-cross"></span></a>
@@ -72,6 +75,13 @@
         <li><a href="<?= URL::to('/')?>">www.nugree.com</a></li>
         <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</li>
     </ul>
+</div>
+
+<div class="popup-holder">
+    <div id="alerts-nugree" class="lightbox generic-lightbox alert-ligthbox-onload">
+        <img src="<?= url('/') ?>./assets/imgs/popup.png" alt="image description">
+        <a href="#" class="close"></a>
+    </div>
 </div>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/star-rating.js" type="text/javascript" defer></script>

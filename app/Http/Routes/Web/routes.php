@@ -422,6 +422,15 @@ Route::post('get/update/news/form',
     ]
 );
 
+Route::get('get/news',
+    [
+        'middleware'=>
+            [
+                'webValidate:getNewsRequest'
+            ],
+        'uses'=>'NewsController@getNewsDetail'
+    ]
+);
 
 
 
