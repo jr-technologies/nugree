@@ -46,7 +46,7 @@
             <div class="pro-date border"><p>{{property.createdAt.split(" ")[0]}}</p></div>
             <div class="pro-controls border">
                 <ul class="control-link">
-                    <li><a class="details opener" title="Details"><span class="icon-search-doc"></span></a></li>
+                    <li><a class="details opener" title="Details" href="{{domain}}property?propertyId={{property.id}}" target="_blank"><span class="icon-search-doc"></span></a></li>
                     <li><a ng-click="deleteProperty(property.id)" class="delete" title="Delete this property"><span class="icon-bin-delete"></span></a></li>
                 </ul>
             </div>
