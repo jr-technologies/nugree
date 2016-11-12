@@ -1,5 +1,6 @@
 $(document).ready(function() {
-	$(".js-example-basic-single").select2();
+	if($(".js-example-basic-single").length)
+		$(".js-example-basic-single").select2();
 	if (screen.width < 768){
 		$('.call-agent-btn').each(function(){
 			var mobileNumber = $(this).attr('data-tel');

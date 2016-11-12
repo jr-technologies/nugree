@@ -1168,6 +1168,14 @@ Route::post('trusted-agent',
         'uses'=>'UsersController@makeTrustedAgent'
     ]);
 
+
+
+Route::get('/redirect', 'Auth\SocialAuthController@redirect');
+Route::get('/callback', 'Auth\SocialAuthController@callback');
+
+
+
+
 Route::get('/logout', function(){
     if(isset($_SESSION['authUser']) && $_SESSION['authUser'] != null)
     {

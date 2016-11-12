@@ -38,6 +38,7 @@
                 <li>
                     <button type="submit">LOGIN<span class="icon-login"></span></button>
                 </li>
+                <a href="redirect">FB Login</a>
                 <li>
                     <a href="{{url('/register')}}">REGISTER NOW</a>
                 </li>

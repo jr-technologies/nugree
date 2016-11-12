@@ -95,6 +95,7 @@
 <script src="<?= url('/')?>/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/helper.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/ajax-locations-search.js" type="text/javascript"></script>
+
 </body>
 <div id="fb-root"></div>
 
@@ -116,5 +117,4 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
 </html>
