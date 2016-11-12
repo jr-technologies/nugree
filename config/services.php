@@ -37,6 +37,6 @@ return [
     'facebook' => [
         'client_id' => '1694721264176530',
         'client_secret' => '05e778a79cdef4065f759d20c2ee287a',
-        'redirect' => 'http://localhost/jr/nugree/public/callback',
+        'redirect' => url('/callback'),
     ],
 ];

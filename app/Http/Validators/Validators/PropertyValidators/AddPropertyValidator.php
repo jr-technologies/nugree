@@ -60,6 +60,7 @@ class AddPropertyValidator extends PropertyValidator implements ValidatorsInterf
             'landArea.required' => 'land area is required',
             'contactPerson.required' => 'contact person is required',
             'phone.required' => 'company phone is required',
+            'mobile.required' => 'cell number is required',
             'email.required' => 'company email is required',
             'files.addProperty_max_image_size'=> 'Invalid Image or Image Size is too big'
         ], $this->customValidationMessagesForExtraFeatures());
