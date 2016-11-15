@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:description" content="[content description]" />
     <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
-    <title>Largest website for property | nugree.com</title>
+    <title>We Know Property Better | nugree.com</title>
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-96x96.png" sizes="96x96">
@@ -18,8 +18,18 @@
     <script type="text/javascript">window.jQuery || document.write('<script src="<?=url('/')?>/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="<?=url('/')?>/assets/js/select2.full.js" type="text/javascript"></script>
+<!--    ----------------------------------  Social Media------------------------>
+    <link rel="opengraph" href="facebookexternalhit/1.1"/>
+   <?php
+   if(isset($response['data']['news'])){  ?>
+    <meta property="og:url"           content="<?= (isset($response['data']['news']))?"$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]":"" ?>" />
+    <meta property="og:type"          content="nugree.com" />
+    <meta property="og:title"         content="<?= (isset($response['data']['news']->title))?$response['data']['news']->title:"" ?>" />
+    <meta property="og:description"   content="<?= (isset($response['data']['news']->description))?$response['data']['news']->description:"" ?>" />
+    <meta property="og:image"         content="<?= (isset($response['data']['news']->images[0]->image))?url('/').'/'.$response['data']['news']->images[0]->image:"" ?>" />
+    <?php  }?>
 </head>
-<body class="fixed-ui-mob-full">
+<body>
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>

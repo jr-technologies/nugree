@@ -71,13 +71,10 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             $query = $query->where($properties.'.property_sub_type_id',$this->instructions['subTypeId']);
         if(isset($this->instructions['cityId']) && $this->instructions['cityId'] != null && $this->instructions['cityId'] != '')
             $query = $query->where($location.'.city_id',$this->instructions['cityId']);
-        if(isset($this->instructions['locationId']) && $this->instructions['locationId'] != null && $this->instructions['locationId'] != '')
-            $query = $query->where($properties.'.location_id',$this->instructions['locationId']);
 
-//        if(isset($this->instructions['societyId']) && $this->instructions['societyId'] != null && $this->instructions['societyId'] != '')
-//            $query = $query->where($societies.'.id',$this->instructions['societyId']);
-//        if(isset($this->instructions['blockId']) && $this->instructions['blockId'] != null && $this->instructions['blockId'] != '')
-//            $query = $query->where($properties.'.block_id',$this->instructions['blockId']);
+        if(isset($this->instructions['locationId']) && $this->instructions['locationId'] != null && $this->instructions['locationId'] != '')
+            $query = $query->whereIn($properties.'.location_id',$this->instructions['locationId']);
+
         if(isset($this->instructions['priceFrom']) && $this->instructions['priceFrom'] != null && $this->instructions['priceFrom'] != '')
             $query = $query->where($properties.'.price','>=',$this->instructions['priceFrom']);
         if(isset($this->instructions['priceTo']) && $this->instructions['priceTo'] != null && $this->instructions['priceTo'] != '')

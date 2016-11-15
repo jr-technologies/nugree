@@ -5,7 +5,6 @@
             <div class="mask">
                 <div class="container">
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
-
                     <ul class="typeOfBuying">
                         <li>
                             <label for="buy" class="customRadio">
@@ -68,8 +67,7 @@
                         <div class="container">
                             <div class="caption">
                                 <h1>Gwadar <span>City</span></h1>
-                                <p>{{ str_limit("
-Gwadar is hottest real estate market now a days and if you are a serious buyer/seller and if you are looking for investment in Gwadar or need any inquiry about latest project in Gwadar and want to do any business in Gwadar then",300) }}</p>
+                                <strong>Land Of Opportunites</strong>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
                         </div>
@@ -107,7 +105,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                         <div class="container">
                             <h1>{{str_limit($news->title,30)}}</h1>
                             <p>{{ str_limit($news->description,150)}}</p>
-                            <a href="#" class="btn-default">READ MORE</a>
+                            <a href="get/news?news_id={{$news->id}}" class="btn-default">READ MORE</a>
                         </div>
                     </div>
                     @endforeach
@@ -124,7 +122,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
             <div class="layout">
                 <div class="col">
                     <a href="{{url('/')}}/search?city_id={{$response['data']['importantCities'][0]->id}}">
-                        <img src="{{ url('/').'/'.$response['data']['importantCities'][0]->path}}" alt="image description">
+                        <img src="{{ \App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['importantCities'][0]->path}}" alt="image description">
                         <span class="title">{{$response['data']['importantCities'][0]->city}}</span>
                     </a>
                 </div>
@@ -132,7 +130,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                     <ul>
                         @for($i=1;$i<sizeof($response['data']['importantCities']);$i++)
                          <li><a href="{{url('/')}}/search?city_id={{$response['data']['importantCities'][$i]->id}}">
-                                <img src="{{url('/').'/'.$response['data']['importantCities'][$i]->path}}" alt="image description">
+                                <img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['importantCities'][$i]->path}}" alt="image description">
                                  <span class="title">{{$response['data']['importantCities'][$i]->city}}</span>
                              </a>
                          </li>
@@ -147,7 +145,7 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
                 <div class="slideset">
                   @foreach($response['data']['projects'] as $project)
                     <div class="slide">
-                        <img src="@if(isset($project->images[0]->image)){{url('/').'/'.$project->images[0]->image}}@endif" alt="image description">
+                        <img src="@if(isset($project->images[0]->image)){{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$project->images[0]->image}}@endif" alt="image description">
                         <div class="container">
                             <div class="caption">
                                 <strong class="heading">{{$project->title}}</strong>
@@ -176,10 +174,10 @@ Gwadar is hottest real estate market now a days and if you are a serious buyer/s
             <h1><span>About</span> Us</h1>
             <div class="description">
                 {{--<h2>What is Lorem Ipsum?</h2>--}}
-                <p>nugree.com is a pakistan's largest website of buying/selling/rent we are providing maximum feaures with minimum excercise, here you can find your desired property on a click.</p>
-                <p>Nugree.com is providing flexible search for user which will provide potential clients with a better overall online experience.
-                    With modern housing and societies services and a growing population, Nugree.com is a unique regional center and offers plenty of lifestyle and investment opportunity.
-                    nugree.com is providing a complete property maintenance solution package that address user,s needs. Our approach is simple. We provide professional, trustworthy property management services</p>
+                <p>Nugree.com is a friendly property portal.We are providing maximum features with minimum exercise, here you can find your desired property on few clicks.</p>
+                <p>Nugree.com is providing flexible search for users which will provide potential clients and investors.
+                    we are still working on it, to make it a best property portal.
+                    Your Suggestions are welcome here: </p>
             </div>
         </div>
         <a href="#wrapper" class="search-property back-to-top"><span class="icon-search"></span> Search <br>property</a>

@@ -255,7 +255,34 @@
 
                                         @endforeach
                                     </ul>
-                                    <?php
+                                    <span class="added-time">Property Added
+                                         <?php
+                                         $startTimeStamp = strtotime(date("Y/m/d"));
+                                         $myDate = substr(substr($property->createdAt, 0, 10), 0, 10);
+                                         $endTimeStamp = strtotime($myDate);
+                                         $timeDiff = abs($endTimeStamp - $startTimeStamp);
+                                         $numberDays = $timeDiff / 86400;  // 86400 seconds in one day
+                                         // and you might want to convert to integer
+                                         $numberDays = intval($numberDays);
+                                         $days = "";
+                                         if ($numberDays == 0) {
+                                             $myTime = substr($property->createdAt, 10, 10);
+                                             $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $myTime);
+
+                                             sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+
+                                             $time_seconds = $hours * 3600 + $minutes * 60 + $seconds;
+                                             $myTime = intval($time_seconds/3600);
+                                             $days = 'Hours Ago';
+                                         } elseif ($numberDays == 1) {
+                                             $days = 'day ago';
+                                         } else {
+                                             $days = 'days ago';
+                                         };
+                                         ?>
+                                         <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
+
+                                <?php
                                     $image = url('/') . "/assets/imgs/no.png";
                                     if ($property->owner->agency != null) {
                                         if ($property->owner->agency->logo != null) {

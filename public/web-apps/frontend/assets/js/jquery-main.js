@@ -26,10 +26,10 @@ $(document).ready(function() {
 
 	setTimeout(function() {
 		$('.btn-alerts-nugree').trigger('click');
-	}, 4e3);
+	}, 4000);
 	setTimeout(function() {
 		$('#alerts-nugree').find('.close').trigger('click');
-	}, 9e3);
+	}, 12000);
 });
 function imageAdjustment(){
 	$('.propertyImage-slider .slide').find('img').each(function(){
@@ -128,6 +128,7 @@ function initCarousel() {
 		animSpeed: 600,
 		step: 1
 	});
+
 	jQuery('.agent-societies').scrollGallery({
 		mask: '.agent-mask',
 		slider: '.agent-slideset',
@@ -202,6 +203,21 @@ function initCarousel() {
 		circularRotation: true,
 		pauseOnHover: true,
 		autoRotation: false,
+		maskAutoSize: true,
+		stretchSlideToMask: true,
+		switchTime: 2000,
+		animSpeed: 600
+	});
+	jQuery('.detail-news-slider').scrollGallery({
+		mask: '.mask',
+		slider: '.slideset',
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		circularRotation: true,
+		pauseOnHover: true,
+		autoRotation: true,
 		maskAutoSize: true,
 		stretchSlideToMask: true,
 		switchTime: 2000,

@@ -76,6 +76,10 @@ class NewsFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->map($this->tableGateway->find($newsId));
     }
+    public function getNewsDetail($newsId)
+    {
+        return $this->mapDetail($this->tableGateway->find($newsId));
+    }
     public function map($result)
     {
         $news = clone($this->model);
@@ -85,6 +89,10 @@ class NewsFactory extends SQLFactory implements SQLFactoriesInterface
         $news->createdAt = $result->created_at;
         $news->updatedAt = $result->updated_at;
         return $news;
+    }
+    public function getRecentNews()
+    {
+        return $this->mapCollection($this->tableGateway->getRecentNews());
     }
     public function mapDetail($result)
     {

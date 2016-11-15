@@ -31,6 +31,9 @@
     </div>
 </footer>
 <!--<a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>-->
+<?php if(Route::getCurrentRoute()->getPath() =='/'){ ?>
+<a href="#alerts-nugree" class="lightbox btn-alerts-nugree"></a>
+<?php } ?>
 </div>
 <nav id="nav">
     <a class="navigation-toggler close"><span class="icon-cross"></span></a>
@@ -73,6 +76,13 @@
         <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</li>
     </ul>
 </div>
+
+<div class="popup-holder">
+    <div id="alerts-nugree" class="lightbox generic-lightbox alert-ligthbox-onload">
+        <img src="<?= url('/') ?>./assets/imgs/popup.png" alt="image description">
+        <a href="#" class="close"></a>
+    </div>
+</div>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/star-rating.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/jquery.carousel.js" type="text/javascript" defer></script>
@@ -85,6 +95,7 @@
 <script src="<?= url('/')?>/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/helper.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/ajax-locations-search.js" type="text/javascript"></script>
+<script type='text/javascript'>window._sbzq||function(e){e._sbzq=[];var t=e._sbzq;t.push(["_setAccount",53331]);var n=e.location.protocol=="https:"?"https:":"http:";var r=document.createElement("script");r.type="text/javascript";r.async=true;r.src=n+"//static.subiz.com/public/js/loader.js";var i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)}(window);</script>
 </body>
 <div id="fb-root"></div>
 

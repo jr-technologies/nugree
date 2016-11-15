@@ -59,6 +59,7 @@ class NewsController extends Controller
             'news'=>$this->newsRepo->getNews($request->get('newsId')),
          ]]);
     }
+
     public function updateNews(UpdateNewsRequest $request)
     {
         $this->newsRepo->updateNews($request->getNewsModel());

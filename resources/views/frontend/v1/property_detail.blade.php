@@ -216,14 +216,21 @@
                                     $numberDays = intval($numberDays);
                                     $days = "";
                                     if ($numberDays == 0) {
-                                        $days = 'today';
+                                        $myTime = substr($response['data']['property']->createdAt, 10, 10);
+                                        $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $myTime);
+
+                                        sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+
+                                        $time_seconds = $hours * 3600 + $minutes * 60 + $seconds;
+                                        $myTime = intval($time_seconds/3600);
+                                        $days = 'Hours Ago';
                                     } elseif ($numberDays == 1) {
                                         $days = 'day ago';
                                     } else {
                                         $days = 'days ago';
                                     };
                                     ?>
-                                    <b>@if($numberDays !=0){{$numberDays}} @endif {{$days}}</b></span>
+                                    <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
 
                             </div>
                             <div class="pull-right">
