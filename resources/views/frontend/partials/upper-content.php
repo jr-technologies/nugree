@@ -18,6 +18,7 @@
     <script type="text/javascript">window.jQuery || document.write('<script src="<?=url('/')?>/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="<?=url('/')?>/assets/js/select2.full.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/fbabf169f3.js"></script>
 <!--    ----------------------------------  Social Media------------------------>
     <link rel="opengraph" href="facebookexternalhit/1.1"/>
    <?php
@@ -29,7 +30,7 @@
     <meta property="og:image"         content="<?= (isset($response['data']['news']->images[0]->image))?url('/').'/'.$response['data']['news']->images[0]->image:"" ?>" />
     <?php  }?>
 </head>
-<body>
+<body class="fixed-ui-mob-full">
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>
@@ -47,7 +48,7 @@
                     <a href="<?= URL::to('/login') ?>">Login / Register</a>
                 <?php }else{ ?>
                 <li>
-                    <a href="#"><span class="hidden-xs"><?=str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)?></span><span class="icon-profile2 hidden"></span></a>
+                    <a href="#"><?=str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)?></a>
                     <ul class="dropDown">
                         <li><a href="<?=URL::to('dashboard#/home/profile')?>">my profile</a></li>
                         <li><a href="<?=URL::to('dashboard#/home/properties/all')?>">my listing</a></li>

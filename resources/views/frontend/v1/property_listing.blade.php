@@ -37,20 +37,26 @@
     </script>
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
     <div class="listing-page">
+      @if(isset($response['data']['banners']['topBanners']) && (sizeof($response['data']['banners']['topBanners'])) > 0)
         <div class="ads-slideshow">
             <div class="mask">
                 <div class="slideset">
-                    @if(isset($response['data']['banners']['leftBanners']))
-                        @foreach($response['data']['banners']['leftBanners'] as $leftBanner)
-                            <div class="slide"><a @if($leftBanner->banner_link !=="")href="{{$leftBanner->banner_link}}"@endif><img src="{{$leftBanner->image}}" alt="image description"></a></div>
-                        @endforeach
-                    @endif
+                    <div class="slide">
+                        @if(isset($response['data']['banners']['topBanners'][0]))
+                            <a @if($response['data']['banners']['topBanners'][0]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][0]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'. $response['data']['banners']['topBanners'][0]->image}}" alt="image description"></a>
+                        @endif
+                        @if(isset($response['data']['banners']['topBanners'][1]))
+                            <a @if($response['data']['banners']['topBanners'][1]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][1]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['topBanners'][1]->image}}" alt="image description"></a>
+                       @endif
+                    </div>
                 </div>
             </div>
         </div>
+      @endif
         <div class="container">
             <a class="aside-opener-filters togglerSearchButton">More Filters <b>(Land Area / Price...)</b><span class="button"><b></b></span></a>
-            <aside id="aside">
+            <div id="aside-holder">
+                <aside id="aside">
                 <div class="top-head">
                     <p>Search Filters</p>
                     <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
@@ -108,14 +114,12 @@
                             <div class="slide">
                                 <ul class="filterChecks">
                                     <li>
-                                      <span class="fake-select">
-                                        <select class="js-example-basic-single" name="city_id" id="cities-select">
+                                      <select class="js-example-basic-single" name="city_id" id="cities-select">
                                             <option value="">Select City</option>
                                             @foreach($response['data']['cities'] as $city)
                                                 <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
                                             @endforeach
                                         </select>
-                                     </span>
                                     </li>
                                     <li>
                                         <input id="selectbox" class="ajax-locations-select" name="location_id">
@@ -165,6 +169,14 @@
                     </ul>
                 </form>
             </aside>
+                <ul class="banners">
+                @if(isset($response['data']['banners']['leftBanners']))
+                  @foreach($response['data']['banners']['leftBanners'] as $leftBanner )
+                    <li><a @if($leftBanner->banner_link !="") href="{{$leftBanner->banner_link}}" @endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$leftBanner->image}}" alt="image desktop"></a></li>
+                  @endforeach
+                @endif
+                </ul>
+            </div>
             <section id="content">
                 <div class="propertyNotFound hidden">
                     <strong class="no-heading">sorry, no property found</strong>
@@ -182,10 +194,6 @@
                                         <option value='price_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_desc') selected @endif>Price High to Low</option>
                                         <option value='land_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_asc') selected @endif>Area Low to High</option>
                                         <option value='land_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_desc') selected @endif>Area High to Low</option>
-                                        {{--<option value='date_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_desc') selected @endif>Date New to Old</option>--}}
-                                        {{--<option value='date_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'date_asc') selected @endif>Date Old to New</option>--}}
-                                        {{--<option value='verified_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'verified_desc') selected @endif>Verified Only</option>--}}
-                                        {{--<option value='picture_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'picture_desc') selected @endif>With Photos</option>--}}
                                     </select>
                                 </span>
                 </div>
@@ -202,7 +210,6 @@
                                     <div class="slideset">
 
                                         <?php
-
                                         $image = url('/')."/assets/imgs/no.png";
                                         foreach($property->documents as $document)
                                         {
@@ -255,32 +262,7 @@
 
                                         @endforeach
                                     </ul>
-                                    <span class="added-time">Property Added
-                                         <?php
-                                         $startTimeStamp = strtotime(date("Y/m/d"));
-                                         $myDate = substr(substr($property->createdAt, 0, 10), 0, 10);
-                                         $endTimeStamp = strtotime($myDate);
-                                         $timeDiff = abs($endTimeStamp - $startTimeStamp);
-                                         $numberDays = $timeDiff / 86400;  // 86400 seconds in one day
-                                         // and you might want to convert to integer
-                                         $numberDays = intval($numberDays);
-                                         $days = "";
-                                         if ($numberDays == 0) {
-                                             $myTime = substr($property->createdAt, 10, 10);
-                                             $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $myTime);
 
-                                             sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
-
-                                             $time_seconds = $hours * 3600 + $minutes * 60 + $seconds;
-                                             $myTime = intval($time_seconds/3600);
-                                             $days = 'Hours Ago';
-                                         } elseif ($numberDays == 1) {
-                                             $days = 'day ago';
-                                         } else {
-                                             $days = 'days ago';
-                                         };
-                                         ?>
-                                         <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
 
                                 <?php
                                     $image = url('/') . "/assets/imgs/no.png";
@@ -295,17 +277,43 @@
                                 </div>
                             </div>
                             <div class="layout links-holder">
+                                 <span class="added-time">Property Added
+                                     <?php
+                                     $startTimeStamp = strtotime(date("Y/m/d"));
+                                     $myDate = substr(substr($property->createdAt, 0, 10), 0, 10);
+                                     $endTimeStamp = strtotime($myDate);
+                                     $timeDiff = abs($endTimeStamp - $startTimeStamp);
+                                     $numberDays = $timeDiff / 86400;  // 86400 seconds in one day
+                                     // and you might want to convert to integer
+                                     $numberDays = intval($numberDays);
+                                     $days = "";
+                                     if ($numberDays == 0) {
+                                         $myTime = substr($property->createdAt, 10, 10);
+                                         $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $myTime);
+
+                                         sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+
+                                         $time_seconds = $hours * 3600 + $minutes * 60 + $seconds;
+                                         $myTime = intval($time_seconds/3600);
+                                         $days = 'Hours Ago';
+                                     } elseif ($numberDays == 1) {
+                                         $days = 'day ago';
+                                     } else {
+                                         $days = 'days ago';
+                                     };
+                                     ?>
+                                     <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
                                 <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
                                 <ul class="quick-links">
-                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span><span class="hidden-xs">View number</span></a></li>
-                                    <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span><span class="hidden-xs">Send mail</span></a></li>
+                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span></a></li>
+                                    <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                 </ul>
                                 <?php
                                 $user = (new \App\Libs\Helpers\AuthHelper())->user();
                                 ?>
                                 <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
                                    key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
-                                    <span class="icon-heart"></span>
+                                    <i class="fa fa-heart-o" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
@@ -316,7 +324,7 @@
                     if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
 
                     { ?>
-                    <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{$response['data']['banners']['between'][$betweenCountIndex]->image}}" ></a>
+                    <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['between'][$betweenCountIndex]->image}}" ></a>
                     <?php
                     $betweenCountIndex++;
 
@@ -364,6 +372,13 @@
                     <li><a href="{{$last_page}}" class="last"><span class="icon-arrow1-right"></span></a></li>
                 </ul>
             </section>
+            <ul class="banners right-banners">
+                @if(isset($response['data']['banners']['rightBanners']))
+                    @foreach($response['data']['banners']['rightBanners'] as $rightBanner )
+                        <li><a @if($rightBanner->banner_link !="") href="{{$rightBanner->banner_link}}" @endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$rightBanner->image}}" alt="image desktop"></a></li>
+                    @endforeach
+                @endif
+            </ul>
             <div class="popup-holder">
                 <div id="callPopup" class="lightbox call-agent generic-lightbox">
                     <span class="lighbox-heading">Phone Number</span>

@@ -193,3 +193,4 @@ function removeURLParameter(url, parameter) {
         return url;
     }
 }
+

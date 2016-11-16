@@ -200,7 +200,7 @@
                             <label class="customCheckbox @if(isset($validationErrors) && $validationErrors->has('termsConditions')) error @endif">
                                 <input type="checkbox" name="termsConditions" value="1" @if(old('termsConditions') !="")checked @endif>
                                 <span class="fake-checkbox "></span>
-                                <span>I have read and agree to nugree.com <a href="#terms-of-user" class="termsOfUse lightbox">Terms and Conditions</a></span>
+                                <span class="fake-label">I have read and agree to nugree.com <a href="#terms-of-user" class="termsOfUse lightbox">Terms and Conditions</a></span>
                                 <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('termsConditions')) {{$validationErrors->first('termsConditions')}} @endif</span>
                             </label>
                         </li>

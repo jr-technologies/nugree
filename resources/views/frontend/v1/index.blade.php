@@ -18,6 +18,12 @@
                                 <span class="fake-label">Rent</span>
                             </label>
                         </li>
+                        <li>
+                            <label for="wanted" class="customRadio">
+                                <input type="radio" name="purpose_id" id="wanted">
+                                <span class="fake-label">Wanted</span>
+                            </label>
+                        </li>
                     </ul>
                     <ul class="subTypes">
                         <li>

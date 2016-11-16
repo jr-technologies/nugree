@@ -12,7 +12,7 @@ class CreateBannersTargetedPagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('banners_targeted_Pages', function (Blueprint $table) {
+        Schema::create('banners_targeted_pages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('banner_id')->unsigned();
             $table->integer('page_id')->unsigned();
