@@ -81,6 +81,13 @@
                                             <span class="fake-label">Rent</span>
                                         </label>
                                     </li>
+                                    <li>
+                                        <label for="buy-filter" class="customRadio">
+                                            <input type="radio" name="purpose_id" id="buy-filter" value="3" @if($response['data']['oldValues']['purposeId'] == 3) checked @endif>
+                                            <span class="fake-checkbox"></span>
+                                            <span class="fake-label">Wanted</span>
+                                        </label>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

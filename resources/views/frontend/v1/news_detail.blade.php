@@ -9,9 +9,9 @@
             <div class="detail-news-slider">
                 <div class="mask">
                     <div class="slideset">
-
+                     @if(isset($response['data']['news']->images[0]))
                         <div class="slide"><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['news']->images[0]->image}}" alt="image description"></div>
-
+                     @endif
                     </div>
                 </div>
                 {{--<a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>--}}
@@ -30,7 +30,7 @@
             </div>
             <div class="description">
                 <h2>{{$response['data']['news']->title}}</h2>
-                <p>{{$response['data']['news']->description}}.</p>
+                <p>{{$response['data']['news']->description}}</p>
             </div>
         </div>
         <div class="col">

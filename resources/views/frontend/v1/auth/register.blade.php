@@ -142,10 +142,11 @@
                         <label>Select City</label>
                         <div class="input-holder">
                             <span class="fake-select">
-                                <select id="cities-select" name="city_id">
+                                <select id="cities-select" name="city_id" required>
                                     <option value="">Select City</option>
-                                    <option value="1">Lahore</option>
-                                    <option value="2">Karachi</option>
+                                @foreach($response['cities'] as $city)
+                                    <option value="{{$city->id}}">{{$city->name}}</option>
+                                @endforeach
                                 </select>
                             </span>
                         </div>
@@ -153,7 +154,7 @@
                     <div class="layout-holder">
                         <label>Select Locations You Deal In.</label>
                         <div class="input-holder @if(isset($validationErrors) && $validationErrors->has('companyPhone')) error @endif">
-                            <input id="selectbox" class="ajax-locations-multi-select" name="locations">
+                            <input id="selectbox" class="ajax-locations-multi-select" name="locations" required>
                             <span class="error-text">@if(isset($validationErrors) && $validationErrors->has('locations')) {{$validationErrors->first('locations')}} @endif</span>
                         </div>
                     </div>

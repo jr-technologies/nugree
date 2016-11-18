@@ -6,15 +6,19 @@ use App\Events\Events\Property\PropertyCreated;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Listeners\Interfaces\ListenerInterface;
 use App\Listeners\Listeners\Listener;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\PropertiesJsonRepository;
+use Illuminate\Support\Facades\Mail;
 
 class CreatePropertyJsonDocument extends Listener implements ListenerInterface
 {
     private $propertiesJsonRepository = null;
+    private $userReop = null;
 
     public function __construct()
     {
         $this->propertiesJsonRepository = new PropertiesJsonRepository();
+        $this->userReop = (new UsersRepoProvider())->repo();
     }
 
     /**
@@ -27,6 +31,12 @@ class CreatePropertyJsonDocument extends Listener implements ListenerInterface
     {
         $propertyJsonCreator = new PropertyJsonCreator($event->property);
         $propertyJson = $propertyJsonCreator->create();
-        return $this->propertiesJsonRepository->store($propertyJson);
+        $this->propertiesJsonRepository->store($propertyJson);
+
+        return Mail::send('frontend.mail.add_property',['property' => $propertyJson], function($message) use($propertyJson)
+        {
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'nugree.com');
+            $message->to($propertyJson->owner->email)->subject('Nugree');
+        });
     }
 }
