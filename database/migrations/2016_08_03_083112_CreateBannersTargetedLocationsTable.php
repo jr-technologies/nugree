@@ -12,7 +12,7 @@ class CreateBannersTargetedLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('banners_targeted_Locations', function (Blueprint $table) {
+        Schema::create('banners_targeted_locations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('banner_id')->unsigned();
             $table->integer('location_id')->unsigned();
@@ -37,6 +37,6 @@ class CreateBannersTargetedLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('banners_targeted_societies');
+        Schema::drop('banners_targeted_locations');
     }
 }

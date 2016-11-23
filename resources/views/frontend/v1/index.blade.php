@@ -18,6 +18,12 @@
                                 <span class="fake-label">Rent</span>
                             </label>
                         </li>
+                        <li>
+                            <label for="wanted" class="customRadio">
+                                <input type="radio" name="purpose_id" value="3" id="wanted">
+                                <span class="fake-label">Wanted</span>
+                            </label>
+                        </li>
                     </ul>
                     <ul class="subTypes">
                         <li>
@@ -41,7 +47,7 @@
                         <select class="js-example-basic-single" id="cities-select" name="city_id">
                             <option value="">Select City</option>
                             @foreach($response['data']['cities'] as $city)
-                                <option value="{{$city->id}}">{{$city->name}}</option>
+                                <option value="{{$city->id}}" @if($city->id == 1) selected @endif>{{$city->name}}</option>
                             @endforeach
                         </select>
                     </span>
@@ -68,6 +74,16 @@
                             <div class="caption">
                                 <h1>Gwadar <span>City</span></h1>
                                 <strong>Land Of Opportunites</strong>
+                                <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="{{url('/')}}/web-apps/frontend/assets/images/lahore.jpg" alt="gawadar city">
+                        <div class="container">
+                            <div class="caption">
+                                <h1>Lahore <span>City</span></h1>
+                                <strong>our campaign starts form Lahore and growing...</strong>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
                         </div>

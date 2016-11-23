@@ -91,6 +91,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     var mapFormData = function () {
       return {
           propertyPurpose: "1",
+          wanted:0,
           propertyType :0,
           propertySubType : 0,
           location:0,

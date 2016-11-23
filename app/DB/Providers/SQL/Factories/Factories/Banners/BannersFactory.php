@@ -13,7 +13,6 @@ use App\DB\Providers\SQL\Interfaces\SQLFactoriesInterface;
 use App\DB\Providers\SQL\Models\Banner;
 use App\DB\Providers\SQL\Models\BannersDetail;
 
-
 class BannersFactory extends SQLFactory implements SQLFactoriesInterface
 {
     private $tableGateway = null;
