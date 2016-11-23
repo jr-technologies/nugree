@@ -34,6 +34,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->map($this->tableGateway->find($id));
     }
+    public function getByIds($ids)
+    {
+        return $this->mapCollection($this->tableGateway->getWhereIn('id',$ids));
+    }
     function all()
     {
        return $this->mapCollection($this->tableGateway->all());

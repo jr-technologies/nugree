@@ -15,6 +15,7 @@ use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\NewsRepoProvider;
 use App\Repositories\Providers\Providers\ProjectsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
@@ -49,6 +50,7 @@ class PropertiesController extends Controller
     public $userRepo = null;
     public $status = null;
     public $banners = null;
+    public $locations = null;
     public $news =null;
     public $projectRepo;
     public $cities;
@@ -73,6 +75,7 @@ class PropertiesController extends Controller
         $this->projectRepo = (new ProjectsRepoProvider())->repo();
         $this->cities = (new CitiesRepoProvider())->repo();
         $this->news = (new NewsRepoProvider())->repo();
+        $this->locations = (new LocationsRepoProvider())->repo();
     }
     public function addProperty(RouteToAddPropertyRequest $request)
     {
@@ -109,7 +112,8 @@ class PropertiesController extends Controller
             'propertiesCount'=>$propertiesCount,
             'cities'=>$this->cities->all(),
             'oldValues'=>$request->all(),
-            'banners'=>$banners
+            'banners'=>$banners,
+            'selectedLocations' => json_encode($this->locations->getByIds($params['locationId']))
         ]]);
     }
     public function propertySubtypes()

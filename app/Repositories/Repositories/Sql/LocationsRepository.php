@@ -33,6 +33,11 @@ class LocationsRepository extends SqlRepository implements SocietiesRepoInterfac
         return $this->factory->find($id);
     }
 
+    public function getByIds(array $ids)
+    {
+        return $this->factory->getByIds($ids);
+    }
+
     public function all()
     {
         return $this->factory->all();
