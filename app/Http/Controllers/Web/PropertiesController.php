@@ -113,7 +113,7 @@ class PropertiesController extends Controller
             'cities'=>$this->cities->all(),
             'oldValues'=>$request->all(),
             'banners'=>$banners,
-            'selectedLocations' => json_encode($this->locations->getByIds($params['locationId']))
+            'selectedLocations' => json_encode($this->locations->getByIds((is_array($params['locationId']))?$params['locationId']:[]))
         ]]);
     }
     public function propertySubtypes()
