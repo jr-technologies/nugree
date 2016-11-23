@@ -14,12 +14,11 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.profileUpdated = false;
     $scope.userUpdating = false;
     $scope.selectedLocations = [];
-    $scope.cityId = "";
+    $scope.cityId = $scope.user.agencies[0].locations[0].city.id+"";
     $scope.locations = {
         selectedLocations: [],
         searchedLocations: []
     };
-
     $scope.searchLocations = function ($select) {
         $scope.locations.searchedLocations = [];
         if($select.search.length < 2){
