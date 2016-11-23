@@ -6,6 +6,7 @@
             <div class="col">
                 <h1><span>Get in</span> Touch</h1>
                 <?= Form::open(array('url'=>'feedback','method'=>'POST','class'=>'submit-query'))?>
+                <input type="hidden" name="type" value="contactUs">
                 <div class="input-holder"><input type="text" placeholder="Name" name="name" ></div>
                 <div class="input-holder"><input type="email" placeholder="Email" name="email" required></div>
                 <div class="input-holder"><input type="text" placeholder="Phone" value="" name="phone"></div>

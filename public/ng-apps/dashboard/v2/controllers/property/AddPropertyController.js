@@ -89,6 +89,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
       return {
           propertyPurpose: 0,
           propertyType :0,
+          wanted:false,
           propertySubType : 0,
           location: "",
           price: undefined,

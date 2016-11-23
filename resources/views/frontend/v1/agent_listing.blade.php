@@ -1,10 +1,10 @@
 @extends('frontend.v1.frontend')
 @section('content')
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
-
         <div class="agent-listing-page">
             <div class="container">
                 <a class="aside-opener-filters togglerSearchButton">Search Filters<span class="button"><b></b></span></a>
+              <div id="aside-holder">
                 <aside id="aside">
                     <div class="top-head">
                         <p>Search Filters</p>
@@ -45,6 +45,7 @@
 
                     {{Form::close()}}
                 </aside>
+              </div>
                 @foreach($response['data']['banners']['topBanners'] as $banner)
                     <a><img src="{{url('/').'/'.$banner->image}}" width="100px" height="100px"></a>
                 @endforeach

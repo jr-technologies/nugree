@@ -17,6 +17,7 @@ class FeedbackTransformer extends RequestTransformer
     public function transform()
     {
         return [
+            'type'=>$this->request->input('type'),
             'name'=>$this->request->input('name'),
             'email'=>$this->request->input('email'),
             'phone'=>$this->request->input('phone'),

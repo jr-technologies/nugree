@@ -181,6 +181,15 @@ Route::get('maliksajidawan786@gmail.com/city',
     ]
 );
 
+Route::get('wanted-properties',
+    [
+        'middleware'=>
+            [
+                'webValidate:WantedPropertyRequest'
+            ],
+        'uses'=>'PropertiesController@wantedProperties'
+    ]
+);
 
 Route::post('join-us',
     [
@@ -930,8 +939,6 @@ Route::get('get/society/files',
             ],
         'uses'=>'SocietiesController@getSocietyFiles'
     ]);
-
-
 
 Route::get('societies/files',
     [

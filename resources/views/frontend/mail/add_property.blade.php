@@ -14,7 +14,7 @@
     </div>
     <div class="layout" style="padding: 50px 20px 0;margin: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">
         <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">
-            Dear <b style="margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">{{$property->owner->fName .' '.$property->owner->lName}}</b></p>
+            Dear <b style="margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">{{$property->contactPerson}}</b></p>
         <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">
             Your Property is added successfully and It will be activated within 24 hours.</p>
         <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">

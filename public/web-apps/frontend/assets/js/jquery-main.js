@@ -37,6 +37,11 @@ $(document).ready(function() {
 			$('.filters-links').find('.fromTo').removeClass('full-width');
 		})
 	}
+	$('.ads-slideshow').find('.slide').each(function(){
+		if($(this).find('a').length == 1){
+			$(this).closest('.slide').addClass('one-banner');
+		}
+	});
 	$(window).trigger('scroll');
 	imageAdjustment();
 
@@ -254,6 +259,20 @@ function initCarousel() {
 		switchTime: 2000,
 		animSpeed: 600,
 		step: 1
+	});
+	jQuery('.trend-news').scrollGallery({
+		mask: '.mask',
+		slider: '.slideset',
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		pauseOnHover: true,
+		autoRotation: true,
+		maskAutoSize: false,
+		switchTime: 2000,
+		animSpeed: 600,
+		vertical: true
 	});
 }
 

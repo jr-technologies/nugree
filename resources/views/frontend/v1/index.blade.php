@@ -18,12 +18,12 @@
                                 <span class="fake-label">Rent</span>
                             </label>
                         </li>
-                        <li>
-                            <label for="wanted" class="customRadio">
-                                <input type="radio" name="purpose_id" value="3" id="wanted">
-                                <span class="fake-label">Wanted</span>
-                            </label>
-                        </li>
+                        {{--<li>--}}
+                            {{--<label for="wanted" class="customRadio">--}}
+                                {{--<input type="radio" name="purpose_id" value="3" id="wanted">--}}
+                                {{--<span class="fake-label">Wanted</span>--}}
+                            {{--</label>--}}
+                        {{--</li>--}}
                     </ul>
                     <ul class="subTypes">
                         <li>
@@ -201,7 +201,7 @@
             <div id="join-us-pro" class="lightbox generic-lightbox">
                 <span class="lighbox-heading">Join us for <span>Project</span></span>
                {{Form::open(array('url' => 'join-us','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
-
+                    <input type="hidden" name="type" value="joinUs">
                     <div class="field-holder">
                         <label for="join-name">Name</label>
                         <div class="input-holder"><input type="text" id="join-name" name="name" required></div>

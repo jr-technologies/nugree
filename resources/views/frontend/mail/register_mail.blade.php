@@ -13,7 +13,7 @@
                 <img src="http://nugree.com/web-apps/frontend/assets/images/logo.png" alt="nugree.com" width="209" height="54" style="display: block;width: 100%;height: auto;margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box"/></a></div>
     </div>
     <div class="layout" style="padding: 50px 20px 0;margin: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">
-        <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Dear <b style="margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Sajid</b></p>
+        <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Dear <b style="margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">{{$user->fName.' '.$user->lName}}</b></p>
         <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">
             Thank you for registering in nugree.com,</p>
         <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">

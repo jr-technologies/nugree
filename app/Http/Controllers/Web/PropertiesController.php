@@ -8,6 +8,7 @@ use App\Http\Requests\Requests\Property\GetPropertyRequest;
 use App\Http\Requests\Requests\Property\RouteToAddPropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
+use App\Http\Requests\Requests\Property\WantedPropertyRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
@@ -74,6 +75,32 @@ class PropertiesController extends Controller
         $this->cities = (new CitiesRepoProvider())->repo();
         $this->news = (new NewsRepoProvider())->repo();
     }
+    public function wantedProperties(WantedPropertyRequest $request)
+    {
+        $params = $request->getParams();
+        $params['sortBy'] = 'updated_at';
+        $loggedInUser = $request->user();
+        $properties = $this->properties->search($request->getParams());
+        $propertiesCount = count($properties);
+        $totalPropertiesFound = (new Cheetah())->count();
+        $banners = $this->getPropertyListingPageBanners($params);
+        return $this->response->setView('frontend.v1.wanted_property_listing')->respond(['data' => [
+            'properties' => $this->releaseAllPropertiesFiles($properties),
+            'totalProperties'=> $totalPropertiesFound[0]->total_records,
+            'isFavourite' => $this->getFavourite($loggedInUser,$properties),
+            'societies'=>$this->societies->all(),
+            'blocks'=>$this->blocks->getBlocksBySociety($request->get('societyId')),
+            'propertyTypes'=>$this->propertyTypes->all(),
+            'propertySubtypes'=>$this->propertySubtypes(),
+            'landUnits'=>$this->landUnits->all(),
+            'propertiesCount'=>$propertiesCount,
+            'cities'=>$this->cities->all(),
+            'oldValues'=>$request->all(),
+            'banners'=>$banners
+        ]]);
+
+    }
+
     public function addProperty(RouteToAddPropertyRequest $request)
     {
         if($request->isNotAuthentic()){

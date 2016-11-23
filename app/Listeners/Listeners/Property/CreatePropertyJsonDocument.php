@@ -31,12 +31,6 @@ class CreatePropertyJsonDocument extends Listener implements ListenerInterface
     {
         $propertyJsonCreator = new PropertyJsonCreator($event->property);
         $propertyJson = $propertyJsonCreator->create();
-        $this->propertiesJsonRepository->store($propertyJson);
-
-        return Mail::send('frontend.mail.add_property',['property' => $propertyJson], function($message) use($propertyJson)
-        {
-            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'nugree.com');
-            $message->to($propertyJson->owner->email)->subject('Nugree');
-        });
+        return $this->propertiesJsonRepository->store($propertyJson);
     }
 }

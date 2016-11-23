@@ -55,6 +55,7 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $property->landArea =  $this->get('landArea');
         $property->landUnitId =  $this->get('landUnitId');
         $property->statusId = $this->statusSeeder->getPendingStatusId();
+        $property->wanted = ($this->get('wanted') ==true)?1:0;
         $property->totalViews = rand(0,170);
         $property->contactPerson =  $user->fName." ".$user->lName;
         $property->phone =  $user->phone;

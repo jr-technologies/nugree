@@ -63,17 +63,20 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
 
         if(isset($this->instructions['neededProperties']) && $this->instructions['neededProperties'] != null && $this->instructions['neededProperties'] != '')
             $query = $query->where($properties.'.wanted',$this->instructions['neededProperties']);
-        if($this->instructions['purposeId'] == 3)
-        {
-            if(isset($this->instructions['purposeId']) && $this->instructions['purposeId'] != null && $this->instructions['purposeId'] != '')
-                $query = $query->where($properties.'.wanted',1);
-        }
-        else
-        {
-            if(isset($this->instructions['purposeId']) && $this->instructions['purposeId'] != null && $this->instructions['purposeId'] != '')
-                $query = $query->where($properties.'.purpose_id',$this->instructions['purposeId']);
-        }
 
+//        if($this->instructions['purposeId'] == 3) {
+//            $query = $query->where($properties . '.wanted', 1);
+//        }
+//        else
+//        {
+//            $query = $query->where($properties . '.wanted', 0);
+//            if(isset($this->instructions['purposeId']) && $this->instructions['purposeId'] != null && $this->instructions['purposeId'] != '')
+//                $query = $query->where($properties.'.purpose_id',$this->instructions['purposeId']);
+//        }
+        if(isset($this->instructions['wanted']) && $this->instructions['wanted'] != null && $this->instructions['wanted'] != '')
+            $query = $query->where($properties .'.wanted',1);
+        if(isset($this->instructions['purposeId']) && $this->instructions['purposeId'] != null && $this->instructions['purposeId'] != '')
+            $query = $query->where($properties.'.purpose_id',$this->instructions['purposeId']);
         if(isset($this->instructions['propertyTypeId']) && $this->instructions['propertyTypeId'] != null && $this->instructions['propertyTypeId'] != '')
             $query = $query->where($propertySubTypes.'.property_type_id',$this->instructions['propertyTypeId']);
         if(isset($this->instructions['subTypeId']) && $this->instructions['subTypeId'] != null && $this->instructions['subTypeId'] != '')

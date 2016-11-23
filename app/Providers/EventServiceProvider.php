@@ -33,6 +33,7 @@ use App\Listeners\Listeners\Property\CreatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\DeletePropertyJsonDocument;
 use App\Listeners\Listeners\Property\PropertyDEVerifyInPropertyJson;
 use App\Listeners\Listeners\Property\PropertyVerifyInPropertyJson;
+use App\Listeners\Listeners\Property\SendAddPropertyMail;
 use App\Listeners\Listeners\Property\UpdatePropertiesStatusInJson;
 use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\UpdatePropertyViewsInPropertyJson;
@@ -87,6 +88,7 @@ class EventServiceProvider extends ServiceProvider
         /* property events */
         PropertyCreated::class => [
             CreatePropertyJsonDocument::class,
+            SendAddPropertyMail::class
         ],
         PropertyUpdated::class => [
             UpdatePropertyJsonDocument::class,
