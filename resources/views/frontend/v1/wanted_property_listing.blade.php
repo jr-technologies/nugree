@@ -224,7 +224,7 @@
                                     <div class="slideset">
 
                                         <?php
-                                        $image = url('/')."/assets/imgs/no.png";
+                                        $image = url('/')."/assets/imgs/no.jpg";
                                         foreach($property->documents as $document)
                                         {
                                             if($document->type == 'image' && $document->main == true && $document->path != "")
@@ -417,7 +417,7 @@
                     for($i = (($current_page-3 > 0)?$current_page-3:1); $i <= (($current_page + 3 <= $paginationValue)?$current_page+3:$paginationValue);$i++){
                     $query_str_to_array['page'] = $i;
                     $queryString  = http_build_query($query_str_to_array);
-                    $result = URL('wanted-properties').'?'.$queryString;
+                    $result = URL('/search').'?'.$queryString;
                     ?>
                     <li @if($current_page == $i)class="active" @endif><a href="{{$result}}">{{$i}}</a></li>
                     <?php }?>

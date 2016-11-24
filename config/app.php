@@ -225,6 +225,7 @@ return [
         'RegistrationRequest' => \App\Http\Requests\Requests\Auth\RegistrationRequest::class,
         'LoginRequest' => \App\Http\Requests\Requests\Auth\LoginRequest::class,
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
+        'AddUserSearchesRequest' => \App\Http\Requests\Requests\User\AddUserSearchesRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
         'UpdateUserRequest' => \App\Http\Requests\Requests\User\UpdateUserRequest::class,
         'ChangePasswordRequest' => \App\Http\Requests\Requests\User\ChangePasswordRequest::class,

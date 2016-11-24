@@ -112,6 +112,21 @@
         <img src="<?= url('/') ?>./assets/imgs/popup.png" alt="image description">
         <a href="#" class="close"></a>
     </div>
+    <div id="found-match" class="lightbox generic-lightbox">
+        <span class="lighbox-heading">Notify me</span>
+
+            <input type="hidden" name="searched_params" id="searched-url-params" value="<?= $_SERVER['REQUEST_URI'] ?>">
+            <div class="field-holder">
+                <label for="email">Email</label>
+                <div class="input-holder"><input type="email" name="email" required id="notify-email"></div>
+            </div>
+            <div class="field-holder">
+                <label for="phone">phone</label>
+                <div class="input-holder"><input type="tel" name="mobile" required id="notify-mobile"></div>
+            </div>
+            <button type="submit" class="notify-ajax-request">SEND</button>
+            <a href="#" class="close"></a>
+    </div>
 </div>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/star-rating.js" type="text/javascript" defer></script>

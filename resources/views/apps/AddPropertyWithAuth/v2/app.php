@@ -58,7 +58,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                     </li>
                                     <li>
                                         <label for="wanted" class="customRadio">
-                                            <input type="radio" name="pro-want" id="wanted" ng-model="form.data.wanted">
+                                            <input type="radio" name="pro-want" id="wanted" value="1" ng-model="form.data.wanted">
                                             <span class="fake-label">Wanted property</span>
                                         </label>
                                     </li>
@@ -142,7 +142,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                             <span class="fake-select">
                                 <select name="land_unit" ng-model="form.data.landUnit" id="land-unit" required>
                                     <option value="" selected disabled >Please Choose...</option>
-                                    <option data-ng-repeat="unit in resources.landUnits" value="{{unit.id}}">{{unit.name}}</option>
+                                    <option data-ng-repeat="unit in resources.landUnits" value="{{unit.id}}" >{{unit.name}}</option>
                                 </select>
                             </span>
                                         </div>

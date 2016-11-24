@@ -89,6 +89,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     };
 
     var mapFormData = function () {
+
       return {
           propertyPurpose: "1",
           wanted:false,
@@ -97,7 +98,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
           location:0,
           price: undefined,
           landArea: undefined,
-          landUnit: 0,
+          landUnit: "3",
           propertyTitle: '',
           propertyDescription: '',
           features:{},

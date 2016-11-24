@@ -170,7 +170,6 @@ Route::get('print-societies/12345',function(){
 }
 );
 
-
 Route::get('maliksajidawan786@gmail.com/city',
     [
         'middleware'=>

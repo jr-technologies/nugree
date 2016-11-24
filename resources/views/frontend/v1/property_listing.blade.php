@@ -179,7 +179,7 @@
                 </ul>
             </div>
             <section id="content">
-                <div class="propertyNotFound hidden">
+                <div class="propertyNotFound hidden email-send">
                     <strong class="no-heading">sorry, no property found</strong>
                     <p>Maybe your search was to specific, please try searching with another term.</p>
                 </div>
@@ -189,14 +189,14 @@
                 <div class="sort-by">
                     <span class="label">Sort by:</span>
                 <span class="fake-select">
-                                    <select name="sort_by" id="sort">
-                                        <option value='' selected >Default Order</option>
-                                        <option value='price_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_asc') selected @endif>Price Low to High</option>
-                                        <option value='price_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_desc') selected @endif>Price High to Low</option>
-                                        <option value='land_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_asc') selected @endif>Area Low to High</option>
-                                        <option value='land_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_desc') selected @endif>Area High to Low</option>
-                                    </select>
-                                </span>
+                        <select name="sort_by" id="sort">
+                            <option value='' selected >Default Order</option>
+                            <option value='price_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_asc') selected @endif>Price Low to High</option>
+                            <option value='price_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'price_desc') selected @endif>Price High to Low</option>
+                            <option value='land_asc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_asc') selected @endif>Area Low to High</option>
+                            <option value='land_desc' @if(($response['data']['oldValues']['sortBy'].'_'.$response['data']['oldValues']['order']) == 'land_desc') selected @endif>Area High to Low</option>
+                        </select>
+                    </span>
                 </div>
                 <?php
                 $countForBanner =0;
@@ -318,11 +318,12 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="popup-holder"><div id="sendEmail-popup{{$property->id}}" class="lightbox generic-lightbox">
+                        <div class="popup-holder">
+                            <div id="sendEmail-popup{{$property->id}}" class="lightbox generic-lightbox">
                                 <span class="lighbox-heading">Send Email</span>
                                 {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
                                 <input type="hidden" name="userId" value="{{$property->owner->id}}">
-                                <input type="hidden" name="type" value="propertyListing">
+                                <input type="hidden" name="type" value="property_listing">
                                 <input type="hidden" name="propertyId" value="{{$property->id}}">
                                 <div class="field-holder">
                                     <label for="name">Name</label>
@@ -356,10 +357,11 @@
                                 </div>
                                 <button type="submit">SEND</button>
                                 {{Form::close()}}
-                            </div></div>
+                            </div>
+                        </div>
                         <?php $favourites++; ?>
                     </article>
-                    <?php
+                   <?php
                     if(($countForBanner %3) == 0)
                     if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
 
@@ -373,6 +375,9 @@
 
 
                 @endforeach
+                <div class="match-pro-noti text-center">
+                    <a href="#found-match" class="btn-default lightbox">Notify me</a>
+                </div>
                 <?php
 
                 $for_previous_link = $_GET;

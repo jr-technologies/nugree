@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::post('user_search',
+    [
+        'middleware'=>
+            [
+                //'apiValidate:addUserSearchesRequest'
+            ],
+        'uses'=>'UserSearchesController@store'
+    ]
+);
 
 Route::get('app/dashboard/resources',
     [

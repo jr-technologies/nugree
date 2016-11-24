@@ -201,7 +201,7 @@
             <div id="join-us-pro" class="lightbox generic-lightbox">
                 <span class="lighbox-heading">Join us for <span>Project</span></span>
                {{Form::open(array('url' => 'join-us','method' => 'POST' ,'class'=>"inquiry-email-form"))}}
-                    <input type="hidden" name="type" value="joinUs">
+                    <input type="hidden" name="type" value="join_us">
                     <div class="field-holder">
                         <label for="join-name">Name</label>
                         <div class="input-holder"><input type="text" id="join-name" name="name" required></div>

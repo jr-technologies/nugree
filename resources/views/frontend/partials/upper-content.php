@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta property="og:description" content="[content description]" />
+    <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <title>We Know Property Better | nugree.com</title>
     <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/nafees-nastaleeq" type="text/css"/>
@@ -60,7 +61,7 @@
                     </ul>
                 </li>
                 <?php } ?>
-                <li class="wanted-list"><a href="<?= URL::to('wanted-properties') ?>">Wanted Property</a></li>
+                <li class="wanted-list"><a href="<?= URL::to('wanted-properties') ?>">Wanted Property <img src="<?= url('/') . "/assets/imgs/ico03.png" ?>"></a></li>
                 <li><a href="<?= URL::to('add-property') ?>" class="fixed-ui-mob">List property</span></a></li>
             </ul>
         </div>
