@@ -10,8 +10,33 @@ $(document).ready(function(){
    if((localStorage.getItem("gotIt")) =="true"){
        $('.weAreWorking').addClass('hide');
    }
-});
 
+});
+$(document).on('click','.notify-ajax-request',function(){
+    var email = $("#notify-email").val();
+    var mobile = $("#notify-mobile").val();
+    var searched_params = $("#searched-url-params").val();
+
+    $.ajax({
+        type: "POST",
+        url: apiPath.concat("user_search"),
+        data:{
+          email:email,mobile:mobile,searched_params:searched_params
+        },
+        success: function(response){
+            $('#found-match').find('.close').click();
+            $('.email-send').addClass('hidden');
+            $('.match-pro-noti').remove();
+            $('#content').append(
+            '<div class="propertyNotFound">'+
+                '<strong class="no-heading">Thank you</strong>'+
+            '<p>We will send your desire property as soon as possible.</p>'+
+            '</div>'
+            )
+        },
+
+    });
+});
 $(document).on('click','.add-to-favorite',function(){
     var addedClass = $(this).hasClass( "added" );
     if(addedClass == true)
@@ -193,3 +218,4 @@ function removeURLParameter(url, parameter) {
         return url;
     }
 }
+

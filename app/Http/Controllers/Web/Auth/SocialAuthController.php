@@ -29,12 +29,16 @@ class SocialAuthController extends Controller
 
     public function callback()
     {
-        $providerUser = \Socialite::driver('facebook')->user();
         try{
-            $existingUser = $this->users->findByEmail($providerUser->email);
-            return $this->login($existingUser);
+            $providerUser = \Socialite::driver('facebook')->user();
+            try{
+                $existingUser = $this->users->findByEmail($providerUser->email);
+                return $this->login($existingUser);
+            }catch (\Exception $e){
+                return $this->register($providerUser);
+            }
         }catch (\Exception $e){
-            return $this->register($providerUser);
+            return redirect()->route('loginPage');
         }
     }
 

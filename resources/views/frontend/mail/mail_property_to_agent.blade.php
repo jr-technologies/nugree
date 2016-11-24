@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -18,15 +17,15 @@
             your account has been activated and is ready to be used. Please folllw the link to your Account www.nugree.com to login and your login detail is below:</p>
         <p style="margin: 0 0 15px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box"><a target="_blank" href="http://nugree.com/login" style="margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;outline: none;border: 0;color: #3156b6;display: inline-block;vertical-align: top">http://nugree.com/login</a></p>
         <strong style="margin: 0 0 10px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: block;color: #524f4f">
-            Email : {{$userRequirement->email}}</strong>
+            Email : {{$user['email']}}</strong>
         <strong style="margin: 0 0 10px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: block;color: #524f4f">
-            Name : {{$userRequirement->name}}</strong>
+            Name : {{$user['name']}}</strong>
         <strong style="margin: 0 0 10px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: block;color: #524f4f">
-            Phone : {{$userRequirement->phone}}</strong>
+            Phone : {{$user['phone']}}</strong>
         <strong style="margin: 0 0 10px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: block;color: #524f4f">
-            Address : {{$userRequirement->address}}</strong>
+            Address : {{$user['subject']}}</strong>
         <strong style="margin: 0 0 10px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: block;color: #524f4f">
-            Requirement : {{$userRequirement->purposeId}}</strong>
+            Requirement : {{$user['message']}}</strong>
 
         <p style="color: #b22241;margin: 0;font-weight: 600px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Membership Plan:</p>
         <p style="margin: 0;font-weight: 600px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Package: Free</p>

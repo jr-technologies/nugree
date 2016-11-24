@@ -6,6 +6,7 @@
             <div class="col">
                 <h1><span>Get in</span> Touch</h1>
                 <?= Form::open(array('url'=>'feedback','method'=>'POST','class'=>'submit-query'))?>
+                <input type="hidden" name="type" value="contactUs">
                 <div class="input-holder"><input type="text" placeholder="Name" name="name" ></div>
                 <div class="input-holder"><input type="email" placeholder="Email" name="email" required></div>
                 <div class="input-holder"><input type="text" placeholder="Phone" value="" name="phone"></div>
@@ -30,7 +31,7 @@
         </div>
     </div>
 </footer>
-<!--<a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>-->
+<a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>
 <?php if(Route::getCurrentRoute()->getPath() =='/'){ ?>
 <a href="#alerts-nugree" class="lightbox btn-alerts-nugree"></a>
 <?php } ?>
@@ -73,14 +74,58 @@
     <div class="logo-holder"><img src="<?= url('/')?>/web-apps/frontend/assets/images/logo.png" alt="Nugree"></div>
     <ul class="bottom-links">
         <li><a href="<?= URL::to('/')?>">www.nugree.com</a></li>
-        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</li>
+        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</a></li>
     </ul>
 </div>
 
 <div class="popup-holder">
+    <div id="submit-requirement-popup" class="lightbox generic-lightbox">
+        <span class="lighbox-heading">Submit you <span>requirement</span></span>
+        <form class="inquiry-email-form">
+            <div class="field-holder">
+                <label for="requirement-name">Name</label>
+                <div class="input-holder"><input type="text" id="requirement-name"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-email">Email</label>
+                <div class="input-holder"><input type="email" id="requirement-email"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-phone">Mobile</label>
+                <div class="input-holder"><input type="tel" id="requirement-phone"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-subject">Purpose</label>
+                <div class="input-holder"><input type="text" id="requirement-subject"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-message">Message</label>
+                <div class="input-holder">
+                    <textarea id="requirement-message"></textarea>
+                    <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                </div>
+            </div>
+            <button type="submit">SEND</button>
+        </form>
+    </div>
     <div id="alerts-nugree" class="lightbox generic-lightbox alert-ligthbox-onload">
         <img src="<?= url('/') ?>./assets/imgs/popup.png" alt="image description">
         <a href="#" class="close"></a>
+    </div>
+    <div id="found-match" class="lightbox generic-lightbox">
+        <span class="lighbox-heading">Notify me</span>
+
+            <input type="hidden" name="searched_params" id="searched-url-params" value="<?= $_SERVER['REQUEST_URI'] ?>">
+            <div class="field-holder">
+                <label for="email">Email</label>
+                <div class="input-holder"><input type="email" name="email" required id="notify-email"></div>
+            </div>
+            <div class="field-holder">
+                <label for="phone">phone</label>
+                <div class="input-holder"><input type="tel" name="mobile" required id="notify-mobile"></div>
+            </div>
+            <button type="submit" class="notify-ajax-request">SEND</button>
+            <a href="#" class="close"></a>
     </div>
 </div>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>

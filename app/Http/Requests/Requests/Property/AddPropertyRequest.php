@@ -54,7 +54,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->mobile =  $this->get('mobile');
         $property->email =  $this->get('email');
         $property->fax =  $this->get('fax');
-        $property->wanted = ($this->get('wanted') != null)?$this->get('wanted'):0;
+        $property->wanted = ($this->get('wanted') != null)?1:0;
         $property->ownerId = $this->get('ownerId');
         $property->totalViews = rand(0,170);
         $property->isVerified = 0;

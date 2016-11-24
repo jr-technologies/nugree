@@ -46,4 +46,8 @@ class CountriesRepository extends SqlRepository implements UsersRepoInterface
     {
         return $this->factory->delete($country);
     }
+    public function getByCity($cityId)
+    {
+       return $this->factory->getByCity($cityId);
+    }
 }

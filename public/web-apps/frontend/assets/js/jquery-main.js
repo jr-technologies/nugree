@@ -12,17 +12,33 @@ $(document).ready(function() {
 		$('.pager, .sort-by').remove();
 	}
 	$('.addPro-type:first').trigger('change');
-
-	if($('.news-slideshow .slide').length == 1){
-		$('.news-slideshow').find('.btn-holder').remove();
-	}
 	if($('.propertyImage-slider ').find('.slide').length == 1){
 		$('.propertyImage-pagination, .propertyImage-slider-btn-prev, .propertyImage-slider-btn-next').remove();
 		$('.propertyImage-slider ').find('.slide a').removeClass('lightbox');
 		$('.propertyImage-slider ').find('.slide a').removeAttr('rel href'); 
 	}
+	if($('.agent-listing-page, .listing-page').hasClass("sticky-sidBar")){
+		$(document).on('click', '.top-head', function(){
+			$(this).toggleClass('active');
+			$('.filter-form').slideToggle();
+			$('.filters-links').find('.fromTo').removeClass('full-width');
+		})
+	}
+	$('.ads-slideshow').find('.slide').each(function(){
+		if($(this).find('a').length == 1){
+			$(this).closest('.slide').addClass('one-banner');
+		}
+	});
+	if($('.detail-news-slider .slide').length == 1){
+		$('.detail-news-slider').find('.btn-prev, .btn-next').remove();
+	}
+	if($('.other-news .slide').length == 4){
+		$('.other-news').find('.btn-prev, .btn-next').remove();
+	}
+	
 	$(window).trigger('scroll');
 	imageAdjustment();
+	notifyButton();
 
 	setTimeout(function() {
 		$('.btn-alerts-nugree').trigger('click');
@@ -42,6 +58,14 @@ function imageAdjustment(){
 			$(this).addClass('portrait');
 		}
 	});
+}
+function notifyButton(){
+	if($(".publicProperty-post").length >= 1){
+		$(".match-pro-noti").addClass('hidden');
+	}
+	else {
+		$(".match-pro-noti").removeClass('hidden');
+	}
 }
 $( window ).resize(function() {
   if (screen.width > 1024){
@@ -222,6 +246,36 @@ function initCarousel() {
 		stretchSlideToMask: true,
 		switchTime: 2000,
 		animSpeed: 600
+	});
+	jQuery('.other-news').scrollGallery({
+		mask: '.mask',
+		slider: '.slideset',
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		circularRotation: true,
+		pauseOnHover: true,
+		autoRotation: false,
+		maskAutoSize: false,
+		stretchSlideToMask: true,
+		switchTime: 2000,
+		animSpeed: 600,
+		step: 1
+	});
+	jQuery('.trend-news').scrollGallery({
+		mask: '.mask',
+		slider: '.slideset',
+		slides: '.slide',
+		currentNumber: 'span.cur-num',
+		totalNumber: 'span.all-num',
+		disableWhileAnimating: true,
+		pauseOnHover: true,
+		autoRotation: true,
+		maskAutoSize: false,
+		switchTime: 2000,
+		animSpeed: 600,
+		vertical: true
 	});
 }
 

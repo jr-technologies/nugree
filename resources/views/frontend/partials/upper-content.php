@@ -3,21 +3,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta property="og:description" content="[content description]" />
-    <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
+    <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <title>We Know Property Better | nugree.com</title>
+    <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/nafees-nastaleeq" type="text/css"/>
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-16x16.png" sizes="16x16">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
     <script type="text/javascript" src="<?=url('/')?>/assets/js/env.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">window.jQuery || document.write('<script src="<?=url('/')?>/web-apps/frontend/assets/js/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="<?=url('/')?>/assets/js/select2.full.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/fbabf169f3.js"></script>
 <!--    ----------------------------------  Social Media------------------------>
     <link rel="opengraph" href="facebookexternalhit/1.1"/>
    <?php
@@ -29,7 +33,7 @@
     <meta property="og:image"         content="<?= (isset($response['data']['news']->images[0]->image))?url('/').'/'.$response['data']['news']->images[0]->image:"" ?>" />
     <?php  }?>
 </head>
-<body>
+<body class="fixed-ui-mob-full">
 <div id="wrapper">
     <header id="header">
         <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>
@@ -43,11 +47,13 @@
 
             <ul class="customLinks">
                 <?php if(!isset($_SESSION['authUser'])){ ?>
-                <li>
+                <li class="login-reg">
                     <a href="<?= URL::to('/login') ?>">Login / Register</a>
+                 </li>
+
                 <?php }else{ ?>
                 <li>
-                    <a href="#"><span class="hidden-xs"><?=str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)?></span><span class="icon-profile2 hidden"></span></a>
+                    <a href="#"><?=str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)?></a>
                     <ul class="dropDown">
                         <li><a href="<?=URL::to('dashboard#/home/profile')?>">my profile</a></li>
                         <li><a href="<?=URL::to('dashboard#/home/properties/all')?>">my listing</a></li>
@@ -55,6 +61,7 @@
                     </ul>
                 </li>
                 <?php } ?>
+                <li class="wanted-list"><a href="<?= URL::to('wanted-properties') ?>">Wanted Property <img src="<?= url('/') . "/assets/imgs/ico03.png" ?>"></a></li>
                 <li><a href="<?= URL::to('add-property') ?>" class="fixed-ui-mob">List property</span></a></li>
             </ul>
         </div>

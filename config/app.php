@@ -149,7 +149,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
 //        Laravel\Socialite\SocialiteServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -213,7 +215,9 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+
 //        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
 
 
 
@@ -225,6 +229,7 @@ return [
         'RegistrationRequest' => \App\Http\Requests\Requests\Auth\RegistrationRequest::class,
         'LoginRequest' => \App\Http\Requests\Requests\Auth\LoginRequest::class,
         'AddUserRequest' => \App\Http\Requests\Requests\User\AddUserRequest::class,
+        'AddUserSearchesRequest' => \App\Http\Requests\Requests\User\AddUserSearchesRequest::class,
         'GetUsersRequest' => \App\Http\Requests\Requests\User\GetUsersRequest::class,
         'UpdateUserRequest' => \App\Http\Requests\Requests\User\UpdateUserRequest::class,
         'ChangePasswordRequest' => \App\Http\Requests\Requests\User\ChangePasswordRequest::class,
@@ -375,6 +380,7 @@ return [
         'GetUserPropertiesRequest' => \App\Http\Requests\Requests\Property\GetUserPropertiesRequest::class,
         'UpdatePropertyRequest' => \App\Http\Requests\Requests\Property\UpdatePropertyRequest::class,
         'DeletePropertyRequest' => \App\Http\Requests\Requests\Property\DeletePropertyRequest::class,
+        'WantedPropertyRequest' => \App\Http\Requests\Requests\Property\WantedPropertyRequest::class,
         'ForceDeletePropertyRequest' => \App\Http\Requests\Requests\Property\ForceDeletePropertyRequest::class,
         'ForceDeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\ForceDeleteMultiplePropertiesRequest::class,
         'DeleteMultiplePropertiesRequest' => \App\Http\Requests\Requests\Property\DeleteMultiplePropertiesRequest::class,

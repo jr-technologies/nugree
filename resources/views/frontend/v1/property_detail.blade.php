@@ -139,6 +139,9 @@
                             <div id="sendEmail-popup" class="lightbox generic-lightbox">
                                 <span class="lighbox-heading">Send Email</span>
                                 {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
+                                <input type="hidden" name="userId" value="{{$response['data']['property']->owner->id}}">
+                                <input type="hidden" name="type" value="property_detail">
+                                <input type="hidden" name="propertyId" value="{{$response['data']['property']->id}}">
                                 <div class="field-holder">
                                     <label for="name">Name</label>
 
