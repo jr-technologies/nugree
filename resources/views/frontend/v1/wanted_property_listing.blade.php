@@ -58,7 +58,7 @@
             <div id="aside-holder">
                 <aside id="aside">
                     <div class="top-head">
-                        <p>Search Filters</p>
+                        <p>Wanted Search Filters</p>
                         <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
                     </div>
                     <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('wanted-properties') ?>">
@@ -73,7 +73,9 @@
                                                 <span class="fake-checkbox"></span>
                                                 <span class="fake-label">Wanted</span>
                                             </label>
+                                            <img src="{{url('/') . "/assets/imgs/z.png" }}">
                                         </li>
+                                      </ul>
                                 </div>
                             </li>
                             <li class="active">
@@ -260,8 +262,7 @@
 
                         <div class="caption text-left">
                             <div class="layout">
-                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
-                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
+                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.(($property->wanted)?'required ':'').'in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
                                 <p>{{str_limit($property->description,148) }}</p>
                                 <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
                                 <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	if($(".js-example-basic-single").length)
-		$(".js-example-basic-single").select2();
+		$(".js-example-basic-single").select2();	
 	if (screen.width < 768){
 		$('.call-agent-btn').each(function(){
 			var mobileNumber = $(this).attr('data-tel');
@@ -40,12 +40,14 @@ $(document).ready(function() {
 	imageAdjustment();
 	notifyButton();
 
-	setTimeout(function() {
-		$('.btn-alerts-nugree').trigger('click');
-	}, 4000);
-	setTimeout(function() {
-		$('#alerts-nugree').find('.close').trigger('click');
-	}, 12000);
+	if($(".index-page").length){
+		setTimeout(function() {
+			$('.btn-alerts-nugree').trigger('click');
+		}, 4000);
+		setTimeout(function() {
+			$('#alerts-nugree').find('.close').trigger('click');
+		}, 12000);
+	}
 });
 function imageAdjustment(){
 	$('.propertyImage-slider .slide').find('img').each(function(){
@@ -471,67 +473,69 @@ $(document).on('click', '.extra-features', function(){
 	$('.list-extraFeatures').slideToggle();
 });
 
-$(document).on('keyup', '#search-society', function(){
-	var searchValue = $(this).val();
-	$('.societiesBlock-listing').find('li').each( function(){
-		var re = new RegExp(searchValue, 'gi');
-		if($(this).text().match(re) == null){
-			$(this).hide();
-		}else{
-			$(this).show();
-		}
-	});
-});
+//$(document).on('keyup', '#search-society', function(){
+//	var searchValue = $(this).val();
+//	$('.societiesBlock-listing').find('li').each( function(){
+//		var re = new RegExp(searchValue, 'gi');
+//		if($(this).text().match(re) == null){
+//			$(this).hide();
+//		}else{
+//			$(this).show();
+//		}
+//	});
+//});
 
-$('.hidden-checkfield').change(function(){
-	if($(this).is(":checked")) {
-		$('.registration-form').addClass("agent-info");
-		$('.agent-information').slideDown();
+//$('.hidden-checkfield').change(function(){
+//	if($(this).is(":checked")) {
+//		$('.registration-form').addClass("agent-info");
+//		$('.agent-information').slideDown();
+//
+//	} else {
+//		$('.registration-form').removeClass("agent-info");
+//		$('.company-logo').removeClass('hover');
+//		$('.agent-information').slideUp();
+//		$('.picture-holder').css({
+//			'display':'none'
+//		});
+//	}
+//});
 
-	} else {
-		$('.registration-form').removeClass("agent-info");
-		$('.company-logo').removeClass('hover');
-		$('.agent-information').slideUp();
-		$('.picture-holder').css({
-			'display':'none'
-		});
-	}
-});
 
+//function countCheckedRoles(){
+//	var totalCheckedRoles = 0;
+//	$('.userRole-checkbox').each(function() {
+//		if($(this).is(':checked'))
+//			totalCheckedRoles++;
+//	});
+//	if(totalCheckedRoles == 0)
+//		$('.role-opener').html('Other Roles');
+//	else
+//		$('.role-opener').html('Other Roles ( '+totalCheckedRoles+' Selected )');
+//}
 
-function countCheckedRoles(){
-	var totalCheckedRoles = 0;
-	$('.userRole-checkbox').each(function() {
-		if($(this).is(':checked'))
-			totalCheckedRoles++;
-	});
-	if(totalCheckedRoles == 0)
-		$('.role-opener').html('Other Roles');
-	else
-		$('.role-opener').html('Other Roles ( '+totalCheckedRoles+' Selected )');
-}
+//$(document).on('change', '.userRole-checkbox', function(){
+//	countCheckedRoles();
+//});
 
-$(document).on('change', '.userRole-checkbox', function(){
-	countCheckedRoles();
-});
-
-$(document).on('change', '.agent-brokerCheckbox', function(){
-	if($(this).is(':checked')){
-		$('.agent-brokerCheckbox').each(function(){
-			$(this).prop('checked', true);
-		});
-		$('.registration-form').addClass('agent-info')
-		$('.agent-information').slideDown();
-	}
-	else {
-		$('.agent-brokerCheckbox').each(function(){
-			$(this).prop('checked', false);
-			$('.registration-form').removeClass('agent-info')
-		});
-		$('.agent-information').slideUp();
-	}
-	countCheckedRoles();
-});
+//$(document).on('change', '.agent-brokerCheckbox', function(){
+//	if($(this).is(':checked')){
+//		addValidationsOnAgentInfo();
+//		$('.agent-brokerCheckbox').each(function(){
+//			$(this).prop('checked', true);
+//		});
+//		$('.registration-form').addClass('agent-info');
+//		$('.agent-information').slideDown();
+//	}
+//	else {
+//		removeValidationsOnAgentInfo();
+//		$('.agent-brokerCheckbox').each(function(){
+//			$(this).prop('checked', false);
+//			$('.registration-form').removeClass('agent-info')
+//		});
+//		$('.agent-information').slideUp();
+//	}
+//	countCheckedRoles();
+//});
 
 function companyLogoUploader(file, target)
 {
@@ -575,7 +579,7 @@ $(document).on('click', '.btn-close-working', function(){
 	$('.weAreWorking').addClass('hide');
 });
 
-$(document).on('click', '.main-navigation li a', function(){
+$(document).on('click', '.main-navigation li a, .nav-blur-area', function(){
 	$('html').removeClass('nav-active');
 });
 $(document).on('click', '.searchOpener', function(){

@@ -133,7 +133,7 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $user->mobile = $this->get('newMemberDetails')['cell'];
         $user->countryId = 1;
         $user->membershipPlanId = 1;
-        $user->trustedAgent = 1; /* its temporary. */
+        $user->trustedAgent = 0; /* its temporary. */
         return $user;
     }
 

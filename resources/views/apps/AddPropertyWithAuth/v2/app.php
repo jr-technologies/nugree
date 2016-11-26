@@ -163,7 +163,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                     <div class="layout-holder">
                                         <label for="description">Description</label>
                                         <div class="input-holder">
-                                            <textarea name="propertyDescription" placeholder="Please write about your property" ng-model="form.data.propertyDescription" id="description"></textarea>
+                                            <textarea name="propertyDescription" placeholder="Please write about your property" ng-model="form.data.propertyDescription" required id="description"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                                 <span class="propertyDocumentCloseBtn" ng-click="cancelFile(5)"><span class="icon-cross"></span></span>
                                             </div>
                                         </div>
-                                        <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name disableInput" placeholder="Title">
+                                        <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name disableInput" required placeholder="Title">
                                     </li>
                                 </ul>
                                 <strong class="add-pro-heading"><span>User Details</span></strong>
