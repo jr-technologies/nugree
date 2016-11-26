@@ -112,7 +112,6 @@ class PropertiesController extends ApiController
         }catch (\Exception $e){
             return $this->response->respondInternalServerError();
         }
-
         return $this->response->respond(['data' => [
             'property' => $property,
             'features' => $request->getFeaturesValues($property->id),
