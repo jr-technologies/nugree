@@ -24,6 +24,7 @@ $(document).on('click','.notify-ajax-request',function(){
           email:email,mobile:mobile,searched_params:searched_params
         },
         success: function(response){
+            alert(response)
             $('#found-match').find('.close').click();
             $('.email-send').addClass('hidden');
             $('.match-pro-noti').remove();
