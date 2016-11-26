@@ -23,7 +23,7 @@ class SendAddPropertyMail extends Listener implements ListenerInterface
         return Mail::send('frontend.mail.add_property',['property' => $property], function($message) use($property)
         {
             $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'nugree.com');
-            $message->to($property->owner->email)->subject('Nugree');
+            $message->to($property->email)->subject('Nugree');
         });
     }
 }

@@ -14,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::post('get-new-password',
+    [
+        'middleware'=>
+            [
+                //'webValidate:forgetPasswordRequest'
+            ],
+        'uses'=>'UsersController@getNewPassword',
+    ]
+);
 Route::post('user_search',
     [
         'middleware'=>

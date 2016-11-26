@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta property="og:description" content="[content description]" />
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
-    <title>We Know Property Better | nugree.com</title>
+
+        <title>Nugree: Pakistan Real Estate | Your Dream Property Finder</title>
+        <meta name="keywords" content="Nugree, Nugree.com, apartments, villas, homes, houses, lands for sale, property in Pakistan, property for sale in Pakistan, real estate, pakistan real estate,">
+        <meta name="description" content="Nugree, your favorite platform that leads you to your dream land including plots, homes, commercial plots, new projects, villas, apartments in Lahore, Islamabad, Karachi and all over Pakistan with best Agents.">
+    <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/nafees-nastaleeq" type="text/css"/>
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-192x192.png" sizes="192x192">
@@ -48,7 +51,7 @@
             <ul class="customLinks">
                 <?php if(!isset($_SESSION['authUser'])){ ?>
                 <li class="login-reg">
-                    <a href="<?= URL::to('/login') ?>">Login / Register</a>
+                    <a href="<?= URL::to('/login') ?>"><span class="icon-user"></span> Login / Register</a>
                  </li>
 
                 <?php }else{ ?>
@@ -62,7 +65,7 @@
                 </li>
                 <?php } ?>
                 <li class="wanted-list"><a href="<?= URL::to('wanted-properties') ?>">Wanted Property <img src="<?= url('/') . "/assets/imgs/ico03.png" ?>"></a></li>
-                <li><a href="<?= URL::to('add-property') ?>" class="fixed-ui-mob">List property</span></a></li>
+                <li><a href="<?= URL::to('add-property') ?>" class="fixed-ui-mob"><span class="icon-plus-square"></span> List property</a></li>
             </ul>
         </div>
     </header>

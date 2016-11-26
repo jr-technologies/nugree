@@ -29,6 +29,7 @@ use App\Listeners\Listeners\Agency\UpdateAgencyInPropertiesJson;
 use App\Listeners\Listeners\Agency\UpdateAgencyInUserJson;
 use App\Listeners\Listeners\Feature\CreateFeatureJsonDocument;
 use App\Listeners\Listeners\JoinUs\JoinUsMailToUs;
+use App\Listeners\Listeners\Property\AddWaterMarkOnPropertyImages;
 use App\Listeners\Listeners\Property\CreatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\DeletePropertyJsonDocument;
 use App\Listeners\Listeners\Property\PropertyDEVerifyInPropertyJson;
@@ -88,6 +89,7 @@ class EventServiceProvider extends ServiceProvider
         /* property events */
         PropertyCreated::class => [
             CreatePropertyJsonDocument::class,
+            AddWaterMarkOnPropertyImages::class,
             SendAddPropertyMail::class
         ],
         PropertyUpdated::class => [

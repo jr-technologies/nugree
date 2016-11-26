@@ -56,23 +56,23 @@
                     </span>
                     <button type="submit">Search<span class="icon-arrow-right"></span></button>
                     {{Form::close()}}
-                    <div class="btn-holder">
-                        <ul class="total-slides">
-                            <li><span class="cur-num">0</span></li>
-                            <li><span class="all-num">0</span></li>
-                        </ul>
-                        <div class="btn-container">
-                            <a href="#" class="btn-prev"><span class="icon-arrow-left"></span></a>
-                            <a href="#" class="btn-next"><span class="icon-arrow-right"></span></a>
-                        </div>
-                    </div>
+                    {{--<div class="btn-holder">--}}
+                        {{--<ul class="total-slides">--}}
+                            {{--<li><span class="cur-num">0</span></li>--}}
+                            {{--<li><span class="all-num">0</span></li>--}}
+                        {{--</ul>--}}
+                        {{--<div class="btn-container">--}}
+                            {{--<a href="#" class="btn-prev"><span class="icon-arrow-left"></span></a>--}}
+                            {{--<a href="#" class="btn-next"><span class="icon-arrow-right"></span></a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="slideset">
                     <div class="slide">
                         <img src="{{url('/')}}/web-apps/frontend/assets/images/gawadar.jpg" alt="gawadar city">
                         <div class="container">
                             <div class="caption">
-                                <h1>Gwadar <span>City</span></h1>
+                                <h2>Gwadar <span>City</span></h2>
                                 <strong>Land Of Opportunites</strong>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
@@ -82,7 +82,7 @@
                         <img src="{{url('/')}}/web-apps/frontend/assets/images/lahore.jpg" alt="gawadar city">
                         <div class="container">
                             <div class="caption">
-                                <h1>Lahore <span>City</span></h1>
+                                <h2>Lahore <span>City</span></h2>
                                 <strong>our campaign starts form Lahore and growing...</strong>
                                 <a href="#join-us-pro" class="btn-default lightbox">Join us !</a>
                             </div>
@@ -113,28 +113,9 @@
                 </div>
             </div>
         </div>
-        <div class="latest-news">
-            <div class="mask">
-                <div class="slideset">
-                    @foreach($response['data']['news'] as $news)
-                        <div class="slide">
-                        <div class="container">
-                            <h1>{{str_limit($news->title,30)}}</h1>
-                            <p>{{ str_limit($news->description,150)}}</p>
-                            <a href="get/news?news_id={{$news->id}}" class="btn-default">READ MORE</a>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="heading-btns">
-                <h2>NEWS</h2>
-                <a href="#" class="btn-prev"><span class="icon-arrow-left"></span></a>
-                <a href="#" class="btn-next"><span class="icon-arrow-right"></span></a>
-            </div>
-        </div>
-        <div class="cities-section">
-            <h1><span>Top</span> Cities</h1>
+
+        <div class="cities-section text-center">
+            <h2><span>Top</span> Cities</h2>
             <div class="layout">
                 <div class="col">
                     <a href="{{url('/')}}/search?city_id={{$response['data']['importantCities'][0]->id}}">
@@ -179,21 +160,41 @@
         <div class="mobile-app">
             <div class="container">
                 <img src="{{url('/')}}/web-apps/frontend/assets/images/img07.png" alt="image description" class="mobile-img">
-                <div class="caption">
-                    <h1><span>Mobile</span> App</h1>
+                <div class="caption text-center">
+                    <h2><span>Mobile</span> App</h2>
                     <strong class="heading">Coming Soon..</strong>
                     <div class="logo"><img src="{{url('/')}}/web-apps/frontend/assets/images/logo.png" alt="nugree"></div>
                 </div>
             </div>
         </div>
-        <div class="about-us" id="about-us">
-            <h1><span>About</span> Us</h1>
+        <div class="about-us text-center" id="about-us">
+            <h2><span>About</span> Us</h2>
             <div class="description">
                 {{--<h2>What is Lorem Ipsum?</h2>--}}
                 <p>Nugree.com is a friendly property portal.We are providing maximum features with minimum exercise, here you can find your desired property on few clicks.</p>
                 <p>Nugree.com is providing flexible search for users which will provide potential clients and investors.
                     we are still working on it, to make it a best property portal.
                     Your Suggestions are welcome here: </p>
+            </div>
+        </div>
+        <div class="latest-news">
+            <div class="mask">
+                <div class="slideset">
+                    @foreach($response['data']['news'] as $news)
+                        <div class="slide">
+                            <div class="container">
+                                <h2>{{str_limit($news->title,30)}}</h2>
+                                <p>{{ str_limit($news->description,150)}}</p>
+                                <a href="get/news?news_id={{$news->id}}" class="btn-default">READ MORE</a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="heading-btns">
+                <h2>NEWS</h2>
+                <a href="#" class="btn-prev"><span class="icon-arrow-left"></span></a>
+                <a href="#" class="btn-next"><span class="icon-arrow-right"></span></a>
             </div>
         </div>
         <a href="#wrapper" class="search-property back-to-top"><span class="icon-search"></span> Search <br>property</a>

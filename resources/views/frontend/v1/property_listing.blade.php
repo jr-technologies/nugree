@@ -179,7 +179,7 @@
                 </ul>
             </div>
             <section id="content">
-                <div class="propertyNotFound hidden email-send">
+                <div class="propertyNotFound match-pro-noti hidden">
                     <strong class="no-heading">sorry, no property found</strong>
                     <p>Maybe your search was to specific, please try searching with another term.</p>
                 </div>
@@ -251,7 +251,7 @@
                                   in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
                                 <p>{{str_limit($property->description,148) }}</p>
                                 <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
-                                <span class="premiumProperty text-upparcase">@if($property->isFeatured !=null){{'Featured'}}@endif</span>
+                                @if($property->isFeatured !=null)<span class="premiumProperty text-upparcase">{{'Featured'}}</span>@endif
                                 <div class="holder-ui">
                                     <ul class="public-ui-features text-capital">
                                         @foreach($property->features as $feature)

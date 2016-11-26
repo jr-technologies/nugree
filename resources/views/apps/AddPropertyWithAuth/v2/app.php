@@ -163,7 +163,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                     <div class="layout-holder">
                                         <label for="description">Description</label>
                                         <div class="input-holder">
-                                            <textarea name="propertyDescription" placeholder="Please write about your property" ng-model="form.data.propertyDescription" id="description"></textarea>
+                                            <textarea name="propertyDescription" placeholder="Please write about your property" ng-model="form.data.propertyDescription" required id="description"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -274,6 +274,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                                     <input type="password" ng-model="form.data.loginDetails.password" id="password" placeholder="Please enter the Password">
                                                 </div>
                                             </div>
+                                            <a href="#forgot-pass" class="forgot-pass lightbox">Forgot Password ?</a>
                                         </div>
                                     </li>
                                     <li>
@@ -329,9 +330,35 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                         </div>
                         <a href="{{domain}}" class="btn-default">Got it !</a>
                     </div>
+                    <div class="popup-holder">
+                        <div class="popup lightbox generic-lightbox" id="forgot-pass">
+                            <form class='forgot-form' ng-submit="sendForgetPasswordMail()">
+
+                                <h1>Forgot <span>Password</span></h1>
+
+                                <p>Enter your email address below and we will send you a new password.</p>
+
+                                <div class="layout">
+                                    <label for="forgot-email">E-mail ID</label>
+
+                                    <div class="input-holder">
+                                        <span class="error-text"></span>
+                                        <input type="email" name="email" ng-model="forgetPassword.email" placeholder="Enter Your Email Address" id="email">
+
+                                    </div>
+                                </div>
+                                <ul class="buttons-holder text-upparcase text-center">
+                                    <li>
+                                        <button type="submit">SEND</button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+         </div>
+
     </div>
 
     <script type="text/javascript" src="<?= \App\Libs\Helpers\AppHelper::assetsPath('AddPropertyWithAuth', $response['version']) ?>/js/jquery-1.11.2.min.js" defer></script>
