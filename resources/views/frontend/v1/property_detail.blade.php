@@ -9,17 +9,17 @@
             <div class="detail-holder">
                 <div class="frame">
                     <div class="property-picture-holder">
-                        <h1><span> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
+                        <h1><a href="{{URL::to('property?propertyId=').$response['data']['property']->id}}"> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
                                 {{$response['data']['property']->type->subType->name.'
                                  '.$response['data']['property']->purpose->name.' in '.$response['data']['property']->location->location->location .'('.$response['data']['property']->location->city->name.')'/*.' in '.$response['data']['property']->location->block->name.' Block'.
-                                ' '.$response['data']['property']->location->society->name*/}}</span></h1>
+                                ' '.$response['data']['property']->location->society->name*/}}</a></h1>
                         <?php
                         $user = (new \App\Libs\Helpers\AuthHelper())->user();
                         ?>
                         <div class="propertyImage-slider">
                             <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$response['data']['property']->id}}" user_id="{{($user !=null)?$user->id:""}}"
                                key="{{($user !=null)?$user->access_token:""}}" class="add-to-favorite {{($user == null)?'lightbox':''}}  @if($response['data']['isFavourite'] != 0)
-                               added @endif" id="add-to-favorite{{$response['data']['property']->id}}"><span class="icon-heart"></span></a>
+                               added @endif" id="add-to-favorite{{$response['data']['property']->id}}"><i class="fa fa-heart-o" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i></a>
                             {{--<span class="premiumProperty text-upparcase">Premium</span>--}}
                              <div class="popup-holder">
                                 <div class="lightbox generic-lightbox" id="login-to-continue">
@@ -52,7 +52,7 @@
                             <a href="#" class="propertyImage-slider-btn-next"><span
                                         class="icon-right-arrow"></span></a>
 
-                            <div class="propertyImage-pagination ">
+                            <div class="propertyImage-pagination">
                                 <div class="propertyImage-mask">
                                     <div class="propertyImage-slideset">
                                         @foreach($images as $image)
@@ -139,6 +139,9 @@
                             <div id="sendEmail-popup" class="lightbox generic-lightbox">
                                 <span class="lighbox-heading">Send Email</span>
                                 {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
+                                <input type="hidden" name="userId" value="{{$response['data']['property']->owner->id}}">
+                                <input type="hidden" name="type" value="property_detail">
+                                <input type="hidden" name="propertyId" value="{{$response['data']['property']->id}}">
                                 <div class="field-holder">
                                     <label for="name">Name</label>
 

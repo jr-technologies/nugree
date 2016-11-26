@@ -170,7 +170,6 @@ Route::get('print-societies/12345',function(){
 }
 );
 
-
 Route::get('maliksajidawan786@gmail.com/city',
     [
         'middleware'=>
@@ -181,6 +180,15 @@ Route::get('maliksajidawan786@gmail.com/city',
     ]
 );
 
+Route::get('wanted-properties',
+    [
+        'middleware'=>
+            [
+                'webValidate:WantedPropertyRequest'
+            ],
+        'uses'=>'PropertiesController@wantedProperties'
+    ]
+);
 
 Route::post('join-us',
     [
@@ -831,7 +839,7 @@ Route::post('maliksajidawan786@gmail.com/property/deActive',
     [
         'middleware'=>
             [
-                'webValidate:deActivePropertyRequest'
+                'webValidate:DeActivePropertyRequest'
             ],
         'uses'=>'admin\AdminController@deActiveProperty'
     ]
@@ -930,8 +938,6 @@ Route::get('get/society/files',
             ],
         'uses'=>'SocietiesController@getSocietyFiles'
     ]);
-
-
 
 Route::get('societies/files',
     [

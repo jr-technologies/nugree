@@ -25,7 +25,7 @@ class SearchPropertiesRequest extends Request implements RequestInterface{
     public function getParams()
     {
         $params = $this->all();
-        $params['locationId'] = ($params['locationId'] != "" && $params['locationId'] != null)?explode(',',$params['locationId']):'';
+        $params['locationId'] = ($params['locationId'] != "" && $params['locationId'] != null)?explode(',',$params['locationId']):[];
         return $params;
     }
 

@@ -33,6 +33,14 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->mapCollection($this->tableGateway->all());
     }
+    public function wantedProperties($params)
+    {
+        return $this->mapCollection($this->tableGateway->wantedProperties($params));
+    }
+    public function propertyCount()
+    {
+        return $this->tableGateway->propertyCount();
+    }
     public function getAgencyProperties($agencyId)
     {
         return $this->mapCollection($this->tableGateway->getAgencyProperties($agencyId));

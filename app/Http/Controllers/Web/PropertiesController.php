@@ -8,6 +8,7 @@ use App\Http\Requests\Requests\Property\GetPropertyRequest;
 use App\Http\Requests\Requests\Property\RouteToAddPropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
+use App\Http\Requests\Requests\Property\WantedPropertyRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
@@ -15,6 +16,7 @@ use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\NewsRepoProvider;
 use App\Repositories\Providers\Providers\ProjectsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesJsonRepoProvider;
@@ -49,6 +51,7 @@ class PropertiesController extends Controller
     public $userRepo = null;
     public $status = null;
     public $banners = null;
+    public $locations = null;
     public $news =null;
     public $projectRepo;
     public $cities;
@@ -73,7 +76,34 @@ class PropertiesController extends Controller
         $this->projectRepo = (new ProjectsRepoProvider())->repo();
         $this->cities = (new CitiesRepoProvider())->repo();
         $this->news = (new NewsRepoProvider())->repo();
+        $this->locations = (new LocationsRepoProvider())->repo();
     }
+    public function wantedProperties(WantedPropertyRequest $request)
+    {
+        $params = $request->getParams();
+        $params['sortBy'] = 'updated_at';
+        $loggedInUser = $request->user();
+        $properties = $this->properties->search($request->getParams());
+        $propertiesCount = count($properties);
+        $totalPropertiesFound = (new Cheetah())->count();
+        $banners = $this->getPropertyListingPageBanners($params);
+        return $this->response->setView('frontend.v1.wanted_property_listing')->respond(['data' => [
+            'properties' => $this->releaseAllPropertiesFiles($properties),
+            'totalProperties'=> $totalPropertiesFound[0]->total_records,
+            'isFavourite' => $this->getFavourite($loggedInUser,$properties),
+            'societies'=>$this->societies->all(),
+            'blocks'=>$this->blocks->getBlocksBySociety($request->get('societyId')),
+            'propertyTypes'=>$this->propertyTypes->all(),
+            'propertySubtypes'=>$this->propertySubtypes(),
+            'landUnits'=>$this->landUnits->all(),
+            'propertiesCount'=>$propertiesCount,
+            'cities'=>$this->cities->all(),
+            'oldValues'=>$request->all(),
+            'banners'=>$banners
+        ]]);
+
+    }
+
     public function addProperty(RouteToAddPropertyRequest $request)
     {
         if($request->isNotAuthentic()){
@@ -109,7 +139,8 @@ class PropertiesController extends Controller
             'propertiesCount'=>$propertiesCount,
             'cities'=>$this->cities->all(),
             'oldValues'=>$request->all(),
-            'banners'=>$banners
+            'banners'=>$banners,
+            'selectedLocations' => dd($this->locations->getByIds((is_array($params['locationId']))?$params['locationId']:[]))
         ]]);
     }
     public function propertySubtypes()

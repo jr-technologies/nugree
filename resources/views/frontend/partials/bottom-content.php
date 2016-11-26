@@ -4,8 +4,9 @@
     <div class="footer-holder">
         <div class="container">
             <div class="col">
-                <h1><span>Get in</span> Touch</h1>
+                <strong class="heading">Contact <span>Us</span></strong>
                 <?= Form::open(array('url'=>'feedback','method'=>'POST','class'=>'submit-query'))?>
+                <input type="hidden" name="type" value="contactUs">
                 <div class="input-holder"><input type="text" placeholder="Name" name="name" ></div>
                 <div class="input-holder"><input type="email" placeholder="Email" name="email" required></div>
                 <div class="input-holder"><input type="text" placeholder="Phone" value="" name="phone"></div>
@@ -19,7 +20,7 @@
             </div>
         </div>
         <div class="bottom-footer">
-            <span class="rights">&copy;2016 <a href="<?= URL::to('/')?>">nugree.com</a> All rights reserved</span>
+            <span class="rights">&copy;2016 <a href="<?= URL::to('/')?>">Nugree.com</a> All rights reserved</span>
             <ul class="social-icons">
                 <li><a href="https://www.facebook.com/Nugreecom-354399088098995/"><span class="icon-facebook"></span></a></li>
                 <li><a href="https://plus.google.com/118057576547955586597?hl=en"><span class="icon-google-plus-symbol"></span></a></li>
@@ -30,7 +31,6 @@
         </div>
     </div>
 </footer>
-<!--<a href="#submit-requirement-popup" class="submit-requirement lightbox">Share <span class="hidden-xs">your</span> requirement</a>-->
 <?php if(Route::getCurrentRoute()->getPath() =='/'){ ?>
 <a href="#alerts-nugree" class="lightbox btn-alerts-nugree"></a>
 <?php } ?>
@@ -42,7 +42,10 @@
         <button type="submit"><span class="icon-search"></span></button>
     </form>
     <ul class="main-navigation text-upparcase">
-        <li class="">
+        <li class="hidden">
+            <a href="<?= URL::to('wanted-properties') ?>">Wanted Property</a>
+        </li>
+        <li>
             <a href="<?= URL::to('/')?>">HOME</a>
         </li>
         <li>
@@ -66,21 +69,67 @@
             <li><a href="https://twitter.com/92nugree"><span class="icon-twitter"></span></a></li>
             <li><a href="https://www.instagram.com/Nugree_Pakistan/"><span class="icon-instagram"></span></a></li>
         </ul>
-        <span class="copyright">Copyright, <a href="<?= URL::to('/')?>">nugree.com</a></span>
+        <span class="copyright">Copyright, <a href="<?= URL::to('/')?>">Nugree.com</a></span>
     </div>
 </nav>
 <div class="nav-blur-area">
     <div class="logo-holder"><img src="<?= url('/')?>/web-apps/frontend/assets/images/logo.png" alt="Nugree"></div>
     <ul class="bottom-links">
-        <li><a href="<?= URL::to('/')?>">www.nugree.com</a></li>
-        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</li>
+        <li></li>
+
+        <li><a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</a></li>
     </ul>
 </div>
 
 <div class="popup-holder">
+    <div id="submit-requirement-popup" class="lightbox generic-lightbox">
+        <span class="lighbox-heading">Submit you <span>requirement</span></span>
+        <form class="inquiry-email-form">
+            <div class="field-holder">
+                <label for="requirement-name">Name</label>
+                <div class="input-holder"><input type="text" id="requirement-name"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-email">Email</label>
+                <div class="input-holder"><input type="email" id="requirement-email"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-phone">Mobile</label>
+                <div class="input-holder"><input type="tel" id="requirement-phone"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-subject">Purpose</label>
+                <div class="input-holder"><input type="text" id="requirement-subject"></div>
+            </div>
+            <div class="field-holder">
+                <label for="requirement-message">Message</label>
+                <div class="input-holder">
+                    <textarea id="requirement-message"></textarea>
+                    <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                </div>
+            </div>
+            <button type="submit">SEND</button>
+        </form>
+    </div>
     <div id="alerts-nugree" class="lightbox generic-lightbox alert-ligthbox-onload">
         <img src="<?= url('/') ?>./assets/imgs/popup.png" alt="image description">
         <a href="#" class="close"></a>
+    </div>
+    <div id="found-match" class="lightbox generic-lightbox">
+        <span class="lighbox-heading">Notify me</span>
+            <form class="inquiry-email-form">
+                <input type="hidden" name="searched_params" id="searched-url-params" value="<?= $_SERVER['REQUEST_URI'] ?>">
+                <div class="field-holder">
+                    <label for="email">Email</label>
+                    <div class="input-holder"><input type="email" name="email" required id="notify-email"></div>
+                </div>
+                <div class="field-holder">
+                    <label for="phone">phone</label>
+                    <div class="input-holder"><input type="tel" name="mobile" required id="notify-mobile"></div>
+                </div>
+                <button type="submit" class="notify-ajax-request">SEND</button>
+            </form>
+            <a href="#" class="close"></a>
     </div>
 </div>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/smooth-scroll.js" type="text/javascript" defer></script>
@@ -91,8 +140,8 @@
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/fixed-block.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/lightBox.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/jquery-main.js" type="text/javascript" defer></script>
-<script src="<?= url('/')?>/web-apps/frontend/v2/js/registration.js" type="text/javascript" defer></script>
-<script src="<?= url('/')?>/web-apps/frontend/v2/js/property_detail.js" type="text/javascript"></script>
+<script src="<?= url('/')?>/web-apps/frontend/assets/js/registration.js" type="text/javascript" defer></script>
+<script src="<?= url('/')?>/web-apps/frontend/assets/js/property_detail.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/helper.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/ajax-locations-search.js" type="text/javascript"></script>
 <script type='text/javascript'>window._sbzq||function(e){e._sbzq=[];var t=e._sbzq;t.push(["_setAccount",53331]);var n=e.location.protocol=="https:"?"https:":"http:";var r=document.createElement("script");r.type="text/javascript";r.async=true;r.src=n+"//static.subiz.com/public/js/loader.js";var i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)}(window);</script>

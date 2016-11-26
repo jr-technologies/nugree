@@ -9,9 +9,9 @@
             <div class="detail-news-slider">
                 <div class="mask">
                     <div class="slideset">
-
+                     @if(isset($response['data']['news']->images[0]))
                         <div class="slide"><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['news']->images[0]->image}}" alt="image description"></div>
-
+                     @endif
                     </div>
                 </div>
                 {{--<a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>--}}
@@ -30,21 +30,27 @@
             </div>
             <div class="description">
                 <h2>{{$response['data']['news']->title}}</h2>
-                <p>{{$response['data']['news']->description}}.</p>
+                <p>{{$response['data']['news']->description}}</p>
             </div>
         </div>
         <div class="col">
             <h1>Recent News Posts</h1>
-            <ul class="trend-news">
-              @foreach($response['data']['recentNews'] as $news)
-                <li>
-                    <a href="{{URL::to('get/news?news_id=').$news->id}}">
-                        <time datetime="2013-08-23">{{date("M Y-d",strtotime(stripslashes($news->createdAt)))}}</time>
-                        <span>{{str_limit($news->title,40)}}</span>
-                    </a>
-                </li>
-              @endforeach
-            </ul>
+            <div class="trend-news">
+                <div class="mask">
+                    <div class="slideset">
+                        @foreach($response['data']['recentNews'] as $news)
+                        <div class="slide">
+                            <a href="{{URL::to('get/news?news_id=').$news->id}}">
+                                <time datetime="2013-08-23">{{date("M Y-d",strtotime(stripslashes($news->createdAt)))}}</time>
+                                <span>{{str_limit($news->title,40)}}</span>
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+                    <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_up"></span></a>
+                    <a href="#" class="btn-next"><span class="icon-keyboard_arrow_down"></span></a>
+                </div>
+            </div>
             {{--<div class="subscribe-area">--}}
                 {{--<strong class="heading"><span class="icon-newspaper-report"></span>Subscribe For Daily News Alert</strong>--}}
                 {{--<span class="slogan">Enter Your Email Address Below</span>--}}

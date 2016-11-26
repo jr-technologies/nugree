@@ -6,15 +6,19 @@ use App\Events\Events\Property\PropertyCreated;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Listeners\Interfaces\ListenerInterface;
 use App\Listeners\Listeners\Listener;
+use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\PropertiesJsonRepository;
+use Illuminate\Support\Facades\Mail;
 
 class CreatePropertyJsonDocument extends Listener implements ListenerInterface
 {
     private $propertiesJsonRepository = null;
+    private $userReop = null;
 
     public function __construct()
     {
         $this->propertiesJsonRepository = new PropertiesJsonRepository();
+        $this->userReop = (new UsersRepoProvider())->repo();
     }
 
     /**

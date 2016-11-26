@@ -16,7 +16,7 @@ class PropertiesTableSeeder extends Seeder
         $statuses = $statusesSeeder->getAllStatusIds();
 
             $allProperties = [];
-            for($a = 1; $a <= 2; $a++)
+            for($a = 1; $a <= 6; $a++)
 
             {
                 $temp = [];

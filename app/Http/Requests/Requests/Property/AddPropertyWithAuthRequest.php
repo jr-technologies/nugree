@@ -55,6 +55,7 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $property->landArea =  $this->get('landArea');
         $property->landUnitId =  $this->get('landUnitId');
         $property->statusId = $this->statusSeeder->getPendingStatusId();
+        $property->wanted = ($this->get('wanted') =='false')?0:1;
         $property->totalViews = rand(0,170);
         $property->contactPerson =  $user->fName." ".$user->lName;
         $property->phone =  $user->phone;
@@ -132,7 +133,7 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $user->mobile = $this->get('newMemberDetails')['cell'];
         $user->countryId = 1;
         $user->membershipPlanId = 1;
-        $user->trustedAgent = 1; /* its temporary. */
+        $user->trustedAgent = 0; /* its temporary. */
         return $user;
     }
 

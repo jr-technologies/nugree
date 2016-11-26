@@ -9,6 +9,7 @@ use App\Http\Requests\Requests\Auth\RegistrationRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Auth\Web as Authenticator;
 use App\Repositories\Providers\Providers\AgenciesRepoProvider;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
@@ -31,6 +32,7 @@ class AuthController extends WebController
     private $location="";
     public $propertyTypes;
     public $propertySubtypes;
+    public $cities = null;
     public function __construct
     (
         WebResponse $response, Authenticator $authenticator,
@@ -47,6 +49,7 @@ class AuthController extends WebController
         $this->propertyTypes = (new PropertyTypesRepoProvider())->repo();
         $this->propertySubtypes = (new PropertySubTypesRepoProvider())->repo();
         $this->agencies = (new AgenciesRepoProvider())->repo();
+        $this->cities = (new CitiesRepoProvider())->repo();
     }
     public function showLoginPage()
     {
@@ -76,7 +79,8 @@ class AuthController extends WebController
     {
         return $this->response->setView('frontend.v1.auth.register')->respond([
             'roles' => $this->roles->all(),
-            'locations' => $this->location->all()
+            'locations' => $this->location->all(),
+            'cities'=>$this->cities->all()
         ]);
     }
 
