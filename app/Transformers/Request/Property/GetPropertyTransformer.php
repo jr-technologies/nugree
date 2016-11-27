@@ -19,6 +19,7 @@ class GetPropertyTransformer extends RequestTransformer
     {
        return [
            'propertyId' => $this->request->input('propertyId'),
+           'propertySlug' => $this->request->route()->parameter('property_title'),
         ];
     }
 

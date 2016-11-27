@@ -23,11 +23,11 @@ class AppServiceProvider extends ServiceProvider
     {
 
         @session_start();
-//        $data = [
-//            'propertyTypes' =>$this->propertyTypes->all(),
-//            'authUser' => (new Web())->user()
-//        ];
-//        view()->share('globals', $data);
+        $data = [
+            'propertyTypes' =>$this->propertyTypes->all(),
+            'authUser' => (new Web())->user()
+        ];
+        view()->share('globals', $data);
     }
 
     /**

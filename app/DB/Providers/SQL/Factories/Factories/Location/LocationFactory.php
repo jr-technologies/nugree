@@ -26,6 +26,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
         $this->tableGateway = new LocationQueryBuilder();
     }
 
+    function first()
+    {
+        return $this->tableGateway->first();
+    }
     /**
      * @param $id
      * @return Location|null

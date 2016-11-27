@@ -72,6 +72,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             city: property.location.city,
             location: property.location.location
         };
+
         $scope.searchLocations = function ($select) {
             $scope.locations = [];
             if($select.search.length < 2){
@@ -300,6 +301,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             $(function() {
                 $('.list-extraFeatures').slideUp();
                 $('.feature-block').find('.form-heading').hide();
+                $(".PriceField").trigger('change');
             });
 
         };

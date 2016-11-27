@@ -263,13 +263,13 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                         <label for="existing-member">Existing Member</label>
                                         <div class="slide">
                                             <div class="layout">
-                                                <label for="email">E-mail ID</label>
+                                                <label for="email" class="required-field">E-mail ID</label>
                                                 <div class="input-holder">
                                                     <input type="text" name="login_email" placeholder="Email" ng-model="form.data.loginDetails.email">
                                                 </div>
                                             </div>
                                             <div class="layout">
-                                                <label for="password">Password</label>
+                                                <label for="password" class="required-field">Password</label>
                                                 <div class="input-holder">
                                                     <input type="password" ng-model="form.data.loginDetails.password" id="password" placeholder="Please enter the Password">
                                                 </div>
