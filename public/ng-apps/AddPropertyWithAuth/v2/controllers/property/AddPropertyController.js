@@ -163,7 +163,18 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
                 break;
         }
     };
-
+    $scope.forgetPassword = {
+        email : ""
+    };
+    $scope.sendForgetPasswordMail = function(){
+     $http({
+         method:'POST',
+         url: apiPath+'get-new-password',
+         data:$scope.forgetPassword.email
+     }).then(function(response){
+          $scope.passworSend = true;
+     });
+};
     var postProcessFormData = function () {
         var features = {};
         angular.forEach($scope.form.data.features, function(value, key) {

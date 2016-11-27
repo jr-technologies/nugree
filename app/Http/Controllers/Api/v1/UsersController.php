@@ -7,6 +7,7 @@ use App\DB\Providers\SQL\Models\UserRole;
 use App\Events\Events\User\UserUpdated;
 use App\Http\Requests\Requests\Mail\MailFeedbackUsRequest;
 use App\Http\Requests\Requests\User\ChangePasswordRequest;
+use App\Http\Requests\Requests\User\ForgetPasswordRequest;
 use App\Http\Requests\Requests\User\GetUserRequest;
 use App\Http\Requests\Requests\User\UpdateUserRequest;
 use App\Libs\Helpers\Helper;
@@ -25,6 +26,8 @@ use App\Traits\User\UsersFilesReleaser;
 use App\Transformers\Response\UserTransformer;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends ApiController
 {
@@ -75,7 +78,20 @@ class UsersController extends ApiController
             'users'=>$users->all()
         ]]);
     }
-
+    public function getNewPassword(ForgetPasswordRequest $request)
+    {
+        $user = $this->users->findByEmail($request->get('email'));
+        $password  = $this->rand->rands();
+        $user->password = bcrypt($password);
+        $this->users->update($user);
+        Mail::send('frontend.mail.forget_password',['user' => $user,'password'=>$password], function($message) use($user)
+        {
+            $message->from(config('constants.REGISTRATION_EMAIL_FROM'),'Nugree.com');
+            $message->to($user->email)->subject('Nugree.com');
+        });
+        Session::flash('message', 'New password has been sent to your email address');
+        return redirect()->back();
+    }
     public function find(GetUserRequest $request)
     {
         return $this->response->respond(['data'=>[
