@@ -332,6 +332,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                     </div>
                     <div class="popup-holder">
                         <div class="popup lightbox generic-lightbox" id="forgot-pass">
+                            <span>{{message}}</span>
                             <form class='forgot-form' ng-submit="sendForgetPasswordMail()">
 
                                 <h1>Forgot <span>Password</span></h1>
@@ -343,7 +344,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
 
                                     <div class="input-holder">
                                         <span class="error-text"></span>
-                                        <input type="email" name="email" ng-model="forgetPassword.email" placeholder="Enter Your Email Address" id="email">
+                                        <input type="email" name="email" ng-model="forgetPassword.data.email" placeholder="Enter Your Email Address" id="email">
 
                                     </div>
                                 </div>

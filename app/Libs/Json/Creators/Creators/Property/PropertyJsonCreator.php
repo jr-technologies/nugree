@@ -78,6 +78,7 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->documents = $this->getDocuments();
         $this->prototype->features = $this->getFeatures();
         $this->prototype->createdAt = $this->model->createdAt;
+        $this->prototype->currentTime = $this->model->currentTime;
 
         return $this->prototype;
     }

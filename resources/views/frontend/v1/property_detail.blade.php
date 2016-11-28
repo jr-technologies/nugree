@@ -1,5 +1,6 @@
 @extends('frontend.v1.frontend')
 @section('content')
+    <?php \App\Libs\Helpers\DaysHelper::convert($response['data']['property']->createdAt)?>
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-detail.css">
     @foreach($response['data']['banners']['topBanners'] as $banner)
         <a href=""><img src="{{url('/').'/'.$banner->image}}" width="100px" height="100px"> </a>
@@ -209,31 +210,7 @@
                         <div class="layout">
                             <div class="pull-left">
                                 <span class="timeOfAddedProperty">Property Added
-                                    <?php
-                                    $startTimeStamp = strtotime(date("Y/m/d"));
-                                    $myDate = substr($response['data']['property']->createdAt, 0, 10);
-                                    $endTimeStamp = strtotime($myDate);
-                                    $timeDiff = abs($endTimeStamp - $startTimeStamp);
-                                    $numberDays = $timeDiff / 86400;  // 86400 seconds in one day
-                                    // and you might want to convert to integer
-                                    $numberDays = intval($numberDays);
-                                    $days = "";
-                                    if ($numberDays == 0) {
-                                        $myTime = substr($response['data']['property']->createdAt, 10, 10);
-                                        $str_time = preg_replace("/^([\d]{1,2})\:([\d]{2})$/", "00:$1:$2", $myTime);
-
-                                        sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
-
-                                        $time_seconds = $hours * 3600 + $minutes * 60 + $seconds;
-                                        $myTime = intval($time_seconds/3600);
-                                        $days = 'Hours Ago';
-                                    } elseif ($numberDays == 1) {
-                                        $days = 'day ago';
-                                    } else {
-                                        $days = 'days ago';
-                                    };
-                                    ?>
-                                    <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
+                                    <b>{{\App\Libs\Helpers\DaysHelper::convert($response['data']['property']->createdAt)}}</b></span>
 
                             </div>
                             <div class="pull-right">

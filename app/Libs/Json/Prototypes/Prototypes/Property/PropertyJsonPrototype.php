@@ -49,4 +49,5 @@ class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterf
     public $documents = [];
     public $features = [];
     public $createdAt ="";
+    public $currentTime="";
 }
