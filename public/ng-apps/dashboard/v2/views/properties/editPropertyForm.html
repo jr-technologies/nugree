@@ -7,6 +7,8 @@
                 <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
             </ul>
             <form class="property-add" ng-submit="submitProperty()">
+                <input type="checkbox" name="add-for" id="for-wanted" value="1" ng-model="form.data.wanted">
+                <span class="fake-label">Wanted Property</span>
                 <strong class="add-pro-heading"><span>property for</span></strong>
                 <ul class="radio-checks-holder text-center">
                     <li>
