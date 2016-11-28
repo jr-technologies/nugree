@@ -32,11 +32,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AppMessagesTableSeeder::class);
         $this->call(ValidationErrorMessagesTableSeeder::class);
         $this->call(AssignedFeatureValidationsTableSeeder::class);
-        //$this->call(PropertyDocumentTableSeeder::class);
         $this->call(AgencyTableSeeder::class);
         $this->call(AgencySocietyTableSeeder::class);
         $this->call(UsersRolesTableSeeder::class);
         $this->call(AgencyStaffTableSeeder::class);
+        $this->call(AgencyLocationsTableSeeder::class);
         $this->call(UsersJsonTableSeeder::class);
         $this->call(PropertiesTableSeeder::class);
         $this->call(PropertyFeatureValuesTableSeeder::class);
@@ -45,7 +45,5 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminsTableSeeder::class);
         $this->call(SocietiesFilesTableSeeder::class);
         $this->call(PagesTableSeeder::class);
-
-
     }
 }

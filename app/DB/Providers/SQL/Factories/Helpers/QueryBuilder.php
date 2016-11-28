@@ -13,7 +13,7 @@ abstract class QueryBuilder {
     protected $table = "";
     public function __construct(){}
 
-    public function first(array $where)
+    public function first(array $where = [])
     {
         $result = DB::table($this->table)->where($where)->first();
         return $result;

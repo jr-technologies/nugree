@@ -110,6 +110,7 @@ $(document).on('click', '.propertyImage-slider-btn-next, .propertyImage-slider-b
 });
 
 
+
 $(document).on('focusin', '.PriceField', function(){
     $('.calculatedPrice').removeClass('priceShow');
     $('.calculatedPrice').addClass('priceShow');

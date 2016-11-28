@@ -72,5 +72,5 @@ $(document).on('focusout', '.PriceField', function(){
 });
 
 $(document).on('change keyup','.PriceField',function(){
-	showDetailedPriceAt(digitsToWords($(this).val()), '.calculatedPrice');
+	showDetailedPriceAt(digitsToWords($('.PriceField').val()), '.calculatedPrice');
 });

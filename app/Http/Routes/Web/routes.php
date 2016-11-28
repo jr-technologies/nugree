@@ -1085,11 +1085,11 @@ Route::post('/register',
     ]
 );
 
-Route::get('property',
+Route::get('property/{property_title}',
     [
         'middleware'=>
             [
-                'webValidate:getPropertyRequest'
+                //'webValidate:getPropertyRequest'
             ],
         'uses'=>'PropertiesController@getById'
     ]

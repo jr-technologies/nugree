@@ -33,6 +33,11 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
         $this->agencyLocationFactory = new AgencyLocationFactory();
     }
 
+    public function all()
+    {
+        return $this->factory->all();
+    }
+
     public function getById($id)
     {
         return $this->factory->find($id);

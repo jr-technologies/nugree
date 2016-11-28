@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?= url('/') ?>/javascripts/ui-select/select.min.css">
 
     <!-- Angularjs Libs -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="<?= url('/') ?>/assets/js/helper.js"></script>
     <script src="<?= url('/') ?>/assets/js/env.js"></script>
     <script src="<?= url('/') ?>/javascripts/firebase.js"></script>
@@ -33,6 +34,7 @@
 
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/models/Model.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/app.js"></script>
+    <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/filters/filters.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/directives/appDirectives.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/services/AuthService.js"></script>
     <script src="<?= \App\Libs\Helpers\AppHelper::path('dashboard', $response['version']) ?>/services/CustomHttpService.js"></script>

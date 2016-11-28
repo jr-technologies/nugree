@@ -95,11 +95,11 @@
                     <div class="layout-holder">
                         <label class="required-field" for="property-price">Price</label>
                         <div class="input-holder">
-                            <input type="number" min="1" class="PriceField" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
+                            <input type="number" min="1" class="" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <span class="calculatedPrice">Price must contain numbers only</span>
+                        <span class="calculatedPrice">{{form.data.price|priceToText}}</span>
                     </div>
                 </div>
                 <div class="layout full-width">

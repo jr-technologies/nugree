@@ -11,8 +11,11 @@ class AgencyStaffTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('agency_staff')->insert([
-            ['agency_id' => 1, 'user_id'=>1]
-        ]);
+        $users = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->all();
+        $finalRecord =[];
+        foreach($users as $key => $user) {
+            $finalRecord[] =['agency_id' => $key+1, 'user_id'=>$user->id];
+        }
+        DB::table('agency_staff')->insert($finalRecord);
     }
 }
