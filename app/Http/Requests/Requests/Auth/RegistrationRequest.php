@@ -54,7 +54,7 @@ class RegistrationRequest extends Request implements RequestInterface{
         return $user;
     }
 
-    public function getAgencyModel()
+    public function getAgencyModel($userId)
     {
         $agency = new Agency();
         $agency->name = $this->get('agencyName');
@@ -63,7 +63,7 @@ class RegistrationRequest extends Request implements RequestInterface{
         $agency->mobile = $this->get('companyMobile');
         $agency->email = $this->get('companyEmail');
         $agency->address = $this->get('companyAddress');
-        $agency->slug = $this->get('agencyName');
+        $agency->slug = preg_replace('/\s+/', '-',$this->get('agencyName').$userId);
         return $agency;
     }
 

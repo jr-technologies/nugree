@@ -1174,7 +1174,7 @@ Route::get('agents',
     ]
 );
 
-Route::get('agent',
+Route::get('agent/{agent_title}',
     [
         'middleware'=>
             [

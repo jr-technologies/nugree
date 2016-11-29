@@ -14,7 +14,7 @@ use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 
 class AgencyQueryBuilder extends QueryBuilder{
-    public function __construct(){
+    public function     __construct(){
         $this->table = "agencies";
     }
 

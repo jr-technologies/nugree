@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\User\SearchUsersRequest;
 use App\Http\Requests\Requests\User\TrustedAgentRequest;
 use App\Http\Responses\Responses\WebResponse;
 use App\Libs\Helpers\Helper;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\BannersRepoProvider;
 use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\PropertiesRepoProvider;
@@ -32,6 +33,7 @@ class UsersController extends Controller
     public $rand= "";
     public $properties = "";
     public $banners ="";
+    public $agencyRepo="";
     public $location ="";
     public function __construct(WebResponse $webResponse, UserTransformer $userTransformer)
     {
@@ -43,6 +45,7 @@ class UsersController extends Controller
         $this->usersJsonRepo = (new UsersJsonRepoProvider())->repo();
         $this->banners = (new BannersRepoProvider())->repo();
         $this->location = (new LocationsRepoProvider())->repo();
+        $this->agencyRepo = (new AgenciesRepoProvider())->repo();
         $this->rand = new Helper();
     }
 
@@ -88,9 +91,10 @@ class UsersController extends Controller
 
     public function getTrustedAgent(GetAgentRequest $request)
     {
-        $userPropertiesState = $this->properties->userPropertiesState($request->get('userId'));
+        $agency = $this->agencyRepo->getAgencyBySlug($request->get('agencySlug'));
+        $userPropertiesState = $this->properties->userPropertiesState($agency[0]->user_id);
         return $this->response->setView('frontend.v1.agent-profile')->respond(['data' => [
-            'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($request->get('userId'))),
+            'agent' => $this->releaseAllUserFiles($this->usersJsonRepo->find($agency[0]->user_id)),
             'userPropertiesState' => $userPropertiesState,
             'banners'=>$this->getAgentDetailPageBanners()
         ]]);

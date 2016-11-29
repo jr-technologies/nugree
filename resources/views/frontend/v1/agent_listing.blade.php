@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="layout links-holder">
                                             <div class="links-left">
-                                                <a href="{{ URL::to('agent?agent_id='.$agent->id) }}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
+                                                <a href="{{ URL::to('agent').'/'.$agent->agencies[0]->slug }}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
                                             </div>
                                             <div class="links-right">
                                                 <ul class="quick-links">

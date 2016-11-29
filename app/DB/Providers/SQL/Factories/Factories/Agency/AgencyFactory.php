@@ -29,10 +29,15 @@ class AgencyFactory extends SQLFactory implements SQLFactoriesInterface{
 
         return $this->map($agency);
     }
+    public function getAgencyBySlug($agencySlug)
+    {
+        return $this->tableGateway->getWhere(['slug'=>$agencySlug]);
+    }
     public function findWhere(array $conditions)
     {
         return $this->map($this->tableGateway->getWhere($conditions)->first());
     }
+
     public function getTable()
     {
         return $this->tableGateway->getTable();
