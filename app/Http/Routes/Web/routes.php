@@ -15,6 +15,7 @@
 //    \Illuminate\Support\Facades\DB::table('user_json')->insert($finalRecord);
 //    dd('done');
 //});
+
 Route::get('add-slug',function(){
 
     $agents = (new \App\Repositories\Repositories\Sql\UsersJsonRepository())->getAllTrustedAgents();
@@ -34,9 +35,9 @@ Route::get('add-slug',function(){
         $agency->slug = preg_replace('/\s+/', '-',$agent->agencies[0]->name);
 
         (new \App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory())->update($agency);
-        $agencyJsonCreator = new \App\Libs\Json\Creators\Creators\User\AgencyJsonCreator($agency);
-        $agencyJson = (new \App\Libs\Json\Creators\Creators\User\AgencyJsonCreator)->create();
-        $userJsonObjects = $this->usersJsonRepository->getAgencyStaff($agency->id);
+
+        $agencyJson = (new \App\Libs\Json\Creators\Creators\User\AgencyJsonCreator($agency))->create();
+        $userJsonObjects = (new \App\Repositories\Repositories\Sql\UsersJsonRepository())->getAgencyStaff($agency->id);
         foreach ($userJsonObjects as $userJsonObj)
         {
             $agencies = $userJsonObj->agencies;
@@ -53,16 +54,20 @@ Route::get('add-slug',function(){
                 }
             }
             $userJsonObj->agencies = $final_agencies;
-            return $this->usersJsonRepository->update($userJsonObj);
+            (new \App\Repositories\Repositories\Sql\UsersJsonRepository())->update($userJsonObj);
         }
         $propertiesJson = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->getAgencyProperties($agency->id);
         $finalResult =[];
-        foreach ($propertiesJson as $property)
-        {
-            $property->owner->agency = (new \App\Libs\Json\Creators\Creators\User\AgencyJsonCreator($agency))->create();
-            $finalResult[] = $property;
+        if(empty($propertiesJson) != 'true'){
+            foreach ($propertiesJson as $property)
+            {
+                $property->owner->agency = $agencyJson;
+
+                $finalResult[] = $property;
+            }
+            (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->updateMultipleByIds($finalResult);
         }
-        (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->updateMultipleByIds($finalResult);
+
 
     }
 
