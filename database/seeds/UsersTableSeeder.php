@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $finalRecord =[];
-            for($i=0;$i<100;$i++){
+            for($i=0;$i<10;$i++){
                 $finalRecord[] = [
                     "f_name" => "waqas".rand(1,207777770),
                     "l_name" => "qureshi".rand(1,200222),

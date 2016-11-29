@@ -19,6 +19,7 @@ class Agency {
     public $address = "";
     public $email = "";
     public $logo = "";
+    public $slug = "";
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

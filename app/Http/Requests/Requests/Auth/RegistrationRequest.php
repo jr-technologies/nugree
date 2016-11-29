@@ -63,6 +63,7 @@ class RegistrationRequest extends Request implements RequestInterface{
         $agency->mobile = $this->get('companyMobile');
         $agency->email = $this->get('companyEmail');
         $agency->address = $this->get('companyAddress');
+        $agency->slug = $this->get('agencyName');
         return $agency;
     }
 

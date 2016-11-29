@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->integer('login_count');
             $table->boolean('trusted_agent')->default(0);
             $table->integer('priority')->default(0);
+            $table->string('slug');
             $table->rememberToken();
             $table->timestamps();
 
