@@ -52,6 +52,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             alert('Sorry! property not found');
             return $location.path($state.href('home.properties.all').substring(1));
         }
+        console.log(property);
         $rootScope.loading_content_class = '';
         $scope.html_title = "Property42 | Add Property";
         $scope.propertySaved = false;
@@ -72,6 +73,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             city: property.location.city,
             location: property.location.location
         };
+
         $scope.searchLocations = function ($select) {
             $scope.locations = [];
             if($select.search.length < 2){
@@ -106,6 +108,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             data : {
                 propertyId: property.id,
                 propertyPurpose: property.purpose.id,
+                wanted:!!+property.wanted,
                 propertyType :property.type.parentType.id,
                 propertySubType :property.type.subType.id,
                 location: property.location.location.id,
@@ -300,6 +303,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             $(function() {
                 $('.list-extraFeatures').slideUp();
                 $('.feature-block').find('.form-heading').hide();
+                $(".PriceField").trigger('change');
             });
 
         };

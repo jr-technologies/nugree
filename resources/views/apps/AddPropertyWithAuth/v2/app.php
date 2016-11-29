@@ -263,13 +263,13 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                         <label for="existing-member">Existing Member</label>
                                         <div class="slide">
                                             <div class="layout">
-                                                <label for="email">E-mail ID</label>
+                                                <label for="email" class="required-field">E-mail ID</label>
                                                 <div class="input-holder">
                                                     <input type="text" name="login_email" placeholder="Email" ng-model="form.data.loginDetails.email">
                                                 </div>
                                             </div>
                                             <div class="layout">
-                                                <label for="password">Password</label>
+                                                <label for="password" class="required-field">Password</label>
                                                 <div class="input-holder">
                                                     <input type="password" ng-model="form.data.loginDetails.password" id="password" placeholder="Please enter the Password">
                                                 </div>
@@ -332,6 +332,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                     </div>
                     <div class="popup-holder">
                         <div class="popup lightbox generic-lightbox" id="forgot-pass">
+                            <span>{{message}}</span>
                             <form class='forgot-form' ng-submit="sendForgetPasswordMail()">
 
                                 <h1>Forgot <span>Password</span></h1>
@@ -343,7 +344,7 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
 
                                     <div class="input-holder">
                                         <span class="error-text"></span>
-                                        <input type="email" name="email" ng-model="forgetPassword.email" placeholder="Enter Your Email Address" id="email">
+                                        <input type="email" name="email" ng-model="forgetPassword.data.email" placeholder="Enter Your Email Address" id="email">
 
                                     </div>
                                 </div>

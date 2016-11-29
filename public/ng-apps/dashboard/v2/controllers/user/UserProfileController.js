@@ -14,13 +14,22 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     $scope.profileUpdated = false;
     $scope.userUpdating = false;
     $scope.selectedLocations = [];
-    $scope.cityId = $scope.user.agencies[0].locations[0].city.id+"";
+    console.log($scope.user);
+    $scope.cityId = ($scope.user.agencies[0] === undefined)?"":$scope.user.agencies[0].locations[0].city.id+"";
     $scope.locations = {
         selectedLocations: [],
         searchedLocations: []
     };
     $scope.searchLocations = function ($select) {
         $scope.locations.searchedLocations = [];
+        //var client = algoliasearch(ALGOLIA_APPLICATION_ID, ALGOLIA_API_KEY);
+        //var index = client.initIndex(ALGOLIA_INDEX);
+        //index.search($select.search, {
+        //    filters:'city_id='+$scope.cityId
+        //}).then(function (content) {
+        //    $scope.locations.searchedLocations = content.hits;
+        //});
+
         if($select.search.length < 2){
             $scope.locations.searchedLocations = [];
             return;

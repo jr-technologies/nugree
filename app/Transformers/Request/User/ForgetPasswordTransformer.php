@@ -18,4 +18,4 @@ class ForgetPasswordTransformer extends RequestTransformer{
             'email' => $this->request->get('email')
         ];
     }
-} 
+}

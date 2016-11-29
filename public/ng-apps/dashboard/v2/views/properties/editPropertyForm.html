@@ -7,6 +7,8 @@
                 <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
             </ul>
             <form class="property-add" ng-submit="submitProperty()">
+                <input type="checkbox" name="add-for" id="for-wanted" value="1" ng-model="form.data.wanted">
+                <span class="fake-label">Wanted Property</span>
                 <strong class="add-pro-heading"><span>property for</span></strong>
                 <ul class="radio-checks-holder text-center">
                     <li>
@@ -95,11 +97,11 @@
                     <div class="layout-holder">
                         <label class="required-field" for="property-price">Price</label>
                         <div class="input-holder">
-                            <input type="number" min="1" class="PriceField" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
+                            <input type="number" min="1" class="" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
                         </div>
                     </div>
                     <div class="layout-holder">
-                        <span class="calculatedPrice">Price must contain numbers only</span>
+                        <span class="calculatedPrice">{{form.data.price|priceToText}}</span>
                     </div>
                 </div>
                 <div class="layout full-width">

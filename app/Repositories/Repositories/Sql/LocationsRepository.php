@@ -20,6 +20,10 @@ class LocationsRepository extends SqlRepository implements SocietiesRepoInterfac
     {
          $this->factory = new LocationFactory();
     }
+    public function first()
+    {
+        return $this->factory->first();
+    }
     public function store(Location $location)
     {
         return $this->factory->store($location);
