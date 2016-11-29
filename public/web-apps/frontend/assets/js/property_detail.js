@@ -12,12 +12,11 @@ $(document).ready(function(){
    }
 
 });
-$(document).on('click','.notify-ajax-request',function(){
-    event.preventDefault();
+$(document).on('click','.notify-ajax-request',function(event){
     var email = $("#notify-email").val();
     var mobile = $("#notify-mobile").val();
     var searched_params = $("#searched-url-params").val();
-
+    event.preventDefault();
     $.ajax({
         type: "POST",
         url: apiPath.concat("user_search"),
@@ -25,9 +24,11 @@ $(document).on('click','.notify-ajax-request',function(){
           email:email,mobile:mobile,searched_params:searched_params
         },
         success: function(response){
+
             $('#found-match').find('.close').click();
             $('.email-send').addClass('hidden');
             $('.match-pro-noti').remove();
+
             $('#content').append(
             '<div class="propertyNotFound email-send">'+
                 '<strong class="no-heading">Thank you</strong>'+
