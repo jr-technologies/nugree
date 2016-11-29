@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
-
-        <title>Nugree: Pakistan Real Estate | Your Dream Property Finder</title>
-        <meta name="keywords" content="Nugree, Nugree.com, apartments, villas, homes, houses, lands for sale, property in Pakistan, property for sale in Pakistan, real estate, pakistan real estate,">
-        <meta name="description" content="Nugree, your favorite platform that leads you to your dream land including plots, homes, commercial plots, new projects, villas, apartments in Lahore, Islamabad, Karachi and all over Pakistan with best Agents.">
+    <?php
+    $pageName = Route::getCurrentRoute()->getPath();
+    $meta = (new \App\Providers\AppServiceProvider())->getMeta($pageName);
+    echo $meta->title;
+    echo $meta->keyword;
+    echo $meta->description;
+    ?>
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/nafees-nastaleeq" type="text/css"/>
