@@ -12,14 +12,13 @@
     $meta = (new \App\Providers\AppServiceProvider())->getMeta($pageName);
     ?>
     <?php
-    if($pageName == '/') {
-        if(isset($meta) && $meta !='null' && $meta !="")
+    if(isset($response['data']['extraMeta']) && $response['data']['extraMeta'] !='null' && $response['data']['extraMeta'] !="")
         {
             ?>
-            <title><?php echo $meta->title?> | Nugree</title>
-            <meta name="description" content="<?php echo $meta->description ?>">
-            <meta name="keywords" content="<?php echo $meta->keyword ?>" />
-    <?php }}?>
+            <title><?php echo $response['data']['extraMeta'][0]->title?> | Nugree</title>
+            <meta name="description" content="<?php echo $response['data']['extraMeta'][0]->description ?>">
+            <meta name="keywords" content="<?php echo $response['data']['extraMeta'][0]->keyword ?>" />
+    <?php }?>
     <?php  if($pageName == 'search') { if(isset($response['data']['agent']) && $response['data']['agent'] !='null' && $response['data']['agent'] !=""){ ?>
         <title><?php if(isset($response['data']['agent'])){ echo $response['data']['agent']->agencies[0]->name;} ?> | Nugree</title>
         <meta name="description" content="<?php if(isset($response['data']['agent']->agencies[0]->description)){ echo $response['data']['agent']->agencies[0]->description;}  ?>">

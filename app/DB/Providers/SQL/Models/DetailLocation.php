@@ -17,6 +17,10 @@ class DetailLocation {
     public $long ="";
     public $cityName="";
     public $priority =0;
+    public $keyword="";
+    public $description="";
+    public $title="";
+    public $index="";
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';
 

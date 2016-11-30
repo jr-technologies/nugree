@@ -341,6 +341,15 @@ Route::post('get/update/project/form',
     ]
 );
 
+Route::get('city/{city_slug}',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetLocationByCityRequest'
+            ],
+        'uses'=>'LocationsController@getByCity'
+    ]
+);
 
 Route::post('city/society',
     [
