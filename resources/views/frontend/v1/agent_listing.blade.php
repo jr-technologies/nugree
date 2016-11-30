@@ -54,6 +54,7 @@
                         <strong class="no-heading">sorry, no record found</strong>
                         <p>Maybe your search was to specific, please try searching with another term.</p>
                     </div>
+
                         @foreach($response['data']['agents'] as $agent)
                             <?php
                             $image = url('/')."/assets/imgs/no.png";
@@ -95,8 +96,8 @@
                                             </div>
                                             <div class="links-right">
                                                 <ul class="quick-links">
-                                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$agent->mobile}}"><span class="icon-phone"></span><span class="hidden-xs">View number</span></a></li>
-                                                    <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span><span class="hidden-xs">Send mail</span></a></li>
+                                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$agent->mobile}}" data-name="faizan"><span class="icon-phone"></span></a></li>
+                                                    <li><a href="#sendEmail-popup" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                                 </ul>
                                             </div>
                                         </div>

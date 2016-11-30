@@ -6,7 +6,8 @@ use App\DB\Providers\SQL\Models\Meta;
 use App\Libs\Auth\Web;
 use App\Repositories\Providers\Providers\MetaRepoProvider;
 use App\Repositories\Repositories\Sql\PropertyTypeRepository;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

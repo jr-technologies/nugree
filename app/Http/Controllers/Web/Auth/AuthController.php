@@ -104,7 +104,8 @@ class AuthController extends WebController
 
     private function saveUserAgency(RegistrationRequest $request, $userId)
     {
-        $agency = $request->getAgencyModel($userId);
+        $agency = $request->getAgencyModel();
+        $agency->slug = $agency->slug.$userId;
         $agency->userId = $userId;
         $logoPath = null;
         if($request->hasCompanyLogo()){

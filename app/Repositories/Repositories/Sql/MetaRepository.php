@@ -27,8 +27,8 @@ class MetaRepository extends SqlRepository implements UsersRepoInterface
     {
         return $this->factory->store($meta);
     }
-    public function getPageMeta($page){
-
+    public function getPageMeta($page)
+    {
         return $this->factory->getPageMeta($page);
     }
 }

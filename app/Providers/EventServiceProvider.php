@@ -90,7 +90,7 @@ class EventServiceProvider extends ServiceProvider
         PropertyCreated::class => [
             CreatePropertyJsonDocument::class,
             AddWaterMarkOnPropertyImages::class,
-            SendAddPropertyMail::class
+            //SendAddPropertyMail::class
         ],
         PropertyUpdated::class => [
             UpdatePropertyJsonDocument::class,

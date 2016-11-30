@@ -16,63 +16,7 @@
 //    dd('done');
 //});
 
-Route::get('add-slug',function(){
 
-    $agents = (new \App\Repositories\Repositories\Sql\UsersJsonRepository())->getAllTrustedAgents();
-    foreach($agents as $agent)
-    {
-        $agency = new \App\DB\Providers\SQL\Models\Agency();
-
-        $agency->id = $agent->agencies[0]->id;
-        $agency->name = $agent->agencies[0]->name;
-        $agency->userId = $agent->id;
-        $agency->description = $agent->agencies[0]->description;
-        $agency->mobile = $agent->agencies[0]->mobile;
-        $agency->phone = $agent->agencies[0]->phone;
-        $agency->address = $agent->agencies[0]->address;
-        $agency->email = $agent->agencies[0]->email;
-        $agency->logo = $agent->agencies[0]->logo;
-        $agency->slug = preg_replace('/\s+/', '-',$agent->agencies[0]->name);
-
-        (new \App\DB\Providers\SQL\Factories\Factories\Agency\AgencyFactory())->update($agency);
-
-        $agencyJson = (new \App\Libs\Json\Creators\Creators\User\AgencyJsonCreator($agency))->create();
-        $userJsonObjects = (new \App\Repositories\Repositories\Sql\UsersJsonRepository())->getAgencyStaff($agency->id);
-        foreach ($userJsonObjects as $userJsonObj)
-        {
-            $agencies = $userJsonObj->agencies;
-            $agency = null;
-            $final_agencies = [];
-            foreach ($agencies as $agency)
-            {
-                if ($agency->id == $agency->id)
-                {
-                    array_push($final_agencies, $agencyJson);
-                } else
-                {
-                    array_push($final_agencies, $agency);
-                }
-            }
-            $userJsonObj->agencies = $final_agencies;
-            (new \App\Repositories\Repositories\Sql\UsersJsonRepository())->update($userJsonObj);
-        }
-        $propertiesJson = (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->getAgencyProperties($agency->id);
-        $finalResult =[];
-        if(empty($propertiesJson) != 'true'){
-            foreach ($propertiesJson as $property)
-            {
-                $property->owner->agency = $agencyJson;
-
-                $finalResult[] = $property;
-            }
-            (new \App\Repositories\Providers\Providers\PropertiesJsonRepoProvider())->repo()->updateMultipleByIds($finalResult);
-        }
-
-
-    }
-
-    dd($agents);
-});
 
 
 Route::get('test',function(){

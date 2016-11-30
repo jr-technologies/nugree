@@ -31,7 +31,12 @@ class MetaFactory extends SQLFactory implements SQLFactoriesInterface
     }
     function getPageMeta($page)
     {
-        return $this->map($this->tableGateway->first(['page'=>$page]));
+        try{
+            return $this->map($this->tableGateway->first(['page'=>$page]));
+        }
+        catch(\Exception $e){
+            return null;
+        }
     }
     function all()
     {

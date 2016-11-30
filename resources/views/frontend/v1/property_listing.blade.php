@@ -306,7 +306,7 @@
                                      <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
                                 <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
                                 <ul class="quick-links">
-                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span></a></li>
+                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}" data-name="{{$property->owner->fName.' '.$property->owner->lName}}"><span class="icon-phone"></span></a></li>
                                     <li><a href="#sendEmail-popup{{$property->id}}" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                 </ul>
                                 <?php

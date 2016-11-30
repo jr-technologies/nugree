@@ -17,7 +17,35 @@ jQuery(function(){
     initCarousel();
 });
 function initCarousel() {
+    jQuery('.propertyImage-slider').scrollGallery({
+        mask: '.mask',
+        slider: '.slideset',
+        slides: '.slide',
+        btnPrev: '.propertyImage-slider-btn-prev',
+        btnNext: '.propertyImage-slider-btn-next',
+        pagerLinks: '.propertyImage-pagination .propertyImage-slide',
+        autoRotation: false,
+        circularRotation: true,
+        switchTime: 3000,
+        animSpeed: 500,
+        swipeGap: true
+    });
 
+    jQuery('.propertyImage-pagination').scrollGallery({
+        mask: '.propertyImage-mask',
+        slider: '.propertyImage-slideset',
+        slides: '.propertyImage-slide',
+        btnPrev: '.propertyImage-pagination-btn-prev-1',
+        btnNext: '.propertyImage-pagination-btn-next-1',
+        pagerLinks: '.pagination li',
+        autoRotation: false,
+        circularRotation: true,
+        switchTime: 3000,
+        animSpeed: 500,
+        currentNumber: '.paginationCurrent-num-1',
+        totalNumber: '.total-num-1',
+        swipeGap: true
+    });
 }
 
 $(document).on('change keyup', 'input, textarea, select', function(){
@@ -110,7 +138,6 @@ $(document).on('click', '.propertyImage-slider-btn-next, .propertyImage-slider-b
 });
 
 
-
 $(document).on('focusin', '.PriceField', function(){
     $('.calculatedPrice').removeClass('priceShow');
     $('.calculatedPrice').addClass('priceShow');
@@ -181,6 +208,10 @@ $('.hidden-checkfield').change(function(){
     }
 });
 
+$(document).on('click', '.role-opener', function(){
+    $('.registration-form').find('.role-listing').slideToggle();
+    $(this).toggleClass('active');
+});
 
 function countCheckedRoles(){
     var totalCheckedRoles = 0;
@@ -272,5 +303,17 @@ $(document).on('click', '.sub-links>li>a', function(){
 $(document).on('click', '.searchOpener-Mobile', function(){
     if (screen.width < 1024){
         $('.searchByID').slideToggle();
+    }
+});
+$(document).on('change','#add-prop-wanted',function() {
+    if ($(this).is(":checked")) {
+        $('.hidden-for-wanted').addClass('hidden');
+        $('.addProperty-form').find('h1').text('Wanted');
+        $('.addProperty-form').find('h1').append(' <span>Property</span>');
+    }
+    else {
+        $('.hidden-for-wanted').removeClass('hidden');
+        $('.addProperty-form').find('h1').text('Add');
+        $('.addProperty-form').find('h1').append(' <span>Property</span>');
     }
 });

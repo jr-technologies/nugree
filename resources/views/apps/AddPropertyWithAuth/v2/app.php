@@ -49,20 +49,30 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                 <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
                             </ul>
                             <form class="property-add" ng-submit="submitProperty()">
-                                <ul class="radio-checks-holder fore-type">
-                                    <li>
-                                        <label for="add-property" class="customRadio">
-                                            <input type="radio" name="pro-want" id="add-property" checked>
-                                            <span class="fake-label">Add property</span>
+                                <ul class="radio-checks-holder">
+                                    <li class="wanted-holder pull-right">
+                                        <label for="add-prop-wanted" class="customCheckbox">
+                                            <input name="pro-want" id="add-prop-wanted" type="checkbox" value="1" ng-model="form.data.wanted">
+                                            <span class="fake-radio"></span>
+                                            <span class="fake-label">Wanted Property</span>
                                         </label>
-                                    </li>
-                                    <li>
-                                        <label for="wanted" class="customRadio">
-                                            <input type="radio" name="pro-want" id="wanted" value="1" ng-model="form.data.wanted">
-                                            <span class="fake-label">Wanted property</span>
-                                        </label>
+                                        <div class="img"><img src="<?= url('/').'/web-apps/frontend/assets/images/z.png'?>" alt="Zaroorat property"></div>
                                     </li>
                                 </ul>
+<!--                                <ul class="radio-checks-holder fore-type">-->
+<!--                                    <li>-->
+<!--                                        <label for="add-property" class="customRadio">-->
+<!--                                            <input type="radio" name="pro-want" id="add-property" checked>-->
+<!--                                            <span class="fake-label">Add property</span>-->
+<!--                                        </label>-->
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <label for="wanted" class="customRadio">-->
+<!--                                            <input type="radio" name="pro-want" id="wanted" value="1" ng-model="form.data.wanted">-->
+<!--                                            <span class="fake-label">Wanted property</span>-->
+<!--                                        </label>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
                                <strong class="add-pro-heading"><span>property for</span></strong>
                                 <ul class="radio-checks-holder fore-type">
                                     <li>
@@ -193,69 +203,71 @@ require_once(resource_path('/views/frontend/partials/upper-content.php'));
                                         </div>
                                     </div>
                                 </div>
-                                <strong class="add-pro-heading"><span>Attachments</span></strong>
-                                <ul class="image-uploading-area">
-                                    <li>
-                                        <div class="file-uploader">
-                                            <input type="file" ngf-select ng-model="form.data.files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
-                                            <div class="image-holder">
-                                                <img src="#" class="img-thumb1" alt="image Description">
-                                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(0)"><span class="icon-cross"></span></span>
+                                <div class="hidden-for-wanted">
+                                    <strong class="add-pro-heading"><span>Attachments</span></strong>
+                                    <ul class="image-uploading-area">
+                                        <li>
+                                            <div class="file-uploader">
+                                                <input type="file" ngf-select ng-model="form.data.files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
+                                                <div class="image-holder">
+                                                    <img src="#" class="img-thumb1" alt="image Description">
+                                                    <span class="propertyDocumentCloseBtn" ng-click="cancelFile(0)"><span class="icon-cross"></span></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="text" ng-model="form.data.files.mainFile.title" class="picture-name disableInput" placeholder="Title">
-                                    </li>
-                                    <li>
-                                        <div class="file-uploader">
-                                            <input type="file" ngf-select ng-model="form.data.files.twoFile.file" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
-                                            <div class="image-holder">
-                                                <img src="#" class="img-thumb2" alt="image Description">
-                                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(1)"><span class="icon-cross"></span></span>
+                                            <input type="text" ng-model="form.data.files.mainFile.title" class="picture-name disableInput" placeholder="Title">
+                                        </li>
+                                        <li>
+                                            <div class="file-uploader">
+                                                <input type="file" ngf-select ng-model="form.data.files.twoFile.file" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
+                                                <div class="image-holder">
+                                                    <img src="#" class="img-thumb2" alt="image Description">
+                                                    <span class="propertyDocumentCloseBtn" ng-click="cancelFile(1)"><span class="icon-cross"></span></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="text" ng-model="form.data.files.twoFile.title" class="picture-name disableInput" placeholder="Title">
-                                    </li>
-                                    <li>
-                                        <div class="file-uploader">
-                                            <input type="file" ngf-select ng-model="form.data.files.threeFile.file" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
-                                            <div class="image-holder">
-                                                <img src="#" class="img-thumb3" alt="image Description">
-                                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(2)"><span class="icon-cross"></span></span>
+                                            <input type="text" ng-model="form.data.files.twoFile.title" class="picture-name disableInput" placeholder="Title">
+                                        </li>
+                                        <li>
+                                            <div class="file-uploader">
+                                                <input type="file" ngf-select ng-model="form.data.files.threeFile.file" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
+                                                <div class="image-holder">
+                                                    <img src="#" class="img-thumb3" alt="image Description">
+                                                    <span class="propertyDocumentCloseBtn" ng-click="cancelFile(2)"><span class="icon-cross"></span></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="text" ng-model="form.data.files.threeFile.title" class="picture-name disableInput" placeholder="Title">
-                                    </li>
-                                    <li>
-                                        <div class="file-uploader">
-                                            <input type="file" ngf-select ng-model="form.data.files.fourFile.file" onchange="previewAddPropertyImg(this , '.img-thumb4')" class="upload-img">
-                                            <div class="image-holder">
-                                                <img src="#" class="img-thumb4" alt="image Description">
-                                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(3)"><span class="icon-cross"></span></span>
+                                            <input type="text" ng-model="form.data.files.threeFile.title" class="picture-name disableInput" placeholder="Title">
+                                        </li>
+                                        <li>
+                                            <div class="file-uploader">
+                                                <input type="file" ngf-select ng-model="form.data.files.fourFile.file" onchange="previewAddPropertyImg(this , '.img-thumb4')" class="upload-img">
+                                                <div class="image-holder">
+                                                    <img src="#" class="img-thumb4" alt="image Description">
+                                                    <span class="propertyDocumentCloseBtn" ng-click="cancelFile(3)"><span class="icon-cross"></span></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="text" ng-model="form.data.files.fourFile.title" class="picture-name disableInput" placeholder="Title">
-                                    </li>
-                                    <li>
-                                        <div class="file-uploader">
-                                            <input type="file" ngf-select ng-model="form.data.files.fiveFile.file" onchange="previewAddPropertyImg(this , '.img-thumb5')" class="upload-img">
-                                            <div class="image-holder">
-                                                <img src="#" class="img-thumb5" alt="image Description">
-                                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(4)"><span class="icon-cross"></span></span>
+                                            <input type="text" ng-model="form.data.files.fourFile.title" class="picture-name disableInput" placeholder="Title">
+                                        </li>
+                                        <li>
+                                            <div class="file-uploader">
+                                                <input type="file" ngf-select ng-model="form.data.files.fiveFile.file" onchange="previewAddPropertyImg(this , '.img-thumb5')" class="upload-img">
+                                                <div class="image-holder">
+                                                    <img src="#" class="img-thumb5" alt="image Description">
+                                                    <span class="propertyDocumentCloseBtn" ng-click="cancelFile(4)"><span class="icon-cross"></span></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="text" ng-model="form.data.files.fiveFile.title" class="picture-name disableInput" placeholder="Title">
-                                    </li>
-                                    <li>
-                                        <div class="file-uploader">
-                                            <input type="file" ngf-select ng-model="form.data.files.sixFile.file" onchange="previewAddPropertyImg(this , '.img-thumb6')" class="upload-img">
-                                            <div class="image-holder">
-                                                <img src="#" class="img-thumb6" alt="image Description">
-                                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(5)"><span class="icon-cross"></span></span>
+                                            <input type="text" ng-model="form.data.files.fiveFile.title" class="picture-name disableInput" placeholder="Title">
+                                        </li>
+                                        <li>
+                                            <div class="file-uploader">
+                                                <input type="file" ngf-select ng-model="form.data.files.sixFile.file" onchange="previewAddPropertyImg(this , '.img-thumb6')" class="upload-img">
+                                                <div class="image-holder">
+                                                    <img src="#" class="img-thumb6" alt="image Description">
+                                                    <span class="propertyDocumentCloseBtn" ng-click="cancelFile(5)"><span class="icon-cross"></span></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name disableInput" placeholder="Title">
-                                    </li>
-                                </ul>
+                                            <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name disableInput" placeholder="Title">
+                                        </li>
+                                    </ul>
+                                </div>
                                 <strong class="add-pro-heading"><span>User Details</span></strong>
                                 <ul class="existingOrNew-member">
                                     <li>

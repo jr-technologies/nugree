@@ -7,13 +7,23 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
-<!--    --><?php
-//    $pageName = Route::getCurrentRoute()->getPath();
-//    $meta = (new \App\Providers\AppServiceProvider())->getMeta($pageName);
-//    echo $meta->title;
-//    echo $meta->keyword;
-//    echo $meta->description;
-//    ?>
+    <?php
+    $pageName = Route::getCurrentRoute()->getPath();
+    $meta = (new \App\Providers\AppServiceProvider())->getMeta($pageName);
+    ?>
+    <?php
+    if($pageName == '/') {
+        if(isset($meta) && $meta !='null' && $meta !="")
+        {
+            ?>
+            <title><?php echo $meta->title?> | Nugree</title>
+            <meta name="description" content="<?php echo $meta->description ?>">
+            <meta name="keywords" content="<?php echo $meta->keyword ?>" />
+    <?php }}?>
+    <?php  if($pageName == 'search') { if(isset($response['data']['agent']) && $response['data']['agent'] !='null' && $response['data']['agent'] !=""){ ?>
+        <title><?php if(isset($response['data']['agent'])){ echo $response['data']['agent']->agencies[0]->name;} ?> | Nugree</title>
+        <meta name="description" content="<?php if(isset($response['data']['agent']->agencies[0]->description)){ echo $response['data']['agent']->agencies[0]->description;}  ?>">
+    <?php }}?>
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/nafees-nastaleeq" type="text/css"/>
@@ -59,7 +69,7 @@
                  </li>
 
                 <?php }else{ ?>
-                <li>
+                <li class="login-reg">
                     <a href="#"><?=str_limit($_SESSION['authUser']->fName.' '.$_SESSION['authUser']->lName,13)?></a>
                     <ul class="dropDown">
                         <li><a href="<?=URL::to('dashboard#/home/profile')?>">my profile</a></li>
