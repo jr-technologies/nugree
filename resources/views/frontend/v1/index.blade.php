@@ -118,7 +118,7 @@
             <h2><span>Top</span> Cities</h2>
             <div class="layout">
                 <div class="col">
-                    <a href="{{url('/')}}/search?city_id={{$response['data']['importantCities'][0]->id}}">
+                    <a href="{{URL::to('city').'/'.$response['data']['importantCities'][0]->slug}}">
                         <img src="{{ \App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['importantCities'][0]->path}}" alt="image description">
                         <span class="title">{{$response['data']['importantCities'][0]->city}}</span>
                     </a>
@@ -126,7 +126,7 @@
                 <div class="col">
                     <ul>
                         @for($i=1;$i<sizeof($response['data']['importantCities']);$i++)
-                         <li><a href="{{url('/')}}/search?city_id={{$response['data']['importantCities'][$i]->id}}">
+                         <li><a href="{{URL::to('city').'/'.$response['data']['importantCities'][$i]->slug}}">
                                 <img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['importantCities'][$i]->path}}" alt="image description">
                                  <span class="title">{{$response['data']['importantCities'][$i]->city}}</span>
                              </a>

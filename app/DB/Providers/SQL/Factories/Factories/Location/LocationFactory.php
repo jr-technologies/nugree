@@ -94,6 +94,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
             'location'=>$location->location,
             'lat'=>$location->lat,
             'long'=>$location->long,
+            'title'=>$location->title,
+            'keyword'=>$location->keyword,
+            'description'=>$location->description,
+            'index'=>$location->index,
             'updated_at' => $location->updatedAt,
         ];
     }
@@ -111,6 +115,11 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
         $location->lat = $result->lat;
         $location->long = $result->long;
         $location->cityName = $result->city;
+        $location->title      = $result->title;
+        $location->keyword      = $result->keyword;
+        $location->description      = $result->description;
+        $location->index      = $result->index;
+
         $location->createdAt = $result->created_at;
         $location->updatedAt = $result->updated_at;
         return $location;
@@ -128,6 +137,11 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
         $location->location = $result->location;
         $location->lat = $result->lat;
         $location->long = $result->long;
+        $location->title      = $result->title;
+        $location->keyword      = $result->keyword;
+        $location->description      = $result->description;
+        $location->index      = $result->index;
+
         $location->createdAt = $result->created_at;
         $location->updatedAt = $result->updated_at;
         return $location;

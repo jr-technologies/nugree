@@ -22,6 +22,7 @@ class CreateCityTable extends Migration
             $table->string('keyword')->nullable();
             $table->string('description')->nullable();
             $table->string('index')->nullable();
+            $table->string('slug');
             $table->timestamps();
 
             $table->foreign('country_id')

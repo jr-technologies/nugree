@@ -5,7 +5,7 @@
  * Date: 4/7/2016
  * Time: 11:10 AM
  */
-namespace App\Http\Controllers\Web\Admin;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Requests\Requests\Location\AddLocationRequest;
 use App\Http\Requests\Requests\Location\DeleteLocationRequest;
@@ -41,13 +41,26 @@ class LocationsController extends Controller
         ]]);
     }
     public function getByCity(GetLocationByCityRequest $request)
-    {dd('d');
-        return $this->response->setView('admin.location.location-listing')->respond(['data'=>[
-            'cities'=>$this->cities->all(),
-            'cityId'=>$request->get('cityId'),
-            'locations'=>$this->location->getByCity($request->all()),
-            'locationCount'=>$this->location->locationCount()[0]->total_records
+    {
+        $city = $this->cities->getCityBySlug($request->get('slug'));
+        $params = $this->getParams($request, $city);
+        return $this->response->setView('frontend.v1.locations')->respond(['data'=>[
+            'locations'=>$this->location->getByCity($params),
+            'locationCount'=>$this->location->locationCount()[0]->total_records,
+            'extraMeta'=>$city
         ]]);
+    }
+    public function getParams($request,$city)
+    {
+        $param = [
+            'cityId'=>$request->get('cityId'),
+            'slug'=>$request->get('slug'),
+            'start'=>$request->get('start'),
+            'limit'=>$request->get('limit'),
+            'page'=>$request->get('page'),
+        ];
+        $param['cityId'] =$city[0]->id;
+        return $param;
     }
     public function index()
     {

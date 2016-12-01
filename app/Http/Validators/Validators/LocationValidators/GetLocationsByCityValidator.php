@@ -20,7 +20,7 @@ class GetLocationsByCityValidator extends LocationValidator implements Validator
     public function rules()
     {
         return[
-            'cityId' => 'required',
+            'slug' => 'required',
         ];
     }
 }
