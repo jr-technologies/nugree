@@ -58,7 +58,7 @@
             <div id="aside-holder">
                 <aside id="aside">
                 <div class="top-head">
-                    <p>Search Filters</p>
+                    <p>Offered Property Search Filters</p>
                     <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
                 </div>
                 <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
