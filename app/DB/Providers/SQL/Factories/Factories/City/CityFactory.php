@@ -24,6 +24,7 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->tableGateway->getWhere(['slug'=>$citySlug]);
     }
+
     function find($id)
     {
         return $this->map($this->tableGateway->find($id));

@@ -153,6 +153,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
             'email' => $property->email,
             'is_verified'=>$property->isVerified,
             'owner_id'=>$property->ownerId,
+            'slug'=>$property->slug,
             'created_by'=>$property->createdBy,
             'created_at' => $property->createdAt,
             'updated_at' => $property->updatedAt
@@ -191,6 +192,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
         $property->totalViews = $result->total_views;
         $property->totalLikes = $result->total_likes;
         $property->ratings = $result->rating;
+        $property->slug = $result->slug;
 
         $property->createdBy = $result->created_by;
 

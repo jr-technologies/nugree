@@ -72,4 +72,5 @@ abstract class Request
     public function isNotAuthentic(){
         return (!$this->authentic())?true: false;
     }
+
 }

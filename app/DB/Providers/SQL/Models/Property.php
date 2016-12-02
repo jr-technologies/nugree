@@ -34,7 +34,7 @@ class Property {
     public $mobile;
     public $fax;
     public $email;
-
+    public $slug;
     public $createdBy;
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';

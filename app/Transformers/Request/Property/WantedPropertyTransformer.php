@@ -18,7 +18,6 @@ class WantedPropertyTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'neededProperties' => $this->request->get('needed_properties'),
             'wanted'=>'1',
             'purposeId' => $this->request->get('purpose_id'),
             'propertyTypeId' => $this->request->get('property_type_id'),

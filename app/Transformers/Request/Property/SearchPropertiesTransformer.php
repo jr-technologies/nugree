@@ -18,7 +18,7 @@ class SearchPropertiesTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'neededProperties' => $this->request->get('needed_properties'),
+            'wanted' => $this->request->get('wanted'),
             'purposeId' => $this->request->get('purpose_id'),
             'propertyTypeId' => $this->request->get('property_type_id'),
             'subTypeId' => $this->request->get('sub_type_id'),

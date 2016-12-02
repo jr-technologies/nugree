@@ -38,6 +38,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     {
         return $this->map($this->tableGateway->find($id));
     }
+    public function getLocationBySlug($locationSlug)
+    {
+        return $this->tableGateway->getWhere(['slug'=>$locationSlug]);
+    }
     public function getByIds($ids)
     {
         return $this->mapCollection($this->tableGateway->getWhereIn('id',$ids));
@@ -70,6 +74,10 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
         $location->updatedAt = date('Y-m-d h:i:s');
         return $this->tableGateway->update($location->id ,$this->mapPropertyTypeOnTable($location));
     }
+    public function getCityLocationCount($cityId)
+    {
+        return $this->tableGateway->getCityLocationCount($cityId);
+    }
     public function locationCount()
     {
         return $this->tableGateway->locationCount();
@@ -97,6 +105,7 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
             'title'=>$location->title,
             'keyword'=>$location->keyword,
             'description'=>$location->description,
+            'slug'=>$location->slug,
             'index'=>$location->index,
             'updated_at' => $location->updatedAt,
         ];
@@ -114,12 +123,12 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
         $location->location = $result->location;
         $location->lat = $result->lat;
         $location->long = $result->long;
-        $location->cityName = $result->city;
         $location->title      = $result->title;
         $location->keyword      = $result->keyword;
         $location->description      = $result->description;
         $location->index      = $result->index;
-
+        $location->slug = $result->slug;
+        $location->totalProperties = $result->totalProperties;
         $location->createdAt = $result->created_at;
         $location->updatedAt = $result->updated_at;
         return $location;
@@ -141,7 +150,7 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
         $location->keyword      = $result->keyword;
         $location->description      = $result->description;
         $location->index      = $result->index;
-
+        $location->slug = $result->slug;
         $location->createdAt = $result->created_at;
         $location->updatedAt = $result->updated_at;
         return $location;

@@ -18,8 +18,12 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\CityValidators\AddCityValidator;
 use App\Http\Validators\Validators\PropertyValidators\AddPropertyValidator;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
+use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
+use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
 use App\Transformers\Request\City\AddCityTransformer;
 use App\Transformers\Request\Property\AddPropertyTransformer;
 
@@ -34,6 +38,11 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $this->validator = new AddPropertyValidator($this);
         $this->features = (new FeaturesRepoProvider())->repo();
         $this->statusSeeder = new \PropertyStatusTableSeeder();
+        $this->location = (new LocationsRepoProvider())->repo();
+        $this->city = (new CitiesRepoProvider())->repo();
+        $this->landUnit = (new LandUnitsRepoProvider())->repo();
+        $this->subType = new PropertySubTypeRepository();
+
     }
 
     public function getPropertyModel()
@@ -58,13 +67,27 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->ownerId = $this->get('ownerId');
         $property->totalViews = rand(0,170);
         $property->isVerified = 0;
+        $property->slug = preg_replace('/\s+/', '_',$this->get('landArea').'_'.$this->getLocation()['landUnit'].'_'.$this->getLocation()['subType'].'_'.$this->getLocation()['purpose'].'_'.'in'.'_'.$this->getLocation()['location'].'_'.$this->getLocation()['city']);
         $property->createdBy = $this->user()->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');
 
         return $property;
     }
-
+    public function getLocation()
+    {
+        $location = $this->location->getById($this->get('locationId'));
+        $city = $this->city->getById($location->cityId);
+        $landUnit = $this->landUnit->getById($this->get('landUnitId'));
+        $subtype = $this->subType->getById($this->get('subTypeId'));
+        return [
+            'location'=>$location->location,
+            'city'=>$city->name,
+            'landUnit'=>$landUnit->name,
+            'subType'=>$subtype->name,
+            'purpose'=>config('constants.PROPERTY_PURPOSES')[$this->get('purposeId')]
+        ];
+    }
     public function getFeaturesValues($propertyId)
     {
         $submittedFeatures = $this->getSubmittedPropertyFeatures();

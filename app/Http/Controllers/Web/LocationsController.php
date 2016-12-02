@@ -46,6 +46,7 @@ class LocationsController extends Controller
         $params = $this->getParams($request, $city);
         return $this->response->setView('frontend.v1.locations')->respond(['data'=>[
             'locations'=>$this->location->getByCity($params),
+            'city'=>$this->location->getCityLocationCount($city[0]->id),
             'locationCount'=>$this->location->locationCount()[0]->total_records,
             'extraMeta'=>$city
         ]]);

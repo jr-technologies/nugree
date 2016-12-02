@@ -20,6 +20,7 @@ class Location {
     public $description="";
     public $title="";
     public $index="";
+    public $slug="";
     public $priority =0;
     public $createdAt = '0000-00-00 00:00:00';
     public $updatedAt = '0000-00-00 00:00:00';

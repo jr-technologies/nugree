@@ -24,6 +24,10 @@ class LocationsRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->first();
     }
+    public function getLocationBySlug($locationSlug)
+    {
+        return $this->factory->getLocationBySlug($locationSlug);
+    }
     public function store(Location $location)
     {
         return $this->factory->store($location);
@@ -36,7 +40,10 @@ class LocationsRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->find($id);
     }
-
+    public function getCityLocationCount($city)
+    {
+        return $this->factory->getCityLocationCount($city);
+    }
     public function getByIds(array $ids)
     {
         return $this->factory->getByIds($ids);

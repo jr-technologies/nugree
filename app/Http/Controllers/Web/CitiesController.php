@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Web;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\City\AddCityRequest;
 use App\Http\Requests\Requests\City\DeleteCityRequest;

@@ -17,7 +17,11 @@ class GetLocationTransformer extends RequestTransformer
     public function transform()
     {
         return [
-            'locationId' =>$this->request->input('location_id'),
+            'locationSlug' =>$this->request->location_slug,
+            'page' => $this->request->get('page'),
+            'limit' => $this->request->get('limit'),
+            'sortBy' => $this->request->get('sort_by'),
+            'order' => $this->request->get('order')
         ];
     }
 }

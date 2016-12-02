@@ -16,7 +16,9 @@
 //    dd('done');
 //});
 
-
+Route::get('getLastInserted',function(){
+    dd((new \App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory())->getLastInsertedId());
+});
 
 
 Route::get('test',function(){
@@ -62,6 +64,15 @@ Route::get('/imageResize', function()
 
 });
 
+Route::get('update-location-slug',function(){
+    $locations = (new \App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory())->all();
+    foreach($locations as $location)
+    {
+        $location->slug = $location->location.'-'.$location->id;
+        (new \App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory())->update($location);
+    }
+    dd('hi');
+});
 
 
 //Route::get('/imageResize/{chunk_number}', function()
@@ -228,6 +239,16 @@ Route::post('get/update/city/form',
             [
             ],
         'uses'=>'CitiesController@getCityUpdateForm'
+    ]
+);
+
+Route::get('location/{location_slug}',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetLocationRequest'
+            ],
+        'uses'=>'PropertiesController@getLocationProperties'
     ]
 );
 

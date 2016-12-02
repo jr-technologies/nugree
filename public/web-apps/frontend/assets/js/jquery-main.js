@@ -581,7 +581,11 @@ $(document).on('click', '.btn-close-working', function(){
 $(document).on('click', '.main-navigation li a, .nav-blur-area', function(){
 	$('html').removeClass('nav-active');
 });
-$('#add-prop-wanted').change(function() {
+$(document).on('click', '.searchOpener', function(){
+	$('#wrapper').toggleClass('search-id-active');
+	$('.searchById').find('input').focus();
+});
+$(document).on('change', '#add-prop-wanted', function() {
 	if ($(this).is(":checked")) {
 		$('.hidden-for-wanted').addClass('hidden');
 		$('.addProperty-form').find('h1').text('Wanted');

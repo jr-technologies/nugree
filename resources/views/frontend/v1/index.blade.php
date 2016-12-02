@@ -5,6 +5,7 @@
             <div class="mask">
                 <div class="container">
                     {{ Form::open(array('url' => 'search','method' => 'GET' ,'class'=>'mainSearch-form')) }}
+                    <input type="hidden" name="wanted" id="wanted-pro" value="0" checked>
                     <ul class="typeOfBuying">
                         <li>
                             <label for="buy" class="customRadio">

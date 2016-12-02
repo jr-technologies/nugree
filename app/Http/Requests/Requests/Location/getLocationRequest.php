@@ -28,7 +28,33 @@ class GetLocationRequest extends Request implements RequestInterface{
     public function authorize(){
         return true;
     }
+    public function getParams($location)
+    {
 
+        $params =  [
+            'wanted' => 0,
+            'purposeId' =>null,
+            'propertyTypeId' => null,
+            'subTypeId' => null,
+            'societyId' => null,
+            'cityId'=> null,
+            'locationId'=>$location[0]->id,
+            'blockId' => null,
+            'bedrooms' => null,
+            'priceFrom' => null,
+            'priceTo' => null,
+            'landUnitId' => null,
+            'landAreaFrom' => null,
+            'landAreaTo' => null,
+            'propertyFeatures' => null,
+            'page' =>null,
+            'limit' => null,
+            'sortBy' =>null,
+            'order' => null,
+        ];
+        $params['locationId'] = ($params['locationId'] != "" && $params['locationId'] != null)?explode(',',$params['locationId']):null;
+        return $params;
+    }
     public function validate(){
         return $this->validator->validate();
     }

@@ -37,101 +37,115 @@
     </script>
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
     <div class="listing-page">
-      @if(isset($response['data']['banners']['topBanners']) && (sizeof($response['data']['banners']['topBanners'])) > 0)
-        <div class="ads-slideshow">
-            <div class="mask">
-                <div class="slideset">
-                    <div class="slide">
-                        @if(isset($response['data']['banners']['topBanners'][0]))
-                            <a @if($response['data']['banners']['topBanners'][0]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][0]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'. $response['data']['banners']['topBanners'][0]->image}}" alt="image description"></a>
-                        @endif
-                        @if(isset($response['data']['banners']['topBanners'][1]))
-                            <a @if($response['data']['banners']['topBanners'][1]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][1]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['topBanners'][1]->image}}" alt="image description"></a>
-                       @endif
+        @if(isset($response['data']['banners']['topBanners']) && (sizeof($response['data']['banners']['topBanners'])) > 0)
+            <div class="ads-slideshow">
+                <div class="mask">
+                    <div class="slideset">
+                        <div class="slide">
+                            @if(isset($response['data']['banners']['topBanners'][0]))
+                                <a @if($response['data']['banners']['topBanners'][0]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][0]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'. $response['data']['banners']['topBanners'][0]->image}}" alt="image description"></a>
+                            @endif
+                            @if(isset($response['data']['banners']['topBanners'][1]))
+                                <a @if($response['data']['banners']['topBanners'][1]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][1]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['topBanners'][1]->image}}" alt="image description"></a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-      @endif
+        @endif
+            <div class="popular-locations-holder container text-center">
+                <h2 class="popular-locations-heading">POPULAR <span>LOCATIONS</span></h2>
+    <span class="location-name">{{(isset($response['data']['city'][0]))?$response['data']['city'][0]->cityName:''}} <span>
+        {{(isset($response['data']['city'][0]))?$response['data']['city'][0]->totalLocations:''}}</span></span>
+                <ul class="popular-locations-list">
+                    @if(isset($response['data']['locations']))
+                        @foreach($response['data']['locations'] as $location)
+                            @if($location->totalProperties !=0)
+                                <li><a href="{{URL::to('location').'/'.$location->slug}}">{{$location->location}}<span>{{$location->totalProperties}}</span></a></li>
+                            @endif
+                        @endforeach
+                    @endif
+                </ul>
+            </div>
         <div class="container">
             <a class="aside-opener-filters togglerSearchButton">More Filters <b>(Land Area / Price...)</b><span class="button"><b></b></span></a>
             <div id="aside-holder">
                 <aside id="aside">
-                <div class="top-head">
-                    <p>Offered Property Search Filters</p>
-                    <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
-                </div>
-                <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
-                    <input type="hidden" name="wanted" id="wanted-pro" value="0" checked>
-                    <ul class="filters-links text-upparcase">
-                        <li class="active">
-                            <a class="filters-links-opener">PROPERTY FOR</a>
-                            <div class="slide">
-                                <ul class="filterChecks">
-                                    <li>
-                                        <label for="buy-filter" class="customRadio">
-                                            <input type="radio" name="purpose_id" id="buy-filter" value="1" @if($response['data']['oldValues']['purposeId'] == 1) checked @endif>
-                                            <span class="fake-checkbox"></span>
-                                            <span class="fake-label">BUY</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="rent-filter" class="customRadio">
-                                            <input type="radio" name="purpose_id" id="rent-filter" value="2" @if($response['data']['oldValues']['purposeId'] == 2) checked @endif>
-                                            <span class="fake-checkbox"></span>
-                                            <span class="fake-label">Rent</span>
-                                        </label>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">Property Type</a>
-                            <div class="slide">
-                                <ul class="filterChecks">
-                                    @foreach($response['data']['propertyTypes'] as $propertyType)
-                                        <li class="type">
-                                            <label for="{{$propertyType->name."_".$propertyType->id}}" class="customRadio">
-                                                <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
-                                                       @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif
-                                                       name="property_type_id" class="property_type filter-form-input" value="{{$propertyType->id}}" propertyType="{{$propertyType->id}}">
+                    <div class="top-head">
+                        <p>Offered Property Search Filters</p>
+                        <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
+                    </div>
+                    <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
+                        <input type="hidden" name="wanted" id="wanted-pro" value="0" checked>
+                        <ul class="filters-links text-upparcase">
+                            <li class="active">
+                                <a class="filters-links-opener">PROPERTY FOR</a>
+                                <div class="slide">
+                                    <ul class="filterChecks">
+                                        <li>
+                                            <label for="buy-filter" class="customRadio">
+                                                <input type="radio" name="purpose_id" id="buy-filter" value="1" @if($response['data']['oldValues']['purposeId'] == 1) checked @endif>
                                                 <span class="fake-checkbox"></span>
-                                                <span class="fake-label">{{$propertyType->name}}</span>
+                                                <span class="fake-label">BUY</span>
                                             </label>
                                         </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">Property SUB-Type</a>
-                            <div class="slide">
-                                <ul class="filterChecks" id="propertySubtype">
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">LOCATION / SOCIETY</a>
-                            <div class="slide">
-                                <ul class="filterChecks">
-                                    <li>
-                                      <select class="js-example-basic-single" name="city_id" id="cities-select">
-                                            <option value="">Select City</option>
-                                            @foreach($response['data']['cities'] as $city)
-                                                <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <input id="selectbox" name="location_id">
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">LAND AREA</a>
-                            <div class="slide">
+                                        <li>
+                                            <label for="rent-filter" class="customRadio">
+                                                <input type="radio" name="purpose_id" id="rent-filter" value="2" @if($response['data']['oldValues']['purposeId'] == 2) checked @endif>
+                                                <span class="fake-checkbox"></span>
+                                                <span class="fake-label">Rent</span>
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">Property Type</a>
+                                <div class="slide">
+                                    <ul class="filterChecks">
+                                        @foreach($response['data']['propertyTypes'] as $propertyType)
+                                            <li class="type">
+                                                <label for="{{$propertyType->name."_".$propertyType->id}}" class="customRadio">
+                                                    <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
+                                                           @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif
+                                                           name="property_type_id" class="property_type filter-form-input" value="{{$propertyType->id}}" propertyType="{{$propertyType->id}}">
+                                                    <span class="fake-checkbox"></span>
+                                                    <span class="fake-label">{{$propertyType->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">Property SUB-Type</a>
+                                <div class="slide">
+                                    <ul class="filterChecks" id="propertySubtype">
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">LOCATION / SOCIETY</a>
+                                <div class="slide">
+                                    <ul class="filterChecks">
+                                        <li>
+                                            <select class="js-example-basic-single" name="city_id" id="cities-select">
+                                                <option value="">Select City</option>
+                                                @foreach($response['data']['cities'] as $city)
+                                                    <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <input id="selectbox" name="location_id">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">LAND AREA</a>
+                                <div class="slide">
                             <span class="fake-select">
                                 <select name="land_unit_id">
                                     @foreach($response['data']['landUnits'] as $landUnit)
@@ -139,44 +153,44 @@
                                     @endforeach
                                 </select>
                             </span>
-                                <div class="fromTo">
-                                    <div class="field-holder">
-                                        <input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}" >
-                                    </div>
-                                    <div class="field-holder">
-                                        <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">PRICE RANGE</a>
-                            <div class="slide">
-                                <div class="fromTo full-width">
-                                    <div class="field-holder">
-                                        <input type="number" placeholder="From"  name="price_from" id="convertFrom" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
-                                    </div>
-                                    <div class="field-holder">
-                                        <input type="number" placeholder="To"   name="price_to" id="convertTo" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
+                                    <div class="fromTo">
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}" >
+                                        </div>
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
+                                        </div>
                                     </div>
                                 </div>
-                                <span class="calculatedPrice">Please enter the price</span>
-                            </div>
-                        </li>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">PRICE RANGE</a>
+                                <div class="slide">
+                                    <div class="fromTo full-width">
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="From"  name="price_from" id="convertFrom" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
+                                        </div>
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="To"   name="price_to" id="convertTo" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
+                                        </div>
+                                    </div>
+                                    <span class="calculatedPrice">Please enter the price</span>
+                                </div>
+                            </li>
 
-                    </ul>
-                    <ul class="filter-btn">
-                        <li><button type="submit" class="btn-search">Search</button></li>
-                        <li><button type="reset" class="btn-reset">Reset</button></li>
-                    </ul>
-                </form>
-            </aside>
+                        </ul>
+                        <ul class="filter-btn">
+                            <li><button type="submit" class="btn-search">Search</button></li>
+                            <li><button type="reset" class="btn-reset">Reset</button></li>
+                        </ul>
+                    </form>
+                </aside>
                 <ul class="banners">
-                @if(isset($response['data']['banners']['leftBanners']))
-                  @foreach($response['data']['banners']['leftBanners'] as $leftBanner )
-                    <li><a @if($leftBanner->banner_link !="") href="{{$leftBanner->banner_link}}" @endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$leftBanner->image}}" alt="image desktop"></a></li>
-                  @endforeach
-                @endif
+                    @if(isset($response['data']['banners']['leftBanners']))
+                        @foreach($response['data']['banners']['leftBanners'] as $leftBanner )
+                            <li><a @if($leftBanner->banner_link !="") href="{{$leftBanner->banner_link}}" @endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$leftBanner->image}}" alt="image desktop"></a></li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <section id="content">
@@ -268,7 +282,7 @@
                                     </ul>
 
 
-                                <?php
+                                    <?php
                                     $image = url('/') . "/assets/imgs/no.png";
                                     if ($property->owner->agency != null) {
                                         if ($property->owner->agency->logo != null) {
@@ -309,7 +323,7 @@
                                      <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
                                 <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
                                 <ul class="quick-links">
-                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}" data-name="{{$property->contactPerson}}"><span class="icon-phone"></span></a></li>
+                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}" data-name="{{$property->owner->fName.' '.$property->owner->lName}}"><span class="icon-phone"></span></a></li>
                                     <li><a href="#sendEmail-popup{{$property->id}}" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                 </ul>
                                 <?php
@@ -364,7 +378,7 @@
                         </div>
                         <?php $favourites++; ?>
                     </article>
-                   <?php
+                    <?php
                     if(($countForBanner %3) == 0)
                     if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
 

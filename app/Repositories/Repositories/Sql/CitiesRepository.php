@@ -28,6 +28,7 @@ class CitiesRepository extends SqlRepository implements UsersRepoInterface
     {
         return $this->factory->find($id);
     }
+
     public function getAllCities($param)
     {
         return $this->factory->getAllCities($param);

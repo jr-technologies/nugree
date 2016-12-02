@@ -8,6 +8,8 @@ namespace App\DB\Providers\SQL\Factories\Factories\Location\Gateways;
  */
 use App\DB\Providers\SQL\Factories\Factories\AgencyLocation\AgencyLocationFactory;
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
+use App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory;
+use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 class LocationQueryBuilder extends QueryBuilder
@@ -34,16 +36,28 @@ class LocationQueryBuilder extends QueryBuilder
     }
     public function getByCity($params)
     {
-        $cityTable = (new CityFactory())->getTable();
-
-        return DB::table($this->table)
-            ->leftjoin($cityTable,$this->table.'.city_id','=',$cityTable.'.id')
-            ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$this->table.'.*'.','.$cityTable.'.city'))
+        $property = (new PropertyFactory())->getTable();
+        return DB::table($property)
+            ->rightjoin($this->table,$this->table.'.id','=',$property.'.location_id')
+            ->select((DB::raw('count('.$property.'.id) as totalProperties')),$this->table.'.*')
             ->where($this->table.'.city_id','=',$params['cityId'])
-            ->skip($this->computePagination($params)['start'])->take(config('constants.defaultBannerLimit'))
+            ->groupBy($this->table.'.id')
+            ->havingRaw('count('.$property.'.id) > 0')
             ->get();
     }
+    public function getCityLocationCount($cityId)
+    {
 
+        $cityTable = (new CityFactory())->getTable();
+        $property = (new PropertyFactory())->getTable();
+        return DB::table($cityTable)
+            ->rightjoin($this->table,$this->table.'.city_id','=',$cityTable.'.id')
+            ->leftjoin($property,$this->table.'.id','=',$property.'.location_id')
+            ->select((DB::raw('count('.$property.'.id) as totalLocations')),$cityTable.'.city as cityName')
+            ->where($this->table.'.city_id','=',$cityId)
+            ->groupBy($cityTable.'.id')
+            ->get();
+    }
     public function getLocationsByAgency($agencyId)
     {
         $agencyLocation = (new AgencyLocationFactory())->getTable();
