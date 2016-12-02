@@ -42,6 +42,7 @@ class PropertyJsonPrototype extends JsonPrototype implements JsonPrototypeInterf
     public $isDeleted ="";
     public $createdBy = "";
     public $totalViews ="";
+    public $slug="";
     public $rating ="";
     public $totalLikes = "";
     public $isVerified = 0;
