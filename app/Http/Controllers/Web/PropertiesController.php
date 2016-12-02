@@ -28,6 +28,7 @@ use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\FavouritePropertyRepository;
+use App\Traits\Breadcrumbs;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Traits\Property\ShowAddPropertyFormHelper;
@@ -36,7 +37,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class PropertiesController extends Controller
 {
-    use PropertyFilesReleaser, PropertyPriceUnitHelper, ShowAddPropertyFormHelper;
+    use PropertyFilesReleaser, PropertyPriceUnitHelper, ShowAddPropertyFormHelper, Breadcrumbs;
     public $PropertyTransformer = null;
     public $properties = "";
     public $societies = null;
