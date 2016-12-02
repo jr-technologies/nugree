@@ -1,44 +1,48 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: zeenomlabs
- * Date: 3/15/2016
- * Time: 9:56 PM
+ * User: waqas
+ * Date: 2/25/2016
+ * Time: 3:28 PM
  */
 
-namespace App\Http\Requests\Requests\Property;
+namespace App\Traits;
 
 use App\DB\Providers\SQL\Models\Property;
-use App\Http\Requests\Interfaces\RequestInterface;
-use App\Http\Requests\Request;
-use App\Http\Validators\Validators\PropertyValidators\SearchPropertiesValidator;
+use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use App\Repositories\Providers\Providers\BlocksRepoProvider;
 use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
 use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
 use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
-use App\Transformers\Request\Property\SearchPropertiesTransformer;
+use App\Traits\AppTrait;
 
-class SearchPropertiesRequest extends Request implements RequestInterface{
+trait Breadcrumbs
+{
+    use AppTrait;
 
-    public $validator = null;
-    public function __construct(){
-        parent::__construct(new SearchPropertiesTransformer($this->getOriginalRequest()));
-        $this->validator = new SearchPropertiesValidator($this);
-    }
-
-    public function getParams()
+    public function propertyBreadcrumbs(PropertyJsonPrototype $property)
     {
-        $params = $this->all();
-        $params['locationId'] = ($params['locationId'] != "" && $params['locationId'] != null)?explode(',',$params['locationId']):[];
-        return $params;
+        $breadCrumbs = [];
+        $destination = url('/search?');
+        $destination.="purpose_id=".$property->purpose->id;
+        $breadCrumbs['purpose'] = ['title'=>$property->purpose->name,'destination'=>$destination,'original'=>$property->purpose];
+        $destination.="&property_type_id=".$property->type->parentType->id;
+        $breadCrumbs['type'] = ['title'=>$property->type->parentType->name,'destination'=>$destination,'original'=>$property->type->parentType];
+        $destination.="&sub_type_id=".$property->type->subType->id;
+        $breadCrumbs['subType'] = ['title'=>$property->type->subType->name,'destination'=>$destination,'original'=>$property->type->subType];
+        $destination.="&city_id=".$property->location->city->id;
+        $breadCrumbs['city'] = ['title'=>$property->location->city->name,'destination'=>$destination,'original'=>$property->location->city];
+        $destination.="&location_id=".$property->location->location->id;
+        $breadCrumbs['location'] = ['title'=>$property->location->location->location,'destination'=>$destination,'original'=>$property->location->location];
+
+        return $breadCrumbs;
     }
 
-    public function getParamObjects()
+    public function listingBreadCrumbs($params)
     {
         $paramObjects = [];
-        $params = $this->getParams();
         $purposes = (new PropertyPurposesRepoProvider())->repo();
         $types = (new PropertyTypesRepoProvider())->repo();
         $subTypes = (new PropertySubTypesRepoProvider())->repo();
@@ -51,14 +55,10 @@ class SearchPropertiesRequest extends Request implements RequestInterface{
         $paramObjects['purpose'] = ($params['purposeId'] != null)?$purposes->getById($params['purposeId']):null;
         $paramObjects['city'] = ($params['cityId'] != null)?$cities->getById($params['cityId']):null;
         $paramObjects['location'] = ($params['locationId'] != null)?$locations->getById($params['locationId'][0]):null;
-        $paramObjects['block'] = ($params['blockId'] != null)?$blocks->getById($params['blockId']):null;
-        return $paramObjects;
-    }
+        //$paramObjects['block'] = ($params['blockId'] != null)?$blocks->getById($params['blockId']):null;
 
-    public function breadCrumbs()
-    {
         $breadCrumbs = [];
-        $objs = $this->getParamObjects();
+        $objs = $paramObjects;
         $destination = url('/search?');
         if($objs['type'] != null){
             $destination.="property_type_id=".$objs['type']->id;
@@ -80,20 +80,11 @@ class SearchPropertiesRequest extends Request implements RequestInterface{
             $destination.="&location_id=".$objs['location']->id;
             $breadCrumbs['location'] = ['title'=>$objs['location']->location,'destination'=>$destination,'original'=>$objs['location']];
         }
-        if($objs['block'] != null){
-            $destination.="&block_id=".$objs['block']->id;
-            $breadCrumbs['block'] = ['title'=>$objs['block']->name,'destination'=>$destination,'original'=>$objs['block']];
-        }
+//        if($objs['block'] != null){
+//            $destination.="&block_id=".$objs['block']->id;
+//            $breadCrumbs['block'] = ['title'=>$objs['block']->name,'destination'=>$destination,'original'=>$objs['block']];
+//        }
 
         return $breadCrumbs;
     }
-
-    public function authorize(){
-        return true;
-    }
-
-    public function validate(){
-        return $this->validator->validate();
-    }
-
-} 
+}
