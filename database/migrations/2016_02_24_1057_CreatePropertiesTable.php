@@ -30,7 +30,7 @@ class CreatePropertiesTable extends Migration
             $table->string('mobile');
             $table->string('fax');
             $table->string('email');
-
+            $table->string('slug');
             $table->tinyInteger('is_featured')->default(0);
             $table->tinyInteger('is_hot')->default(0);
             $table->integer('total_views')->default(0);

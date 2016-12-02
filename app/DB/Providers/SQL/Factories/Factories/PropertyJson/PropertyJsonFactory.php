@@ -196,6 +196,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
         $property->email = $propertyJson->email;
         $property->phone = $propertyJson->phone;
         $property->mobile = $propertyJson->mobile;
+        $property->slug = $propertyJson->slug;
         $property->isVerified = (isset($propertyJson->isVerified)?$propertyJson->isVerified: 0);
         $property->fax = $propertyJson->fax;
         $property->createdBy = $propertyJson->createdBy;

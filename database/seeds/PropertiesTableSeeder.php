@@ -38,6 +38,7 @@ class PropertiesTableSeeder extends Seeder
                 $temp['total_likes'] = rand(1,100000);
                 $temp['email'] = 'jrpropedrty167@gmail.com'. rand(1,1000000) ;
                 $temp['owner_id'] = rand(1,2);
+                $temp['slug'] = 'this_is_property_title_'.rand(1,1000);
                 $temp['created_by'] = 1;
                 $temp['created_at'] = date('Y-m-d h:i:s');
                 $temp['updated_at'] = date('Y-m-d h:i:s');

@@ -22,6 +22,7 @@ use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
 use App\Repositories\Providers\Providers\LandUnitsRepoProvider;
 use App\Repositories\Providers\Providers\LocationsRepoProvider;
+use App\Repositories\Providers\Providers\PropertiesRepoProvider;
 use App\Repositories\Repositories\Sql\FeaturesRepository;
 use App\Repositories\Repositories\Sql\PropertySubTypeRepository;
 use App\Transformers\Request\City\AddCityTransformer;
@@ -32,6 +33,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
     public $validator = null;
     private $features = null;
     private $statusSeeder = null;
+
     public function __construct()
     {
         parent::__construct(new AddPropertyTransformer($this->getOriginalRequest()));
@@ -42,7 +44,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $this->city = (new CitiesRepoProvider())->repo();
         $this->landUnit = (new LandUnitsRepoProvider())->repo();
         $this->subType = new PropertySubTypeRepository();
-
+        $this->properties = (new PropertiesRepoProvider())->repo();
     }
 
     public function getPropertyModel()
@@ -67,7 +69,7 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->ownerId = $this->get('ownerId');
         $property->totalViews = rand(0,170);
         $property->isVerified = 0;
-        $property->slug = preg_replace('/\s+/', '_',$this->get('landArea').'_'.$this->getLocation()['landUnit'].'_'.$this->getLocation()['subType'].'_'.$this->getLocation()['purpose'].'_'.'in'.'_'.$this->getLocation()['location'].'_'.$this->getLocation()['city']);
+        $property->slug = $this->makeSlug(preg_replace('/\s+/', '_',$this->get('landArea').'_'.$this->getLocation()['landUnit'].'_'.$this->getLocation()['subType'].'_'.$this->getLocation()['purpose'].'_'.'in'.'_'.$this->getLocation()['location'].'_'.$this->getLocation()['city']));
         $property->createdBy = $this->user()->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');
@@ -87,6 +89,16 @@ class AddPropertyRequest extends Request implements RequestInterface{
             'subType'=>$subtype->name,
             'purpose'=>config('constants.PROPERTY_PURPOSES')[$this->get('purposeId')]
         ];
+    }
+    public function makeSlug($PropertySlug)
+    {
+        $propertiesSlugs = $this->properties->getPropertyBySlug($PropertySlug);
+        $count = 0;
+        foreach($propertiesSlugs as $slug)
+        {
+            $count++;
+        }
+        return $PropertySlug.'_'.$count;
     }
     public function getFeaturesValues($propertyId)
     {

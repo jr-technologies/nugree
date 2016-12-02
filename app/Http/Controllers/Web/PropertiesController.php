@@ -262,7 +262,8 @@ class PropertiesController extends Controller
     public function getById(GetPropertyRequest $request)
     {
         try {
-           $property = $this->properties->getById($request->get('propertyId'));
+           $property = $this->propertiesRepo->getPropertyBySlug($request->get('propertySlug'));
+            dd($property);
            if($property->propertyStatus->id == ($this->status->getActiveStatusId()))
            {
                $this->propertiesRepo->IncrementViews($request->get('propertyId'));
