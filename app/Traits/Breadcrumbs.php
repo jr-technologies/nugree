@@ -32,9 +32,9 @@ trait Breadcrumbs
         $breadCrumbs['type'] = ['title'=>$property->type->parentType->name,'destination'=>$destination,'original'=>$property->type->parentType];
         $destination.="&sub_type_id=".$property->type->subType->id;
         $breadCrumbs['subType'] = ['title'=>$property->type->subType->name,'destination'=>$destination,'original'=>$property->type->subType];
-        $destination.="&city_id=".$property->location->city->id;
+        $destination=url('city')."/".$property->location->city->slug;
         $breadCrumbs['city'] = ['title'=>$property->location->city->name,'destination'=>$destination,'original'=>$property->location->city];
-        $destination.="&location_id=".$property->location->location->id;
+        $destination=url('location')."/".$property->location->location->slug;
         $breadCrumbs['location'] = ['title'=>$property->location->location->location,'destination'=>$destination,'original'=>$property->location->location];
 
         return $breadCrumbs;

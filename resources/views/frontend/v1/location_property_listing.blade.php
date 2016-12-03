@@ -250,7 +250,7 @@
                                         {{--@endforeach--}}
                                         {{--@else--}}
                                         <div class="slide">
-                                            <a href="property?propertyId={{$property->id}}">
+                                            <a href="{{URL::to('property').'/'.$property->slug}}">
                                                 <img src="{{$image}}" alt="image description">
                                             </a>
                                         </div>
@@ -264,7 +264,7 @@
 
                         <div class="caption text-left">
                             <div class="layout">
-                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '. $property->purpose->name.'
+                                <h1><a href="{{URL::to('property').'/'.$property->slug}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '. $property->purpose->name.'
                                   in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
                                 <p>{{str_limit($property->description,148) }}</p>
                                 <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
@@ -321,7 +321,7 @@
                                      };
                                      ?>
                                      <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
-                                <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
+                                <a href="{{URL::to('property').'/'.$property->slug}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
                                 <ul class="quick-links">
                                     <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}" data-name="{{$property->owner->fName.' '.$property->owner->lName}}"><span class="icon-phone"></span></a></li>
                                     <li><a href="#sendEmail-popup{{$property->id}}" class="lightbox"><span class="icon-empty-envelop"></span></a></li>

@@ -47,7 +47,6 @@ class LocationQueryBuilder extends QueryBuilder
     }
     public function getCityLocationCount($cityId)
     {
-
         $cityTable = (new CityFactory())->getTable();
         $property = (new PropertyFactory())->getTable();
         return DB::table($cityTable)

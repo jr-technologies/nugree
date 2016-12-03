@@ -164,8 +164,8 @@ class PropertiesController extends Controller
             'propertySubtypes'=>$this->propertySubtypes(),
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
-            'locations'=>$this->locations->getByCity(['cityId'=>$location[0]->city_id]),
-            'city'=>$this->locations->getCityLocationCount($location[0]->city_id),
+            'locations'=>$this->locations->getByCity(['cityId'=>$location->city_id]),
+            'city'=>$this->locations->getCityLocationCount($location->city_id),
             'cities'=>$this->cities->all(),
             'extraMeta'=>$location,
             'oldValues'=>$request->getParams($location),
@@ -276,7 +276,8 @@ class PropertiesController extends Controller
                     'propertyOwner' => $propertyOwner,
                     'banners' => $this->getPropertyDetailPageBanners(),
                     'propertyId' => $property->id,
-                    //'extraMeta' => $property
+                    'extraMeta' => $property,
+                    'breadcrumb' => $this->propertyBreadcrumbs($property)
                 ]]);
             } else {
                 return $this->response->setView('frontend.v1.No-result')->respond(['data' => [

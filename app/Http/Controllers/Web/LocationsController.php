@@ -43,25 +43,13 @@ class LocationsController extends Controller
     public function getByCity(GetLocationByCityRequest $request)
     {
         $city = $this->cities->getCityBySlug($request->get('slug'));
-        $params = $this->getParams($request, $city);
+        $params = array_merge($request->all(),['cityId'=>$city->id]);
         return $this->response->setView('frontend.v1.locations')->respond(['data'=>[
             'locations'=>$this->location->getByCity($params),
-            'city'=>$this->location->getCityLocationCount($city[0]->id),
+            'city'=>$this->location->getCityLocationCount($city->id),
             'locationCount'=>$this->location->locationCount()[0]->total_records,
             'extraMeta'=>$city
         ]]);
-    }
-    public function getParams($request,$city)
-    {
-        $param = [
-            'cityId'=>$request->get('cityId'),
-            'slug'=>$request->get('slug'),
-            'start'=>$request->get('start'),
-            'limit'=>$request->get('limit'),
-            'page'=>$request->get('page'),
-        ];
-        $param['cityId'] =$city[0]->id;
-        return $param;
     }
     public function index()
     {

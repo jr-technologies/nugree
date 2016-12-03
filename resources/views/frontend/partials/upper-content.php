@@ -8,22 +8,40 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <?php
-    $pageName = Route::getCurrentRoute()->getPath();
+    $pageName = (Request::segment(1) == null)?'/':Request::segment(1);
     $meta = (new \App\Providers\AppServiceProvider())->getMeta($pageName);
     ?>
     <?php
+    if(isset($meta) && $meta !=null && $meta !="")
+    {
+        ?>
+        <title><?php echo $meta->title?> | Nugree</title>
+        <meta name="description" content="<?php echo $meta->description ?>">
+        <meta name="keywords" content="<?php echo $meta->keyword ?>" />
+    <?php }?>
+    <?php
+    if($pageName == 'city' || $pageName == 'location'){
     if(isset($response['data']['extraMeta']) && $response['data']['extraMeta'] !='null' && $response['data']['extraMeta'] !="")
         {
             ?>
             <title><?php echo $response['data']['extraMeta']->title?> | Nugree</title>
             <meta name="description" content="<?php echo $response['data']['extraMeta']->description ?>">
             <meta name="keywords" content="<?php echo $response['data']['extraMeta']->keyword ?>" />
-    <?php }?>
-    <?php  if($pageName == 'search') { dd("hi");  if(isset($response['data']['agent']) && $response['data']['agent'] !='null' && $response['data']['agent'] !=""){ ?>
+    <?php }}?>
+    <?php  if($pageName == 'agent') {
+            if(isset($response['data']['agent']) && $response['data']['agent'] !='null' && $response['data']['agent'] !="")
+            { ?>
 
         <title><?php if(isset($response['data']['agent'])){ echo $response['data']['agent']->agencies[0]->name;} ?> | Nugree</title>
         <meta name="description" content="<?php if(isset($response['data']['agent']->agencies[0]->description)){ echo $response['data']['agent']->agencies[0]->description;}  ?>">
     <?php }}?>
+    <?php  if($pageName == 'property') {
+        if(isset($response['data']['extraMeta']) && $response['data']['extraMeta'] !='null' && $response['data']['extraMeta'] !="")
+        { ?>
+
+            <title><?php if(isset($response['data']['extraMeta'])){ echo $response['data']['extraMeta']->slug;} ?> | Nugree</title>
+            <meta name="description" content="<?php if(isset($response['data']['extraMeta'])){ echo $response['data']['extraMeta']->description;}  ?>">
+        <?php }}?>
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-192x192.png" sizes="192x192">

@@ -40,7 +40,7 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function getLocationBySlug($locationSlug)
     {
-        return $this->tableGateway->getWhere(['slug'=>$locationSlug]);
+        return $this->tableGateway->findBy('slug',$locationSlug);
     }
     public function getByIds($ids)
     {

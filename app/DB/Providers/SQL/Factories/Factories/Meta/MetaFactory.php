@@ -57,6 +57,7 @@ class MetaFactory extends SQLFactory implements SQLFactoriesInterface
         $record= json_decode($result->json);
         $meta= new Meta();
         $meta->id = $record->id;
+        $meta->page = $record->page;
         $meta->keyword = $record->keyword;
         $meta->title = $record->title;
         $meta->description = $record->description;

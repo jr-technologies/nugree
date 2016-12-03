@@ -22,7 +22,7 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function getCityBySlug($citySlug)
     {
-        return $this->tableGateway->getWhere(['slug'=>$citySlug]);
+        return $this->tableGateway->findBy('slug',$citySlug);
     }
 
     function find($id)

@@ -30,6 +30,7 @@ class PropertySubLocationJsonCreator extends JsonCreator implements JsonCreatorI
         $this->prototype->cityId = $this->model->cityId;
         $this->prototype->lat = $this->model->lat;
         $this->prototype->long = $this->model->long;
+        $this->prototype->slug = $this->model->slug;
         return $this->prototype;
     }
 }

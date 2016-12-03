@@ -17,5 +17,6 @@ class PropertySubLocationJsonPrototype extends JsonPrototype implements JsonProt
     public $cityId = "";
     public $lat = "";
     public $long = "";
+    public $slug = "";
 
 }

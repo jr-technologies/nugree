@@ -38,7 +38,7 @@ class GetLocationRequest extends Request implements RequestInterface{
             'subTypeId' => null,
             'societyId' => null,
             'cityId'=> null,
-            'locationId'=>$location[0]->id,
+            'locationId'=>$location->id,
             'blockId' => null,
             'bedrooms' => null,
             'priceFrom' => null,
