@@ -50,7 +50,7 @@ class PropertyFactory extends SQLFactory implements SQLFactoriesInterface
     }
     public function getPropertyBySlug($propertySlug)
     {
-        return $this->tableGateway->getWhere(['slug'=>$propertySlug]);
+        return $this->tableGateway->findBy('slug',$propertySlug);
     }
     public function countSaleAndRendProperties()
     {

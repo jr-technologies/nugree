@@ -65,7 +65,6 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $property->fax =  $user->fax;
         $property->ownerId = $user->id;
         $property->isVerified = 0;
-        $property->slug = preg_replace('/\s+/', '_',$this->get('landArea').$this->get('landUnitId').$this->get('subTypeId').$this->get('purposeId').'in'.$this->getLocation()['location']->locatoin.$this->getLocation()['city']->name);
         $property->createdBy = $user->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');

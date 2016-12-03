@@ -70,9 +70,12 @@ function notifyButton(){
 	}
 }
 $( window ).resize(function() {
-  if (screen.width > 1024){
-	  searchBtnFix();
-  }
+	if(!$('.listing-page').length){
+		return;
+	}
+	  if (screen.width > 1024){
+		  searchBtnFix();
+	  }
 });
 $(window).scroll(function() {    
     activateBackToTop();

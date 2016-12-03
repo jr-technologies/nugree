@@ -15,17 +15,17 @@
     if(isset($response['data']['extraMeta']) && $response['data']['extraMeta'] !='null' && $response['data']['extraMeta'] !="")
         {
             ?>
-            <title><?php echo $response['data']['extraMeta'][0]->title?> | Nugree</title>
-            <meta name="description" content="<?php echo $response['data']['extraMeta'][0]->description ?>">
-            <meta name="keywords" content="<?php echo $response['data']['extraMeta'][0]->keyword ?>" />
+            <title><?php echo $response['data']['extraMeta']->title?> | Nugree</title>
+            <meta name="description" content="<?php echo $response['data']['extraMeta']->description ?>">
+            <meta name="keywords" content="<?php echo $response['data']['extraMeta']->keyword ?>" />
     <?php }?>
-    <?php  if($pageName == 'search') { if(isset($response['data']['agent']) && $response['data']['agent'] !='null' && $response['data']['agent'] !=""){ ?>
+    <?php  if($pageName == 'search') { dd("hi");  if(isset($response['data']['agent']) && $response['data']['agent'] !='null' && $response['data']['agent'] !=""){ ?>
+
         <title><?php if(isset($response['data']['agent'])){ echo $response['data']['agent']->agencies[0]->name;} ?> | Nugree</title>
         <meta name="description" content="<?php if(isset($response['data']['agent']->agencies[0]->description)){ echo $response['data']['agent']->agencies[0]->description;}  ?>">
     <?php }}?>
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
     <link media="all" rel="stylesheet" href="<?=url('/')?>/web-apps/frontend/assets/css/main.css">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/nafees-nastaleeq" type="text/css"/>
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="<?=url('/')?>/web-apps/frontend/assets/images/favicon-96x96.png" sizes="96x96">
