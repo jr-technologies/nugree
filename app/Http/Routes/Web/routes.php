@@ -13,15 +13,28 @@ function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJson
 }
 
 Route::get('slug_in_property_json',function(){
-    $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
+//    $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
+//    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
+//    $properties = $propertiesRepo->all();
+//    collect($properties)->each(function($property) use($propertiesRepo, $propertiesJsonRepo){
+//        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
+//        $propertyJson = convertPropertyAreaToActualUnit(clone($propertyJsonActual));
+//        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
+//        $property->slug = propertySlug($propertyJson);
+//        $propertiesRepo->update($property);
+//        \Illuminate\Support\Facades\Event::fire(new \App\Events\Events\Property\PropertyUpdated($property));
+//    });
+
+
     $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
-    $properties = $propertiesRepo->all();
-    collect($properties)->each(function($property) use($propertiesRepo, $propertiesJsonRepo){
-        $propertyJson = convertPropertyAreaToActualUnit($propertiesJsonRepo->getById($property->id));
-        $property->slug = propertySlug($propertyJson);
-        $propertiesRepo->update($property);
-        \Illuminate\Support\Facades\Event::fire(new \App\Events\Events\Property\PropertyBasicInfoUpdated($property, $propertyJson));
+    $jsons = $propertiesJsonRepo->all();
+    collect($jsons)->each(function($json) use($propertiesJsonRepo){
+        $json->location->city->slug = $json->location->city->name;
+        $json->location->location->slug = $json->location->location->id;
+        $propertiesJsonRepo->update($json);
     });
+
+
 });
 
 /********************************************************************************************************************************/

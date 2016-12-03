@@ -317,7 +317,6 @@ class PropertiesController extends Controller
                     'propertyId' => $request->get('propertyId')
                 ]]);
             }
-
         }catch(\Exception $e){
             return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
                 'propertyId' => $request->get('propertyId')

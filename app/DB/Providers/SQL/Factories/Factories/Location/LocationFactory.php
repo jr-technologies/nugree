@@ -141,7 +141,7 @@ class LocationFactory extends SQLFactory implements SQLFactoriesInterface
     function map($result)
     {
         $location = clone($this->model);
-        $location->id=$result->id;
+        $location->id = $result->id;
         $location->cityId = $result->city_id;
         $location->location = $result->location;
         $location->lat = $result->lat;

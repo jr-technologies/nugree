@@ -108,7 +108,7 @@
                                 }
                             }
                             ?>
-                                 <div class="slide"><a href="{{ URL::to('agent?agent_id='.$agent->id) }}"><img src="{{$image}}" alt="image description"></a></div>
+                                 <div class="slide"><a href="{{ URL::to('agent/'.$agent->agencies[0]->slug) }}"><img src="{{$image}}" alt="image description"></a></div>
                             <?php }?>
                     @endforeach
                 </div>

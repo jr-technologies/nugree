@@ -22,7 +22,7 @@ class PathHelper extends Helper
     }
     public static function nugreeAdminPublicPath()
     {
-        // return 'http://admin.nugree.com';
-        return 'http://localhost/42admin/public';
+         return 'http://admin.nugree.com';
+        //return 'http://localhost/42admin/public';
     }
 }
