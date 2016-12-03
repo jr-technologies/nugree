@@ -126,7 +126,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
     private function computeSorting()
     {
         return [
-            'sortBy' => $this->getSortableColumnValue($this->instructions['sortBy']),
+            'sortBy' => $this->getSortableColumnValue(isset($this->instructions['sortBy'])?$this->instructions['sortBy']:$this->defaultSorting()['sortBy']),
             'order' => $this->getOrder()
         ];
     }

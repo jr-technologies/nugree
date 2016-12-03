@@ -8,7 +8,7 @@
     @if(isset($response['data']['locations']))
       @foreach($response['data']['locations'] as $location)
         @if($location->totalProperties !=0)
-      <li><a href="{{URL::to('location').'/'.$location->slug}}">{{$location->location}}<span>{{$location->totalProperties}}</span></a></li>
+      <li><a href="{{URL::to('properties').'/'.$response['data']['city'][0]->citySlug.'/'.$location->slug}}">{{$location->location}}<span>{{$location->totalProperties}}</span></a></li>
         @endif
       @endforeach
     @endif

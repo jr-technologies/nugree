@@ -11,6 +11,7 @@ use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
 use App\Http\Requests\Requests\Property\UpdatePropertyRequest;
 use App\Http\Requests\Requests\Property\WantedPropertyRequest;
 use App\Http\Responses\Responses\WebResponse;
+use App\Libs\Auth\Web;
 use App\Libs\SearchEngines\Properties\Engines\Cheetah;
 use App\Repositories\Providers\Providers\AssignedFeatureJsonRepoProvider;
 use App\Repositories\Providers\Providers\BannersRepoProvider;
@@ -57,6 +58,7 @@ class PropertiesController extends Controller
     public $news =null;
     public $projectRepo;
     public $cities;
+    public $auth = null;
 
     public function __construct(WebResponse $webResponse, PropertyTransformer $propertyTransformer)
     {
@@ -79,6 +81,7 @@ class PropertiesController extends Controller
         $this->cities = (new CitiesRepoProvider())->repo();
         $this->news = (new NewsRepoProvider())->repo();
         $this->locations = (new LocationsRepoProvider())->repo();
+        $this->auth = new Web();
 
     }
     public function wantedProperties(WantedPropertyRequest $request)
@@ -145,21 +148,50 @@ class PropertiesController extends Controller
             'selectedLocations' => json_encode($this->locations->getByIds((is_array($params['locationId']))?$params['locationId']:[]))
         ]]);
     }
-    public function getLocationProperties(GetLocationRequest $request)
+    private function getLocationPropertiesBySlug($slug)
     {
-        $location = $this->locations->getLocationBySlug($request->get('locationSlug'));
-        $params = $request->getParams($location);
-        $loggedInUser = $request->user();
+        $location = $this->locations->getLocationBySlug($slug);
+        $city = $this->cities->getCityBySlug(request()->route()->parameter('city_slug'));
+        $breadcrumbs = [
+                [
+                    'title' => $city->city,
+                    'destination' => url('properties')."/".$city->slug
+                ],
+                [
+                    'title' => $location->location,
+                    'destination' => url('properties')."/".$city->slug."/".$location->slug
+                ]
+            ];
+        $params =  $params =  [
+            'wanted' => 0,
+            'purposeId' =>null,
+            'propertyTypeId' => null,
+            'subTypeId' => null,
+            'societyId' => null,
+            'cityId'=> null,
+            'locationId'=>[$location->id],
+            'blockId' => null,
+            'bedrooms' => null,
+            'priceFrom' => null,
+            'priceTo' => null,
+            'landUnitId' => null,
+            'landAreaFrom' => null,
+            'landAreaTo' => null,
+            'propertyFeatures' => null,
+            'page' =>null,
+            'limit' => null,
+            'sortBy' =>null,
+            'order' => null,
+        ];
+        $loggedInUser = $this->auth->user();
         $properties = $this->properties->search($params);
         $propertiesCount = count($properties);
         $totalPropertiesFound = (new Cheetah())->count();
-        $banners = $this->getPropertyListingPageBanners($params);
+        $banners = [];//$this->getPropertyListingPageBanners($params);
         return $this->response->setView('frontend.v1.location_property_listing')->respond(['data' => [
             'properties' => $this->releaseAllPropertiesFiles($properties),
             'totalProperties'=> $totalPropertiesFound[0]->total_records,
             'isFavourite' => $this->getFavourite($loggedInUser,$properties),
-            'societies'=>$this->societies->all(),
-            'blocks'=>$this->blocks->getBlocksBySociety($request->get('societyId')),
             'propertyTypes'=>$this->propertyTypes->all(),
             'propertySubtypes'=>$this->propertySubtypes(),
             'landUnits'=>$this->landUnits->all(),
@@ -168,8 +200,9 @@ class PropertiesController extends Controller
             'city'=>$this->locations->getCityLocationCount($location->city_id),
             'cities'=>$this->cities->all(),
             'extraMeta'=>$location,
-            'oldValues'=>$request->getParams($location),
+            'oldValues'=>$params,
             'banners'=>$banners,
+            'breadcrumbs' => $breadcrumbs,
             'selectedLocations' => json_encode($this->locations->getByIds((is_array($params['locationId']))?$params['locationId']:[]))
         ]]);
     }
@@ -317,11 +350,41 @@ class PropertiesController extends Controller
                 'rightBanners'=>$rightBanners,
             ];
         }
-
+    private function getByCitySlug($slug)
+    {
+        $city = $this->cities->getCityBySlug($slug);
+        $params = array_merge(['cityId'=>$city->id]);
+        $breadcrumbs = [
+            [
+                'title' => $city->city,
+                'destination' => url('properties')."/".$city->slug
+            ]
+        ];
+        return $this->response->setView('frontend.v1.locations')->respond(['data'=>[
+            'locations'=>$this->locations->getByCity($params),
+            'city'=>$this->locations->getCityLocationCount($city->id),
+            'locationCount'=>$this->locations->locationCount()[0]->total_records,
+            'extraMeta'=>$city,
+            'breadcrumbs' => $breadcrumbs
+        ]]);
+    }
     public function fetchProperties()
     {
         $citySlug = request()->route()->parameter('city_slug');
-        $location = request()->route()->parameter('location_slug');
-        
+        $locationSlug = request()->route()->parameter('location_slug');
+         try{
+             if($locationSlug != null){
+                 return $this->getLocationPropertiesBySlug($locationSlug);
+             }else{
+                 return $this->getByCitySlug($citySlug);
+             }
+         }catch (\Exception $e){
+             return Redirect::to('properties');
+         }
+    }
+
+    public function getGeneralProperties()
+    {
+        return 'new properties page';
     }
 }

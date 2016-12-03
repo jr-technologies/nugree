@@ -119,7 +119,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
 
     private function transformLandUnits(array $properties, $params)
     {
-        if($params['landUnitId'] == null){
+        if(!isset($params['landUnitId']) || $params['landUnitId'] == null){
             $params['landUnitId'] = 3;
         }
 

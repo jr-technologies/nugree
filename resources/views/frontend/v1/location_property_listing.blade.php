@@ -6,7 +6,7 @@
         });
         var propertySubtypes = '<?php  echo $response['data']['propertySubtypes']; ?>';
         propertySubtypes = JSON.parse(propertySubtypes);
-        var old_subtype = parseInt('<?php echo $response['data']['oldValues']['subTypeId']; ?>');
+        var old_subtype = null;
 
         $(document).on('change','.property_type',function(){
 
@@ -54,17 +54,10 @@
             </div>
         @endif
             <div class="popular-locations-holder container text-center">
-                <h2 class="popular-locations-heading">POPULAR <span>LOCATIONS</span></h2>
-    <span class="location-name">{{(isset($response['data']['city'][0]))?$response['data']['city'][0]->cityName:''}} <span>
-        {{(isset($response['data']['city'][0]))?$response['data']['city'][0]->totalLocations:''}}</span></span>
-                <ul class="popular-locations-list">
-                    @if(isset($response['data']['locations']))
-                        @foreach($response['data']['locations'] as $location)
-                            @if($location->totalProperties !=0)
-                                <li><a href="{{URL::to('location').'/'.$location->slug}}">{{$location->location}}<span>{{$location->totalProperties}}</span></a></li>
-                            @endif
-                        @endforeach
-                    @endif
+                <ul class="breadcrumbs">
+                    @foreach($response['data']['breadcrumbs'] as $bread)
+                        <li><a href="{{$bread['destination']}}">{{$bread['title']}}</a></li>
+                    @endforeach
                 </ul>
             </div>
         <div class="container">

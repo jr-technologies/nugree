@@ -1217,6 +1217,7 @@ Route::post('trusted-agent',
     ]);
 
 Route::get('properties/{city_slug}/{location_slug?}', 'PropertiesController@fetchProperties');
+Route::get('properties', 'PropertiesController@getGeneralProperties');
 
 
 Route::get('/redirect', 'Auth\SocialAuthController@redirect');

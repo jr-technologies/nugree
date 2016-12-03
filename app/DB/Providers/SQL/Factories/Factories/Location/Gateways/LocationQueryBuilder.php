@@ -52,7 +52,7 @@ class LocationQueryBuilder extends QueryBuilder
         return DB::table($cityTable)
             ->rightjoin($this->table,$this->table.'.city_id','=',$cityTable.'.id')
             ->leftjoin($property,$this->table.'.id','=',$property.'.location_id')
-            ->select((DB::raw('count('.$property.'.id) as totalLocations')),$cityTable.'.city as cityName')
+            ->select((DB::raw('count('.$property.'.id) as totalLocations')),$cityTable.'.city as cityName', $cityTable.'.slug as citySlug')
             ->where($this->table.'.city_id','=',$cityId)
             ->groupBy($cityTable.'.id')
             ->get();
