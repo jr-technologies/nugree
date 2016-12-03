@@ -1,5 +1,31 @@
 <?php
 
+/***********   UPDATING SLUGS IN PREVIOUS PROPERTIES IN LIVE   **************/
+function convertPropertyAreaToActualUnit(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
+{
+    $property->land->area = \App\Libs\Helpers\LandArea::convert('square feet',$property->land->unit->name, $property->land->area);
+    return $property;
+}
+function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
+{
+    $slug = ''.$property->land->area.'-'.$property->land->unit->name .'-'.$property->type->subType->name.'-'. $property->purpose->name.'-in-'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
+    return preg_replace('/\s+/', '-',$slug);
+}
+
+Route::get('slug_in_property_json',function(){
+    $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
+    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
+    $properties = $propertiesRepo->all();
+    collect($properties)->each(function($property) use($propertiesRepo, $propertiesJsonRepo){
+        $propertyJson = convertPropertyAreaToActualUnit($propertiesJsonRepo->getById($property->id));
+        $property->slug = propertySlug($propertyJson);
+        $propertiesRepo->update($property);
+        \Illuminate\Support\Facades\Event::fire(new \App\Events\Events\Property\PropertyBasicInfoUpdated($property, $propertyJson));
+    });
+});
+
+/********************************************************************************************************************************/
+
 //Route::get('userjson',function(){
 //
 //    $users = (new \App\Repositories\Providers\Providers\UsersRepoProvider())->repo()->all();
