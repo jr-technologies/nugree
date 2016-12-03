@@ -286,4 +286,11 @@ class PropertiesController extends Controller
                 'rightBanners'=>$rightBanners,
             ];
         }
+
+    public function fetchProperties()
+    {
+        $citySlug = request()->route()->parameter('city_slug');
+        $location = request()->route()->parameter('location_slug');
+        
+    }
 }
