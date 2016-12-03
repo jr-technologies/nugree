@@ -12,6 +12,7 @@ use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\DB\Providers\SQL\Models\User;
 use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
+use App\Events\Events\Property\PropertyBasicInfoUpdated;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Http\Requests\Requests\AddToFavourite\AddToFavouriteRequest;
 use App\Http\Requests\Requests\AddToFavourite\DeleteMultiFavouritePropertyRequest;
@@ -40,6 +41,7 @@ use App\Repositories\Repositories\Sql\PropertyDocumentsRepository;
 use App\Repositories\Repositories\Sql\PropertyFeatureValuesRepository;
 use App\Traits\FileCompresser;
 use App\Traits\Property\PropertyPriceUnitHelper;
+use App\Traits\SlugBuilder;
 use App\Transformers\Response\PropertyJson\PropertyJsonTransformer;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
@@ -47,7 +49,7 @@ use Intervention\Image\Facades\Image;
 
 class PropertiesController extends ApiController
 {
-    use \App\Traits\Property\PropertyFilesReleaser, PropertyPriceUnitHelper, FileCompresser;
+    use \App\Traits\Property\PropertyFilesReleaser, PropertyPriceUnitHelper, FileCompresser, SlugBuilder;
 
     private $auth = null;
     private $properties = null;
@@ -84,8 +86,11 @@ class PropertiesController extends ApiController
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
         $property->id = $propertyId;
         $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
-        $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
+        $propertyJson = $this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($propertyId));
+        $property->slug = $this->propertySlug($propertyJson);
+        $this->properties->update($property);
+        Event::fire(new PropertyBasicInfoUpdated($property,$propertyJson));
         return $this->response->respond(['data' => [
             'property' => $property,
             'features' => $request->getFeaturesValues($propertyId),
@@ -102,17 +107,21 @@ class PropertiesController extends ApiController
         $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
         $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
+        $propertyJson = $this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($propertyId));
+        $property->slug = $this->propertySlug($propertyJson);
+        $this->properties->update($property);
+        Event::fire(new PropertyBasicInfoUpdated($property,$propertyJson));
         return $property;
     }
     public function storeWithAuth(AddPropertyWithAuthRequest $request)
     {
 
-//        try{
+        try{
             $user = (!$request->isMember())?$this->registerAndLogin($request->getUserModel()):$this->loginUser($this->users->findByEmail($request->get('loginDetails')['email']));
             $property = $this->storePropertyCompletely($request, $this->convertPropertyAreaToLowestUnit($request->getPropertyModel($user)));
-//        }catch (\Exception $e){
-//            return $this->response->respondInternalServerError();
-//        }
+        }catch (\Exception $e){
+            return $this->response->respondInternalServerError();
+        }
         return $this->response->respond(['data' => [
             'property' => $property,
             'features' => $request->getFeaturesValues($property->id),

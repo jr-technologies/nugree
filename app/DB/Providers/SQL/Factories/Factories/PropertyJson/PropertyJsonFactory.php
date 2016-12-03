@@ -97,6 +97,11 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
     {
         return $this->map($this->tableGateway->findBy('property_id', $propertyId));
     }
+    public function getPropertyBySlug($slug)
+    {
+        return $this->map($this->tableGateway->findBySlug($slug));
+    }
+
     public function getByIds(array $propertyIds)
     {
         return $this->mapCollection($this->tableGateway->getWhereIn('property_id', $propertyIds));

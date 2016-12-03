@@ -14,4 +14,5 @@ class PropertyCityJsonPrototype extends JsonPrototype implements JsonPrototypeIn
 {
     public $id = "";
     public $name = "";
+    public $slug = "";
 }

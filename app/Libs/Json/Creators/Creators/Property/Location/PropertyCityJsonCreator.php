@@ -27,6 +27,7 @@ class PropertyCityJsonCreator extends JsonCreator implements JsonCreatorInterfac
     {
         $this->prototype->id = $this->model->id;
         $this->prototype->name = $this->model->name;
+        $this->prototype->slug = $this->model->slug;
         return $this->prototype;
     }
 }

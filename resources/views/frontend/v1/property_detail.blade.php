@@ -7,6 +7,11 @@
     @endforeach
     <div class="propertyDetail-page">
         <div class="container">
+            <ul>
+                @foreach($response['data']['breadcrumb'] as $bread)
+                    <li><a href="{{$bread['destination']}}">{{$bread['title']}}</a></li>
+                @endforeach
+            </ul>
             <div class="detail-holder">
                 <div class="frame">
                     <div class="property-picture-holder">

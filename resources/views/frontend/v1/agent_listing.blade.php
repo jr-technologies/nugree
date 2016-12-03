@@ -69,13 +69,13 @@
                             <article class="publicAgent-post">
                                 <div class="post-holder">
                                     <div class="image-holder">
-                                        <a href="{{ URL::to('agent?agent_id='.$agent->id) }}">
+                                        <a href="{{ URL::to('agent').'/'.$agent->agencies[0]->slug }}">
                                             <img src="{{$image}}" alt="image description">
                                         </a>
                                     </div>
                                     <div class="caption text-left">
                                         <div class="layout">
-                                            <h1><a href="{{ URL::to('agent?agent_id='.$agent->id) }}">{{$agent->agencies[0]->name}}</a></h1>
+                                            <h1><a href="{{ URL::to('agent').'/'.$agent->agencies[0]->slug }}">{{$agent->agencies[0]->name}}</a></h1>
                                             <p>{{str_limit($agent->agencies[0]->description,67)}}</p>
                                         </div>
                                         <div class="layout">

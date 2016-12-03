@@ -69,36 +69,11 @@ class AddPropertyRequest extends Request implements RequestInterface{
         $property->ownerId = $this->get('ownerId');
         $property->totalViews = rand(0,170);
         $property->isVerified = 0;
-        $property->slug = $this->makeSlug(preg_replace('/\s+/', '_',$this->get('landArea').'_'.$this->getLocation()['landUnit'].'_'.$this->getLocation()['subType'].'_'.$this->getLocation()['purpose'].'_'.'in'.'_'.$this->getLocation()['location'].'_'.$this->getLocation()['city']));
         $property->createdBy = $this->user()->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');
 
         return $property;
-    }
-    public function getLocation()
-    {
-        $location = $this->location->getById($this->get('locationId'));
-        $city = $this->city->getById($location->cityId);
-        $landUnit = $this->landUnit->getById($this->get('landUnitId'));
-        $subtype = $this->subType->getById($this->get('subTypeId'));
-        return [
-            'location'=>$location->location,
-            'city'=>$city->name,
-            'landUnit'=>$landUnit->name,
-            'subType'=>$subtype->name,
-            'purpose'=>config('constants.PROPERTY_PURPOSES')[$this->get('purposeId')]
-        ];
-    }
-    public function makeSlug($PropertySlug)
-    {
-        $propertiesSlugs = $this->properties->getPropertyBySlug($PropertySlug);
-        $count = 0;
-        foreach($propertiesSlugs as $slug)
-        {
-            $count++;
-        }
-        return $PropertySlug.'_'.$count;
     }
     public function getFeaturesValues($propertyId)
     {

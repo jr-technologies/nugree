@@ -8,7 +8,7 @@ use App\Events\Events\Event;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
 use Illuminate\Queue\SerializesModels;
 
-class PropertyUpdated extends Event
+class PropertyBasicInfoUpdated extends Event
 {
     use SerializesModels;
 
@@ -17,13 +17,16 @@ class PropertyUpdated extends Event
      * @var $property Property
      */
     public $property = null;
+    public $propertyJson = null;
 
     /**
      * @param Property $property
+     * @param PropertyJsonPrototype|null $propertyJson
      */
-    public function __construct(Property $property)
+    public function __construct(Property $property, PropertyJsonPrototype $propertyJson = null)
     {
         $this->property = $property;
+        $this->propertyJson = $propertyJson;
     }
 
     /**

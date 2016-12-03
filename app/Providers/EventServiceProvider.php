@@ -12,6 +12,7 @@ use App\Events\Events\Property\PropertyCreated;
 use App\Events\Events\Property\PropertyDeleted;
 use App\Events\Events\Property\PropertyDEVerified;
 use App\Events\Events\Property\PropertyStatusUpdated;
+use App\Events\Events\Property\PropertyBasicInfoUpdated;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Events\Events\Property\PropertyVerified;
 use App\Events\Events\Property\UpdatePropertyTotalView;
@@ -36,6 +37,7 @@ use App\Listeners\Listeners\Property\PropertyDEVerifyInPropertyJson;
 use App\Listeners\Listeners\Property\PropertyVerifyInPropertyJson;
 use App\Listeners\Listeners\Property\SendAddPropertyMail;
 use App\Listeners\Listeners\Property\UpdatePropertiesStatusInJson;
+use App\Listeners\Listeners\Property\UpdatePropertyBasicInfoInJson;
 use App\Listeners\Listeners\Property\UpdatePropertyJsonDocument;
 use App\Listeners\Listeners\Property\UpdatePropertyViewsInPropertyJson;
 use App\Listeners\Listeners\Property\UpdateStatusInPropertyJson;
@@ -94,6 +96,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PropertyUpdated::class => [
             UpdatePropertyJsonDocument::class,
+        ],
+        PropertyBasicInfoUpdated::class => [
+            UpdatePropertyBasicInfoInJson::class,
         ],
         UpdatePropertyTotalView::class => [
             UpdatePropertyViewsInPropertyJson::class,

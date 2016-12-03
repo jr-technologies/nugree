@@ -164,8 +164,8 @@ class PropertiesController extends Controller
             'propertySubtypes'=>$this->propertySubtypes(),
             'landUnits'=>$this->landUnits->all(),
             'propertiesCount'=>$propertiesCount,
-            'locations'=>$this->locations->getByCity(['cityId'=>$location[0]->city_id]),
-            'city'=>$this->locations->getCityLocationCount($location[0]->city_id),
+            'locations'=>$this->locations->getByCity(['cityId'=>$location->city_id]),
+            'city'=>$this->locations->getCityLocationCount($location->city_id),
             'cities'=>$this->cities->all(),
             'extraMeta'=>$location,
             'oldValues'=>$request->getParams($location),
@@ -262,36 +262,36 @@ class PropertiesController extends Controller
     public function getById(GetPropertyRequest $request)
     {
         try {
-           $property = $this->propertiesRepo->getPropertyBySlug($request->get('propertySlug'));
-            dd($property);
-           if($property->propertyStatus->id == ($this->status->getActiveStatusId()))
-           {
-               $this->propertiesRepo->IncrementViews($request->get('propertyId'));
-               $loggedInUser = $request->user();
-               $property = $this->convertPropertyAreaToActualUnit($property);
-               $propertyOwner = $this->users->find($property->owner->id);
-               return $this->response->setView('frontend.v1.property_detail')->respond(['data' => [
-                   'isFavourite' => ($loggedInUser == null) ? false : $this->favouriteFactory->isFavourite($request->get('propertyId'), $loggedInUser->id),
-                   'property' => $this->releaseAllPropertiesFiles([$property])[0],
-                   'loggedInUser' => $loggedInUser,
-                   'user' => $this->users->find($property->owner->id),
-                   'propertyOwner' => $propertyOwner,
-                   'banners'=>$this->getPropertyDetailPageBanners(),
-                   'propertyId' => $request->get('propertyId')
-               ]]);
-           }
-           else {
-               return $this->response->setView('frontend.v1.No-result')->respond(['data' =>[
-                   'propertyId' => $request->get('propertyId')
-               ]]);
-           }
-       }
-       catch(\Exception $e){
-           return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
-               'propertyId' => $request->get('propertyId')
-           ]]);
-       }
+            $property = $this->properties->getPropertyBySlug($request->get('propertySlug'));
+            if ($property->propertyStatus->id == ($this->status->getActiveStatusId())) {
+                $this->propertiesRepo->IncrementViews($property->id);
+                $loggedInUser = $request->user();
+                $property = $this->convertPropertyAreaToActualUnit($property);
+                $propertyOwner = $this->users->find($property->owner->id);
+                return $this->response->setView('frontend.v1.property_detail')->respond(['data' => [
+                    'isFavourite' => ($loggedInUser == null) ? false : $this->favouriteFactory->isFavourite($property->id, $loggedInUser->id),
+                    'property' => $this->releaseAllPropertiesFiles([$property])[0],
+                    'loggedInUser' => $loggedInUser,
+                    'user' => $this->users->find($property->owner->id),
+                    'propertyOwner' => $propertyOwner,
+                    'banners' => $this->getPropertyDetailPageBanners(),
+                    'propertyId' => $property->id,
+                    'extraMeta' => $property,
+                    'breadcrumb' => $this->propertyBreadcrumbs($property)
+                ]]);
+            } else {
+                return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
+                    'propertyId' => $request->get('propertyId')
+                ]]);
+            }
+
+        }catch(\Exception $e){
+            return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
+                'propertyId' => $request->get('propertyId')
+            ]]);
+        }
     }
+
     public function getPropertyDetailPageBanners()
         {
             $leftBanners = $this->banners->getBanners([

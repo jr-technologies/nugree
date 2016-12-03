@@ -3,6 +3,7 @@
 namespace App\Listeners\Listeners\Property;
 
 use App\Events\Events\Property\PropertyCreated;
+use App\Events\Events\Property\PropertyBasicInfoUpdated;
 use App\Events\Events\Property\PropertyUpdated;
 use App\Libs\Json\Creators\Creators\Property\PropertyJsonCreator;
 use App\Listeners\Interfaces\ListenerInterface;

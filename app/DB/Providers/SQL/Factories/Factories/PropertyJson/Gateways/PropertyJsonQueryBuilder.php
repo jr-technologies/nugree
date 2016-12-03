@@ -59,6 +59,17 @@ class PropertyJsonQueryBuilder extends QueryBuilder{
             ->distinct()
             ->get();
     }
+    public function findBySlug($slug)
+    {
+        $propertyTable = (new PropertyFactory())->getTable();
+        $propertyJsonTable = (new PropertyJsonFactory())->getTable();
+
+        return DB::table($propertyTable)
+            ->join($propertyJsonTable,$propertyTable.'.id','=',$propertyJsonTable.'.property_id')
+            ->select($propertyJsonTable.'.json')
+            ->where($propertyTable.".slug",$slug)
+            ->first();
+    }
 
     public function countSearchedUserProperties($params)
     {

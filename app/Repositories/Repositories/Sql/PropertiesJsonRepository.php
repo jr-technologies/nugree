@@ -27,6 +27,11 @@ class PropertiesJsonRepository extends SqlRepository implements PropertiesJsonRe
         $this->propertyStatus =  new \PropertyStatusTableSeeder();
     }
 
+    public function getPropertyBySlug($slug)
+    {
+        return $this->factory->getPropertyBySlug($slug);
+    }
+
     public function all()
     {
         return $this->factory->all();
