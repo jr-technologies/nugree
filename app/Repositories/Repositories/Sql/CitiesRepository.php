@@ -20,11 +20,15 @@ class CitiesRepository extends SqlRepository implements UsersRepoInterface
         $this->cityTransformer = null;
         $this->factory = new CityFactory();
     }
-
+    public function getCityBySlug($citySlug)
+    {
+        return $this->factory->getCityBySlug($citySlug);
+    }
     public function getById($id)
     {
         return $this->factory->find($id);
     }
+
     public function getAllCities($param)
     {
         return $this->factory->getAllCities($param);

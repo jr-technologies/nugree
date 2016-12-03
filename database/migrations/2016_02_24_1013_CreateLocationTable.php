@@ -19,7 +19,11 @@ class CreateLocationTable extends Migration
             $table->string('path');
             $table->integer('lat');
             $table->integer('long');
-
+            $table->string('title')->nullable();
+            $table->string('keyword')->nullable();
+            $table->string('description')->nullable();
+            $table->string('index')->nullable();
+            $table->string('slug');
             $table->timestamps();
 
             $table->foreign('city_id')

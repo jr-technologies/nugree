@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Requests\IndexRequest;
+use App\Http\Requests\Requests\Location\GetLocationRequest;
 use App\Http\Requests\Requests\Property\GetPropertyRequest;
 use App\Http\Requests\Requests\Property\RouteToAddPropertyRequest;
 use App\Http\Requests\Requests\Property\SearchPropertiesRequest;
@@ -27,6 +28,7 @@ use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use App\Repositories\Repositories\Sql\FavouritePropertyRepository;
+use App\Traits\Breadcrumbs;
 use App\Traits\Property\PropertyFilesReleaser;
 use App\Traits\Property\PropertyPriceUnitHelper;
 use App\Traits\Property\ShowAddPropertyFormHelper;
@@ -35,7 +37,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class PropertiesController extends Controller
 {
-    use PropertyFilesReleaser, PropertyPriceUnitHelper, ShowAddPropertyFormHelper;
+    use PropertyFilesReleaser, PropertyPriceUnitHelper, ShowAddPropertyFormHelper, Breadcrumbs;
     public $PropertyTransformer = null;
     public $properties = "";
     public $societies = null;
@@ -77,6 +79,7 @@ class PropertiesController extends Controller
         $this->cities = (new CitiesRepoProvider())->repo();
         $this->news = (new NewsRepoProvider())->repo();
         $this->locations = (new LocationsRepoProvider())->repo();
+
     }
     public function wantedProperties(WantedPropertyRequest $request)
     {
@@ -103,7 +106,6 @@ class PropertiesController extends Controller
         ]]);
 
     }
-
     public function addProperty(RouteToAddPropertyRequest $request)
     {
         if($request->isNotAuthentic()){
@@ -139,6 +141,34 @@ class PropertiesController extends Controller
             'propertiesCount'=>$propertiesCount,
             'cities'=>$this->cities->all(),
             'oldValues'=>$request->all(),
+            'banners'=>$banners,
+            'selectedLocations' => json_encode($this->locations->getByIds((is_array($params['locationId']))?$params['locationId']:[]))
+        ]]);
+    }
+    public function getLocationProperties(GetLocationRequest $request)
+    {
+        $location = $this->locations->getLocationBySlug($request->get('locationSlug'));
+        $params = $request->getParams($location);
+        $loggedInUser = $request->user();
+        $properties = $this->properties->search($params);
+        $propertiesCount = count($properties);
+        $totalPropertiesFound = (new Cheetah())->count();
+        $banners = $this->getPropertyListingPageBanners($params);
+        return $this->response->setView('frontend.v1.location_property_listing')->respond(['data' => [
+            'properties' => $this->releaseAllPropertiesFiles($properties),
+            'totalProperties'=> $totalPropertiesFound[0]->total_records,
+            'isFavourite' => $this->getFavourite($loggedInUser,$properties),
+            'societies'=>$this->societies->all(),
+            'blocks'=>$this->blocks->getBlocksBySociety($request->get('societyId')),
+            'propertyTypes'=>$this->propertyTypes->all(),
+            'propertySubtypes'=>$this->propertySubtypes(),
+            'landUnits'=>$this->landUnits->all(),
+            'propertiesCount'=>$propertiesCount,
+            'locations'=>$this->locations->getByCity(['cityId'=>$location[0]->city_id]),
+            'city'=>$this->locations->getCityLocationCount($location[0]->city_id),
+            'cities'=>$this->cities->all(),
+            'extraMeta'=>$location,
+            'oldValues'=>$request->getParams($location),
             'banners'=>$banners,
             'selectedLocations' => json_encode($this->locations->getByIds((is_array($params['locationId']))?$params['locationId']:[]))
         ]]);
@@ -232,7 +262,8 @@ class PropertiesController extends Controller
     public function getById(GetPropertyRequest $request)
     {
         try {
-           $property = $this->properties->getById($request->get('propertyId'));
+           $property = $this->propertiesRepo->getPropertyBySlug($request->get('propertySlug'));
+            dd($property);
            if($property->propertyStatus->id == ($this->status->getActiveStatusId()))
            {
                $this->propertiesRepo->IncrementViews($request->get('propertyId'));

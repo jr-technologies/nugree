@@ -18,11 +18,12 @@ Route::post('get-new-password',
     [
         'middleware'=>
             [
-                //'webValidate:forgetPasswordRequest'
+                'apiValidate:forgetPasswordRequest'
             ],
         'uses'=>'UsersController@getNewPassword',
     ]
 );
+
 Route::post('user_search',
     [
         'middleware'=>

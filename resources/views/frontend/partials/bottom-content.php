@@ -3,24 +3,19 @@
 <footer id="footer">
     <div class="footer-holder">
         <div class="container">
-            <div class="col">
-                <strong class="heading">Contact <span>Us</span></strong>
-                <?= Form::open(array('url'=>'feedback','method'=>'POST','class'=>'submit-query'))?>
-                <input type="hidden" name="type" value="contactUs">
-                <div class="input-holder"><input type="text" placeholder="Name" name="name" ></div>
-                <div class="input-holder"><input type="email" placeholder="Email" name="email" required></div>
-                <div class="input-holder"><input type="text" placeholder="Phone" value="" name="phone"></div>
-                <div class="input-holder"><input type="text" placeholder="Subject" name="subject" required></div>
-                <textarea placeholder="Your message" name="message" required></textarea>
-                <button type="submit">Send email <span class="icon-arrow-right"></span></button>
-                <?= Form::close()?>
-            </div>
-            <div class="col">
-
-            </div>
+            <strong class="heading">Contact <span>Us</span></strong>
+            <?= Form::open(array('url'=>'feedback','method'=>'POST','class'=>'submit-query'))?>
+            <input type="hidden" name="type" value="contactUs">
+            <div class="input-holder"><input type="text" placeholder="Name" name="name" ></div>
+            <div class="input-holder"><input type="email" placeholder="Email" name="email" required></div>
+            <div class="input-holder"><input type="text" placeholder="Phone" value="" name="phone"></div>
+            <div class="input-holder"><input type="text" placeholder="Subject" name="subject" required></div>
+            <textarea placeholder="Your message" name="message" required></textarea>
+            <button type="submit">Send email <span class="icon-arrow-right"></span></button>
+            <?= Form::close()?>
         </div>
         <div class="bottom-footer">
-            <span class="rights">&copy;2016 <a href="<?= URL::to('/')?>">Nugree.com</a> All rights reserved</span>
+            <span class="rights">&copy;2016 <a href="<?= URL::to('/')?>">Nugree.com</a> All Rights Reserved.</span>
             <ul class="social-icons">
                 <li><a href="https://www.facebook.com/Nugreecom-354399088098995/"><span class="icon-facebook"></span></a></li>
                 <li><a href="https://plus.google.com/118057576547955586597?hl=en"><span class="icon-google-plus-symbol"></span></a></li>
@@ -140,8 +135,8 @@
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/fixed-block.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/lightBox.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/jquery-main.js" type="text/javascript" defer></script>
-<script src="<?= url('/')?>/web-apps/frontend/assets/js/registration.js" type="text/javascript" defer></script>
-<script src="<?= url('/')?>/web-apps/frontend/assets/js/property_detail.js" type="text/javascript"></script>
+<!--<script src="--><?//= url('/')?><!--/web-apps/frontend/assets/js/registration.js" type="text/javascript" defer></script>-->
+<!--<script src="--><?//= url('/')?><!--/web-apps/frontend/assets/js/property_detail.js" type="text/javascript"></script>-->
 <script src="<?= url('/')?>/assets/js/helper.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/ajax-locations-search.js" type="text/javascript"></script>
 <script type='text/javascript'>window._sbzq||function(e){e._sbzq=[];var t=e._sbzq;t.push(["_setAccount",53331]);var n=e.location.protocol=="https:"?"https:":"http:";var r=document.createElement("script");r.type="text/javascript";r.async=true;r.src=n+"//static.subiz.com/public/js/loader.js";var i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)}(window);</script>

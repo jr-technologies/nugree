@@ -12,6 +12,12 @@ use App\DB\Providers\SQL\Models\Property;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\PropertyValidators\SearchPropertiesValidator;
+use App\Repositories\Providers\Providers\BlocksRepoProvider;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
+use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
+use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
+use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
 use App\Transformers\Request\Property\SearchPropertiesTransformer;
 
 class SearchPropertiesRequest extends Request implements RequestInterface{

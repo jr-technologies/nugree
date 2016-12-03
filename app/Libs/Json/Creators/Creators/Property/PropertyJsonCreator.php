@@ -73,11 +73,13 @@ class PropertyJsonCreator extends JsonCreator implements JsonCreatorInterface
         $this->prototype->createdBy = $this->model->createdBy;
         $this->prototype->totalViews = $this->model->totalViews;
         $this->prototype->rating = $this->model->ratings;
+        $this->prototype->slug = $this->model->slug;
         $this->prototype->totalLikes = $this->model->totalLikes;
         $this->prototype->isFeatured = $this->model->isFeatured;
         $this->prototype->documents = $this->getDocuments();
         $this->prototype->features = $this->getFeatures();
         $this->prototype->createdAt = $this->model->createdAt;
+        $this->prototype->currentTime = $this->model->currentTime;
 
         return $this->prototype;
     }

@@ -1,15 +1,23 @@
 <div class="addProperty-form container {{please_wait_class}}"  ng-init="initialize()">
     <div class="add-form-holder"  ng-show="propertySaved == false">
-        <h1>Add <span>Property</span></h1>
         <div class="main-form">
+            <h1>Add <span>Property</span></h1>
             <ul class="error">
                 <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
             </ul>
             <form class="property-add" ng-submit="submitProperty()">
-                <input type="checkbox" name="add-for" id="for-wanted" value="1" ng-model="form.data.wanted">
-                <span class="fake-label">Wanted</span>
+                <ul class="radio-checks-holder">
+                    <li class="wanted-holder pull-right">
+                        <label for="add-prop-wanted" class="customCheckbox">
+                            <input name="pro-want" id="add-prop-wanted" type="checkbox" value="1" ng-model="form.data.wanted">
+                            <span class="fake-radio"></span>
+                            <span class="fake-label">Wanted Property</span>
+                        </label>
+                        <div class="img"><img src="<?= url('/').'/web-apps/frontend/assets/images/z.png'?>" alt="Zaroorat property"></div>
+                    </li>
+                </ul>
                 <strong class="add-pro-heading"><span>property for</span></strong>
-                <ul class="radio-checks-holder text-center">
+                <ul class="radio-checks-holder text-center fore-type">
                     <li>
                         <label for="for-sale" class="custom-withouChecks transparent">
                             <input type="radio" name="add-for" id="for-sale" value="1" ng-model="form.data.propertyPurpose">
@@ -24,7 +32,7 @@
                     </li>
                 </ul>
                 <strong class="add-pro-heading"><span>Property Type</span></strong>
-                <ul class="radio-checks-holder text-center">
+                <ul class="radio-checks-holder text-center fore-type">
                     <li data-ng-repeat="type in types">
                         <label for="{{type.name}}" class="custom-withouChecks transparent">
                             <input type="radio" name="propertyType" ng-model="$parent.form.data.propertyType" value="{{type.id}}" id="{{type.name}}" class="addPro-type">
@@ -137,8 +145,9 @@
                         </div>
                     </div>
                 </div>
-                <strong class="add-pro-heading"><span>Attachments</span></strong>
-                <ul class="image-uploading-area">
+                <div class="hidden-for-wanted">
+                    <strong class="add-pro-heading"><span>Attachments</span></strong>
+                    <ul class="image-uploading-area">
                     <li>
                         <div class="file-uploader">
                             <input type="file" ngf-select ng-model="form.data.files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
@@ -200,6 +209,7 @@
                         <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name disableInput" placeholder="Title">
                     </li>
                 </ul>
+                </div>
                 <strong class="add-pro-heading"><span>contact info</span></strong>
                 <div class="layout">
                     <div class="layout-holder">

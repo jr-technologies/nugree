@@ -20,6 +20,10 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
         $this->model = new City();
         $this->tableGateway = new CityQueryBuilder();
     }
+    public function getCityBySlug($citySlug)
+    {
+        return $this->tableGateway->getWhere(['slug'=>$citySlug]);
+    }
 
     function find($id)
     {
@@ -54,6 +58,12 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
             'country_id'=>$city->countryId,
             'priority'=>$city->priority,
             'path'=>$city->path,
+            'title'=>$city->title,
+            'keyword'=>$city->keyword,
+            'description'=>$city->description,
+            'slug'=>$city->slug,
+            'index'=>$city->index,
+
             'updated_at' => $city->updatedAt,
         ];
     }
@@ -84,7 +94,11 @@ class CityFactory extends SQLFactory implements SQLFactoriesInterface
         $city->name      = $result->city;
         $city->countryId = $result->country_id;
         $city->priority  = $result->priority;
-        $city->path      = $result->path;
+        $city->title      = $result->title;
+        $city->keyword      = $result->keyword;
+        $city->description      = $result->description;
+        $city->index      = $result->index;
+        $city->slug      = $result->slug;
         $city->createdAt = $result->created_at;
         $city->updatedAt = $result->updated_at;
         return $city;

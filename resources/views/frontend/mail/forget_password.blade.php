@@ -19,9 +19,7 @@
 
         <strong style="margin: 0 0 10px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;display: block;color: #524f4f">
             Password: {{$password}}</strong>
-        <p style="color: #b22241;margin: 0;font-weight: 600px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Membership Plan:</p>
-        <p style="margin: 0;font-weight: 600px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Package: Free</p>
-        <p style="margin: 0;font-weight: 600px;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box">Price: free</p>
+
         <strong style="display: block;text-align: center;padding: 50px 0 0;margin: 0 0 10px;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;color: #524f4f">Administrator <a href="www.nugree.com" style="margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;outline: none;border: 0;color: #3156b6;display: inline-block;vertical-align: top">www.nugree.com</a></strong>
     </div>
 </div>

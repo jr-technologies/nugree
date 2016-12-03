@@ -46,7 +46,10 @@ class PropertiesRepository extends SqlRepository implements PropertyTypeRepoInte
         $property->id = $propertyId;
         return $propertyId;
     }
-
+    public function getPropertyBySlug($propertySlug)
+    {
+        return $this->factory->getPropertyBySlug($propertySlug);
+    }
     public function countSaleAndRendProperties()
     {
         return $this->factory->countSaleAndRendProperties();

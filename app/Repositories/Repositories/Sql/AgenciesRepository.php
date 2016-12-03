@@ -109,5 +109,8 @@ class AgenciesRepository extends SqlRepository implements AgenciesRepoInterface
     {
         return $this->factory->getUserAgency($userId);
     }
-
+    public function getAgencyBySlug($agencySlug)
+    {
+        return $this->factory->getAgencyBySlug($agencySlug);
+    }
 }

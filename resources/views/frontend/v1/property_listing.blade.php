@@ -58,10 +58,11 @@
             <div id="aside-holder">
                 <aside id="aside">
                 <div class="top-head">
-                    <p>Search Filters</p>
+                    <p>Offered Property Search Filters</p>
                     <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
                 </div>
                 <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
+                    <input type="hidden" name="wanted" id="wanted-pro" value="0" checked>
                     <ul class="filters-links text-upparcase">
                         <li class="active">
                             <a class="filters-links-opener">PROPERTY FOR</a>
@@ -201,7 +202,9 @@
                 <?php
                 $countForBanner =0;
                 $betweenCountIndex=0;
+
                 ?>
+
                 @foreach($response['data']['properties'] as $property)
 
                     <article class="publicProperty-post">
@@ -233,7 +236,7 @@
                                         {{--@endforeach--}}
                                         {{--@else--}}
                                         <div class="slide">
-                                            <a href="property?propertyId={{$property->id}}">
+                                            <a href="{{URL::to('property').'/'.$property->slug}}">
                                                 <img src="{{$image}}" alt="image description">
                                             </a>
                                         </div>
@@ -247,7 +250,7 @@
 
                         <div class="caption text-left">
                             <div class="layout">
-                                <h1><a href="property?propertyId={{$property->id}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '.                                                (($property->wanted)?'required ':''). $property->purpose->name.'
+                                <h1><a href="{{URL::to('property').'/'.$property->slug}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '. $property->purpose->name.'
                                   in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
                                 <p>{{str_limit($property->description,148) }}</p>
                                 <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
@@ -304,9 +307,9 @@
                                      };
                                      ?>
                                      <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
-                                <a href="property?propertyId={{$property->id}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
+                                <a href="{{URL::to('property').'/'.$property->slug}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
                                 <ul class="quick-links">
-                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}"><span class="icon-phone"></span></a></li>
+                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}" data-name="{{$property->contactPerson}}"><span class="icon-phone"></span></a></li>
                                     <li><a href="#sendEmail-popup{{$property->id}}" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
                                 </ul>
                                 <?php

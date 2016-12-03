@@ -83,7 +83,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
     $scope.locationChanged = function () {
         $scope.form.data.location = $scope.temp.location.id;
     };
-
     $scope.form = {
         data : {}
     };
@@ -163,17 +162,26 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
                 break;
         }
     };
+
+
+    var mapEmail= function(){
+        return {
+            email:""
+        }
+    };
+
     $scope.forgetPassword = {
-        email : ""
+        data : {}
     };
     $scope.sendForgetPasswordMail = function(){
-     $http({
+
+        $http({
          method:'POST',
          url: apiPath+'get-new-password',
-         data:$scope.forgetPassword.email
-     }).then(function(response){
-          $scope.passworSend = true;
-     });
+         data:$scope.forgetPassword.data
+     }).then(function(){
+            $scope.message="we will send you message";
+        });
 };
     var postProcessFormData = function () {
         var features = {};
@@ -229,7 +237,7 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
         });
         $rootScope.loading_content_class = '';
         $scope.form.data = mapFormData();
-
+        $scope.forgetPassword.data = mapEmail();
         $(function() {
             $('.please-wait').removeClass('please-wait');
             //handleAddPropertyFormScrolling();

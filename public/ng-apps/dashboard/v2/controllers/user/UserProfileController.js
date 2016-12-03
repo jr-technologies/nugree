@@ -22,26 +22,26 @@ app.controller("UserProfileController",["user", "$scope", "$rootScope", "$Custom
     };
     $scope.searchLocations = function ($select) {
         $scope.locations.searchedLocations = [];
-        //var client = algoliasearch(ALGOLIA_APPLICATION_ID, ALGOLIA_API_KEY);
-        //var index = client.initIndex(ALGOLIA_INDEX);
-        //index.search($select.search, {
-        //    filters:'city_id='+$scope.cityId
-        //}).then(function (content) {
-        //    $scope.locations.searchedLocations = content.hits;
-        //});
-
-        if($select.search.length < 2){
-            $scope.locations.searchedLocations = [];
-            return;
-        }
-        return $http.get(apiPath+'locations/search', {
-            params: {
-                keyword: $select.search,
-                cityId: $scope.cityId
-            }
-        }).then(function(response){
-            $scope.locations.searchedLocations = response.data.data.locations;
+        var client = algoliasearch(ALGOLIA_APPLICATION_ID, ALGOLIA_API_KEY);
+        var index = client.initIndex(ALGOLIA_INDEX);
+        index.search($select.search, {
+            filters:'city_id='+$scope.cityId
+        }).then(function (content) {
+            $scope.locations.searchedLocations = content.hits;
         });
+
+        //if($select.search.length < 2){
+        //    $scope.locations.searchedLocations = [];
+        //    return;
+        //}
+        //return $http.get(apiPath+'locations/search', {
+        //    params: {
+        //        keyword: $select.search,
+        //        cityId: $scope.cityId
+        //    }
+        //}).then(function(response){
+        //    $scope.locations.searchedLocations = response.data.data.locations;
+        //});
     };
 
     var getSelectedLocations = function () {

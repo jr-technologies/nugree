@@ -61,8 +61,8 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
             ->leftjoin($propertyFeatureValues,$properties.'.id','=',$propertyFeatureValues.'.property_id')
             ->select(DB::raw('SQL_CALC_FOUND_ROWS '.$propertyJsonTable.'.json'));
 
-        if(isset($this->instructions['neededProperties']) && $this->instructions['neededProperties'] != null && $this->instructions['neededProperties'] != '')
-            $query = $query->where($properties.'.wanted',$this->instructions['neededProperties']);
+//        if(isset($this->instructions['neededProperties']) && $this->instructions['neededProperties'] != null && $this->instructions['neededProperties'] != '')
+//            $query = $query->where($properties.'.wanted',$this->instructions['neededProperties']);
 
 //        if($this->instructions['purposeId'] == 3) {
 //            $query = $query->where($properties . '.wanted', 1);
@@ -74,7 +74,7 @@ class Cheetah extends PropertiesSearchEngine implements PropertiesSearchEngineIn
 //                $query = $query->where($properties.'.purpose_id',$this->instructions['purposeId']);
 //        }
         if(isset($this->instructions['wanted']) && $this->instructions['wanted'] != null && $this->instructions['wanted'] != '')
-            $query = $query->where($properties .'.wanted',1);
+            $query = $query->where($properties .'.wanted',$this->instructions['wanted']);
         if(isset($this->instructions['purposeId']) && $this->instructions['purposeId'] != null && $this->instructions['purposeId'] != '')
             $query = $query->where($properties.'.purpose_id',$this->instructions['purposeId']);
         if(isset($this->instructions['propertyTypeId']) && $this->instructions['propertyTypeId'] != null && $this->instructions['propertyTypeId'] != '')

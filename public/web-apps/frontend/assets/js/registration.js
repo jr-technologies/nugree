@@ -48,13 +48,12 @@ $(document).on('change', '.userRole-checkbox', function(){
 });
 
 $(document).on('change', '.agent-brokerCheckbox', function(){
-
 	if($(this).is(':checked')){
 		addValidationsOnAgentInfo();
 		$('.agent-brokerCheckbox').each(function(){
 			$(this).prop('checked', true);
 		});
-		$('.registration-form').addClass('agent-info');
+		$('.registration-form').addClass('agent-info')
 		$('.agent-information').slideDown();
 	}
 	else {
@@ -107,14 +106,10 @@ function addValidationsOnAgentInfo()
 	$('#agency-name').attr('required','required');
 	$('#compny-mobile').attr('required','required');
 	$('#compny-email').attr('required','required');
-	$('#cities-select').attr('required','required');
-	$('#selectbox').attr('required','required');
 }
 function removeValidationsOnAgentInfo()
 {
 	$('#agency-name').removeAttr('required');
 	$('#compny-mobile').removeAttr('required');
 	$('#compny-email').removeAttr('required');
-	$('#cities-select').removeAttr('required');
-	$('#selectbox').removeAttr('required');
 }

@@ -16,6 +16,11 @@
 //    dd('done');
 //});
 
+Route::get('getLastInserted',function(){
+    dd((new \App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory())->getLastInsertedId());
+});
+
+
 Route::get('test',function(){
     return collect((new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo()->all())->toJson();
 });
@@ -59,6 +64,15 @@ Route::get('/imageResize', function()
 
 });
 
+Route::get('update-location-slug',function(){
+    $locations = (new \App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory())->all();
+    foreach($locations as $location)
+    {
+        $location->slug = $location->location.'-'.$location->id;
+        (new \App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory())->update($location);
+    }
+    dd('hi');
+});
 
 
 //Route::get('/imageResize/{chunk_number}', function()
@@ -228,6 +242,16 @@ Route::post('get/update/city/form',
     ]
 );
 
+Route::get('location/{location_slug}',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetLocationRequest'
+            ],
+        'uses'=>'PropertiesController@getLocationProperties'
+    ]
+);
+
 Route::post('maliksajidawan786@gmail.com/update/city',
     [
         'middleware'=>
@@ -338,6 +362,15 @@ Route::post('get/update/project/form',
     ]
 );
 
+Route::get('city/{city_slug}',
+    [
+        'middleware'=>
+            [
+                'webValidate:GetLocationByCityRequest'
+            ],
+        'uses'=>'LocationsController@getByCity'
+    ]
+);
 
 Route::post('city/society',
     [
@@ -1089,12 +1122,21 @@ Route::get('property/{property_title}',
     [
         'middleware'=>
             [
-                //'webValidate:getPropertyRequest'
+                'webValidate:getPropertyRequest'
             ],
         'uses'=>'PropertiesController@getById'
     ]
 );
 
+//Route::get('property/{property_title}',
+//    [
+//        'middleware'=>
+//            [
+//                //'webValidate:getPropertyRequest'
+//            ],
+//        'uses'=>'PropertiesController@getById'
+//    ]
+//);
 
 Route::get('agents',
     [
@@ -1106,7 +1148,7 @@ Route::get('agents',
     ]
 );
 
-Route::get('agent',
+Route::get('agent/{agent_title}',
     [
         'middleware'=>
             [

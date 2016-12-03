@@ -15,7 +15,8 @@ class GetAgentTransformer extends RequestTransformer{
 
     public function transform(){
         return [
-            'userId' => $this->request->get('agent_id')
+            'userId' => $this->request->get('agent_id'),
+            'agencySlug'=>$this->request->agent_title
         ];
     }
 } 

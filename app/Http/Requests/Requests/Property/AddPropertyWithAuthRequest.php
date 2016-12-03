@@ -9,6 +9,7 @@
 namespace App\Http\Requests\Requests\Property;
 
 
+use App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory;
 use App\DB\Providers\SQL\Models\City;
 use App\DB\Providers\SQL\Models\Features\Feature;
 use App\DB\Providers\SQL\Models\Features\PropertyFeatureValue;
@@ -17,13 +18,10 @@ use App\DB\Providers\SQL\Models\PropertyDocument;
 use App\DB\Providers\SQL\Models\User;
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
-use App\Http\Validators\Validators\CityValidators\AddCityValidator;
-use App\Http\Validators\Validators\PropertyValidators\AddPropertyValidator;
 use App\Http\Validators\Validators\PropertyValidators\AddPropertyWithAuthValidator;
+use App\Repositories\Providers\Providers\CitiesRepoProvider;
 use App\Repositories\Providers\Providers\FeaturesRepoProvider;
-use App\Repositories\Repositories\Sql\FeaturesRepository;
-use App\Transformers\Request\City\AddCityTransformer;
-use App\Transformers\Request\Property\AddPropertyTransformer;
+use App\Repositories\Providers\Providers\LocationsRepoProvider;
 use App\Transformers\Request\Property\AddPropertyWithAuthTransformer;
 
 class AddPropertyWithAuthRequest extends Request implements RequestInterface{
@@ -36,6 +34,8 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $this->validator = new AddPropertyWithAuthValidator($this);
         $this->features = (new FeaturesRepoProvider())->repo();
         $this->statusSeeder = new \PropertyStatusTableSeeder();
+        $this->location = (new LocationsRepoProvider())->repo();
+        $this->city = (new CitiesRepoProvider())->repo();
     }
 
     public function isMember()
@@ -43,8 +43,9 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         return ($this->get('memberType') == 1)?true:false;
     }
 
-    public function getPropertyModel(User $user)
+    public function getPropertyModel( $user)
     {
+
         $property = new Property();
         $property->purposeId = $this->get('purposeId');
         $property->subTypeId =  $this->get('subTypeId');
@@ -64,13 +65,21 @@ class AddPropertyWithAuthRequest extends Request implements RequestInterface{
         $property->fax =  $user->fax;
         $property->ownerId = $user->id;
         $property->isVerified = 0;
+        $property->slug = preg_replace('/\s+/', '_',$this->get('landArea').$this->get('landUnitId').$this->get('subTypeId').$this->get('purposeId').'in'.$this->getLocation()['location']->locatoin.$this->getLocation()['city']->name);
         $property->createdBy = $user->id;
         $property->createdAt = date('Y-m-d h:i:s');
         $property->updatedAt = date('Y-m-d h:i:s');
 
         return $property;
     }
-
+    public function getLocation()
+    {
+        $location = $this->location->getById($this->get('location'));
+        return [
+            'location'=>$location,
+            'city'=>$this->city->getById($location->cityId)
+        ];
+    }
     public function getFeaturesValues($propertyId)
     {
         $submittedFeatures = $this->getSubmittedPropertyFeatures();

@@ -41,7 +41,7 @@ class LocationsController extends Controller
         ]]);
     }
     public function getByCity(GetLocationByCityRequest $request)
-    {
+    {dd('d');
         return $this->response->setView('admin.location.location-listing')->respond(['data'=>[
             'cities'=>$this->cities->all(),
             'cityId'=>$request->get('cityId'),
@@ -80,5 +80,6 @@ class LocationsController extends Controller
             'locationCount'=>$this->location->locationCount()[0]->total_records
         ]]);
     }
+
 
 }

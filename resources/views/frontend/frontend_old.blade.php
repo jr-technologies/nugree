@@ -47,7 +47,6 @@
                 <button type="submit"><span class="icon-search"></span></button>
                 {{Form::close()}}
             </nav>
-
             <a class="nav-opener"><span></span></a>
             <a href="{{ URL::to('add-property') }}" class="btn-header hidden-xs"><span class="icon-plus"></span>Add a property</a>
             @if($_SESSION['authUser'] ==null)

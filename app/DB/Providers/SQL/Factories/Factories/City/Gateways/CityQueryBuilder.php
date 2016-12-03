@@ -6,6 +6,7 @@ namespace App\DB\Providers\SQL\Factories\Factories\City\Gateways;
  * Date: 4/6/2016
  * Time: 10:07 AM
  */
+use App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory;
 use App\DB\Providers\SQL\Factories\Factories\Society\SocietyFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
@@ -68,4 +69,5 @@ class CityQueryBuilder extends QueryBuilder
         }
         return $pagination;
     }
+
 }

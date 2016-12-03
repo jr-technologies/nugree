@@ -9,15 +9,18 @@
 namespace App\Http\Validators\Validators\UserValidators;
 
 use App\Http\Validators\Interfaces\ValidatorsInterface;
+use App\Repositories\Providers\Providers\AgenciesRepoProvider;
 use App\Repositories\Providers\Providers\UsersJsonRepoProvider;
 use Illuminate\Support\Facades\Validator;
 
 class GetAgentValidator extends UserValidator implements ValidatorsInterface
 {
     private $userJsonRepo = "";
+    private $agencyRepo ="";
     public function __construct($request){
         parent::__construct($request);
         $this->userJsonRepo = (new UsersJsonRepoProvider())->repo();
+        $this->agencyRepo = (new AgenciesRepoProvider())->repo();
     }
     public function CustomValidationMessages(){
         return [
@@ -33,7 +36,7 @@ class GetAgentValidator extends UserValidator implements ValidatorsInterface
     public function rules()
     {
         return [
-           'userId'=>'required|agent_exists'
+           'agencySlug'=>'required'
         ];
     }
 
@@ -42,7 +45,8 @@ class GetAgentValidator extends UserValidator implements ValidatorsInterface
         Validator::extend('agent_exists', function($attribute, $value, $parameters)
         {
             try{
-                $agent = $this->userJsonRepo->find($this->request->get('userId'));
+                $agency = $this->agencyRepo->getAgencyBySlug($this->request->get('userSlug'));
+                $agent = $this->userJsonRepo->find($agency->userId);
                 $isAgent = false;
                 foreach($agent->roles as $agentRole)
                 {
@@ -62,4 +66,5 @@ class GetAgentValidator extends UserValidator implements ValidatorsInterface
             return true;
         });
     }
+
 }
