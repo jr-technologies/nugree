@@ -70,7 +70,7 @@
 <body class="fixed-ui-mob-full">
 <div id="wrapper">
     <header id="header">
-        <a class="nav-opener navigation-toggler"><span></span><strong>Menu</strong></a>
+        <a class="nav-opener navigation-toggler"><span></span></a>
         <div class="logo"><a href="<?=url('/')?>"><img src="<?=url('/')?>/web-apps/frontend/assets/images/logo.png" alt="nugree.com"></a></div>
         <div class="right-area">
             <a class="searchOpener"><span class="icon-search"></span></a>
@@ -82,7 +82,7 @@
             <ul class="customLinks">
                 <?php if(!isset($_SESSION['authUser'])){ ?>
                 <li class="login-reg">
-                    <a href="<?= URL::to('/login') ?>"><span class="icon-user"></span> Login / Register</a>
+                    <a href="<?= URL::to('/login') ?>"> Login / Register</a>
                  </li>
 
                 <?php }else{ ?>

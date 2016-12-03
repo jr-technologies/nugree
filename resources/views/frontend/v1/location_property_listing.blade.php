@@ -53,13 +53,11 @@
                 </div>
             </div>
         @endif
-            <div class="popular-locations-holder container text-center">
-                <ul class="breadcrumbs">
-                    @foreach($response['data']['breadcrumbs'] as $bread)
-                        <li><a href="{{$bread['destination']}}">{{$bread['title']}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
+            <ul class="breadcrumbs container">
+                @foreach($response['data']['breadcrumbs'] as $bread)
+                    <li><a href="{{$bread['destination']}}">{{$bread['title']}}</a></li>
+                @endforeach
+            </ul>
         <div class="container">
             <a class="aside-opener-filters togglerSearchButton">More Filters <b>(Land Area / Price...)</b><span class="button"><b></b></span></a>
             <div id="aside-holder">

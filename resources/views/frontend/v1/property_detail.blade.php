@@ -7,7 +7,7 @@
     @endforeach
     <div class="propertyDetail-page">
         <div class="container">
-            <ul>
+            <ul class="breadcrumbs container">
                 @foreach($response['data']['breadcrumb'] as $bread)
                     <li><a href="{{$bread['destination']}}">{{$bread['title']}}</a></li>
                 @endforeach

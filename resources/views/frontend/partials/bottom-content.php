@@ -26,9 +26,7 @@
         </div>
     </div>
 </footer>
-<?php if(Route::getCurrentRoute()->getPath() =='/'){ ?>
-<a href="#alerts-nugree" class="lightbox btn-alerts-nugree"></a>
-<?php } ?>
+
 </div>
 <nav id="nav">
     <a class="navigation-toggler close"><span class="icon-cross"></span></a>
