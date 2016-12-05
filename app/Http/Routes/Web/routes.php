@@ -1,41 +1,57 @@
 <?php
-
-/***********   UPDATING SLUGS IN PREVIOUS PROPERTIES IN LIVE   **************/
-function convertPropertyAreaToActualUnit(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
-{
-    $property->land->area = \App\Libs\Helpers\LandArea::convert('square feet',$property->land->unit->name, $property->land->area);
-    return $property;
-}
-function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
-{
-    $slug = ''.$property->land->area.'-'.$property->land->unit->name .'-'.$property->type->subType->name.'-'. $property->purpose->name.'-in-'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
-    return preg_replace('/\s+/', '-',$slug);
-}
-
-Route::get('slug_in_property_json',function(){
-//    $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
+//
+///***********   UPDATING SLUGS IN PREVIOUS PROPERTIES IN LIVE   **************/
+//function convertPropertyAreaToActualUnit(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
+//{
+//    $property->land->area = \App\Libs\Helpers\LandArea::convert('square feet',$property->land->unit->name, $property->land->area);
+//    return $property;
+//}
+//function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
+//{
+//    $slug = $property->land->area.'-'.$property->land->unit->name .'-'.$property->type->subType->name.'-'. $property->purpose->name.'-in-'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
+//    echo $slug;
+//        return preg_replace('/\s+/', '-',$slug);
+//}
+//
+//Route::get('slug_in_property_json',function(){
+////    $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
+////    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
+////    $properties = $propertiesRepo->all();
+////    collect($properties)->each(function($property) use($propertiesRepo, $propertiesJsonRepo){
+////        ini_set('max_execution_time', 300);
+////        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
+////        $propertyJson = convertPropertyAreaToActualUnit(clone($propertyJsonActual));
+////        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
+////        $property->slug = propertySlug($propertyJson);
+////        $propertiesRepo->update($property);
+////        \Illuminate\Support\Facades\Event::fire(new \App\Events\Events\Property\PropertyUpdated($property));
+////    });
+//
+//
 //    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
-//    $properties = $propertiesRepo->all();
-//    collect($properties)->each(function($property) use($propertiesRepo, $propertiesJsonRepo){
-//        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
-//        $propertyJson = convertPropertyAreaToActualUnit(clone($propertyJsonActual));
-//        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
-//        $property->slug = propertySlug($propertyJson);
-//        $propertiesRepo->update($property);
-//        \Illuminate\Support\Facades\Event::fire(new \App\Events\Events\Property\PropertyUpdated($property));
+//    $jsons = $propertiesJsonRepo->all();
+//     //dd($jsons);
+//    collect($jsons)->each(function($json) use( $propertiesJsonRepo){
+//        ini_set('max_execution_time', 300);
+//        $json->location->city->slug = $json->location->city->name;
+//        $json->location->location->slug = preg_replace('/\s+/', '-', $json->location->location->location.'_'. $json->location->location->id);
+//        $propertiesJsonRepo->update( $json);
 //    });
-
-
-    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
-    $jsons = $propertiesJsonRepo->all();
-    collect($jsons)->each(function($json) use($propertiesJsonRepo){
-        $json->location->city->slug = $json->location->city->name;
-        $json->location->location->slug = $json->location->location->id;
-        $propertiesJsonRepo->update($json);
-    });
-
-
-});
+//
+//
+//});
+//Route::get('add-slug-and-tiltel',function(){
+//    $locations = (new \App\Repositories\Repositories\Sql\LocationsRepository());
+//    $currentLocation = $locations->all();
+//    dd($currentLocation);
+//    collect($currentLocation)->each(function($location) use ($locations){
+//        ini_set('max_execution_time', 300);
+//        $location->title = $location->location;
+//        $location->slug = preg_replace('/\s+/', '-',$location->location.'_'.$location->id);
+//        $locations->update($location);
+//    });
+//   dd('done');
+//});
 
 /********************************************************************************************************************************/
 

@@ -10,6 +10,7 @@ use App\DB\Providers\SQL\Factories\Factories\AgencyLocation\AgencyLocationFactor
 use App\DB\Providers\SQL\Factories\Factories\City\CityFactory;
 use App\DB\Providers\SQL\Factories\Factories\Location\LocationFactory;
 use App\DB\Providers\SQL\Factories\Factories\Property\PropertyFactory;
+use App\DB\Providers\SQL\Factories\Factories\PropertyJson\PropertyJsonFactory;
 use App\DB\Providers\SQL\Factories\Helpers\QueryBuilder;
 use Illuminate\Support\Facades\DB;
 class LocationQueryBuilder extends QueryBuilder
@@ -34,6 +35,7 @@ class LocationQueryBuilder extends QueryBuilder
             ->where($this->table.'.city_id','=',$params['cityId'])
             ->get();
     }
+
     public function getByCity($params)
     {
         $property = (new PropertyFactory())->getTable();

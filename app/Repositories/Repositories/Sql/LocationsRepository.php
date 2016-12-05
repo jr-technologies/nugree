@@ -53,6 +53,8 @@ class LocationsRepository extends SqlRepository implements SocietiesRepoInterfac
     {
         return $this->factory->all();
     }
+
+
     public function update(Location $location)
     {
         $this->factory->update($location);
