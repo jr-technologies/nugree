@@ -87,10 +87,9 @@ class PropertiesController extends ApiController
         $property->id = $propertyId;
         $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
         Event::fire(new PropertyCreated($property));
-        $propertyJson = $this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($propertyId));
-        $property->slug = $this->propertySlug($propertyJson);
+        $property->slug = $this->propertySlug($this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($propertyId)));
         $this->properties->update($property);
-        Event::fire(new PropertyBasicInfoUpdated($property,$propertyJson));
+        Event::fire(new PropertyBasicInfoUpdated($property,$this->propertiesJsonRepo->getById($propertyId)));
         return $this->response->respond(['data' => [
             'property' => $property,
             'features' => $request->getFeaturesValues($propertyId),
@@ -102,15 +101,13 @@ class PropertiesController extends ApiController
     {
         $propertyId = $this->properties->store($property);
         $this->propertyFeatureValues->storeMultiple($request->getFeaturesValues($propertyId));
-
         $property->id = $propertyId;
         $this->storeFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $propertyId);
         $property = $this->properties->getById($propertyId);
         Event::fire(new PropertyCreated($property));
-        $propertyJson = $this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($propertyId));
-        $property->slug = $this->propertySlug($propertyJson);
+        $property->slug = $this->propertySlug($this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($propertyId)));
         $this->properties->update($property);
-        Event::fire(new PropertyBasicInfoUpdated($property,$propertyJson));
+        Event::fire(new PropertyBasicInfoUpdated($property,$this->propertiesJsonRepo->getById($propertyId)));
         return $property;
     }
 
