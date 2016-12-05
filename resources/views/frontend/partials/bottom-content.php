@@ -133,7 +133,7 @@
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/fixed-block.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/lightBox.js" type="text/javascript" defer></script>
 <script src="<?= url('/')?>/web-apps/frontend/assets/js/jquery-main.js" type="text/javascript" defer></script>
-<!--<script src="--><?//= url('/')?><!--/web-apps/frontend/assets/js/registration.js" type="text/javascript" defer></script>-->
+<script src="<?= url('/')?>/web-apps/frontend/assets/js/registration.js" type="text/javascript" defer></script>
 <!--<script src="--><?//= url('/')?><!--/web-apps/frontend/assets/js/property_detail.js" type="text/javascript"></script>-->
 <script src="<?= url('/')?>/assets/js/helper.js" type="text/javascript"></script>
 <script src="<?= url('/')?>/assets/js/ajax-locations-search.js" type="text/javascript"></script>

@@ -12,27 +12,38 @@ function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJson
     return preg_replace('/\s+/', '-',$slug);
 }
 
-Route::get('slug_in_property_json',function(){
-//    $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
-//    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
-//    $properties = $propertiesRepo->all();
-//    collect($properties)->each(function($property) use($propertiesRepo, $propertiesJsonRepo){
-//        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
-//        $propertyJson = convertPropertyAreaToActualUnit(clone($propertyJsonActual));
-//        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
-//        $property->slug = propertySlug($propertyJson);
-//        $propertiesRepo->update($property);
-//        \Illuminate\Support\Facades\Event::fire(new \App\Events\Events\Property\PropertyUpdated($property));
-//    });
+Route::get('properties_with_dangling_location', function(){
+    dd(\Illuminate\Support\Facades\DB::table('properties')->select('properties.id')->leftJoin('locations','locations.id','properties.location_id')->where('locations.id',null)->get());
+});
 
-
-    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
-    $jsons = $propertiesJsonRepo->all();
-    collect($jsons)->each(function($json) use($propertiesJsonRepo){
-        $json->location->city->slug = $json->location->city->name;
-        $json->location->location->slug = $json->location->location->id;
-        $propertiesJsonRepo->update($json);
+Route::get('add_slug_to_locations', function(){
+    $locationsRepo = (new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo();
+    collect($locationsRepo->all())->each(function($location) use ($locationsRepo){
+        $location->slug = $location->location."-".$location->cityId;
+        $locationsRepo->update(clone($location));
     });
+});
+
+Route::get('slug_in_property_json',function(){
+    $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
+    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
+    $properties = $propertiesRepo->all();
+    collect($properties)->each(function($property) use($propertiesRepo, $propertiesJsonRepo){
+        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
+        $propertyJson = convertPropertyAreaToActualUnit(clone($propertyJsonActual));
+        $propertyJsonActual = $propertiesJsonRepo->getById($property->id);
+        $property->slug = propertySlug($propertyJson);
+        $propertiesRepo->update($property);
+        \Illuminate\Support\Facades\Event::fire(new \App\Events\Events\Property\PropertyUpdated($property));
+    });
+
+//    $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
+//    $jsons = $propertiesJsonRepo->all();
+//    collect($jsons)->each(function($json) use($propertiesJsonRepo){
+//        $json->location->city->slug = $json->location->city->name;
+//        $json->location->location->slug = $json->location->location->id;
+//        $propertiesJsonRepo->update($json);
+//    });
 
 
 });

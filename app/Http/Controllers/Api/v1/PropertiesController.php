@@ -113,6 +113,7 @@ class PropertiesController extends ApiController
         Event::fire(new PropertyBasicInfoUpdated($property,$propertyJson));
         return $property;
     }
+
     public function storeWithAuth(AddPropertyWithAuthRequest $request)
     {
 
