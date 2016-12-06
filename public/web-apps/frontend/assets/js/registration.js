@@ -103,12 +103,16 @@ $(document).on('click', '.packetData>.delete', function(){
 
 function addValidationsOnAgentInfo()
 {
+	$("#cities-select").attr('required','required');
+	$("#locations-select").attr('required','required');
 	$('#agency-name').attr('required','required');
 	$('#compny-mobile').attr('required','required');
 	$('#compny-email').attr('required','required');
 }
 function removeValidationsOnAgentInfo()
 {
+	$('#cities-select').removeAttr('required');
+	$('#locations-select').removeAttr('required');
 	$('#agency-name').removeAttr('required');
 	$('#compny-mobile').removeAttr('required');
 	$('#compny-email').removeAttr('required');
