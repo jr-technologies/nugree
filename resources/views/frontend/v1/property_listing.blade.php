@@ -276,7 +276,7 @@
                                         }
                                     }
                                     ?>
-                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent?agent_id='.$property->owner->id) }}" @endif>
+                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent'.'/'.$property->owner->id) }}" @endif>
                                         <img src="{{$image}}" alt="image description" class="company-logo"></a>
                                 </div>
                             </div>
