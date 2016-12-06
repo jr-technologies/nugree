@@ -8,9 +8,10 @@ function convertPropertyAreaToActualUnit(\App\Libs\Json\Prototypes\Prototypes\Pr
 }
 function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
 {
-    $slug = ''.$property->land->area.'-'.$property->land->unit->name .'-'.$property->type->subType->name.'-'. $property->purpose->name.'-in-'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
-    return preg_replace('/\s+/', '-',$slug);
+    $slug = $property->land->area.'-'.$property->land->unit->name.'-'.$property->type->subType->name.'-'.$property->purpose->name.'-in'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
+    return str_replace('--','-',preg_replace('/\s+/', '-',$slug));
 }
+
 
 Route::get('properties_with_dangling_location', function(){
     dd(\Illuminate\Support\Facades\DB::table('properties')->select('properties.id')->leftJoin('locations','locations.id','properties.location_id')->where('locations.id',null)->get());
@@ -1178,15 +1179,15 @@ Route::get('property/{property_title}',
     ]
 );
 
-//Route::get('property/{property_title}',
-//    [
-//        'middleware'=>
-//            [
-//                //'webValidate:getPropertyRequest'
-//            ],
-//        'uses'=>'PropertiesController@getById'
-//    ]
-//);
+Route::get('get-property-by-id',
+    [
+        'middleware'=>
+            [
+                //'webValidate:getPropertyRequest'
+            ],
+        'uses'=>'PropertiesController@getPropertyById'
+    ]
+);
 
 Route::get('agents',
     [

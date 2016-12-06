@@ -24,7 +24,7 @@ trait SlugBuilder
 
     public function propertySlug(PropertyJsonPrototype $property)
     {
-        $slug = ''.$property->land->area.'-'.$property->land->unit->name .'-'.$property->type->subType->name.'-'. $property->purpose->name.'-in-'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
-        return preg_replace('/\s+/', '-',$slug);
+        $slug = ''.$property->land->area.'-'.$property->land->unit->name .'-'.$property->type->subType->name.'-'. $property->purpose->name.'-in'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
+        return str_replace('--','-',preg_replace('/\s+/', '-',$slug));
     }
 }

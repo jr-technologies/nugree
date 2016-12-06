@@ -159,6 +159,10 @@ class PropertiesController extends ApiController
         $this->updatePropertyFiles($request->getFiles(), $this->inStoragePropertyDocPath($property), $property->id);
         if(is_array($request->get('deletedFiles'))){$this->deleteByIds($request->get('deletedFiles'));}
         Event::fire(new PropertyUpdated($property));
+        $property->slug = $this->propertySlug($this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($property->id)));
+        dd($property);
+        $this->properties->update($property);
+        Event::fire(new PropertyBasicInfoUpdated($property,$this->propertiesJsonRepo->getById($property->id)));
         return $this->response->respond(['data'=>[
             'property'=>$this->releasePropertiesJsonFiles($this->propertiesJsonRepo->getUserProperties(['propertyId'=>$property->id]))[0]
         ]]);

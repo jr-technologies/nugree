@@ -202,11 +202,10 @@
                 <?php
                 $countForBanner =0;
                 $betweenCountIndex=0;
-
                 ?>
 
                 @foreach($response['data']['properties'] as $property)
-
+                  @if($property->slug !="" && $property->slug !=null)
                     <article class="publicProperty-post">
                         <div class="image-holder">
                             <div class="listing-image-slider">
@@ -276,7 +275,7 @@
                                         }
                                     }
                                     ?>
-                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent'.'/'.$property->owner->id) }}" @endif>
+                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent'.'/'.$property->owner->agency->slug) }}" @endif>
                                         <img src="{{$image}}" alt="image description" class="company-logo"></a>
                                 </div>
                             </div>
@@ -376,7 +375,7 @@
                     }
                     ?>
 
-
+                   @endif
                 @endforeach
                 <div class="match-pro-noti text-center">
                     <a href="#found-match" class="btn-default lightbox">Notify me</a>

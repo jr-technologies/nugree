@@ -323,7 +323,37 @@ class PropertiesController extends Controller
             ]]);
         }
     }
-
+    public function getPropertyById(GetPropertyRequest $request)
+    {
+        try {
+            $property = $this->properties->getById($request->get('propertyId'));
+            if ($property->propertyStatus->id == ($this->status->getActiveStatusId())) {
+                $this->propertiesRepo->IncrementViews($property->id);
+                $loggedInUser = $request->user();
+                $property = $this->convertPropertyAreaToActualUnit($property);
+                $propertyOwner = $this->users->find($property->owner->id);
+                return $this->response->setView('frontend.v1.property_detail')->respond(['data' => [
+                    'isFavourite' => ($loggedInUser == null) ? false : $this->favouriteFactory->isFavourite($property->id, $loggedInUser->id),
+                    'property' => $this->releaseAllPropertiesFiles([$property])[0],
+                    'loggedInUser' => $loggedInUser,
+                    'user' => $this->users->find($property->owner->id),
+                    'propertyOwner' => $propertyOwner,
+                    'banners' => $this->getPropertyDetailPageBanners(),
+                    'propertyId' => $property->id,
+                    'extraMeta' => $property,
+                    'breadcrumb' => $this->propertyBreadcrumbs($property)
+                ]]);
+            } else {
+                return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
+                    'propertyId' => $request->get('propertyId')
+                ]]);
+            }
+        }catch(\Exception $e){
+            return $this->response->setView('frontend.v1.No-result')->respond(['data' => [
+                'propertyId' => $request->get('propertyId')
+            ]]);
+        }
+    }
     public function getPropertyDetailPageBanners()
         {
             $leftBanners = $this->banners->getBanners([
