@@ -20,5 +20,7 @@ class PropertyAgencyJsonPrototype extends JsonPrototype implements JsonPrototype
     public $fax  = "";
     public $email = "";
     public $logo ="";
-    public $slug ="";
+
+    public $slug = "";
+
 }

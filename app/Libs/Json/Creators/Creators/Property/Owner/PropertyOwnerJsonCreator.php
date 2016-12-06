@@ -43,6 +43,7 @@ class PropertyOwnerJsonCreator extends JsonCreator implements JsonCreatorInterfa
 
         return $this->prototype;
     }
+
     private function getUserRole()
     {
       $userRoles = $this->userRole->getUserRoles($this->model->id);
@@ -57,6 +58,7 @@ class PropertyOwnerJsonCreator extends JsonCreator implements JsonCreatorInterfa
         }
         return 0;
     }
+
     private function getAgency()
     {
         $agencies = $this->agenciesRepository->getByUser($this->model->id);
