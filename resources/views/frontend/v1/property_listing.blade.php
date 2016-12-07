@@ -205,7 +205,6 @@
                 ?>
 
                 @foreach($response['data']['properties'] as $property)
-                  @if($property->slug !="" && $property->slug !=null)
                     <article class="publicProperty-post">
                         <div class="image-holder">
                             <div class="listing-image-slider">
@@ -374,8 +373,6 @@
 
                     }
                     ?>
-
-                   @endif
                 @endforeach
                 <div class="match-pro-noti text-center">
                     <a href="#found-match" class="btn-default lightbox">Notify me</a>
