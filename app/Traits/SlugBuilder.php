@@ -10,13 +10,7 @@ namespace App\Traits;
 
 use App\DB\Providers\SQL\Models\Property;
 use App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype;
-use App\Repositories\Providers\Providers\BlocksRepoProvider;
-use App\Repositories\Providers\Providers\CitiesRepoProvider;
-use App\Repositories\Providers\Providers\LocationsRepoProvider;
-use App\Repositories\Providers\Providers\PropertyPurposesRepoProvider;
-use App\Repositories\Providers\Providers\PropertySubTypesRepoProvider;
-use App\Repositories\Providers\Providers\PropertyTypesRepoProvider;
-use App\Traits\AppTrait;
+
 
 trait SlugBuilder
 {

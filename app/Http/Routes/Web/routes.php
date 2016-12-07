@@ -12,12 +12,12 @@ function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJson
     return str_replace('--','-',preg_replace('/\s+/', '-',$slug));
 }
 
-
-Route::get('properties_with_dangling_location', function(){
+Route::get('properties_with_dangling_location',function()
+{
     dd(\Illuminate\Support\Facades\DB::table('properties')->select('properties.id')->leftJoin('locations','locations.id','properties.location_id')->where('locations.id',null)->get());
 });
 
-Route::get('add_slug_to_locations', function(){
+Route::get('add_slug_to_locations',function(){
     $locationsRepo = (new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo();
     collect($locationsRepo->all())->each(function($location) use ($locationsRepo){
         $location->slug = $location->location."-".$location->cityId;
