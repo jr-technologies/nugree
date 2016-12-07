@@ -7,7 +7,16 @@
                 <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
             </ul>
             <form class="property-add" ng-submit="submitProperty()">
-                <input type="checkbox" name="add-for" id="for-wanted" value="1" ng-model="form.data.wanted">
+                <ul class="radio-checks-holder">
+                    <li class="wanted-holder pull-right">
+                        <label for="add-prop-wanted" class="customCheckbox">
+                            <input name="pro-want" id="add-prop-wanted" type="checkbox" value="1" ng-model="form.data.wanted">
+                            <span class="fake-radio"></span>
+                            <span class="fake-label">Wanted Property</span>
+                        </label>
+                        <div class="img"><img src="<?= url('/').'/web-apps/frontend/assets/images/z.png'?>" alt="Zaroorat property"></div>
+                    </li>
+                </ul>
                 <span class="fake-label">Wanted Property</span>
                 <strong class="add-pro-heading"><span>property for</span></strong>
                 <ul class="radio-checks-holder text-center">

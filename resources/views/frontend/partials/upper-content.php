@@ -36,10 +36,12 @@
         <meta name="description" content="<?php if(isset($response['data']['agent']->agencies[0]->description)){ echo $response['data']['agent']->agencies[0]->description;}  ?>">
     <?php }}?>
     <?php  if($pageName == 'property') {
-        if(isset($response['data']['extraMeta']) && $response['data']['extraMeta'] !='null' && $response['data']['extraMeta'] !="")
+        if(isset($response['data']['property']) && $response['data']['property'] !='null' && $response['data']['property'] !="")
         { ?>
 
-            <title><?php if(isset($response['data']['extraMeta'])){ echo $response['data']['extraMeta']->slug;} ?> | Nugree</title>
+            <title><?php if(isset($response['data']['property'])){ echo$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name
+                .' '.$response['data']['property']->type->subType->name.' '.config('constants.PROPERTY_PURPOSES')[$response['data']['property']->purpose->id].' in -'.$response['data']['property']->location->location->location
+                    .'- '.$response['data']['property']->location->city->name.'-'.$response['data']['property']->id;} ?> | Nugree</title>
             <meta name="description" content="<?php if(isset($response['data']['extraMeta'])){ echo $response['data']['extraMeta']->description;}  ?>">
         <?php }}?>
     <meta name="google-site-verification" content="uZU-sY5fbKrq9ABTZxjUntC-Zsc5sSd_xD9U5DkLnXs" />
@@ -74,7 +76,7 @@
         <div class="logo"><a href="<?=url('/')?>"><img src="<?=url('/')?>/web-apps/frontend/assets/images/logo.png" alt="nugree.com"></a></div>
         <div class="right-area">
             <a class="searchOpener"><span class="icon-search"></span></a>
-            <?= Form::open(array('url' => 'property','method' => 'GET','class'=>'searchById')) ?>
+            <?= Form::open(array('url' => 'get-property-by-id','method' => 'GET','class'=>'searchById')) ?>
             <input type="number" placeholder="Search by ID" name="propertyId" value="<?=(isset($response['data']['propertyId']))?$response['data']['propertyId']:""?>">
             <button type="submit"><span class="icon-search"></span></button>
             <?=Form::close()?>

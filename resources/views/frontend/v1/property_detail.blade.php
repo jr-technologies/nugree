@@ -15,10 +15,10 @@
             <div class="detail-holder">
                 <div class="frame">
                     <div class="property-picture-holder">
-                        <h1><a href="{{URL::to('property?propertyId=').$response['data']['property']->id}}"> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
+                        <h1> {{ ''.$response['data']['property']->land->area.' '.$response['data']['property']->land->unit->name .' '}}
                                 {{$response['data']['property']->type->subType->name.'
                                  '.$response['data']['property']->purpose->name.' in '.$response['data']['property']->location->location->location .'('.$response['data']['property']->location->city->name.')'/*.' in '.$response['data']['property']->location->block->name.' Block'.
-                                ' '.$response['data']['property']->location->society->name*/}}</a></h1>
+                                ' '.$response['data']['property']->location->society->name*/}}</h1>
                         <?php
                         $user = (new \App\Libs\Helpers\AuthHelper())->user();
                         ?>
