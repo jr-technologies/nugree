@@ -52,7 +52,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             alert('Sorry! property not found');
             return $location.path($state.href('home.properties.all').substring(1));
         }
-        console.log(property);
         $rootScope.loading_content_class = '';
         $scope.html_title = "Property42 | Add Property";
         $scope.propertySaved = false;
@@ -86,7 +85,6 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
                     cityId: $scope.temp.city.id
                 }
             }).then(function(response){
-                console.log(response);
                 $scope.locations = response.data.data.locations;
             });
         };
