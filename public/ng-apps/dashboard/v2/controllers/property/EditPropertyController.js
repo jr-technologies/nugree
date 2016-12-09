@@ -83,7 +83,7 @@ app.controller("EditPropertyController",['property', "$scope", "$rootScope", "$C
             return $http.get(apiPath+'locations/search', {
                 params: {
                     keyword: $select.search,
-                    cityId: $scope.cityId
+                    cityId: $scope.temp.city.id
                 }
             }).then(function(response){
                 console.log(response);
