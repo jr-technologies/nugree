@@ -28,14 +28,44 @@ Route::get('add_slug_to_locations',function(){
 Route::get('print_locations',function(){
     $client = new AlgoliaSearch\Client("870383THWM", "af32248e2985d139855c9040270fed28");
     $index = $client->initIndex('pro_nugree_locations');
+    $results = $index->browse();
+    $records = $results['hits'];
+    $final=[];
+    foreach($records as $record)
+    {
+        $final[] = $record['id'];
+    }
+    $locations = (new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo()->all();
+    $finalLocations =[];
+    foreach($locations as $location)
+    {
+        ini_set('max_execution_time', 300);
+        if(!in_array($location->id, $final))
+        {
+             $finalLocations[] = $location->id;
+        }
+    }
+    $fullFinalLocation = [];
+    foreach($finalLocations as $getLocation)
+    {
+        $fullFinalLocation[]  = (new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo()->getById($getLocation);
 
-    var_dump($client->listIndexes());
-//    $locations = (new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo()->all();
-//    $finalLocations = [];
-//     foreach($locations as $location)
-//     {
-//
-//     }
+//        ini_set('max_execution_time', 300);
+//       $index->addObject([
+//              "id" => $location->id,
+//              "city_id" => $location->cityId,
+//              "location" => $location->location,
+//              "lat"=> $location->lat,
+//              "long"=> $location->long,
+//              "priority"=> $location->priority,
+//              "createdAt"=> $location->createdAt,
+//              "updatedAt"=> $location->updatedAt,
+//              "objectID"=> $location->id,
+//        ]);
+    }
+        dd(json_encode($fullFinalLocation));
+    echo 'done';
+
 });
 
 Route::get('slug_in_property_json',function(){

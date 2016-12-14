@@ -129,16 +129,23 @@
                                 <a class="filters-links-opener">LOCATION / SOCIETY</a>
                                 <div class="slide">
                                     <ul class="filterChecks">
-                                        <li>
-                                            <select class="js-example-basic-single" name="city_id" id="cities-select">
-                                                <option value="">Select City</option>
-                                                @foreach($response['data']['cities'] as $city)
-                                                    <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </li>
-                                        <li>
-                                            <input id="selectbox" class="ajax-locations-select" name="location_id">
+                                        <li class="active">
+                                            <a class="filters-links-opener">LOCATION / SOCIETY</a>
+                                            <div class="slide">
+                                                <ul class="filterChecks">
+                                                    <li>
+                                                        <select class="js-example-basic-single" name="city_id" id="cities-select">
+                                                            <option value="">Select City</option>
+                                                            @foreach($response['data']['cities'] as $city)
+                                                                <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </li>
+                                                    <li>
+                                                        <input id="selectbox" class="ajax-locations-select" name="location_id">
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
