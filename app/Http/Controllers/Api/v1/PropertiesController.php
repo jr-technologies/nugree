@@ -161,6 +161,7 @@ class PropertiesController extends ApiController
         Event::fire(new PropertyUpdated($property));
         $property->slug = $this->propertySlug($this->convertPropertyAreaToActualUnit($this->propertiesJsonRepo->getById($property->id)));
         $this->properties->update($property);
+        //dd($property);
         Event::fire(new PropertyBasicInfoUpdated($property,$this->propertiesJsonRepo->getById($property->id)));
         return $this->response->respond(['data'=>[
             'property'=>$this->releasePropertiesJsonFiles($this->propertiesJsonRepo->getUserProperties(['propertyId'=>$property->id]))[0]

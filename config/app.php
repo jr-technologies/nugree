@@ -150,8 +150,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
-
-        Laravel\Socialite\SocialiteServiceProvider::class,
+       // Laravel\Socialite\SocialiteServiceProvider::class,
 
 
 

@@ -83,6 +83,7 @@ app.run(function($rootScope, $location, $AuthService, $state, $ErrorResponseHand
 
     $rootScope.propertiesCounts = {};
     $rootScope.$on( "$stateChangeStart", function(event, next, current) {
+
         if(next.auth == true && $AuthService.getAppToken() == null){
             alert('session expired! please login again.');
             window.location.href = domain+'logout';

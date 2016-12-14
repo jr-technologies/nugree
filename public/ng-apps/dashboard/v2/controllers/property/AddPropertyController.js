@@ -188,7 +188,6 @@ app.controller("AddPropertyController",["$scope", "$rootScope", "$CustomHttpServ
             $scope.propertySaved = true;
             $rootScope.propertiesCounts = response.data.data.propertiesCounts;
             resetForm();
-            console.log($scope.form.data);
         }, function (response) {
             $rootScope.$broadcast('error-response-received',{status:response.status});
             $rootScope.please_wait_class = '';

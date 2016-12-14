@@ -25,6 +25,19 @@ Route::get('add_slug_to_locations',function(){
     });
 });
 
+Route::get('print_locations',function(){
+    $client = new AlgoliaSearch\Client("870383THWM", "af32248e2985d139855c9040270fed28");
+    $index = $client->initIndex('pro_nugree_locations');
+
+    var_dump($client->listIndexes());
+//    $locations = (new \App\Repositories\Providers\Providers\LocationsRepoProvider())->repo()->all();
+//    $finalLocations = [];
+//     foreach($locations as $location)
+//     {
+//
+//     }
+});
+
 Route::get('slug_in_property_json',function(){
     $propertiesRepo =(new \App\Repositories\Repositories\Sql\PropertiesRepository());
     $propertiesJsonRepo =(new \App\Repositories\Repositories\Sql\PropertiesJsonRepository());
