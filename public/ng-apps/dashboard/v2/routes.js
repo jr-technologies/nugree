@@ -26,6 +26,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         })
         .state('home.profile', {
+
             url: "/profile",
             templateUrl: views+"/profile.html",
             controller: "UserProfileController",

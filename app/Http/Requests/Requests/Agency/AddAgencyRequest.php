@@ -11,6 +11,7 @@ use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\AgencyValidators\AddAgencyValidator;
 use App\Transformers\Request\Agency\AddAgencyTransformer;
+
 class AddAgencyRequest extends Request implements RequestInterface{
 
     public $validator = null;

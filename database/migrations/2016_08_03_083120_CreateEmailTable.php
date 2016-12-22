@@ -16,6 +16,7 @@ class CreateEmailTable extends Migration
                 $table->increments('id');
                 $table->string('type');
                 $table->mediumText('json');
+                $table->integer('is_read');
                 $table->timestamps();
             });
     }

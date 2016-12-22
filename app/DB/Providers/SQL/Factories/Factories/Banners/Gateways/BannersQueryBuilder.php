@@ -49,7 +49,8 @@ class BannersQueryBuilder extends QueryBuilder
             ->leftjoin($pagesTable,$bannerPages.'.page_id','=',$pagesTable.'.id')
             ->select($this->table.'.*');
 
-        $query = $query->orWhere(function ($query)  use ($bannerSocietiesTable, $bannerSizeTable, $landUnit, $params) {
+        $query = $query->orWhere(function ($query)  use ($bannerSocietiesTable, $bannerSizeTable, $landUnit, $params)
+        {
             if(isset($params['societyId']) && $params['societyId'] !=null && $params['societyId'] !="")
                 $query = $query->orWhere($bannerSocietiesTable.'.location_id','=',$params['societyId']);
             $query = $query->orWhere(function ($query) use ($bannerSizeTable, $landUnit, $params) {

@@ -1,6 +1,7 @@
 <?php
 
 
+
 ///***********   UPDATING SLUGS IN PREVIOUS PROPERTIES IN LIVE   **************/
 //function convertPropertyAreaToActualUnit(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
 //{
@@ -319,6 +320,7 @@ Route::post('join-us',
     ]
 );
 
+
 Route::post('maliksajidawan786@gmail.com/add/city',
     [
         'middleware'=>
@@ -376,12 +378,6 @@ Route::post('maliksajidawan786@gmail.com/delete/city',
         'uses'=>'CitiesController@delete'
     ]
 );
-
-
-
-
-
-
 
 
 Route::get('maliksajidawan786@gmail.com/project',

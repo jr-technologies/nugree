@@ -8,11 +8,7 @@
 
 namespace App\Libs\Auth;
 
-
-use App\Events\Events\User\UserBasicInfoUpdated;
-use App\Libs\Auth\Traits\TokenGenerator;
 use App\DB\Providers\SQL\Models\User;
-use Illuminate\Support\Facades\Event;
 
 class Api extends Authenticate implements AuthInterface
 {
@@ -59,7 +55,8 @@ class Api extends Authenticate implements AuthInterface
 
     /**
      * @param null $accessToken
-     */
+    */
+
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;

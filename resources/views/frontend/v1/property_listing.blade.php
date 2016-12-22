@@ -61,7 +61,7 @@
                     <p>Offered Property Search Filters</p>
                     <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
                 </div>
-                <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
+                <form class="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
                     <input type="hidden" name="wanted" id="wanted-pro" value="0" checked>
                     <ul class="filters-links text-upparcase">
                         <li class="active">
@@ -154,7 +154,7 @@
                             <div class="slide">
                                 <div class="fromTo full-width">
                                     <div class="field-holder">
-                                        <input type="number" placeholder="From"  name="price_from" id="convertFrom" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
+                                        <input type="text" placeholder="From"  name="price_from" id="convertFrom" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
                                     </div>
                                     <div class="field-holder">
                                         <input type="number" placeholder="To"   name="price_to" id="convertTo" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
@@ -205,6 +205,7 @@
                 ?>
 
                 @foreach($response['data']['properties'] as $property)
+                    @if($property->slug !="" && $property->slug !=null)
                     <article class="publicProperty-post">
                         <div class="image-holder">
                             <div class="listing-image-slider">
@@ -274,7 +275,7 @@
                                         }
                                     }
                                     ?>
-                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent'.'/'.$property->owner->agency->slug) }}" @endif>
+                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent'.'/'.$property->owner->agency->id) }}" @endif>
                                         <img src="{{$image}}" alt="image description" class="company-logo"></a>
                                 </div>
                             </div>
@@ -373,6 +374,7 @@
 
                     }
                     ?>
+                   @endif
                 @endforeach
                 <div class="match-pro-noti text-center">
                     <a href="#found-match" class="btn-default lightbox">Notify me</a>

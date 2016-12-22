@@ -49,7 +49,8 @@ abstract class Authenticate
      * @param User $authenticatedUser
      * @return User
      */
-    public function login(User $authenticatedUser){
+    public function login(User $authenticatedUser)
+    {
         $authenticatedUser->access_token = $this->generateToken($authenticatedUser->id);
         $this->users->update($authenticatedUser);
         Event::fire(new UserBasicInfoUpdated($authenticatedUser));
