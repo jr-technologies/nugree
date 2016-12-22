@@ -15,7 +15,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: views+"/home.html",
             controller: "HomeController",
             auth: true,
-
             resolve: {
                 resources : function ($ResourceLoader, $rootScope) {
                     if($ResourceLoader.needsLoading())

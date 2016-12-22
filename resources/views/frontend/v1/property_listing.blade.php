@@ -32,31 +32,30 @@
             }
 
         });
-
-
-    </script>
+</script>
     <link media="all" rel="stylesheet" href="{{url('/')}}/web-apps/frontend/assets/css/property-agent-listing.css">
     <div class="listing-page">
-      @if(isset($response['data']['banners']['topBanners']) && (sizeof($response['data']['banners']['topBanners'])) > 0)
-        <div class="ads-slideshow">
-            <div class="mask">
-                <div class="slideset">
-                    <div class="slide">
-                        @if(isset($response['data']['banners']['topBanners'][0]))
-                            <a @if($response['data']['banners']['topBanners'][0]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][0]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'. $response['data']['banners']['topBanners'][0]->image}}" alt="image description"></a>
-                        @endif
-                        @if(isset($response['data']['banners']['topBanners'][1]))
-                            <a @if($response['data']['banners']['topBanners'][1]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][1]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['topBanners'][1]->image}}" alt="image description"></a>
-                       @endif
+        @if(isset($response['data']['banners']['topBanners']) && (sizeof($response['data']['banners']['topBanners'])) > 0)
+            <div class="ads-slideshow">
+                <div class="mask">
+                    <div class="slideset">
+                        <div class="slide">
+                            @if(isset($response['data']['banners']['topBanners'][0]))
+                                <a @if($response['data']['banners']['topBanners'][0]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][0]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'. $response['data']['banners']['topBanners'][0]->image}}" alt="image description"></a>
+                            @endif
+                            @if(isset($response['data']['banners']['topBanners'][1]))
+                                <a @if($response['data']['banners']['topBanners'][1]->banner_link !=="")href="{{$response['data']['banners']['topBanners'][1]->banner_link}}"@endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['topBanners'][1]->image}}" alt="image description"></a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-      @endif
+        @endif
         <div class="container">
             <a class="aside-opener-filters togglerSearchButton">More Filters <b>(Land Area / Price...)</b><span class="button"><b></b></span></a>
             <div id="aside-holder">
                 <aside id="aside">
+<<<<<<< HEAD
                 <div class="top-head">
                     <p>Offered Property Search Filters</p>
                     <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
@@ -96,42 +95,83 @@
                                                 <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
                                                        @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif
                                                        name="property_type_id" class="property_type filter-form-input" value="{{$propertyType->id}}" propertyType="{{$propertyType->id}}">
+=======
+                    <div class="top-head">
+                        <p>Offered Property Search Filters</p>
+                        <a class="close togglerSearchButton"><span class="icon-cross"></span></a>
+                    </div>
+                    <form cla ss="filter-form" id="properties-filter-form" method="get" action="<?= url('/search') ?>">
+                        <input type="hidden" name="wanted" id="wanted-pro" value="0" checked>
+                        <ul class="filters-links text-upparcase">
+                            <li class="active">
+                                <a class="filters-links-opener">PROPERTY FOR</a>
+                                <div class="slide">
+                                    <ul class="filterChecks">
+                                        <li>
+                                            <label for="buy-filter" class="customRadio">
+                                                <input type="radio" name="purpose_id" id="buy-filter" value="1" @if($response['data']['oldValues']['purposeId'] == 1) checked @endif>
+>>>>>>> 6009eb22ac147da1c0f10063de1dee6f99fab6e9
                                                 <span class="fake-checkbox"></span>
-                                                <span class="fake-label">{{$propertyType->name}}</span>
+                                                <span class="fake-label">BUY</span>
                                             </label>
                                         </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">Property SUB-Type</a>
-                            <div class="slide">
-                                <ul class="filterChecks" id="propertySubtype">
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">LOCATION / SOCIETY</a>
-                            <div class="slide">
-                                <ul class="filterChecks">
-                                    <li>
-                                      <select class="js-example-basic-single" name="city_id" id="cities-select">
-                                            <option value="">Select City</option>
-                                            @foreach($response['data']['cities'] as $city)
-                                                <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <input id="selectbox" name="location_id">
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">LAND AREA</a>
-                            <div class="slide">
+                                        <li>
+                                            <label for="rent-filter" class="customRadio">
+                                                <input type="radio" name="purpose_id" id="rent-filter" value="2" @if($response['data']['oldValues']['purposeId'] == 2) checked @endif>
+                                                <span class="fake-checkbox"></span>
+                                                <span class="fake-label">Rent</span>
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">Property Type</a>
+                                <div class="slide">
+                                    <ul class="filterChecks">
+                                        @foreach($response['data']['propertyTypes'] as $propertyType)
+                                            <li class="type">
+                                                <label for="{{$propertyType->name."_".$propertyType->id}}" class="customRadio">
+                                                    <input type="radio" id="{{$propertyType->name."_".$propertyType->id}}"
+                                                           @if($response['data']['oldValues']['propertyTypeId'] == $propertyType->id)checked @endif
+                                                           name="property_type_id" class="property_type filter-form-input" value="{{$propertyType->id}}" propertyType="{{$propertyType->id}}">
+                                                    <span class="fake-checkbox"></span>
+                                                    <span class="fake-label">{{$propertyType->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">Property SUB-Type</a>
+                                <div class="slide">
+                                    <ul class="filterChecks" id="propertySubtype">
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">LOCATION / SOCIETY</a>
+                                <div class="slide">
+                                    <ul class="filterChecks">
+                                        <li>
+                                            <select class="js-example-basic-single" name="city_id" id="cities-select">
+                                                <option value="">Select City</option>
+                                                @foreach($response['data']['cities'] as $city)
+                                                    <option value="{{$city->id}}" @if($response['data']['oldValues']['cityId'] == $city->id) selected @endif>{{$city->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <input id="selectbox" name="location_id">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">LAND AREA</a>
+                                <div class="slide">
                             <span class="fake-select">
                                 <select name="land_unit_id">
                                     @foreach($response['data']['landUnits'] as $landUnit)
@@ -139,44 +179,46 @@
                                     @endforeach
                                 </select>
                             </span>
-                                <div class="fromTo">
-                                    <div class="field-holder">
-                                        <input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}" >
-                                    </div>
-                                    <div class="field-holder">
-                                        <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <a class="filters-links-opener">PRICE RANGE</a>
-                            <div class="slide">
-                                <div class="fromTo full-width">
-                                    <div class="field-holder">
-                                        <input type="text" placeholder="From"  name="price_from" id="convertFrom" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
-                                    </div>
-                                    <div class="field-holder">
-                                        <input type="number" placeholder="To"   name="price_to" id="convertTo" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
+                                    <div class="fromTo">
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="From" name="land_area_from" value="{{$response['data']['oldValues']['landAreaFrom']}}" >
+                                        </div>
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="To" name="land_area_to" value="{{$response['data']['oldValues']['landAreaTo']}}">
+                                        </div>
                                     </div>
                                 </div>
-                                <span class="calculatedPrice">Please enter the price</span>
-                            </div>
-                        </li>
 
-                    </ul>
-                    <ul class="filter-btn">
-                        <li><button type="submit" class="btn-search">Search</button></li>
-                        <li><button type="reset" class="btn-reset">Reset</button></li>
-                    </ul>
-                </form>
-            </aside>
+                            </li>
+                            <li class="active">
+                                <a class="filters-links-opener">PRICE RANGE</a>
+                                <div class="slide">
+                                    <div class="fromTo full-width">
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="From"  name="price_from" id="convertFrom" value="{{$response['data']['oldValues']['priceFrom']}}" class="priceInputFrom PriceField">
+                                        </div>
+                                        <div class="field-holder">
+                                            <input type="number" placeholder="To"   name="price_to" id="convertTo" value="{{$response['data']['oldValues']['priceTo']}}" class="priceInputTo PriceField">
+                                        </div>
+
+                                    </div>
+                                    <span class="calculatedPrice">Please enter the price</span>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <ul class="filter-btn">
+                            <li><button type="submit" class="btn-search">Search</button></li>
+                            <li><button type="reset" class="btn-reset">Reset</button></li>
+                        </ul>
+                    </form>
+                </aside>
                 <ul class="banners">
-                @if(isset($response['data']['banners']['leftBanners']))
-                  @foreach($response['data']['banners']['leftBanners'] as $leftBanner )
-                    <li><a @if($leftBanner->banner_link !="") href="{{$leftBanner->banner_link}}" @endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$leftBanner->image}}" alt="image desktop"></a></li>
-                  @endforeach
-                @endif
+                    @if(isset($response['data']['banners']['leftBanners']))
+                        @foreach($response['data']['banners']['leftBanners'] as $leftBanner )
+                            <li><a @if($leftBanner->banner_link !="") href="{{$leftBanner->banner_link}}" @endif><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$leftBanner->image}}" alt="image desktop"></a></li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
             <section id="content">
@@ -205,81 +247,84 @@
                 ?>
 
                 @foreach($response['data']['properties'] as $property)
-                    @if($property->slug !="" && $property->slug !=null)
-                    <article class="publicProperty-post">
-                        <div class="image-holder">
-                            <div class="listing-image-slider">
-                                <div class="mask">
-                                    <div class="slideset">
+
+                    @if($property->slug != "" && $property !=null)
+                        <article class="publicProperty-post">
+                            <div class="image-holder">
+                                <div class="listing-image-slider">
+                                    <div class="mask">
+                                        <div class="slideset">
+
+                                            <?php
+                                            $image = url('/')."/assets/imgs/no.png";
+                                            foreach($property->documents as $document)
+                                            {
+                                                if($document->type == 'image' && $document->main == true && $document->path != "")
+                                                {
+                                                    $image = url('/').'/temp/'.$document->path;
+                                                }
+                                            }
+                                            $countForBanner++;
+                                            ?>
+                                            {{--@if(sizeof($property->documents) > 0)--}}
+                                            {{--@foreach($property->documents as $document)--}}
+                                            {{--<div class="slide">--}}
+                                            {{--<a href="property?propertyId={{$property->id}}">--}}
+                                            {{--@if($document->type == 'image'  && $document->path != "")--}}
+                                            {{--<img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">--}}
+                                            {{--@endif--}}
+                                            {{--</a>--}}
+                                            {{--</div>--}}
+                                            {{--@endforeach--}}
+                                            {{--@else--}}
+                                            <div class="slide">
+                                                <a href="{{URL::to('property').'/'.$property->slug}}">
+                                                    <img src="{{$image}}" alt="image description">
+                                                </a>
+                                            </div>
+                                            {{-- @endif--}}
+                                        </div>
+                                    </div>
+                                    <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
+                                    <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>
+                                </div>
+                            </div>
+
+                            <div class="caption text-left">
+                                <div class="layout">
+                                    <h1><a href="{{URL::to('property').'/'.$property->slug}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '. $property->purpose->name.'
+                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
+                                    <p>{{str_limit($property->description,148) }}</p>
+                                    <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
+                                    @if($property->isFeatured !=null)<span class="premiumProperty text-upparcase">{{'Featured'}}</span>@endif
+                                    <div class="holder-ui">
+                                        <ul class="public-ui-features text-capital">
+                                            @foreach($property->features as $feature)
+                                                @foreach($feature as $featureSection)
+                                                    @if($featureSection->priority ==1)
+                                                        <li>{{$featureSection->name}}:<span>{{$featureSection->value}}</span></li>
+                                                    @endif
+                                                @endforeach
+
+                                            @endforeach
+                                        </ul>
+
 
                                         <?php
-                                        $image = url('/')."/assets/imgs/no.png";
-                                        foreach($property->documents as $document)
-                                        {
-                                            if($document->type == 'image' && $document->main == true && $document->path != "")
-                                            {
-                                                $image = url('/').'/temp/'.$document->path;
+                                        $image = url('/') . "/assets/imgs/no.png";
+                                        if ($property->owner->agency != null) {
+                                            if ($property->owner->agency->logo != null) {
+                                                $image = url('/') . '/temp/' . $property->owner->agency->logo;
                                             }
                                         }
-                                        $countForBanner++;
                                         ?>
-                                        {{--@if(sizeof($property->documents) > 0)--}}
-                                        {{--@foreach($property->documents as $document)--}}
-                                        {{--<div class="slide">--}}
-                                        {{--<a href="property?propertyId={{$property->id}}">--}}
-                                        {{--@if($document->type == 'image'  && $document->path != "")--}}
-                                        {{--<img src="{{ url('/').'/temp/'.$document->path}}" alt="image description">--}}
-                                        {{--@endif--}}
-                                        {{--</a>--}}
-                                        {{--</div>--}}
-                                        {{--@endforeach--}}
-                                        {{--@else--}}
-                                        <div class="slide">
-                                            <a href="{{URL::to('property').'/'.$property->slug}}">
-                                                <img src="{{$image}}" alt="image description">
-                                            </a>
-                                        </div>
-                                        {{-- @endif--}}
+
+                                        <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent'.'/'.$property->owner->agency->slug) }}" @endif>
+                                            <img src="{{$image}}" alt="image description" class="company-logo"></a>
                                     </div>
+
                                 </div>
-                                <a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>
-                                <a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>
-                            </div>
-                        </div>
-
-                        <div class="caption text-left">
-                            <div class="layout">
-                                <h1><a href="{{URL::to('property').'/'.$property->slug}}">{{ ''.$property->land->area.' '.$property->land->unit->name .' '}}{{$property->type->subType->name.' '. $property->purpose->name.'
-                                  in '.$property->location->location->location." ".'('.$property->location->city->name.')'}}</a></h1>
-                                <p>{{str_limit($property->description,148) }}</p>
-                                <span class="price">Rs <b>{{App\Libs\Helpers\PriceHelper::numberToRupees($property->price)}}</b></span>
-                                @if($property->isFeatured !=null)<span class="premiumProperty text-upparcase">{{'Featured'}}</span>@endif
-                                <div class="holder-ui">
-                                    <ul class="public-ui-features text-capital">
-                                        @foreach($property->features as $feature)
-                                            @foreach($feature as $featureSection)
-                                                @if($featureSection->priority ==1)
-                                                    <li>{{$featureSection->name}}:<span>{{$featureSection->value}}</span></li>
-                                                @endif
-                                            @endforeach
-
-                                        @endforeach
-                                    </ul>
-
-
-                                <?php
-                                    $image = url('/') . "/assets/imgs/no.png";
-                                    if ($property->owner->agency != null) {
-                                        if ($property->owner->agency->logo != null) {
-                                            $image = url('/') . '/temp/' . $property->owner->agency->logo;
-                                        }
-                                    }
-                                    ?>
-                                    <a @if(isset($property->owner->isTrusted) && $property->owner->isTrusted == 1 && isset($property->owner->isAgent) && $property->owner->isAgent==1 ) href="{{ URL::to('agent'.'/'.$property->owner->agency->id) }}" @endif>
-                                        <img src="{{$image}}" alt="image description" class="company-logo"></a>
-                                </div>
-                            </div>
-                            <div class="layout links-holder">
+                                <div class="layout links-holder">
                                  <span class="added-time">Property Added
                                      <?php
                                      $startTimeStamp = strtotime(date("Y/m/d"));
@@ -306,75 +351,75 @@
                                      };
                                      ?>
                                      <b>@if($numberDays !=0){{$numberDays}}  {{$days}} @else {{$myTime .' '.$days}} @endif</b></span>
-                                <a href="{{URL::to('property').'/'.$property->slug}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
-                                <ul class="quick-links">
-                                    <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}" data-name="{{$property->contactPerson}}"><span class="icon-phone"></span></a></li>
-                                    <li><a href="#sendEmail-popup{{$property->id}}" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
-                                </ul>
-                                <?php
-                                $user = (new \App\Libs\Helpers\AuthHelper())->user();
-                                ?>
-                                <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
-                                   key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i>
-                                </a>
+                                    <a href="{{URL::to('property').'/'.$property->slug}}" class="btn-default text-upparcase">VIEW DETAILS <span class="icon-search"></span></a>
+                                    <ul class="quick-links">
+                                        <li><a href="#callPopup" class="lightbox call-agent-btn" data-tel="{{$property->mobile}}" data-name="{{$property->contactPerson}}"><span class="icon-phone"></span></a></li>
+                                        <li><a href="#sendEmail-popup{{$property->id}}" class="lightbox"><span class="icon-empty-envelop"></span></a></li>
+                                    </ul>
+                                    <?php
+                                    $user = (new \App\Libs\Helpers\AuthHelper())->user();
+                                    ?>
+                                    <a @if($user ==null)href="#login-to-continue" @endif property_id="{{$property->id}}" user_id="{{($user !=null)?$user->id:""}}"
+                                       key="{{($user !=null)?$user->access_token:""}}"   class="add-to-favorite  {{($user == null)?'lightbox':''}}  @if(($response['data']['isFavourite'][$favourites]) != 0)added @endif" id="add-to-favorite{{$property->id}}">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="popup-holder">
-                            <div id="sendEmail-popup{{$property->id}}" class="lightbox generic-lightbox">
-                                <span class="lighbox-heading">Send Email</span>
-                                {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
-                                <input type="hidden" name="userId" value="{{$property->owner->id}}">
-                                <input type="hidden" name="type" value="property_listing">
-                                <input type="hidden" name="propertyId" value="{{$property->id}}">
-                                <div class="field-holder">
-                                    <label for="name">Name</label>
+                            <div class="popup-holder">
+                                <div id="sendEmail-popup{{$property->id}}" class="lightbox generic-lightbox">
+                                    <span class="lighbox-heading">Send Email</span>
+                                    {{Form::open(array('url'=>'mail-to-agent','method'=>'POST','class'=>'inquiry-email-form'))}}
+                                    <input type="hidden" name="userId" value="{{$property->owner->id}}">
+                                    <input type="hidden" name="type" value="property_listing">
+                                    <input type="hidden" name="propertyId" value="{{$property->id}}">
+                                    <div class="field-holder">
+                                        <label for="name">Name</label>
 
-                                    <div class="input-holder"><input type="text" id="name" name="name"></div>
-                                </div>
-                                <div class="field-holder">
-                                    <label for="email">Email</label>
-
-                                    <div class="input-holder"><input type="email" id="email" name="email"
-                                                                     required></div>
-                                </div>
-                                <div class="field-holder">
-                                    <label for="phone">phone</label>
-
-                                    <div class="input-holder"><input type="tel" id="phone" name="phone"
-                                                                     required></div>
-                                </div>
-                                <div class="field-holder">
-                                    <label for="subject">subject</label>
-
-                                    <div class="input-holder"><input type="text" id="subject" name="subject">
+                                        <div class="input-holder"><input type="text" id="name" name="name"></div>
                                     </div>
-                                </div>
-                                <div class="field-holder">
-                                    <label for="message">message</label>
+                                    <div class="field-holder">
+                                        <label for="email">Email</label>
 
-                                    <div class="input-holder"><textarea id="message" name="message" required></textarea>
-                                        <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                                        <div class="input-holder"><input type="email" id="email" name="email"
+                                                                         required></div>
                                     </div>
+                                    <div class="field-holder">
+                                        <label for="phone">phone</label>
+
+                                        <div class="input-holder"><input type="tel" id="phone" name="phone"
+                                                                         required></div>
+                                    </div>
+                                    <div class="field-holder">
+                                        <label for="subject">subject</label>
+
+                                        <div class="input-holder"><input type="text" id="subject" name="subject">
+                                        </div>
+                                    </div>
+                                    <div class="field-holder">
+                                        <label for="message">message</label>
+
+                                        <div class="input-holder"><textarea id="message" name="message" required></textarea>
+                                            <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                                        </div>
+                                    </div>
+                                    <button type="submit">SEND</button>
+                                    {{Form::close()}}
                                 </div>
-                                <button type="submit">SEND</button>
-                                {{Form::close()}}
                             </div>
-                        </div>
-                        <?php $favourites++; ?>
-                    </article>
-                   <?php
-                    if(($countForBanner %3) == 0)
-                    if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
+                            <?php $favourites++; ?>
+                        </article>
+                        <?php
+                        if(($countForBanner %3) == 0)
+                        if(isset($response['data']['banners']['between']) && isset($response['data']['banners']['between'][$betweenCountIndex]))
 
-                    { ?>
-                    <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['between'][$betweenCountIndex]->image}}" ></a>
-                    <?php
-                    $betweenCountIndex++;
+                        { ?>
+                        <a @if($response['data']['banners']['between'][$betweenCountIndex]->banner_link !=="") href="{{$response['data']['banners']['between'][$betweenCountIndex]->banner_link}}" @endif class="between-banner"><img src="{{\App\Libs\Helpers\PathHelper::nugreeAdminPublicPath().'/'.$response['data']['banners']['between'][$betweenCountIndex]->image}}" ></a>
+                        <?php
+                        $betweenCountIndex++;
+                        }
+                        ?>
+                    @endif
 
-                    }
-                    ?>
-                   @endif
                 @endforeach
                 <div class="match-pro-noti text-center">
                     <a href="#found-match" class="btn-default lightbox">Notify me</a>

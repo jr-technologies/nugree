@@ -13,8 +13,8 @@ $(document).ready(function() {
 
 // page init
 jQuery(function(){
-    initLightbox();
-    initCarousel();
+    //initLightbox();
+    //initCarousel();
 });
 function initCarousel() {
     jQuery('.propertyImage-slider').scrollGallery({

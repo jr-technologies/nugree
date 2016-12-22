@@ -29,14 +29,14 @@ return [
         'region' => 'us-east-1',
     ],
 
-    'stripe' => [
-        'model'  => App\User::class,
-        'key'    => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
-    ],
-    'facebook' => [
-        'client_id' => '1694721264176530',
-        'client_secret' => '05e778a79cdef4065f759d20c2ee287a',
-        'redirect' => url('/callback'),
-    ],
+//    'stripe' => [
+//        'model'  => App\User::class,
+//        'key'    => env('STRIPE_KEY'),
+//        'secret' => env('STRIPE_SECRET'),
+//    ],
+//    'facebook' => [
+//        'client_id' => '1694721264176530',
+//        'client_secret' => '05e778a79cdef4065f759d20c2ee287a',
+//        'redirect' => url('/callback'),
+//    ],
 ];
