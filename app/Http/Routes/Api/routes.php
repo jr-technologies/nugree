@@ -3,6 +3,7 @@ use App\Repositories\Providers\Providers\SocietiesRepoProvider;
 use App\Repositories\Providers\Providers\UsersRepoProvider;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Routes File

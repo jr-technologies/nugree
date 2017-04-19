@@ -8,7 +8,6 @@
 
 namespace App\Http\Requests\Requests\Auth;
 
-
 use App\Http\Requests\Interfaces\RequestInterface;
 use App\Http\Requests\Request;
 use App\Http\Validators\Validators\AuthValidators\LoginValidator;

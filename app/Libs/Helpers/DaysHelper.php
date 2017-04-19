@@ -12,6 +12,7 @@ class DaysHelper extends Helper
 {
     public static function convert($dateWithTime)
     {
+
         $myDate = substr($dateWithTime, 0, 10);
         $daysNumber = DaysHelper::getDays($dateWithTime);
 
@@ -65,7 +66,8 @@ class DaysHelper extends Helper
                 return $actualHours.' '.'Hours Ago';
             }
         }
-        else{
+        else
+        {
                 if($daysNumber ==1)
                 {
                     return $daysNumber.' '.'Day Ago';

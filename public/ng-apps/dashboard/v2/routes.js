@@ -1,16 +1,18 @@
 /**
  * Created by noman_2 on 12/8/2015.
  */
+
 var appVersion = "v2";
 var appPath = domain+"ng-apps/dashboard/"+appVersion;
 var views = appPath+"/views";
 var app = angular.module('dashboard');
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider){
+
     $urlRouterProvider.otherwise("/home/properties/all");
 
     // Now set up the states
     $stateProvider
-        .state('home', {
+        .state('home',{
             url: "/home",
             templateUrl: views+"/home.html",
             controller: "HomeController",
@@ -110,6 +112,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         })
         .state('home.properties.all', {
+
             url: "/all?status&page&limit",
             templateUrl: views+"/properties/list.html",
             controller: "ListPropertiesController",

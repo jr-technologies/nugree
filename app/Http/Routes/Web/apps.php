@@ -2,11 +2,11 @@
 
 /* Dashboard app will be launched from here.. */
 \Illuminate\Support\Facades\Route::get('/dashboard',[
-    'middleware' => [
+    'middleware' =>
+      [
         'webAuthenticate:getDashboardAppRequest'
-    ],
-    'uses'=>'AppsController@dashboard',
-    'as'=>'dashboard'
+      ],
+    'uses'=>'AppsController@dashboard','as'=>'dashboard'
 ]);
 
 /* AddPropertyWithAuth app will be launched from here.. */

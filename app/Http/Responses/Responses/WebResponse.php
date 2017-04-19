@@ -31,7 +31,8 @@ class WebResponse extends AppResponse implements ResponseInterface
     /**
      * @return $this
      */
-    public function respondWithErrors(){
+    public function respondWithErrors()
+    {
         \Session::flash('errors',$this->getErrorMessages());
         return $this->redirect()->withInput();
     }

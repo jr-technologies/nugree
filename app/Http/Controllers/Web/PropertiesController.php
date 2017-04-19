@@ -294,6 +294,7 @@ class PropertiesController extends Controller
     }
     public function getById(GetPropertyRequest $request)
     {
+
         try {
             $property = $this->properties->getPropertyBySlug($request->get('propertySlug'));
             if ($property->propertyStatus->id == ($this->status->getActiveStatusId())) {

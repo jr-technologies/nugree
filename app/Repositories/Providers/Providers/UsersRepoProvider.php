@@ -13,7 +13,6 @@ use App\Repositories\Providers\RepositoryProviderInterface;
 use App\Repositories\Repositories\Sql\UsersRepository;
 class UsersRepoProvider extends RepositoryProvider implements RepositoryProviderInterface
 {
-
     public function repo()
     {
         return new UsersRepository();

@@ -16,7 +16,8 @@
                 </div>
                 {{--<a href="#" class="btn-prev"><span class="icon-keyboard_arrow_left"></span></a>--}}
                 {{--<a href="#" class="btn-next"><span class="icon-keyboard_arrow_right"></span></a>--}}
-            </div>
+
+    .        </div>
             <div class="plugin-date-ui">
                 <div class="side">
                     <ul>

@@ -1,7 +1,6 @@
 <?php
 
 
-
 ///***********   UPDATING SLUGS IN PREVIOUS PROPERTIES IN LIVE   **************/
 //function convertPropertyAreaToActualUnit(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJsonPrototype $property)
 //{
@@ -67,6 +66,8 @@ function propertySlug(\App\Libs\Json\Prototypes\Prototypes\Property\PropertyJson
     $slug = $property->land->area.'-'.$property->land->unit->name.'-'.$property->type->subType->name.'-'.$property->purpose->name.'-in'.$property->location->location->location.'-'.$property->location->city->name.'-'.$property->id;
     return str_replace('--','-',preg_replace('/\s+/', '-',$slug));
 }
+
+
 
 Route::get('properties_with_dangling_location',function()
 {

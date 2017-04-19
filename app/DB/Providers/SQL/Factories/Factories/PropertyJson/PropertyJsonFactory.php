@@ -215,6 +215,7 @@ class PropertyJsonFactory extends SQLFactory implements SQLFactoriesInterface{
      */
     private function mapPropertyOnTable(PropertyJsonPrototype $property)
     {
+
         return [
             'property_id' => $property->id,
             'json' => $property->encode(),
